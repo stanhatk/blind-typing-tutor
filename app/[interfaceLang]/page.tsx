@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
+import { notFound, permanentRedirect } from "next/navigation";
 import { INTERFACE_LANGUAGE_OPTIONS } from "@/config/constants";
-import { generatePageMetadata } from "@/utils/metadata";
-import { AppContent } from "./[studyLang]/[learningMode]/AppContent";
 
 interface PageProps {
   params: Promise<{
@@ -10,24 +8,14 @@ interface PageProps {
 }
 
 /**
- * Generate static params for all interface languages
- * This ensures all language homepages are pre-rendered and indexable
+ * Language homepages are aliases of the words practice page.
+ * A permanent redirect keeps /en from being indexed with the same title
+ * as /en/en/words, /en/en/phrases, and /en/en/custom.
  */
 export async function generateStaticParams() {
   return INTERFACE_LANGUAGE_OPTIONS.map((lang) => ({
     interfaceLang: lang.code,
   }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { interfaceLang } = await params;
-  return generatePageMetadata({
-    interfaceLang,
-    robots: {
-      index: true,
-      follow: true,
-    },
-  });
 }
 
 export default async function InterfaceLangPage({ params }: PageProps) {
@@ -36,17 +24,9 @@ export default async function InterfaceLangPage({ params }: PageProps) {
     (opt) => opt.code === interfaceLang
   );
 
-  const validatedInterfaceLang = validLang ? interfaceLang : "en";
+  if (!validLang) {
+    notFound();
+  }
 
-  // Render the app with default settings (phrases mode, same language for study)
-  // This allows the homepage to be indexed
-  return (
-    <AppContent
-      params={{
-        interfaceLang: validatedInterfaceLang,
-        studyLang: validatedInterfaceLang,
-        learningMode: "phrases",
-      }}
-    />
-  );
+  permanentRedirect(`/${interfaceLang}/${interfaceLang}/words`);
 }

@@ -15,6 +15,39 @@ const DEFAULT_TITLE = "Blind Typing Tutor - Master Touch Typing Online";
 const DEFAULT_DESCRIPTION = "Master touch typing with our free online blind typing tutor.";
 const OG_IMAGE = "/og-image.png";
 
+/**
+ * Keep the high-value blind-typing phrase and append the practice mode
+ * so words, phrases, and custom are not indexed with the same title.
+ * Words keeps the full title; other modes use the keyword half plus the mode name.
+ */
+function titleForSameLanguageMode(baseTitle: string, modeLabel: string): string {
+  const head = baseTitle.split("|")[0].trim();
+  return `${head} — ${modeLabel}`;
+}
+
+/**
+ * Untranslated templates are copied from English. Combined with a shared
+ * study-language name, that makes titles and descriptions identical.
+ * Mention the interface language unless the text already does.
+ */
+function withInterfaceLanguage(text: string, interfaceName: string): string {
+  if (text.includes(interfaceName)) return text;
+  return `${text} (${interfaceName})`;
+}
+
+function fillTemplate(
+  template: string | undefined,
+  englishTemplate: string | undefined,
+  fallback: string,
+  langName: string
+): { text: string; copied: boolean } {
+  const source = template || fallback;
+  return {
+    text: source.replace("{lang}", langName),
+    copied: source === (englishTemplate || fallback),
+  };
+}
+
 interface MetadataOptions {
   interfaceLang: string;
   studyLang?: string;
@@ -80,6 +113,9 @@ export function generatePageMetadata(options: MetadataOptions): Metadata {
   // Build page-specific title and description using templates with {lang} placeholder
   let title: string;
   let description: string;
+  let titleCopied = false;
+  let descriptionCopied = false;
+  const en = translations.en;
 
   if (studyLang && learningMode) {
     const validatedStudyLang = validateLearningLanguage(studyLang);
@@ -88,30 +124,126 @@ export function generatePageMetadata(options: MetadataOptions): Metadata {
         ? t.languageNames[validatedStudyLang]
         : validatedStudyLang.toUpperCase();
 
-    // Use high-value "blind typing" keyword titles for same-language pages
-    // (e.g., /en/en/words, /ru/ru/phrases) — these are the primary SEO targets
+    // Same-language pages (e.g. /en/en/words) are the primary SEO targets and
+    // keep the high-value blind-typing title. Phrases and custom get their own
+    // titles and descriptions so the three modes are not duplicates.
     const isSameLanguage = validatedInterfaceLang === validatedStudyLang;
+    const modeKey = learningMode as ContentType;
 
     if (isSameLanguage) {
-      title = (t.seoBlindTypingTitle || t.seoTitle || DEFAULT_TITLE).replace("{lang}", studyLangName);
-      description = (t.seoBlindTypingDescription || t.seoDescription || DEFAULT_DESCRIPTION).replace("{lang}", studyLangName);
-    } else {
-      const modeKey = learningMode as ContentType;
+      const blindTitle = fillTemplate(
+        t.seoBlindTypingTitle,
+        en.seoBlindTypingTitle,
+        t.seoTitle || DEFAULT_TITLE,
+        studyLangName
+      );
+      const blindDescription = fillTemplate(
+        t.seoBlindTypingDescription,
+        en.seoBlindTypingDescription,
+        t.seoDescription || DEFAULT_DESCRIPTION,
+        studyLangName
+      );
+
       if (modeKey === "words") {
-        title = (t.seoTitleWords || t.seoTitle || DEFAULT_TITLE).replace("{lang}", studyLangName);
-        description = (t.seoDescriptionWords || t.seoDescription || DEFAULT_DESCRIPTION).replace("{lang}", studyLangName);
+        title = blindTitle.text;
+        description = blindDescription.text;
+        titleCopied = blindTitle.copied;
+        descriptionCopied = blindDescription.copied;
       } else if (modeKey === "phrases") {
-        title = (t.seoTitlePhrases || t.seoTitle || DEFAULT_TITLE).replace("{lang}", studyLangName);
-        description = (t.seoDescriptionPhrases || t.seoDescription || DEFAULT_DESCRIPTION).replace("{lang}", studyLangName);
+        const phraseDescription = fillTemplate(
+          t.seoDescriptionPhrases,
+          en.seoDescriptionPhrases,
+          blindDescription.text,
+          studyLangName
+        );
+        title = titleForSameLanguageMode(blindTitle.text, t.phrases);
+        description = phraseDescription.text;
+        titleCopied = blindTitle.copied;
+        descriptionCopied = phraseDescription.copied;
       } else {
-        title = (t.seoTitleCustom || t.seoTitle || DEFAULT_TITLE).replace("{lang}", studyLangName);
-        description = (t.seoDescriptionCustom || t.seoDescription || DEFAULT_DESCRIPTION).replace("{lang}", studyLangName);
+        const customDescription = fillTemplate(
+          t.seoDescriptionCustom,
+          en.seoDescriptionCustom,
+          blindDescription.text,
+          studyLangName
+        );
+        title = titleForSameLanguageMode(blindTitle.text, t.custom);
+        description = customDescription.text;
+        titleCopied = blindTitle.copied;
+        descriptionCopied = customDescription.copied;
       }
+    } else if (modeKey === "words") {
+      const filledTitle = fillTemplate(
+        t.seoTitleWords,
+        en.seoTitleWords,
+        t.seoTitle || DEFAULT_TITLE,
+        studyLangName
+      );
+      const filledDescription = fillTemplate(
+        t.seoDescriptionWords,
+        en.seoDescriptionWords,
+        t.seoDescription || DEFAULT_DESCRIPTION,
+        studyLangName
+      );
+      title = filledTitle.text;
+      description = filledDescription.text;
+      titleCopied = filledTitle.copied;
+      descriptionCopied = filledDescription.copied;
+    } else if (modeKey === "phrases") {
+      const filledTitle = fillTemplate(
+        t.seoTitlePhrases,
+        en.seoTitlePhrases,
+        t.seoTitle || DEFAULT_TITLE,
+        studyLangName
+      );
+      const filledDescription = fillTemplate(
+        t.seoDescriptionPhrases,
+        en.seoDescriptionPhrases,
+        t.seoDescription || DEFAULT_DESCRIPTION,
+        studyLangName
+      );
+      title = filledTitle.text;
+      description = filledDescription.text;
+      titleCopied = filledTitle.copied;
+      descriptionCopied = filledDescription.copied;
+    } else {
+      const filledTitle = fillTemplate(
+        t.seoTitleCustom,
+        en.seoTitleCustom,
+        t.seoTitle || DEFAULT_TITLE,
+        studyLangName
+      );
+      const filledDescription = fillTemplate(
+        t.seoDescriptionCustom,
+        en.seoDescriptionCustom,
+        t.seoDescription || DEFAULT_DESCRIPTION,
+        studyLangName
+      );
+      title = filledTitle.text;
+      description = filledDescription.text;
+      titleCopied = filledTitle.copied;
+      descriptionCopied = filledDescription.copied;
     }
   } else {
-    title = t.seoTitle || t.title || DEFAULT_TITLE;
-    description = t.seoDescription || t.metaDescription || DEFAULT_DESCRIPTION;
+    const filledTitle = fillTemplate(t.seoTitle, en.seoTitle, t.title || DEFAULT_TITLE, "");
+    const filledDescription = fillTemplate(
+      t.seoDescription,
+      en.seoDescription,
+      t.metaDescription || DEFAULT_DESCRIPTION,
+      ""
+    );
+    title = filledTitle.text;
+    description = filledDescription.text;
+    titleCopied = filledTitle.copied;
+    descriptionCopied = filledDescription.copied;
   }
+
+  const interfaceName =
+    t.languageNames && validatedInterfaceLang in t.languageNames
+      ? t.languageNames[validatedInterfaceLang]
+      : validatedInterfaceLang.toUpperCase();
+  if (titleCopied) title = withInterfaceLanguage(title, interfaceName);
+  if (descriptionCopied) description = withInterfaceLanguage(description, interfaceName);
 
   const keywords = t.seoKeywords || t.seoDescription || "";
 
