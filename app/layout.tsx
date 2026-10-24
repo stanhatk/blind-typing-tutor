@@ -43,6 +43,11 @@ export default async function RootLayout({
   // Extract interface language from URL path
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
+  const host = (headersList.get("x-forwarded-host") || headersList.get("host") || "")
+    .split(",")[0]
+    .trim()
+    .replace(/:\d+$/, "");
+  const showAdsense = host === "blind-typing-tutor.wordmemo.net";
 
   // Parse interface language from path (format: /[interfaceLang]/...)
   const pathSegments = pathname.split("/").filter(Boolean);
@@ -108,6 +113,13 @@ export default async function RootLayout({
         />
         <link rel="manifest" href="/manifest.json" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        {showAdsense ? (
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2268903952968625"
+            crossOrigin="anonymous"
+          />
+        ) : null}
       </head>
       <body>
         <ErrorBoundary>{children}</ErrorBoundary>
