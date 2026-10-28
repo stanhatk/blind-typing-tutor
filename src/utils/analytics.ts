@@ -51,3 +51,48 @@ export const trackSettingsChange = (settingName: string, value: string | boolean
     });
   }
 };
+
+// What is being practiced, sent with practice events (no typed text)
+export interface PracticeContext {
+  studyLang: string;
+  mode: string;
+  complexity: string;
+  layoutId: string;
+  practiceLayoutId: string;
+}
+
+const practiceParams = (context: PracticeContext) => ({
+  study_lang: context.studyLang,
+  mode: context.mode,
+  complexity: context.mode === "beginner" ? context.complexity : "none",
+  layout_id: context.layoutId,
+  // Typed with the practice layout emulated on another keyboard
+  emulated: context.practiceLayoutId !== context.layoutId,
+});
+
+/**
+ * First keystroke of a text
+ */
+export const trackPracticeStart = (context: PracticeContext) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "practice_start", practiceParams(context));
+  }
+};
+
+/**
+ * A text typed to the end
+ */
+export const trackTextComplete = (
+  context: PracticeContext,
+  result: { wpm: number; accuracy: number; chars: number; durationSec: number }
+) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "text_complete", {
+      ...practiceParams(context),
+      wpm: Math.round(result.wpm),
+      accuracy: Math.round(result.accuracy),
+      chars: result.chars,
+      duration_sec: Math.round(result.durationSec),
+    });
+  }
+};

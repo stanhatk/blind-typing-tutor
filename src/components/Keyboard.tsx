@@ -290,7 +290,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   return (
     // Physical keyboards are not mirrored in right-to-left interfaces
-    <div dir="ltr" className="flex flex-col items-center justify-center mt-12 select-none opacity-100 transition-opacity duration-200 w-full max-w-[855px] mx-auto">
+    <div dir="ltr" className="flex flex-col items-center justify-center select-none opacity-100 transition-opacity duration-200 w-full max-w-[855px] mx-auto">
       {/* Row 1 - Number row */}
       <div className="flex w-full">
         {row1Keys.map(key => {

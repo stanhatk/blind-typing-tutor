@@ -8,6 +8,7 @@ import { getPracticeLayout } from "../utils/practiceLayout";
 import { emulateKeyPress } from "../utils/layoutEmulation";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
+import { trackPracticeStart, trackTextComplete } from "../utils/analytics";
 import { charsMatch, scoreInput } from "../utils/typedText";
 
 interface TypingEngineProps {
@@ -159,8 +160,12 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, comp
     setPendingValue(null);
 
     if (val.length > input.length) {
+      const analyticsContext = {
+        studyLang: language, mode, complexity, layoutId, practiceLayoutId: practiceLayout.id,
+      };
       if (!startTime) {
         setStartTime(Date.now());
+        trackPracticeStart(analyticsContext);
       }
 
       // Check every inserted character; unfinished ones wait for more keys
@@ -181,6 +186,13 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, comp
 
       setInput(accepted);
       if (accepted.length === text.length) {
+        const durationSec = startTime ? (Date.now() - startTime) / 1000 : 0;
+        trackTextComplete(analyticsContext, {
+          wpm: durationSec > 0 ? newTotal / 5 / (durationSec / 60) : 0,
+          accuracy: Math.max(0, ((newTotal - newErrors) / newTotal) * 100),
+          chars: text.length,
+          durationSec,
+        });
         if (completionTimeoutRef.current) clearTimeout(completionTimeoutRef.current);
         completionTimeoutRef.current = setTimeout(() => {
           generateText();

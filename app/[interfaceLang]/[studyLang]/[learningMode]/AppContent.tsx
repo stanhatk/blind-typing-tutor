@@ -5,6 +5,7 @@ import { Game } from "@/components/Game";
 import { getAllLayouts } from "@/config/layouts";
 import { translations } from "@/translations";
 import { useAppSettings } from "@/hooks/useAppSettings";
+import { buildUrlPath } from "@/utils/url";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { Header } from "@/components/layout/Header";
 import { MobileMessage } from "@/components/layout/MobileMessage";
@@ -32,10 +33,12 @@ export function AppContent({ params }: AppContentProps) {
     initGA();
   }, []);
 
-  // Track page view on language or mode change
+  // Track a page view when the interface language, practice language or
+  // mode changes (built from settings: the URL updates after this render)
+  const pagePath = buildUrlPath(settings.interfaceLanguage, settings.learningContentType, settings.learningLanguage);
   useEffect(() => {
-    trackPageView(window.location.pathname, `${t.title} - ${settings.mode}`);
-  }, [settings.interfaceLanguage, settings.mode, t.title]);
+    trackPageView(pagePath, `${t.title} - ${settings.mode}`);
+  }, [pagePath, settings.mode, t.title]);
 
   // Layout filtering and sorting
   const allLayouts = getAllLayouts();

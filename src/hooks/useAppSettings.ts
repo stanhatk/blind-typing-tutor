@@ -17,6 +17,17 @@ import { parseUrlPath, buildUrlPath, type ContentType } from "../utils/url";
 import { isValidInterfaceLanguage, VALID_LEARNING_LANGUAGES } from "../config/constants";
 import { useDarkMode } from "./useDarkMode";
 import { isComplexity, type Complexity } from "../utils/complexity";
+import { trackSettingsChange } from "../utils/analytics";
+
+// A setter that reports the user's change to analytics; values restored
+// from localStorage use the plain setter and are not reported
+function trackedSetter<T extends string | boolean>(name: string, current: T, set: (value: T) => void) {
+  return (next: T | ((previous: T) => T)) => {
+    const value = typeof next === "function" ? next(current) : next;
+    if (value !== current) trackSettingsChange(name, value);
+    set(value);
+  };
+}
 
 interface UseAppSettingsParams {
   interfaceLang?: string;
@@ -470,7 +481,7 @@ export function useAppSettings(params: UseAppSettingsParams) {
 
   return {
     layoutId,
-    setLayoutId,
+    setLayoutId: trackedSetter("layout", layoutId, setLayoutId),
     mode,
     setMode: changeMode,
     learningLanguage,
@@ -480,18 +491,18 @@ export function useAppSettings(params: UseAppSettingsParams) {
     interfaceLanguage,
     setInterfaceLanguage: changeInterfaceLanguage,
     soundEnabled,
-    setSoundEnabled,
+    setSoundEnabled: trackedSetter("sound", soundEnabled, setSoundEnabled),
     darkMode,
-    setDarkMode,
+    setDarkMode: trackedSetter("dark_mode", darkMode, setDarkMode),
     showKeyboard,
-    setShowKeyboard,
+    setShowKeyboard: trackedSetter("show_keyboard", showKeyboard, setShowKeyboard),
     showHands,
-    setShowHands,
+    setShowHands: trackedSetter("show_hands", showHands, setShowHands),
     showColors,
-    setShowColors,
+    setShowColors: trackedSetter("show_colors", showColors, setShowColors),
     correctionMode,
-    setCorrectionMode,
+    setCorrectionMode: trackedSetter("correction_mode", correctionMode, setCorrectionMode),
     complexity,
-    setComplexity,
+    setComplexity: trackedSetter("complexity", complexity, setComplexity),
   };
 }
