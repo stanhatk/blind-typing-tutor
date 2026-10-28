@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Generator, type Language, type GeneratedText, type WordHint } from "../utils/Generator";
 import { loadContent } from "../words";
 import { getLayout } from "../config/layouts";
 import type { KeyboardLayoutId } from "../types/keyboard";
 import type { Level } from "../utils/difficulty";
+import { getPracticeLayout } from "../utils/practiceLayout";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
 import { charsMatch, isPartialChar } from "../utils/typedText";
@@ -46,6 +47,13 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
   const [loaded, setLoaded] = useState<{ language: Language; generator: Generator } | null>(null);
   const generator = loaded?.language === language ? loaded.generator : null;
 
+  // Layout whose keys are practiced: the shown one if it can type the
+  // language, else the language's own layout (same physical keys)
+  const practiceLayout = useMemo(() => {
+    const shown = getLayout(layoutId);
+    return generator ? getPracticeLayout(shown, language, generator.getPracticeChars()) : shown;
+  }, [generator, layoutId, language]);
+
   useEffect(() => {
     let cancelled = false;
     loadContent(language)
@@ -78,7 +86,7 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
     } else if (!generator) {
       return; // Content still loading
     } else if (mode === "beginner") {
-      showGenerated(generator.getLevelWords(getLayout(layoutId), level));
+      showGenerated(generator.getLevelWords(practiceLayout, level));
       setInput("");
     } else {
       showGenerated(generator.getPhrases());
@@ -92,7 +100,7 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
     setAccuracy(100);
     // Defer focus to ensure DOM is ready
     setTimeout(() => inputRef.current?.focus(), 0);
-  }, [mode, generator, layoutId, level]);
+  }, [mode, generator, practiceLayout, level]);
 
   // Initialize text when mode or language changes
   /* eslint-disable react-hooks/set-state-in-effect -- intentional mode/language initialization */
@@ -277,6 +285,7 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
     text, hints, input, setInput, inputRef,
     startTime, errors, totalTyped, wpm, accuracy,
     lastPressedKey, deadKeyPending,
+    practiceLayoutId: practiceLayout.id,
     inputValue: pendingValue ?? input,
     pendingText: pendingValue?.startsWith(input) ? pendingValue.slice(input.length) : "",
     upcomingText: text.slice(input.length),

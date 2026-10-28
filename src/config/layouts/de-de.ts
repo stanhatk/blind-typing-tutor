@@ -38,7 +38,7 @@ export const deDeLayout: KeyboardLayout = {
         { id: 'e', primary: 'e', shifted: 'E', altGr: '€', group: 3 },
         { id: 'r', primary: 'r', shifted: 'R', group: 4 },
         { id: 't', primary: 't', shifted: 'T', group: 4 },
-        { id: 'z', primary: 'z', shifted: 'Z', group: 5 }, // Z and Y swapped in QWERTZ
+        { id: 'y', primary: 'z', shifted: 'Z', group: 5 }, // Z and Y swapped in QWERTZ
         { id: 'u', primary: 'u', shifted: 'U', group: 5 },
         { id: 'i', primary: 'i', shifted: 'I', group: 6 },
         { id: 'o', primary: 'o', shifted: 'O', group: 7 },
@@ -64,7 +64,7 @@ export const deDeLayout: KeyboardLayout = {
 
         // Row 4 - Bottom row
         { id: 'shift-l', primary: 'shift', width: 'shift' },
-        { id: 'y', primary: 'y', shifted: 'Y', group: 1 }, // Y and Z swapped in QWERTZ
+        { id: 'z', primary: 'y', shifted: 'Y', group: 1 }, // Y and Z swapped in QWERTZ
         { id: 'x', primary: 'x', shifted: 'X', group: 2 },
         { id: 'c', primary: 'c', shifted: 'C', group: 3 },
         { id: 'v', primary: 'v', shifted: 'V', group: 4 },

@@ -85,6 +85,7 @@ export const Game: React.FC<GameProps> = ({
     upcomingText,
     pendingText,
     deadKeyPending,
+    practiceLayoutId,
     inputValue,
     customText,
     setCustomText,
@@ -177,6 +178,7 @@ export const Game: React.FC<GameProps> = ({
             lastPressedKey={lastPressedKey}
             deadKeyPending={deadKeyPending}
             practiceLanguage={language}
+            practiceLayoutId={practiceLayoutId}
           />
           <div className="mt-6 flex justify-center">
             <a

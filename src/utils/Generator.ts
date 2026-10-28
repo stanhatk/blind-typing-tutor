@@ -1,5 +1,6 @@
 import type { KeyboardLayout, LanguageCode } from '../types/keyboard';
 import { getLevelWords, type Level } from './difficulty';
+import { getPracticeChars } from './practiceLayout';
 import type { LanguageContent } from '../words';
 
 export type Language = LanguageCode;
@@ -33,6 +34,15 @@ export class Generator {
   private content: LanguageContent;
   // Words per "layout:level", computed once
   private levelPools = new Map<string, string[]>();
+  private practiceChars?: Set<string>;
+
+  /**
+   * Every character typed when practicing this language (computed once)
+   */
+  public getPracticeChars(): Set<string> {
+    this.practiceChars ??= getPracticeChars(this.content);
+    return this.practiceChars;
+  }
   private number: number;
   private language: Language;
 

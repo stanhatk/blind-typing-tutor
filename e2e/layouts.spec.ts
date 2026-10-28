@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { getLayout, getLayoutIdsForLanguage } from "../src/config/layouts";
+import { getAllLayouts, getLayout, getLayoutIdsForLanguage } from "../src/config/layouts";
 import { VALID_LEARNING_LANGUAGES } from "../src/config/constants";
 import { getTypedWord } from "../src/utils/Generator";
 import { loadContent } from "../src/words";
 import { canTypeChar } from "../src/utils/keyStrokes";
 import { LEVELS, getLevelWords } from "../src/utils/difficulty";
+import { getPracticeChars, getPracticeLayout } from "../src/utils/practiceLayout";
 
 /**
  * Every word must be typeable on its language's keyboard layouts (directly,
@@ -58,4 +59,30 @@ test.describe("Keyboard layout coverage", () => {
       }
     });
   }
+
+  // Any keyboard shown with any practice language: the practice layout must
+  // type every character, and Words mode levels must really differ
+  for (const language of VALID_LEARNING_LANGUAGES) {
+    test(`every keyboard can practice ${language}`, async () => {
+      const content = await loadContent(language);
+      const chars = getPracticeChars(content);
+      for (const { id } of getAllLayouts()) {
+        const practice = getPracticeLayout(getLayout(id), language, chars);
+        const untypeable = [...chars].filter((char) => !canTypeChar(practice, char));
+        expect(untypeable, `${language} on ${id} via ${practice.id}`).toEqual([]);
+        const levelOne = getLevelWords(practice, content.words, (word) => getTypedWord(content, word), 1);
+        expect(levelOne.length, `${language} level 1 on ${id} is the whole list`).toBeLessThan(content.words.length);
+      }
+    });
+  }
+
+  // Key ids name physical positions (the US key at that spot), so layouts can
+  // stand in for each other: same ids in the same order as en-us
+  test("every layout uses positional key ids", () => {
+    const order = getLayout("en-us").keys.map((key) => key.id);
+    for (const { id } of getAllLayouts()) {
+      const ids = getLayout(id).keys.map((key) => key.id).filter((keyId) => keyId !== "intlBackslash");
+      expect(ids, `key ids of ${id}`).toEqual(order);
+    }
+  });
 });

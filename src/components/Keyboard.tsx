@@ -15,6 +15,7 @@ interface KeyboardProps {
   lastPressedKey?: string | null; // Last key that was physically pressed (for highlighting)
   deadKeyPending?: boolean; // A dead key was pressed and is waiting for its base letter
   practiceLanguage?: LanguageCode; // Language being typed, when it differs from the layout's
+  practiceLayoutId?: KeyboardLayoutId; // Layout whose keys are practiced (see getPracticeLayout)
 }
 
 /**
@@ -43,10 +44,16 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   showEnglishHints = false,
   lastPressedKey = null,
   deadKeyPending = false,
-  practiceLanguage
+  practiceLanguage,
+  practiceLayoutId = layoutId
 }) => {
   const layout = getLayout(layoutId);
-  const enLayout = layoutId !== 'en-us' ? getLayout('en-us') : null;
+  // Hints on keys: the practice layout's characters when another layout is
+  // practiced, else English letters on non-English layouts
+  const practicesOtherLayout = practiceLayoutId !== layoutId;
+  const hintLayout = practicesOtherLayout
+    ? getLayout(practiceLayoutId)
+    : layoutId !== 'en-us' ? getLayout('en-us') : null;
 
   // Only show English hints after mount to prevent hydration mismatch
   // Server always renders without hints, client enables after hydration
@@ -57,16 +64,21 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     }, 0);
   }, []);
 
-  const effectiveShowEnglishHints = mounted && showEnglishHints;
+  const effectiveShowEnglishHints = mounted && (showEnglishHints || practicesOtherLayout);
 
   // Layouts to find keys on: the shown one, then the practice language's own
   // layouts and US QWERTY. Practicing English on a Ukrainian keyboard, the
   // system layout is switched but the same physical keys are pressed, and key
   // ids are physical positions, so those keys are highlighted on this layout.
   const keyLayouts = useMemo(() => {
-    const ids = [layoutId, ...(practiceLanguage ? getLayoutIdsForLanguage(practiceLanguage) : []), 'en-us' as const];
+    const ids = [
+      practiceLayoutId,
+      layoutId,
+      ...(practiceLanguage ? getLayoutIdsForLanguage(practiceLanguage) : []),
+      'en-us' as const,
+    ];
     return [...new Set(ids)].map((id) => getLayout(id));
-  }, [layoutId, practiceLanguage]);
+  }, [practiceLayoutId, layoutId, practiceLanguage]);
 
   // Compute target key, Shift and AltGr for the next keystroke
   const { targetKeyId, shiftTarget, altGrTarget, spaceHand } = useMemo(() => {
@@ -241,13 +253,13 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       return keyDef.primary.replace('-', ' ');
     }
 
-    // Show English hints for non-English layouts (only after mount to prevent hydration mismatch)
-    if (effectiveShowEnglishHints && enLayout) {
-      const enKey = enLayout.keys.find(k => k.id === keyDef.id);
-      if (enKey && enKey.primary !== keyDef.primary) {
+    // Hints from the hint layout (only after mount to prevent hydration mismatch)
+    if (effectiveShowEnglishHints && hintLayout) {
+      const hintKey = hintLayout.keys.find(k => k.id === keyDef.id);
+      if (hintKey && hintKey.primary !== keyDef.primary) {
         return (
           <div className="flex flex-col items-center justify-center leading-tight">
-            <span className="text-[10px] opacity-60">{getKeyLabel(enKey, "en")}</span>
+            <span className="text-[10px] opacity-60">{getKeyLabel(hintKey, hintLayout.language)}</span>
             <span className="text-sm font-medium">{getKeyLabel(keyDef, layout.language)}</span>
           </div>
         );
