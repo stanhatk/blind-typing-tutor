@@ -67,7 +67,7 @@ export function SEO({
       title?.trim() || "Blind Typing Tutor - Master Touch Typing Online";
     const finalDescription =
       description?.trim() ||
-      "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts in multiple languages.";
+      "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts in multiple languages.";
 
     // Basic meta tags - ensure they're set immediately
     if (document.title !== finalTitle) {

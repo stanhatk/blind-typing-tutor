@@ -281,7 +281,7 @@ export function SEOContent({
           Visual keyboard with finger position guidance and color-coded keys
         </li>
         <li>
-          Support for 28+ keyboard layouts including QWERTY, AZERTY, QWERTZ,
+          Support for 40+ keyboard layouts including QWERTY, AZERTY, QWERTZ,
           Dvorak, and more
         </li>
         <li>
@@ -329,7 +329,7 @@ export function SEOContent({
         Multilingual Support
       </h2>
       <p className="mb-4 text-gray-700 dark:text-gray-300">
-        Our typing tutor supports practice in over 28 languages with native
+        Our typing tutor supports practice in over 40 languages with native
         keyboard layouts. Whether you're learning English typing on a QWERTY
         layout, French on AZERTY, German on QWERTZ, or practicing Cyrillic,
         Arabic, Chinese, or Japanese characters, our tool provides the

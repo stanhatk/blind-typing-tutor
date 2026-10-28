@@ -32,12 +32,12 @@ export const translations = {
   reportIssue: "Report Issue",
   reportIssueTitle: "Report an issue on GitHub",
   metaDescription:
-    "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts (QWERTY, QWERTZ, AZERTY) in 8 languages. Real-time words/minute tracking, accuracy stats, visual keyboard, and audio feedback.",
+    "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts (QWERTY, QWERTZ, AZERTY) in 8 languages. Real-time words/minute tracking, accuracy stats, visual keyboard, and audio feedback.",
   cancel: "Cancel",
   selectKeyboardLayout: "Select keyboard layout",
   seoTitle: "Touch Typing Trainer | Blind Typing Practice Online",
   seoDescription:
-    "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
+    "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
   seoKeywords:
     "touch typing, blind typing, typing tutor, keyboard trainer, typing practice, typing speed, WPM, typing accuracy, typing trainer, online typing practice, learn touch typing, typing without looking, keyboard training, typing lessons, typing exercises",
   seoTitleWords: "Practice Typing with Words in {lang} | Typing Tutor",
@@ -47,7 +47,7 @@ export const translations = {
   seoDescriptionPhrases: "Improve your typing speed with common phrases in {lang}. Practice complete sentences to develop rhythm, flow, and continuous typing ability with our free online typing tutor.",
   seoDescriptionCustom: "Practice custom text typing in {lang}. Paste your own text and improve your touch typing skills with our free online typing tutor.",
   seoBlindTypingTitle: "Blind Typing Practice in {lang} | Learn Blind Typing",
-  seoBlindTypingDescription: "Practice blind typing in {lang} with our free online tutor. Learn to type without looking at the keyboard using 28+ layouts. Real-time WPM tracking and accuracy stats.",
+  seoBlindTypingDescription: "Practice blind typing in {lang} with our free online tutor. Learn to type without looking at the keyboard using 40+ layouts. Real-time WPM tracking and accuracy stats.",
   mobileDesktopRequired: "Desktop Keyboard Required",
   mobileDescription:
     "This application is designed for desktop use with a physical keyboard. Please visit this site on a desktop or laptop computer to practice touch typing.",

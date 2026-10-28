@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://blind-typing-tutor.wordmemo.net"),
   title: "Touch Typing Trainer | Blind Typing Practice Online",
   description:
-    "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
+    "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
   keywords:
     "touch typing, blind typing, typing tutor, keyboard trainer, typing practice, typing speed, WPM, typing accuracy, typing trainer, online typing practice",
   authors: [{ name: "Stanislav Khatko" }],
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     url: "https://blind-typing-tutor.wordmemo.net",
     title: "Touch Typing Trainer | Blind Typing Practice Online",
     description:
-      "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
+      "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
     images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Touch Typing Trainer | Blind Typing Practice Online",
     description:
-      "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
+      "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
     images: ["/og-image.png"],
   },
 };

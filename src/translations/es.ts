@@ -47,7 +47,7 @@ export const translations = {
   seoDescriptionPhrases: "Mejora tu velocidad de escritura con frases comunes en {lang}. Practica oraciones completas para desarrollar ritmo y fluidez con nuestro tutor de mecanografía en línea gratuito.",
   seoDescriptionCustom: "Practica la escritura de texto personalizado en {lang}. Pega tu propio texto y mejora tus habilidades de mecanografía con nuestro tutor de mecanografía en línea gratuito.",
   seoBlindTypingTitle: "Mecanografía a Ciegas en {lang} | Aprender Mecanografía a Ciegas",
-  seoBlindTypingDescription: "Practica la mecanografía a ciegas en {lang} con nuestro tutor en línea gratuito. Aprende a escribir sin mirar el teclado con 28+ distribuciones. Seguimiento de WPM y precisión en tiempo real.",
+  seoBlindTypingDescription: "Practica la mecanografía a ciegas en {lang} con nuestro tutor en línea gratuito. Aprende a escribir sin mirar el teclado con 40+ distribuciones. Seguimiento de WPM y precisión en tiempo real.",
   mobileDesktopRequired: "Teclado de escritorio requerido",
   mobileDescription:
     "Esta aplicación está diseñada para uso en escritorio con un teclado físico. Por favor, visite este sitio en una computadora de escritorio o portátil para practicar mecanografía.",

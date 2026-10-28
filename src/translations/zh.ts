@@ -47,7 +47,7 @@ export const translations = {
   seoDescriptionPhrases: "用常用短语提高{lang}打字速度。练习完整句子以培养节奏和流畅性。免费在线打字教练。",
   seoDescriptionCustom: "练习{lang}自定义文本打字。粘贴您自己的文本，使用免费在线打字教练提高触摸打字技能。",
   seoBlindTypingTitle: "在{lang}中练习盲打 | 学习盲打",
-  seoBlindTypingDescription: "使用我们的免费在线教练在{lang}中练习盲打。通过28+键盘布局学习不看键盘打字。实时WPM追踪和准确率统计。",
+  seoBlindTypingDescription: "使用我们的免费在线教练在{lang}中练习盲打。通过40+键盘布局学习不看键盘打字。实时WPM追踪和准确率统计。",
   mobileDesktopRequired: "需要桌面键盘",
   mobileDescription:
     "此应用程序专为使用物理键盘的桌面使用而设计。请在台式机或笔记本电脑上访问此网站以练习打字。",
