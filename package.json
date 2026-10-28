@@ -39,7 +39,8 @@
     "start": "next start",
     "lint": "eslint .",
     "clean": "rm -rf .next node_modules/.vite dist",
-    "deploy": "vercel --prod",
+    "deploy": "vercel --prod && yarn indexnow",
+    "indexnow": "node scripts/indexnow.cjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed"

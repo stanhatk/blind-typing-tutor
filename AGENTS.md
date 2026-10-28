@@ -13,7 +13,8 @@ Touch typing tutor built with **Next.js 15 (App Router)**, **React 19**, **TypeS
 yarn dev          # Start Next.js dev server (port 3000)
 yarn build        # Production build (also serves as typecheck)
 yarn lint         # ESLint (flat config, eslint.config.js)
-yarn deploy       # Deploy to Vercel
+yarn deploy       # Deploy to Vercel, then submit the sitemap to IndexNow (Bing, Yandex)
+yarn indexnow     # Submit the live sitemap's URLs to IndexNow (--dry-run to only count)
 yarn test:e2e     # Playwright E2E tests
 yarn test:e2e:ui  # Playwright interactive UI mode
 ```
