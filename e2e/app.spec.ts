@@ -473,4 +473,13 @@ test.describe("Blind Typing Tutor E2E Tests", () => {
     // Verify Custom Setup is gone
     await expect(textarea).not.toBeVisible();
   });
+
+  test("highlights keys when the practice language differs from the layout", async ({ page }) => {
+    // English practice on a Ukrainian keyboard: the same physical keys are pressed
+    await page.goto("/uk/en/words");
+    await page.evaluate(() => localStorage.setItem("layoutId", "uk-ua"));
+    await page.reload();
+    await expect(page.locator('[data-testid="keyboard-layout-selector"]')).toHaveValue("uk-ua");
+    await expect(page.locator(".key.key-target")).toHaveCount(1);
+  });
 });

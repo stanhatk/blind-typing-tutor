@@ -176,6 +176,7 @@ export const Game: React.FC<GameProps> = ({
             showEnglishHints={shouldShowHints}
             lastPressedKey={lastPressedKey}
             deadKeyPending={deadKeyPending}
+            practiceLanguage={language}
           />
           <div className="mt-6 flex justify-center">
             <a

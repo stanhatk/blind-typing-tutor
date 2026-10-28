@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState, useEffect } from 'react';
-import type { KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
-import { getLayout } from '../config/layouts';
+import type { KeyboardLayoutId, KeyDefinition, LanguageCode } from '../types/keyboard';
+import { getLayout, getLayoutIdsForLanguage } from '../config/layouts';
 import { findKeyStroke, getNextKeyChar } from '../utils/keyStrokes';
 
 interface KeyboardProps {
@@ -14,6 +14,7 @@ interface KeyboardProps {
   showEnglishHints?: boolean; // Show English characters as hints on non-English layouts
   lastPressedKey?: string | null; // Last key that was physically pressed (for highlighting)
   deadKeyPending?: boolean; // A dead key was pressed and is waiting for its base letter
+  practiceLanguage?: LanguageCode; // Language being typed, when it differs from the layout's
 }
 
 /**
@@ -41,7 +42,8 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   showColors,
   showEnglishHints = false,
   lastPressedKey = null,
-  deadKeyPending = false
+  deadKeyPending = false,
+  practiceLanguage
 }) => {
   const layout = getLayout(layoutId);
   const enLayout = layoutId !== 'en-us' ? getLayout('en-us') : null;
@@ -57,19 +59,36 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   const effectiveShowEnglishHints = mounted && showEnglishHints;
 
+  // Layouts to find keys on: the shown one, then the practice language's own
+  // layouts and US QWERTY. Practicing English on a Ukrainian keyboard, the
+  // system layout is switched but the same physical keys are pressed, and key
+  // ids are physical positions, so those keys are highlighted on this layout.
+  const keyLayouts = useMemo(() => {
+    const ids = [layoutId, ...(practiceLanguage ? getLayoutIdsForLanguage(practiceLanguage) : []), 'en-us' as const];
+    return [...new Set(ids)].map((id) => getLayout(id));
+  }, [layoutId, practiceLanguage]);
+
   // Compute target key, Shift and AltGr for the next keystroke
   const { targetKeyId, shiftTarget, altGrTarget, spaceHand } = useMemo(() => {
     const none = { targetKeyId: null, shiftTarget: null, altGrTarget: false, spaceHand: null };
     // Two characters, because a Korean IME can start the next syllable on the current one
     const upcoming = upcomingText.slice(0, 2).replace(/\u00A0/g, ' ');
-    const nextChar = getNextKeyChar(layout, upcoming, pendingText, deadKeyPending);
+    let nextChar: string | null = null;
+    let keyLayout = layout;
+    for (const candidate of keyLayouts) {
+      nextChar = getNextKeyChar(candidate, upcoming, pendingText, deadKeyPending);
+      if (nextChar) {
+        keyLayout = candidate;
+        break;
+      }
+    }
     if (!nextChar) return none;
 
     if (nextChar === ' ') {
       return { ...none, targetKeyId: 'space', spaceHand: 'r' as const };
     }
 
-    const stroke = findKeyStroke(layout, nextChar);
+    const stroke = findKeyStroke(keyLayout, nextChar);
     if (!stroke) return none;
     return {
       targetKeyId: stroke.targetKeyId,
@@ -77,7 +96,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       altGrTarget: stroke.altGr,
       spaceHand: null,
     };
-  }, [upcomingText, pendingText, layout, deadKeyPending]);
+  }, [upcomingText, pendingText, layout, keyLayouts, deadKeyPending]);
 
   // Compute pressed key ID from lastPressedKey using useMemo instead of useEffect
   const pressedKeyId = useMemo(() => {
@@ -99,24 +118,12 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       return 'space';
     }
 
-    // Find the key in the layout
-    const normalizedKey = lastPressedKey.toLowerCase();
-    const isUpperCase = lastPressedKey !== normalizedKey;
-
-    const keyDef = layout.keys.find(k => {
-      const primaryMatch = k.primary.toLowerCase() === normalizedKey;
-      const shiftedMatch = k.shifted?.toLowerCase() === normalizedKey;
-      const altGrMatch = k.altGr?.toLowerCase() === normalizedKey;
-
-      if (isUpperCase) {
-        return k.shifted === lastPressedKey || k.primary === lastPressedKey || k.altGr === lastPressedKey;
-      }
-
-      return primaryMatch || shiftedMatch || altGrMatch;
-    });
-
-    return keyDef ? keyDef.id : null;
-  }, [lastPressedKey, layout.keys]);
+    for (const keyLayout of keyLayouts) {
+      const stroke = findKeyStroke(keyLayout, lastPressedKey);
+      if (stroke) return stroke.targetKeyId;
+    }
+    return null;
+  }, [lastPressedKey, keyLayouts]);
 
   // Color mapping based on hands2.png - centralized for easy maintenance
   const getGroupColor = (group: number | null, opacity: number = 1): { backgroundColor: string } | null => {
