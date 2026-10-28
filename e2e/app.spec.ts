@@ -482,4 +482,26 @@ test.describe("Blind Typing Tutor E2E Tests", () => {
     await expect(page.locator('[data-testid="keyboard-layout-selector"]')).toHaveValue("uk-ua");
     await expect(page.locator(".key.key-target")).toHaveCount(1);
   });
+
+  test("types a language whose layout is not installed by emulating it", async ({ page }) => {
+    // Urdu practice on a US system layout: pressing the highlighted physical
+    // keys types Urdu letters
+    await page.goto("/uk/ur/phrases");
+    await page.evaluate(() => localStorage.setItem("layoutId", "en-us"));
+    await page.reload();
+    const input = page.locator('[data-testid="typing-input"]');
+    await expect(input).toBeAttached();
+    await input.focus();
+    const codes: Record<string, string> = { comma: "Comma", period: "Period", slash: "Slash", cologn: "Semicolon", quote: "Quote", space: "Space" };
+    for (let i = 0; i < 6; i++) {
+      const target = page.locator(".key.key-target").first();
+      await expect(target).toBeAttached();
+      const id = (await target.getAttribute("id"))!;
+      const shift = (await page.locator("#shift-l.key-target, #shift-r.key-target").count()) > 0;
+      const code = codes[id] ?? (/^\d$/.test(id) ? `Digit${id}` : `Key${id.toUpperCase()}`);
+      await page.keyboard.press(shift ? `Shift+${code}` : code);
+    }
+    await expect(input).not.toHaveValue("");
+    await expect(page.locator('[data-testid="errors-stat"]')).toContainText("0");
+  });
 });

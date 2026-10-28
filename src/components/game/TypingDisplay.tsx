@@ -9,6 +9,7 @@ interface TypingDisplayProps {
   input: string;
   inputValue: string; // Raw input value, including an in-progress dead key/IME composition
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   handleCompositionStart: () => void;
   handleCompositionEnd: (e: React.CompositionEvent<HTMLInputElement>) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
@@ -51,6 +52,7 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
   input,
   inputValue,
   handleInput,
+  handleKeyDown,
   handleCompositionStart,
   handleCompositionEnd,
   inputRef,
@@ -113,6 +115,7 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
         type="text"
         value={inputValue}
         onChange={handleInput}
+        onKeyDown={handleKeyDown}
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
         // Keep mobile keyboards from changing what was typed

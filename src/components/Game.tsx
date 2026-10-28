@@ -91,6 +91,7 @@ export const Game: React.FC<GameProps> = ({
     setCustomText,
     isCustomSetup,
     handleInput,
+    handleKeyDown,
     handleCompositionStart,
     handleCompositionEnd,
     handleCustomSubmit,
@@ -142,6 +143,7 @@ export const Game: React.FC<GameProps> = ({
         input={input}
         inputValue={inputValue}
         handleInput={handleInput}
+        handleKeyDown={handleKeyDown}
         handleCompositionStart={handleCompositionStart}
         handleCompositionEnd={handleCompositionEnd}
         inputRef={inputRef}
