@@ -1,46 +1,40 @@
 import type { KeyboardLayout } from '../types/keyboard';
+import { hangulToJamo, isHangul } from './hangul';
+import { APOSTROPHES } from './typedText';
 
 export interface KeyStroke {
   targetKeyId: string;
   shiftTarget: 'l' | 'r' | null;
+  altGr: boolean;
 }
 
-// Typographic and typewriter apostrophes are typed with the same key
-const APOSTROPHES = ["'", '’', '‘', 'ʼ'];
-
 /**
- * Find the key (and Shift side) that produces a character directly,
- * checking primary, shifted, and AltGr characters.
+ * Find the key (and Shift/AltGr) that produces a character directly
  */
 function findDirectKeyStroke(layout: KeyboardLayout, char: string): KeyStroke | null {
-  // Normalize the key for comparison (handle case-insensitive matching)
-  const normalizedKey = char.toLowerCase();
-  const isUpperCase = char !== normalizedKey;
+  const lower = char.toLocaleLowerCase(layout.language);
+  const isUpperCase = char !== lower;
 
-  const keyDef = layout.keys.find(k => {
-    // For exact case matching when key is uppercase
-    if (isUpperCase) {
-      return k.shifted === char || k.primary === char || k.altGr === char;
-    }
-    return (
-      k.primary.toLowerCase() === normalizedKey ||
-      k.shifted?.toLowerCase() === normalizedKey ||
-      k.altGr?.toLowerCase() === normalizedKey
-    );
-  });
+  let keyDef = layout.keys.find(k =>
+    k.primary === char || k.shifted === char || (!isUpperCase && k.primary.toLowerCase() === lower)
+  );
+  let altGr = false;
+  let isShifted = !!keyDef && keyDef.primary !== char && keyDef.shifted === char;
+  if (!keyDef) {
+    // AltGr level; Shift+AltGr gives the uppercase letter (e.g. 'Ą')
+    keyDef = layout.keys.find(k => k.altGr === char || (isUpperCase && k.altGr === lower));
+    altGr = !!keyDef;
+    isShifted = !!keyDef && keyDef.altGr !== char;
+  }
   if (!keyDef) return null;
 
-  // Shift is needed if the character is the uppercase shifted character, or
-  // a lowercase character that is only on the shifted level (e.g. '!' on '1')
-  const isShifted = isUpperCase
-    ? keyDef.shifted === char
-    : keyDef.shifted?.toLowerCase() === normalizedKey &&
-      keyDef.primary.toLowerCase() !== normalizedKey;
-  if (!isShifted) return { targetKeyId: keyDef.id, shiftTarget: null };
-
-  // Use the Shift key on the opposite hand
-  const isLeftHand = layout.leftHandKeys.includes(keyDef.primary.toLowerCase());
-  return { targetKeyId: keyDef.id, shiftTarget: isLeftHand ? 'r' : 'l' };
+  // Shift is pressed with the hand that is not typing the key (finger groups 1-4 are the left hand)
+  const isLeftHand = (keyDef.group ?? 8) <= 4;
+  return {
+    targetKeyId: keyDef.id,
+    shiftTarget: isShifted ? (isLeftHand ? 'r' : 'l') : null,
+    altGr,
+  };
 }
 
 /**
@@ -57,8 +51,8 @@ export function findKeyStroke(layout: KeyboardLayout, char: string): KeyStroke |
 }
 
 /**
- * Split an accented letter without its own key into its dead key and base
- * letter (e.g. 'ã' -> '~', 'a'; 'Á' -> '´', 'A'), or null if not possible.
+ * Split an accented letter into its dead key and base letter
+ * (e.g. 'ã' -> '~', 'a'; 'Á' -> '´', 'A'), or null if not possible.
  */
 export function getDeadKeySequence(
   layout: KeyboardLayout,
@@ -70,28 +64,89 @@ export function getDeadKeySequence(
 }
 
 /**
- * Keystroke to highlight for the next character. For accented letters typed
- * with a dead key, this is the dead key first, then the base letter.
+ * Letter keys followed by combining-accent keys, as on the Vietnamese layout:
+ * 'ế' = 'ê' then acute, 'ặ' = 'ă' then dot below.
  */
-export function getNextKeyStroke(
-  layout: KeyboardLayout,
-  char: string,
-  deadKeyPending: boolean
-): KeyStroke | null {
-  const direct = findKeyStroke(layout, char);
-  if (direct) return direct;
-  const sequence = getDeadKeySequence(layout, char);
-  if (!sequence) return null;
-  return findKeyStroke(layout, deadKeyPending ? sequence.base : sequence.deadChar);
+function getCombiningSequence(layout: KeyboardLayout, char: string): string[] | null {
+  const [base, ...marks] = [...char.normalize('NFD')];
+  if (marks.length === 0 || marks.length > 3) return null;
+
+  // Try every split of the accents into "precomposed on the letter key" and
+  // "typed afterwards", preferring the most precomposed letter
+  const splits = Array.from({ length: 1 << marks.length }, (_, mask) => mask)
+    .sort((a, b) => countBits(b) - countBits(a));
+  for (const mask of splits) {
+    const onLetter = marks.filter((_, i) => mask & (1 << i));
+    const after = marks.filter((_, i) => !(mask & (1 << i)));
+    const letter = (base + onLetter.join('')).normalize('NFC');
+    if ([...letter].length === 1 && findKeyStroke(layout, letter) &&
+      after.every(mark => findKeyStroke(layout, mark))) {
+      return [letter, ...after];
+    }
+  }
+  return null;
+}
+
+function countBits(n: number): number {
+  return n.toString(2).replace(/0/g, '').length;
 }
 
 /**
- * Whether a character can be typed on the layout, directly or with a dead key
+ * Characters to type, in order, to produce one character of the text
+ */
+export function getCharKeySequence(layout: KeyboardLayout, char: string): string[] | null {
+  if (char === ' ' || findKeyStroke(layout, char)) return [char];
+
+  if (isHangul(char)) {
+    const jamo = hangulToJamo(char);
+    return jamo.every(j => findKeyStroke(layout, j)) ? jamo : null;
+  }
+
+  const deadKey = getDeadKeySequence(layout, char);
+  if (deadKey && findKeyStroke(layout, deadKey.deadChar) && findKeyStroke(layout, deadKey.base)) {
+    return [deadKey.deadChar, deadKey.base];
+  }
+
+  return getCombiningSequence(layout, char);
+}
+
+/**
+ * Whether a character can be typed on the layout
  */
 export function canTypeChar(layout: KeyboardLayout, char: string): boolean {
-  if (char === ' ' || findKeyStroke(layout, char)) return true;
-  const sequence = getDeadKeySequence(layout, char);
-  return !!sequence &&
-    !!findKeyStroke(layout, sequence.deadChar) &&
-    !!findKeyStroke(layout, sequence.base);
+  return getCharKeySequence(layout, char) !== null;
+}
+
+/**
+ * The next character to type, given the upcoming text and what is already
+ * typed of it but not finished (a dead key, a letter waiting for its accent,
+ * or a Hangul syllable being composed). Looks past the first character because
+ * a Korean IME can show the next syllable's first jamo on the current one.
+ */
+export function getNextKeyChar(
+  layout: KeyboardLayout,
+  upcomingText: string,
+  pendingText: string,
+  deadKeyPending: boolean
+): string | null {
+  const sequence: string[] = [];
+  for (const char of upcomingText) {
+    const keys = getCharKeySequence(layout, char);
+    if (!keys) break;
+    sequence.push(...keys);
+  }
+  if (sequence.length === 0) return null;
+
+  // Windows dead keys produce no text until the next key is pressed
+  if (!pendingText) {
+    const startsWithDeadKey = Object.values(layout.deadKeys ?? {}).includes(sequence[0]);
+    return deadKeyPending && startsWithDeadKey && sequence.length > 1 ? sequence[1] : sequence[0];
+  }
+
+  const typed: string[] = [];
+  for (const char of pendingText) {
+    typed.push(...(getCharKeySequence(layout, char) ?? [char]));
+  }
+  const isPrefix = typed.length < sequence.length && typed.every((key, i) => key === sequence[i]);
+  return isPrefix ? sequence[typed.length] : sequence[0];
 }

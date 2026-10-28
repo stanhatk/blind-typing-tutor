@@ -3,10 +3,11 @@
 import { useMemo, useState, useEffect } from 'react';
 import type { KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
 import { getLayout } from '../config/layouts';
-import { getNextKeyStroke } from '../utils/keyStrokes';
+import { findKeyStroke, getNextKeyChar } from '../utils/keyStrokes';
 
 interface KeyboardProps {
-  activeKey: string | null;
+  upcomingText: string; // Text still to type, starting at the cursor
+  pendingText?: string; // Typed but unfinished: a dead key, a letter awaiting its accent, a Hangul syllable
   layoutId: KeyboardLayoutId;
   showHands: boolean;
   showColors: boolean;
@@ -21,13 +22,18 @@ interface KeyboardProps {
  */
 function getKeyLabel(keyDef: KeyDefinition, language: string): string {
   // Locale-aware so Turkish 'i' becomes 'İ'
-  return keyDef.shifted && keyDef.shifted === keyDef.primary.toLocaleUpperCase(language)
+  const label = keyDef.shifted && keyDef.shifted === keyDef.primary.toLocaleUpperCase(language)
     ? keyDef.shifted
     : keyDef.primary;
+  // A lone Latin combining mark (Vietnamese tone key) is invisible, and fonts
+  // lack glyphs for it on a dotted circle, so show it on a sample letter: 'ả'.
+  // Thai and Devanagari marks are left alone: browsers draw their own placeholder.
+  return /^[\u0300-\u036F]$/.test(label) ? `a${label}`.normalize('NFC') : label;
 }
 
 export const Keyboard: React.FC<KeyboardProps> = ({
-  activeKey,
+  upcomingText,
+  pendingText = '',
   layoutId,
   showHands,
   showColors,
@@ -49,25 +55,27 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   const effectiveShowEnglishHints = mounted && showEnglishHints;
 
-  // Compute target key and shift state from activeKey using useMemo instead of useEffect
-  const { targetKeyId, shiftTarget, spaceHand } = useMemo(() => {
-    const none = { targetKeyId: null, shiftTarget: null, spaceHand: null };
-    if (!activeKey) {
-      return none;
+  // Compute target key, Shift and AltGr for the next keystroke
+  const { targetKeyId, shiftTarget, altGrTarget, spaceHand } = useMemo(() => {
+    const none = { targetKeyId: null, shiftTarget: null, altGrTarget: false, spaceHand: null };
+    // Two characters, because a Korean IME can start the next syllable on the current one
+    const upcoming = upcomingText.slice(0, 2).replace(/\u00A0/g, ' ');
+    const nextChar = getNextKeyChar(layout, upcoming, pendingText, deadKeyPending);
+    if (!nextChar) return none;
+
+    if (nextChar === ' ') {
+      return { ...none, targetKeyId: 'space', spaceHand: 'r' as const };
     }
 
-    // Handle space character
-    if (activeKey === ' ' || activeKey === '\u00A0') { // Regular space or non-breaking space
-      return { targetKeyId: 'space', shiftTarget: null, spaceHand: 'r' as const };
-    }
-
-    // Accented letters without their own key: dead key first, then the base letter
-    const stroke = getNextKeyStroke(layout, activeKey, deadKeyPending);
-    if (stroke) return { ...stroke, spaceHand: null };
-
-    // Key not found in layout - might be a special character
-    return none;
-  }, [activeKey, layout, deadKeyPending]);
+    const stroke = findKeyStroke(layout, nextChar);
+    if (!stroke) return none;
+    return {
+      targetKeyId: stroke.targetKeyId,
+      shiftTarget: stroke.shiftTarget,
+      altGrTarget: stroke.altGr,
+      spaceHand: null,
+    };
+  }, [upcomingText, pendingText, layout, deadKeyPending]);
 
   // Compute pressed key ID from lastPressedKey using useMemo instead of useEffect
   const pressedKeyId = useMemo(() => {
@@ -150,9 +158,10 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     else if (key?.width === 'shift') classes += "w-[128px] h-[55px] ";
     else if (key?.width === 'shiftIso') classes += "w-[69px] h-[55px] "; // ISO: shorter Shift plus an extra key
     else if (key?.width === 'space') classes += "w-[330px] h-[55px] ";
+    else if (keyId === 'altgr') classes += "w-[82px] h-[55px] ";
     else classes += "w-[55px] h-[55px] ";
     // Special keys (Tab, Shift, ...) are capitalized; letter keys use getKeyLabel
-    if (key?.width) classes += "capitalize ";
+    if (key?.width || keyId === 'altgr') classes += "capitalize ";
 
     // Override group for shift keys: both left and right shift use left pinky (group 1)
     // Assign groups to special keys that don't have them in layout
@@ -165,11 +174,14 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       effectiveGroup = 8; // Backspace and Enter use right pinky
     }
 
-    // Space uses gray color (thumbs)
-    const isSpace = keyId === 'space';
+    // Space and AltGr use gray color (thumbs)
+    const isSpace = keyId === 'space' || keyId === 'altgr';
 
     // Active state (correct key)
-    const isActive = keyId === targetKeyId || (keyId === `shift-${shiftTarget}`);
+    const isActive =
+      keyId === targetKeyId ||
+      keyId === `shift-${shiftTarget}` ||
+      (keyId === 'altgr' && altGrTarget);
 
     // Pressed state (any key pressed, even if incorrect)
     const isPressed = keyId === pressedKeyId || (pressedKeyId === 'space' && keyId === 'space');
@@ -183,7 +195,8 @@ export const Keyboard: React.FC<KeyboardProps> = ({
         if (colorStyle) style = colorStyle;
       }
       classes += "text-black border-2 border-gray-800 ";
-      if (showHands) classes += "key-target ";
+      // The hand sprite has no AltGr pose
+      if (showHands && keyId !== 'altgr') classes += "key-target ";
     } else if (isPressed) {
       // Pressed: gray highlight - white text on gray background
       classes += "bg-gray-400 text-white border-2 border-gray-600 transition-all duration-200 ";
@@ -267,6 +280,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   const [row1Keys, row2Keys, row3Keys, row4Keys, row5Keys] = rowKeys;
   const spaceKey = row5Keys?.[0];
+  const hasAltGr = layout.keys.some(k => k.altGr);
 
   return (
     // Physical keyboards are not mirrored in right-to-left interfaces
@@ -324,6 +338,11 @@ export const Keyboard: React.FC<KeyboardProps> = ({
         {spaceKey && spaceKey.id === 'space' && (() => {
           const { className, style } = getKeyClass('space');
           return <div id="space" className={className} style={style}></div>;
+        })()}
+        {/* AltGr (right Alt / Option) for characters on the third key level */}
+        {hasAltGr && (() => {
+          const { className, style } = getKeyClass('altgr');
+          return <div id="altgr" className={className} style={style}>AltGr</div>;
         })()}
       </div>
     </div>

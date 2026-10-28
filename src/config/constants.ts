@@ -148,6 +148,8 @@ export const POPULAR_LAYOUT_IDS: KeyboardLayoutId[] = [
   "ar-sa",
   "he-il",
   "hi-in",
+  "th-th",
+  "vi-vn",
 ];
 
 // ============================================================================

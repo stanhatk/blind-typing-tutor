@@ -9,7 +9,6 @@ export const frFrLayout: KeyboardLayout = {
     name: 'Français (AZERTY)',
     language: 'fr',
     flag: '🇫🇷',
-    leftHandKeys: ['a', 'z', 'e', 'r', 't', 'q', 's', 'd', 'f', 'g', 'w', 'x', 'c', 'v', 'b'],
     deadKeys: {
         '\u0302': '^', // circumflex
         '\u0308': '¨', // diaeresis

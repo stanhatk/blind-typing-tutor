@@ -9,7 +9,6 @@ export const arSaLayout: KeyboardLayout = {
   name: 'العربية',
   language: 'ar',
   flag: '🇸🇦',
-  leftHandKeys: ['ض', 'ص', 'ث', 'ق', 'ف', 'ش', 'س', 'ي', 'ب', 'ل'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: 'ذ', shifted: 'ّ', group: 1 },

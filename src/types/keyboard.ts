@@ -28,7 +28,9 @@ export type KeyboardLayoutId =
   | 'ko-kr'            // Korean (Hangul)
   | 'zh-cn'            // Chinese (Pinyin)
   | 'ar-sa'            // Arabic
-  | 'hi-in';           // Hindi
+  | 'hi-in'            // Hindi
+  | 'th-th'            // Thai (Kedmanee)
+  | 'vi-vn';           // Vietnamese
 
 export type LanguageCode =
   | 'en' | 'de' | 'fr' | 'es' | 'pt' | 'it' | 'nl' | 'sv' | 'fi' | 'no' | 'da'
@@ -56,7 +58,6 @@ export interface KeyboardLayout {
   language: LanguageCode;
   flag: string;         // Emoji flag for UI
   keys: KeyDefinition[];
-  leftHandKeys: string[]; // Array of primary characters typed with left hand
   /**
    * Dead keys: combining accent (e.g. '\u0301' acute) -> the dead-key character
    * shown on the keyboard (e.g. '´'). Accented letters not on any key are typed

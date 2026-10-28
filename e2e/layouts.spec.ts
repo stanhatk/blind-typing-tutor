@@ -11,14 +11,11 @@ import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
  * key), otherwise the virtual keyboard cannot show which key to press.
  */
 
-// Languages typed through an IME (kana/hanzi/hangul syllables) or without a
-// layout yet. Remove an entry once its layout supports the word list.
+// Languages typed through a romanizing IME, whose characters do not map to
+// keys. Remove an entry once its layout supports the word list.
 const NOT_YET_SUPPORTED: Partial<Record<LanguageCode, string>> = {
   ja: "kana/kanji need romaji input mapping",
   zh: "hanzi need pinyin input mapping",
-  ko: "hangul syllables need splitting into jamo keystrokes",
-  th: "no Thai layout yet",
-  vi: "no Vietnamese layout yet",
 };
 
 // Languages written with a layout of another language

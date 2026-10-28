@@ -9,7 +9,6 @@ export const huHuLayout: KeyboardLayout = {
   name: 'Magyar',
   language: 'hu',
   flag: '🇭🇺',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '0', shifted: '§', group: 1 },

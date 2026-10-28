@@ -13,7 +13,6 @@ export const elGrLayout: KeyboardLayout = {
     '\u0301': '΄', // tonos
     '\u0308': '¨', // dialytika
   },
-  leftHandKeys: [';', 'α', 'σ', 'δ', 'φ', 'γ', 'ς', 'ε', 'ρ', 'τ', 'υ', 'ζ', 'ξ', 'χ', 'ψ', 'β'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },

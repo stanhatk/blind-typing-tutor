@@ -9,7 +9,6 @@ export const fiFiLayout: KeyboardLayout = {
   name: 'Suomi',
   language: 'fi',
   flag: '🇫🇮',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   deadKeys: {
       '\u0301': '´', // acute
       '\u0300': '`', // grave

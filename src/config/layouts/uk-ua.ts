@@ -8,7 +8,6 @@ export const ukUaLayout: KeyboardLayout = {
   name: 'Українська',
   language: 'uk',
   flag: '🇺🇦',
-  leftHandKeys: ['й', 'ц', 'у', 'к', 'е', 'ф', 'і', 'в', 'а', 'п', 'я', 'ч', 'с', 'м', 'и'],
   keys: [
     // Row 1 - Number row
     // Note: Standard Ukrainian keyboard does not include ё (that's Russian)

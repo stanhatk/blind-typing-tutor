@@ -2,13 +2,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Generator, type Language } from "../utils/Generator";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
-
-// Typographic and typewriter apostrophes are typed with the same key
-const APOSTROPHES = "'\u2019\u2018\u02BC";
-
-function charsMatch(typed: string, expected: string): boolean {
-  return typed === expected || (APOSTROPHES.includes(typed) && APOSTROPHES.includes(expected));
-}
+import { charsMatch, isPartialChar } from "../utils/typedText";
 
 interface TypingEngineProps {
   mode: "practice" | "beginner" | "custom";
@@ -22,11 +16,13 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   const inputRef = useRef<HTMLInputElement>(null);
   const completionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Dead keys and IMEs compose characters: macOS shows a temporary '´' until
-  // the base letter is typed. While composing, the input shows the raw value
-  // and nothing is scored; the committed character is scored on compositionend.
+  // Characters typed in several steps are not scored until finished:
+  // - dead keys and IMEs compose characters (macOS shows a temporary '´', a
+  //   Korean IME builds a syllable); scored on compositionend
+  // - letters waiting for an accent key ('ê' before the acute of 'ế')
+  // Meanwhile the input shows this raw value.
   const isComposingRef = useRef(false);
-  const [composingValue, setComposingValue] = useState<string | null>(null);
+  const [pendingValue, setPendingValue] = useState<string | null>(null);
   const [deadKeyPending, setDeadKeyPending] = useState(false);
 
   // Stats State
@@ -121,6 +117,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
     // Compare in NFC so 'é' typed as 'e' + combining accent matches 'é'
     const val = rawValue.normalize("NFC");
     setDeadKeyPending(false);
+    setPendingValue(null);
 
     if (val.length > input.length) {
       if (!startTime) {
@@ -133,6 +130,11 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
       let wrong = 0;
       for (let i = input.length; i < val.length && accepted.length < text.length; i++) {
         const expectedChar = text[accepted.length];
+        // The rest is an unfinished form of the next character: wait for more keys
+        if (isPartialChar(val.slice(i), expectedChar)) {
+          setPendingValue(accepted + val.slice(i));
+          break;
+        }
         typed++;
         if (charsMatch(val[i], expectedChar)) {
           accepted += expectedChar;
@@ -178,7 +180,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isComposingRef.current || (e.nativeEvent as InputEvent).isComposing) {
-      setComposingValue(e.target.value);
+      setPendingValue(e.target.value);
       return;
     }
     processValue(e.target.value);
@@ -191,7 +193,6 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
 
   const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
     isComposingRef.current = false;
-    setComposingValue(null);
     processValue(e.currentTarget.value);
   };
 
@@ -210,11 +211,6 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   };
-
-  const activeKey = useMemo(() => {
-    if (input.length >= text.length) return null;
-    return text[input.length];
-  }, [input.length, text]);
 
   // Keyboard highlighting listener
   useEffect(() => {
@@ -249,8 +245,10 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   return {
     text, input, setInput, inputRef,
     startTime, errors, totalTyped, wpm, accuracy,
-    lastPressedKey, activeKey, deadKeyPending,
-    inputValue: composingValue ?? input,
+    lastPressedKey, deadKeyPending,
+    inputValue: pendingValue ?? input,
+    pendingText: pendingValue?.startsWith(input) ? pendingValue.slice(input.length) : "",
+    upcomingText: text.slice(input.length),
     customText, setCustomText, isCustomSetup, setIsCustomSetup,
     handleInput, handleCompositionStart, handleCompositionEnd, handleCustomSubmit, generateText
   };

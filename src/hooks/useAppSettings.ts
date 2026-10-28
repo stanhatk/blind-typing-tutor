@@ -366,9 +366,9 @@ export function useAppSettings(params: UseAppSettingsParams) {
     // Use pathname from Next.js router as it's more reliable than window.location
     const currentPath = pathname;
 
-    // Only navigate if the path is actually different
+    // Only navigate if the path is actually different and not already on its way
     // Use a more precise comparison to avoid unnecessary redirects
-    if (currentPath && currentPath !== expectedPath) {
+    if (currentPath && currentPath !== expectedPath && pendingTargetPathRef.current !== expectedPath) {
       // Record the target so the URL sync effect can distinguish an in-flight
       // navigation from a legitimate external URL change. Don't set
       // isUpdatingFromUrl here: this is a user-driven change, and the flag would
@@ -423,17 +423,55 @@ export function useAppSettings(params: UseAppSettingsParams) {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [interfaceLanguage, learningLanguage, learningContentType]);
 
+  // User changes navigate right away, from the event handler. Leaving it to the
+  // effects above is not enough: an in-flight navigation can commit first and
+  // remount the page from its URL, losing the change (e.g. Cancel right after
+  // choosing Custom). The latest navigation wins, so the URL always matches.
+  const navigateTo = (
+    nextInterfaceLanguage: InterfaceLanguage,
+    nextContentType: ContentType,
+    nextLearningLanguage: LanguageCode
+  ) => {
+    const path = buildUrlPath(nextInterfaceLanguage, nextContentType, nextLearningLanguage);
+    if (path !== (pendingTargetPathRef.current ?? pathname)) {
+      pendingTargetPathRef.current = path;
+      router.replace(path);
+    }
+  };
+
+  const changeMode = (nextMode: "practice" | "beginner" | "custom") => {
+    const nextContentType = getContentTypeFromMode(nextMode);
+    setMode(nextMode);
+    setLearningContentType(nextContentType);
+    navigateTo(interfaceLanguage, nextContentType, learningLanguage);
+  };
+
+  const changeLearningLanguage = (nextLanguage: LanguageCode) => {
+    setLearningLanguage(nextLanguage);
+    navigateTo(interfaceLanguage, learningContentType, nextLanguage);
+  };
+
+  const changeLearningContentType = (nextContentType: ContentType) => {
+    setLearningContentType(nextContentType);
+    navigateTo(interfaceLanguage, nextContentType, learningLanguage);
+  };
+
+  const changeInterfaceLanguage = (nextLanguage: InterfaceLanguage) => {
+    setInterfaceLanguage(nextLanguage);
+    navigateTo(nextLanguage, learningContentType, learningLanguage);
+  };
+
   return {
     layoutId,
     setLayoutId,
     mode,
-    setMode,
+    setMode: changeMode,
     learningLanguage,
-    setLearningLanguage,
+    setLearningLanguage: changeLearningLanguage,
     learningContentType,
-    setLearningContentType,
+    setLearningContentType: changeLearningContentType,
     interfaceLanguage,
-    setInterfaceLanguage,
+    setInterfaceLanguage: changeInterfaceLanguage,
     soundEnabled,
     setSoundEnabled,
     darkMode,

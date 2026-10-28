@@ -10,7 +10,6 @@ export const hiInLayout: KeyboardLayout = {
   name: 'हिन्दी (Devanagari)',
   language: 'hi',
   flag: '🇮🇳',
-  leftHandKeys: ['ौ', 'ै', 'ा', 'ी', 'ू', 'ो', 'े', '्', 'ि', 'ु', 'ॆ', 'ं', 'म', 'न', 'व'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: 'ॊ', shifted: 'ऒ', group: 1 },

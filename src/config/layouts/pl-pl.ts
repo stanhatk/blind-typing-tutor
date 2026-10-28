@@ -9,7 +9,6 @@ export const plPlLayout: KeyboardLayout = {
   name: 'Polski',
   language: 'pl',
   flag: '🇵🇱',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },
@@ -35,7 +34,7 @@ export const plPlLayout: KeyboardLayout = {
     { id: 'r', primary: 'r', shifted: 'R', group: 4 },
     { id: 't', primary: 't', shifted: 'T', group: 4 },
     { id: 'y', primary: 'y', shifted: 'Y', group: 5 },
-    { id: 'u', primary: 'u', shifted: 'U', altGr: 'ą', group: 5 },
+    { id: 'u', primary: 'u', shifted: 'U', altGr: '€', group: 5 },
     { id: 'i', primary: 'i', shifted: 'I', group: 6 },
     { id: 'o', primary: 'o', shifted: 'O', altGr: 'ó', group: 7 },
     { id: 'p', primary: 'p', shifted: 'P', group: 8 },

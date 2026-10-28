@@ -9,7 +9,6 @@ export const heIlLayout: KeyboardLayout = {
   name: 'עברית',
   language: 'he',
   flag: '🇮🇱',
-  leftHandKeys: ['/', '׳', 'ק', 'ר', 'א', 'ט', 'ו', 'ן', 'ם', 'פ'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },

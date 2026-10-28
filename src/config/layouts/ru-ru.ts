@@ -9,7 +9,6 @@ export const ruRuLayout: KeyboardLayout = {
     name: 'Русский (ЙЦУКЕН)',
     language: 'ru',
     flag: '🇷🇺',
-    leftHandKeys: ['й', 'ц', 'у', 'к', 'е', 'ф', 'ы', 'в', 'а', 'п', 'я', 'ч', 'с', 'м', 'и'],
     keys: [
         // Row 1 - Number row
         { id: 'backtick', primary: 'ё', shifted: 'Ё', group: 1 },

@@ -75,7 +75,8 @@ export const Game: React.FC<GameProps> = ({
     accuracy,
     errors,
     lastPressedKey,
-    activeKey,
+    upcomingText,
+    pendingText,
     deadKeyPending,
     inputValue,
     customText,
@@ -155,7 +156,8 @@ export const Game: React.FC<GameProps> = ({
       {showKeyboard && (
         <>
           <Keyboard
-            activeKey={activeKey}
+            upcomingText={upcomingText}
+            pendingText={pendingText}
             layoutId={layoutId}
             showHands={showHands}
             showColors={showColors}

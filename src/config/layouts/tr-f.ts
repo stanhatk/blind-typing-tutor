@@ -11,7 +11,6 @@ export const trFLayout: KeyboardLayout = {
   language: 'tr',
   flag: '🇹🇷',
   // Turkish F layout has different hand distribution - all vowels on left
-  leftHandKeys: ['f', 'g', 'ğ', 'ı', 'o', 'u', 'a', 'e', 'i', 'ö', 'ü', 'j', 'ö', 'v', 'c'],
   keys: [
     // Row 1 - Number row (Turkish F has + before 1)
     { id: 'backtick', primary: '+', shifted: '*', altGr: '¬', group: 1 },

@@ -64,6 +64,8 @@ export function detectKeyboardLayout(): string {
     'zh': 'zh-cn',
     'ar': 'ar-sa',
     'hi': 'hi-in',
+    'th': 'th-th',
+    'vi': 'vi-vn',
     default: 'en-us',
   });
 }

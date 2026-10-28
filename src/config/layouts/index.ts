@@ -26,6 +26,8 @@ import { koKrLayout } from './ko-kr';
 import { zhCnLayout } from './zh-cn';
 import { arSaLayout } from './ar-sa';
 import { hiInLayout } from './hi-in';
+import { thThLayout } from './th-th';
+import { viVnLayout } from './vi-vn';
 
 /**
  * Central registry of all keyboard layouts
@@ -74,6 +76,9 @@ const layouts = new Map<KeyboardLayoutId, KeyboardLayout>([
   ['ar-sa', arSaLayout],
   // South Asian
   ['hi-in', hiInLayout],
+  // Southeast Asian
+  ['th-th', thThLayout],
+  ['vi-vn', viVnLayout],
 ]);
 
 /**
@@ -138,5 +143,5 @@ export {
   nlNlLayout, svSeLayout, fiFiLayout, noNoLayout, daDkLayout,
   plPlLayout, csCzLayout, huHuLayout, roRoLayout, elGrLayout,
   heIlLayout, ruRuLayout, jaJpLayout, koKrLayout, zhCnLayout,
-  arSaLayout, hiInLayout
+  arSaLayout, hiInLayout, thThLayout, viVnLayout
 };

@@ -9,7 +9,6 @@ export const deDeLayout: KeyboardLayout = {
     name: 'Deutsch (QWERTZ)',
     language: 'de',
     flag: '🇩🇪',
-    leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b', 'ü', 'ö', 'ä'],
     deadKeys: {
         '\u0301': '´', // acute
         '\u0300': '`', // grave

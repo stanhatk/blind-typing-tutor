@@ -9,7 +9,6 @@ export const enUsLayout: KeyboardLayout = {
   name: 'English (US)',
   language: 'en',
   flag: '🇺🇸',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number/Symbol row (top row)
     // ~ ! @ # $ % ^ & * ( ) _ + Backspace

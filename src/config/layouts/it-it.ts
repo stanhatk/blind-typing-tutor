@@ -9,7 +9,6 @@ export const itItLayout: KeyboardLayout = {
   name: 'Italiano',
   language: 'it',
   flag: '🇮🇹',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '\\', shifted: '|', group: 1 },

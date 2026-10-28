@@ -9,7 +9,6 @@ export const trQLayout: KeyboardLayout = {
   name: 'Türkçe Q',
   language: 'tr',
   flag: '🇹🇷',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number row (Turkish keyboards have " before 1)
     { id: 'backtick', primary: '"', shifted: 'é', group: 1 },

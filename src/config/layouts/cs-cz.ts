@@ -9,7 +9,6 @@ export const csCzLayout: KeyboardLayout = {
   name: 'Čeština',
   language: 'cs',
   flag: '🇨🇿',
-  leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   deadKeys: {
       '\u0301': '´', // acute
       '\u030C': 'ˇ', // caron
