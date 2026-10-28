@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Generator, type Language } from "../utils/Generator";
+import { Generator, type Language, type GeneratedText, type WordHint } from "../utils/Generator";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
 import { charsMatch, isPartialChar } from "../utils/typedText";
@@ -12,6 +12,8 @@ interface TypingEngineProps {
 
 export function useTypingEngine({ mode, language, correctionMode }: TypingEngineProps) {
   const [text, setText] = useState("");
+  // Native words shown above their romanization (Japanese, Chinese)
+  const [hints, setHints] = useState<WordHint[]>([]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const completionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -45,15 +47,20 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   // Track if this is the initial mount
   const isInitialMountRef = useRef(true);
 
+  const showGenerated = ({ text: generated, hints: generatedHints }: GeneratedText) => {
+    setText(generated);
+    setHints(generatedHints);
+  };
+
   const generateText = useCallback(() => {
     if (mode === "custom") {
       setInput("");
     } else if (mode === "beginner") {
-      setText(generator.getOne());
+      showGenerated(generator.getOne());
       setInput("");
     } else {
       generator.update();
-      setText(generator.getWords());
+      showGenerated(generator.getWords());
       setInput("");
     }
 
@@ -70,6 +77,8 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   /* eslint-disable react-hooks/set-state-in-effect -- intentional mode/language initialization */
   useEffect(() => {
     if (mode === "custom") {
+      // Custom text is typed as entered, without romanization hints
+      setHints([]);
       const saved = getStorageItem("customText");
       const isSwitchingToCustom = !isInitialMountRef.current && prevModeRef.current !== "custom";
 
@@ -200,6 +209,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
     if (customText.trim()) {
       const trimmedText = customText.trim().normalize("NFC");
       setText(trimmedText);
+      setHints([]);
       setStorageItem("customText", trimmedText);
       setIsCustomSetup(false);
       setStartTime(null);
@@ -243,7 +253,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   }, [isCustomSetup]);
 
   return {
-    text, input, setInput, inputRef,
+    text, hints, input, setInput, inputRef,
     startTime, errors, totalTyped, wpm, accuracy,
     lastPressedKey, deadKeyPending,
     inputValue: pendingValue ?? input,

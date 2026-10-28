@@ -27,6 +27,8 @@ import { words as thWords } from '../words/words_th';
 import { words as viWords } from '../words/words_vi';
 import { words as idWords } from '../words/words_id';
 import { words as msWords } from '../words/words_ms';
+import { readings as jaReadings } from '../words/readings_ja';
+import { readings as zhReadings } from '../words/readings_zh';
 import type { LanguageCode } from '../types/keyboard';
 
 export type Language = LanguageCode;
@@ -66,6 +68,36 @@ const LANGUAGE_WORDS_REGISTRY: Record<LanguageCode, () => string[]> = {
   'id': () => idWords,
   'ms': () => msWords,
 };
+
+/**
+ * Languages written through a romanizing IME are practiced by typing the
+ * romanization (romaji, pinyin) with the native word shown above it.
+ */
+const ROMANIZATIONS: Partial<Record<LanguageCode, Record<string, string>>> = {
+  ja: jaReadings,
+  zh: zhReadings,
+};
+
+/**
+ * What to type for a word: its romanization, or the word itself
+ */
+export function getTypedWord(lang: Language, word: string): string {
+  return ROMANIZATIONS[lang]?.[word] ?? word;
+}
+
+/**
+ * A native word shown above the romanization typed for it
+ */
+export interface WordHint {
+  start: number; // Index of the word's first character in the text
+  end: number;   // Index after its last character
+  native: string;
+}
+
+export interface GeneratedText {
+  text: string;
+  hints: WordHint[];
+}
 
 /**
  * Word list for a language, in NFC so it matches what keyboards and IMEs produce
@@ -132,24 +164,38 @@ export class Generator {
     return newArray;
   }
 
-  public getWords() {
+  public getWords(): GeneratedText {
     if (this.words.length === 0) {
       console.error('Cannot get words: word list is empty. Attempting to update...');
       this.update();
       if (this.words.length === 0) {
-        return '';
+        return { text: '', hints: [] };
       }
     }
-    return this.shuffle(this.words).join(' ');
+    return this.toText(this.shuffle(this.words));
   }
 
-  public getOne() {
+  public getOne(): GeneratedText {
     if (this.allWords.length === 0) {
       console.error('Cannot get word: word list is empty');
-      return '';
+      return { text: '', hints: [] };
     }
     const word = this.allWords[this.rand(0, this.allWords.length - 1)];
-    return Array(this.number).fill(word).join(' ');
+    return this.toText(Array(this.number).fill(word));
+  }
+
+  // Join words into the text to type, with native-word hints for romanized languages
+  private toText(words: string[]): GeneratedText {
+    const romanized = !!ROMANIZATIONS[this.language];
+    const hints: WordHint[] = [];
+    let text = '';
+    for (const word of words) {
+      if (text) text += ' ';
+      const typed = getTypedWord(this.language, word);
+      if (romanized) hints.push({ start: text.length, end: text.length + typed.length, native: word });
+      text += typed;
+    }
+    return { text, hints };
   }
 
   public getLanguage() {

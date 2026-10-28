@@ -69,6 +69,7 @@ export const Game: React.FC<GameProps> = ({
 }) => {
   const {
     text,
+    hints,
     input,
     inputRef,
     wpm,
@@ -128,6 +129,7 @@ export const Game: React.FC<GameProps> = ({
 
       <TypingDisplay
         text={text}
+        hints={hints}
         input={input}
         inputValue={inputValue}
         handleInput={handleInput}

@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
+import type { WordHint } from "../../utils/Generator";
 
 interface TypingDisplayProps {
   text: string;
+  hints?: WordHint[]; // Native words shown above their romanization (Japanese, Chinese)
   input: string;
   inputValue: string; // Raw input value, including an in-progress dead key/IME composition
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,8 +14,35 @@ interface TypingDisplayProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
+/**
+ * Render each character, grouping the characters of hinted words in <ruby>
+ * so the native word appears above its romanization.
+ */
+function renderWithHints(
+  text: string,
+  hints: WordHint[],
+  renderChar: (char: string, index: number) => React.ReactNode
+): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  let index = 0;
+  for (const hint of hints) {
+    for (; index < hint.start; index++) nodes.push(renderChar(text[index], index));
+    const chars: React.ReactNode[] = [];
+    for (; index < hint.end; index++) chars.push(renderChar(text[index], index));
+    nodes.push(
+      <ruby key={`hint-${hint.start}`} className="[ruby-align:center] whitespace-nowrap">
+        {chars}
+        <rt className="font-sans text-base tracking-normal text-gray-500 dark:text-gray-400 select-none">{hint.native}</rt>
+      </ruby>
+    );
+  }
+  for (; index < text.length; index++) nodes.push(renderChar(text[index], index));
+  return nodes;
+}
+
 export const TypingDisplay: React.FC<TypingDisplayProps> = ({
   text,
+  hints = [],
   input,
   inputValue,
   handleInput,
@@ -40,9 +69,9 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
       <div
         ref={textDisplayRef}
         data-testid="text-display"
-        className="mb-8 text-3xl font-mono text-gray-900 dark:text-white leading-relaxed wrap-break-words relative tracking-wide max-h-32 overflow-y-auto"
+        className={`mb-8 text-3xl font-mono text-gray-900 dark:text-white ${hints.length ? "leading-[2.4] max-h-44" : "leading-relaxed max-h-32"} wrap-break-words relative tracking-wide overflow-y-auto`}
       >
-        {text.split("").map((char, index) => {
+        {renderWithHints(text, hints, (char, index) => {
           let color = "text-gray-400 dark:text-gray-500";
           const isCurrentChar = index === input.length;
 
