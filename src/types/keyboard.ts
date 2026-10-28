@@ -30,12 +30,25 @@ export type KeyboardLayoutId =
   | 'ar-sa'            // Arabic
   | 'hi-in'            // Hindi
   | 'th-th'            // Thai (Kedmanee)
-  | 'vi-vn';           // Vietnamese
+  | 'vi-vn'            // Vietnamese
+  | 'hr-hr'            // Croatian/Slovenian
+  | 'sk-sk'            // Slovak
+  | 'lt-lt'            // Lithuanian
+  | 'lv-lv'            // Latvian
+  | 'et-ee'            // Estonian
+  | 'bg-bg'            // Bulgarian
+  | 'sr-rs'            // Serbian (Cyrillic)
+  | 'kk-kz'            // Kazakh
+  | 'bn-bd'            // Bengali (InScript)
+  | 'fa-ir'            // Persian
+  | 'ur-pk'            // Urdu
+  | 'ta-in';            // Tamil 99
 
 export type LanguageCode =
   | 'en' | 'de' | 'fr' | 'es' | 'pt' | 'it' | 'nl' | 'sv' | 'fi' | 'no' | 'da'
   | 'pl' | 'cs' | 'hu' | 'ro' | 'el' | 'he' | 'ru' | 'uk' | 'tr' | 'ja' | 'ko'
-  | 'zh' | 'ar' | 'hi' | 'th' | 'vi' | 'id' | 'ms';
+  | 'zh' | 'ar' | 'hi' | 'th' | 'vi' | 'id' | 'ms'
+  | 'ca' | 'hr' | 'sk' | 'sl' | 'lt' | 'lv' | 'et' | 'bg' | 'sr' | 'kk' | 'bn' | 'fa' | 'ur' | 'ta' | 'sw' | 'tl';
 
 /**
  * Defines a single key on the keyboard
@@ -64,6 +77,11 @@ export interface KeyboardLayout {
    * as dead key + base letter, e.g. 'ã' = '~' then 'a'.
    */
   deadKeys?: Partial<Record<string, string>>;
+  /**
+   * Vowel signs typed with an independent-vowel key after a consonant, as in
+   * Tamil 99 (the IME turns ஆ after க into கா): vowel sign -> key character.
+   */
+  vowelSignKeys?: Partial<Record<string, string>>;
 }
 
 /**

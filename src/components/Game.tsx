@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { type Language } from "../utils/Generator";
 import type { Level } from "../utils/difficulty";
+import { getPracticeTextDirection } from "../utils/textDirection";
 import type { KeyboardLayoutId } from "../types/keyboard";
 import { getLayout } from "../config/layouts";
 import { Keyboard } from "./Keyboard";
@@ -143,6 +144,8 @@ export const Game: React.FC<GameProps> = ({
         handleCompositionStart={handleCompositionStart}
         handleCompositionEnd={handleCompositionEnd}
         inputRef={inputRef}
+        language={language}
+        dir={getPracticeTextDirection(language)}
       />
 
       <BottomControls

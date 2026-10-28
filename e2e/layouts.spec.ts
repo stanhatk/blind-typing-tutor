@@ -1,11 +1,10 @@
 import { test, expect } from "@playwright/test";
-import { getAllLayouts, getLayout } from "../src/config/layouts";
+import { getLayout, getLayoutIdsForLanguage } from "../src/config/layouts";
 import { VALID_LEARNING_LANGUAGES } from "../src/config/constants";
 import { getTypedWord } from "../src/utils/Generator";
 import { loadContent } from "../src/words";
 import { canTypeChar } from "../src/utils/keyStrokes";
 import { LEVELS, getLevelWords } from "../src/utils/difficulty";
-import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
 
 /**
  * Every word must be typeable on its language's keyboard layouts (directly,
@@ -18,11 +17,6 @@ import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
 const MIN_WORDS = 400;
 const MIN_PHRASES = 90;
 
-// Languages written with a layout of another language
-const FALLBACK_LAYOUTS: Partial<Record<LanguageCode, KeyboardLayoutId[]>> = {
-  id: ["en-us"],
-  ms: ["en-us"],
-};
 
 test.describe("Keyboard layout coverage", () => {
   // Pure data check: run once, not per browser
@@ -30,11 +24,7 @@ test.describe("Keyboard layout coverage", () => {
 
   for (const language of VALID_LEARNING_LANGUAGES) {
     test(`every ${language} word and phrase can be typed on its layouts`, async () => {
-      const layoutIds =
-        FALLBACK_LAYOUTS[language] ??
-        getAllLayouts()
-          .filter((layout) => layout.language === language)
-          .map((layout) => layout.id);
+      const layoutIds = getLayoutIdsForLanguage(language);
       expect(layoutIds, `no layout for ${language}`).not.toHaveLength(0);
 
       const content = await loadContent(language);

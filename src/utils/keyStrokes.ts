@@ -97,6 +97,10 @@ function countBits(n: number): number {
 export function getCharKeySequence(layout: KeyboardLayout, char: string): string[] | null {
   if (char === ' ' || findKeyStroke(layout, char)) return [char];
 
+  // Tamil 99: a vowel sign is typed with its independent-vowel key
+  const vowelKey = layout.vowelSignKeys?.[char];
+  if (vowelKey && findKeyStroke(layout, vowelKey)) return [vowelKey];
+
   if (isHangul(char)) {
     const jamo = hangulToJamo(char);
     return jamo.every(j => findKeyStroke(layout, j)) ? jamo : null;

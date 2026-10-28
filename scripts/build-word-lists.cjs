@@ -38,7 +38,6 @@ const jiti = createJiti(project + '/', { alias: { '@': project + '/src' } });
 const TARGET = 1000; // frequency words per language
 const MAX_RANK = 20000; // only consider the most frequent words
 const MIN_CORPUS_COUNT = 3;
-const FALLBACK_LAYOUTS = { id: ['en-us'], ms: ['en-us'], sw: ['en-us'], tl: ['en-us'] };
 const BAD = { tl: 'fil' };
 // Languages that capitalize common nouns (German "Haus")
 const CAPITALIZED_NOUNS = new Set(['de']);
@@ -48,6 +47,13 @@ const EXCLUDE = {
   ar: ['ماري'],
   it: ['po'], // fragment of po’
   uk: ['да', 'но'], // Russian words common in Ukrainian subtitles
+  ta: ['கொரோனா', 'வைரஸ்'], // corona, virus: a 2020 news corpus
+  // English words in Wikipedia text
+  tl: ['of', 'album', 'de', 'and', 'video', 'in', 'for', 'season', 'network', 'to', 'media', 'no', 'base', 'studio',
+    'rock', 'single', 'drama', 'del', 'game', 'live', 'normal', 'year', 'popular', 'on', 'record', 'natural',
+    'channel', 'personal', 'track', 'metal', 'show', 'species', 'basketball', 'artist', 'digital', 'system',
+    'gas', 'tour', 'online', 'regular'],
+  sw: ['of', 'video', 'de', 'studio', 'single', 'data', 'es', 'in', 'and'],
 };
 // Everyday words the profanity lists also match, kept after review
 const ALLOW = {
@@ -61,12 +67,14 @@ const ALLOW = {
 };
 // Languages whose subtitles often drop diacritics: ranked by the news corpus
 // instead, and words rejected when a form with diacritics is far more common
-const CORPUS_RANKED = new Set(['ro']);
+const CORPUS_RANKED = new Set(['ro', 'sr']);
 const stripMarks = (word) => word.normalize('NFD').replace(/\p{M}/gu, '').normalize('NFC');
 // Legacy cedilla letters typed with the comma-below keys (Romanian ş ţ -> ș ț),
 // and one apostrophe character for words that contain one (ім’я, aujourd’hui)
 const fixLetters = (lang, word) => {
-  const fixed = word.replace(/['ʼ]/g, '’');
+  let fixed = word.replace(/['ʼ]/g, '’');
+  // Persian is written with ی and ک, not the Arabic ي and ك often found in subtitles
+  if (lang === 'fa') fixed = fixed.replace(/ي/g, 'ی').replace(/ك/g, 'ک');
   return lang === 'ro' ? fixed.replace(/ş/g, 'ș').replace(/ţ/g, 'ț').replace(/Ş/g, 'Ș').replace(/Ţ/g, 'Ț') : fixed;
 };
 // Letters and marks, optionally joined by an apostrophe or hyphen inside the word
@@ -76,14 +84,12 @@ const read = (file) => fs.readFileSync(file, 'utf8');
 const exists = (file) => fs.existsSync(file);
 
 async function main() {
-  const { getAllLayouts, getLayout } = await jiti.import('./src/config/layouts/index.ts');
+  const { getLayoutIdsForLanguage, getLayout } = await jiti.import('./src/config/layouts/index.ts');
   const { canTypeChar } = await jiti.import('./src/utils/keyStrokes.ts');
-  const { loadContent } = await jiti.import('./src/words/index.ts');
 
   const langs = onlyLangs.length ? onlyLangs : fs.readdirSync(path.join(dataDir, 'casing')).map((f) => f.replace('.txt', ''));
   for (const lang of langs) {
-    const layouts = (FALLBACK_LAYOUTS[lang] ?? getAllLayouts().filter((l) => l.language === lang).map((l) => l.id))
-      .map((id) => getLayout(id));
+    const layouts = getLayoutIdsForLanguage(lang).map((id) => getLayout(id));
     if (layouts.length === 0) {
       console.log(`${lang}: no layout, skipped`);
       continue;
@@ -170,12 +176,13 @@ async function main() {
 
     // Existing curated words: kept unless invalid
     let curated = [];
-    try {
-      const content = await loadContent(lang);
-      curated = content.words;
-      readings = content.readings ?? {};
-    } catch {
-      // New language without a list yet
+    // Read the language's own files: loadContent falls back to English for
+    // languages it does not know yet
+    const wordsFile = path.join(project, `src/words/words_${lang}.ts`);
+    if (exists(wordsFile)) {
+      curated = (await jiti.import(wordsFile)).words;
+      const readingsFile = path.join(project, `src/words/readings_${lang}.ts`);
+      if (exists(readingsFile)) readings = (await jiti.import(readingsFile)).readings;
     }
     const kept = [];
     const dropped = [];

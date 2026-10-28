@@ -1,4 +1,4 @@
-import type { KeyboardLayout, KeyboardLayoutId, LayoutMetadata } from '../../types/keyboard';
+import type { KeyboardLayout, KeyboardLayoutId, LanguageCode, LayoutMetadata } from '../../types/keyboard';
 import { enUsLayout } from './en-us';
 import { enGbLayout } from './en-gb';
 import { ukUaLayout } from './uk-ua';
@@ -28,6 +28,18 @@ import { arSaLayout } from './ar-sa';
 import { hiInLayout } from './hi-in';
 import { thThLayout } from './th-th';
 import { viVnLayout } from './vi-vn';
+import { hrHrLayout } from './hr-hr';
+import { skSkLayout } from './sk-sk';
+import { ltLtLayout } from './lt-lt';
+import { lvLvLayout } from './lv-lv';
+import { etEeLayout } from './et-ee';
+import { bgBgLayout } from './bg-bg';
+import { srRsLayout } from './sr-rs';
+import { kkKzLayout } from './kk-kz';
+import { bnBdLayout } from './bn-bd';
+import { faIrLayout } from './fa-ir';
+import { urPkLayout } from './ur-pk';
+import { taInLayout } from './ta-in';
 
 /**
  * Central registry of all keyboard layouts
@@ -79,6 +91,19 @@ const layouts = new Map<KeyboardLayoutId, KeyboardLayout>([
   // Southeast Asian
   ['th-th', thThLayout],
   ['vi-vn', viVnLayout],
+  // Added from Microsoft's layout definitions (scripts/klc-to-layout.cjs)
+  ['hr-hr', hrHrLayout],
+  ['sk-sk', skSkLayout],
+  ['lt-lt', ltLtLayout],
+  ['lv-lv', lvLvLayout],
+  ['et-ee', etEeLayout],
+  ['bg-bg', bgBgLayout],
+  ['sr-rs', srRsLayout],
+  ['kk-kz', kkKzLayout],
+  ['bn-bd', bnBdLayout],
+  ['fa-ir', faIrLayout],
+  ['ur-pk', urPkLayout],
+  ['ta-in', taInLayout],
 ]);
 
 /**
@@ -118,6 +143,24 @@ export function getLayoutsByLanguage(language: string): LayoutMetadata[] {
     }));
 }
 
+// Languages typed on another language's layout
+const FALLBACK_LAYOUTS: Partial<Record<LanguageCode, KeyboardLayoutId[]>> = {
+  ca: ['es-es'],
+  sl: ['hr-hr'],
+  id: ['en-us'],
+  ms: ['en-us'],
+  sw: ['en-us'],
+  tl: ['en-us'],
+};
+
+/**
+ * Layouts a language is typed on: its own, or a fallback layout
+ */
+export function getLayoutIdsForLanguage(language: LanguageCode): KeyboardLayoutId[] {
+  const own = Array.from(layouts.values()).filter((layout) => layout.language === language).map((layout) => layout.id);
+  return own.length > 0 ? own : (FALLBACK_LAYOUTS[language] ?? []);
+}
+
 /**
  * Find a key definition by character in a layout
  */
@@ -143,5 +186,6 @@ export {
   nlNlLayout, svSeLayout, fiFiLayout, noNoLayout, daDkLayout,
   plPlLayout, csCzLayout, huHuLayout, roRoLayout, elGrLayout,
   heIlLayout, ruRuLayout, jaJpLayout, koKrLayout, zhCnLayout,
-  arSaLayout, hiInLayout, thThLayout, viVnLayout
+  arSaLayout, hiInLayout, thThLayout, viVnLayout,
+  hrHrLayout, skSkLayout, ltLtLayout, lvLvLayout, etEeLayout, bgBgLayout, srRsLayout, kkKzLayout, bnBdLayout, faIrLayout, urPkLayout, taInLayout
 };

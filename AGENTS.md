@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Touch typing tutor built with **Next.js 15 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**. Supports 29 interface languages, 28+ keyboard layouts, and 29 learning languages.
+Touch typing tutor built with **Next.js 15 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**. Supports 29 interface languages, 41 keyboard layouts, and 45 learning languages.
 
 **Live**: https://blind-typing-tutor.wordmemo.net  
 **Package manager**: yarn classic 1.22.22
@@ -46,9 +46,12 @@ Root `/` redirects to `/{browser-lang}/{browser-lang}/words`.
 | `src/components/Keyboard.tsx` | Virtual keyboard display |
 | `src/hooks/useAppSettings.ts` | All app state + localStorage + URL sync |
 | `src/config/constants.ts` | Language/layout options, validation |
-| `src/config/layouts/` | 28 keyboard layout definitions |
+| `src/config/layouts/` | 41 keyboard layout definitions; new ones are converted from Microsoft KLC files with `scripts/klc-to-layout.cjs` |
 | `src/translations/` | 29 language files + `types.ts` + `index.ts` |
-| `src/words/` | Word lists per language (29 files) |
+| `src/words/` | Word lists per language, built by `scripts/build-word-lists.cjs`; `index.ts` loads one language on demand |
+| `src/phrases/` | 100 everyday sentences per language for Phrases mode (ja/zh also have generated romanization tokens) |
+| `src/utils/keyStrokes.ts` | Which keys type a character (dead keys, AltGr, Hangul jamo, tone keys); shared by the keyboard and tests |
+| `src/utils/difficulty.ts` | Words mode levels 1-5 per layout |
 | `src/types/keyboard.ts` | `KeyboardLayoutId`, `LanguageCode` types |
 
 ### State management
@@ -94,6 +97,12 @@ Tailwind CSS v4 via `@tailwindcss/postcss`. Dark mode uses class selector (`.dar
 - Sitemap in `app/sitemap.ts` — generates all language/mode combos
 - `SEOContent.tsx` has mode-specific visible text for search engines
 - **Keyword targeting**: Same-language words pages (`/en/en/words`, `/ru/ru/words`) use `seoBlindTypingTitle`/`seoBlindTypingDescription`. Phrases and custom on those languages keep the same keyword phrase and add the mode name so titles stay unique, and each mode uses its own meta description. Titles and descriptions that would otherwise match across interface languages get the interface language name appended. Cross-language pages use `seoTitleWords`/`seoTitlePhrases`/`seoTitleCustom` templates with `{lang}` placeholder. `/{lang}` permanently redirects to `/{lang}/{lang}/words`.
+
+### Practice content
+
+- `e2e/layouts.spec.ts` fails if any word or phrase of a language cannot be typed on its layouts (`getLayoutIdsForLanguage`), on duplicates, non-NFC entries, too few words/phrases, or a Words level under 30 words.
+- Japanese/Chinese are typed as romaji/pinyin: readings come from `scripts/generate-readings.cjs` and are reviewed by hand.
+- Word lists derived from FrequencyWords are CC BY-SA 4.0 (see README credits).
 
 ### E2E tests
 

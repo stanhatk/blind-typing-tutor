@@ -28,6 +28,8 @@ function getKeyLabel(keyDef: KeyDefinition, language: string): string {
   // A lone Latin combining mark (Vietnamese tone key) is invisible, and fonts
   // lack glyphs for it on a dotted circle, so show it on a sample letter: 'ả'.
   // Thai and Devanagari marks are left alone: browsers draw their own placeholder.
+  if (label === '\u200C') return 'ZWNJ';
+  if (label === '\u200D') return 'ZWJ';
   return /^[\u0300-\u036F]$/.test(label) ? `a${label}`.normalize('NFC') : label;
 }
 

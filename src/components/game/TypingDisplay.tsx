@@ -12,6 +12,8 @@ interface TypingDisplayProps {
   handleCompositionStart: () => void;
   handleCompositionEnd: (e: React.CompositionEvent<HTMLInputElement>) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
+  language: string; // Practice language, for lang/dir of the text
+  dir: "rtl" | "ltr";
 }
 
 /**
@@ -52,6 +54,8 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
   handleCompositionStart,
   handleCompositionEnd,
   inputRef,
+  language,
+  dir,
 }) => {
   const textDisplayRef = useRef<HTMLDivElement>(null);
   const currentCharRef = useRef<HTMLSpanElement>(null);
@@ -72,7 +76,11 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
       <div
         ref={textDisplayRef}
         data-testid="text-display"
-        className={`mb-8 text-3xl font-mono text-gray-900 dark:text-white ${hints.length ? "leading-[2.4] max-h-44" : "leading-relaxed max-h-32"} wrap-break-words relative tracking-wide overflow-y-auto`}
+        lang={language}
+        dir={dir}
+        // Monospace fonts and letter-spacing would pull apart the joined letters of
+        // right-to-left scripts
+        className={`mb-8 text-3xl ${dir === "rtl" ? "font-sans" : "font-mono"} text-gray-900 dark:text-white ${hints.length ? "leading-[2.4] max-h-44" : "leading-relaxed max-h-32"} wrap-break-words relative ${dir === "rtl" ? "tracking-normal" : "tracking-wide"} overflow-y-auto`}
       >
         {renderWithHints(text, hints, (char, index) => {
           let color = "text-gray-400 dark:text-gray-500";

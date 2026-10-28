@@ -2,11 +2,11 @@
 // These represent the most common language-learning pairings
 export const POPULAR_CROSS_LANGUAGE: Record<string, string[]> = {
   en: ["es", "fr", "de", "zh", "ja", "ko", "pt", "ru", "ar", "hi", "it", "tr"],
-  es: ["en", "pt", "fr", "de", "it"],
+  es: ["en", "pt", "fr", "de", "it", "ca"],
   fr: ["en", "es", "de", "it"],
   de: ["en", "fr", "es"],
   pt: ["en", "es"],
-  ru: ["en", "de", "fr"],
+  ru: ["en", "de", "fr", "kk"],
   zh: ["en"],
   ja: ["en"],
   ko: ["en"],

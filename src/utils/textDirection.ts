@@ -3,11 +3,24 @@
  */
 
 import type { InterfaceLanguage } from "../translations";
+import type { LanguageCode } from "../types/keyboard";
 
 /**
  * RTL (Right-to-Left) languages
  */
 const RTL_LANGUAGES: readonly InterfaceLanguage[] = ["ar", "he"] as const;
+
+/**
+ * Practice languages written right to left
+ */
+const RTL_PRACTICE_LANGUAGES: readonly LanguageCode[] = ["ar", "he", "fa", "ur"] as const;
+
+/**
+ * Direction of practice text in a language (independent of the interface)
+ */
+export function getPracticeTextDirection(language: LanguageCode): "rtl" | "ltr" {
+  return RTL_PRACTICE_LANGUAGES.includes(language) ? "rtl" : "ltr";
+}
 
 /**
  * Language code to BCP 47 language tag mapping
