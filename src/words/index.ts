@@ -8,7 +8,48 @@ export interface LanguageContent {
   words: string[];
   // Romanization typed for each word (Japanese romaji, Chinese pinyin)
   readings?: Record<string, string>;
+  // Everyday sentences for Phrases mode
+  phrases?: string[];
+  // Japanese/Chinese sentences split into [native word, romanization] pairs
+  phraseTokens?: Record<string, [string, string][]>;
 }
+
+// Phrases per language; Japanese and Chinese also need their tokenized readings
+const PHRASE_LOADERS: Partial<Record<LanguageCode, () => Promise<Partial<LanguageContent>>>> = {
+  en: () => import('../phrases/phrases_en'),
+  de: () => import('../phrases/phrases_de'),
+  fr: () => import('../phrases/phrases_fr'),
+  ja: () =>
+    Promise.all([import('../phrases/phrases_ja'), import('../phrases/readings_phrases_ja')])
+      .then(([p, r]) => ({ phrases: p.phrases, phraseTokens: r.phraseTokens })),
+  zh: () =>
+    Promise.all([import('../phrases/phrases_zh'), import('../phrases/readings_phrases_zh')])
+      .then(([p, r]) => ({ phrases: p.phrases, phraseTokens: r.phraseTokens })),
+  es: () => import('../phrases/phrases_es'),
+  pt: () => import('../phrases/phrases_pt'),
+  it: () => import('../phrases/phrases_it'),
+  nl: () => import('../phrases/phrases_nl'),
+  ru: () => import('../phrases/phrases_ru'),
+  uk: () => import('../phrases/phrases_uk'),
+  pl: () => import('../phrases/phrases_pl'),
+  cs: () => import('../phrases/phrases_cs'),
+  sv: () => import('../phrases/phrases_sv'),
+  no: () => import('../phrases/phrases_no'),
+  da: () => import('../phrases/phrases_da'),
+  fi: () => import('../phrases/phrases_fi'),
+  hu: () => import('../phrases/phrases_hu'),
+  ro: () => import('../phrases/phrases_ro'),
+  el: () => import('../phrases/phrases_el'),
+  tr: () => import('../phrases/phrases_tr'),
+  he: () => import('../phrases/phrases_he'),
+  ar: () => import('../phrases/phrases_ar'),
+  hi: () => import('../phrases/phrases_hi'),
+  ko: () => import('../phrases/phrases_ko'),
+  vi: () => import('../phrases/phrases_vi'),
+  id: () => import('../phrases/phrases_id'),
+  ms: () => import('../phrases/phrases_ms'),
+  th: () => import('../phrases/phrases_th'),
+};
 
 const words = (load: Promise<{ words: string[] }>) =>
   load.then((m): LanguageContent => ({ words: m.words }));
@@ -59,6 +100,14 @@ const LOADERS: Record<LanguageCode, () => Promise<LanguageContent>> = {
  * and IMEs produce
  */
 export async function loadContent(lang: LanguageCode): Promise<LanguageContent> {
-  const content = await (LOADERS[lang] ?? LOADERS.en)();
-  return { ...content, words: content.words.map((word) => word.normalize('NFC')) };
+  const [content, phrases] = await Promise.all([
+    (LOADERS[lang] ?? LOADERS.en)(),
+    PHRASE_LOADERS[lang]?.() ?? Promise.resolve<Partial<LanguageContent>>({}),
+  ]);
+  return {
+    ...content,
+    ...phrases,
+    words: content.words.map((word) => word.normalize('NFC')),
+    phrases: phrases.phrases?.map((phrase) => phrase.normalize('NFC')),
+  };
 }

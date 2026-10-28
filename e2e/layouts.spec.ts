@@ -15,6 +15,7 @@ import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
 
 // Smallest acceptable word list (hand-curated Japanese, Chinese and Thai lists are ~450)
 const MIN_WORDS = 400;
+const MIN_PHRASES = 90;
 
 // Languages written with a layout of another language
 const FALLBACK_LAYOUTS: Partial<Record<LanguageCode, KeyboardLayoutId[]>> = {
@@ -27,7 +28,7 @@ test.describe("Keyboard layout coverage", () => {
   test.skip(({ browserName }) => browserName !== "chromium");
 
   for (const language of VALID_LEARNING_LANGUAGES) {
-    test(`every ${language} word can be typed on its layouts`, async () => {
+    test(`every ${language} word and phrase can be typed on its layouts`, async () => {
       const layoutIds =
         FALLBACK_LAYOUTS[language] ??
         getAllLayouts()
@@ -43,12 +44,21 @@ test.describe("Keyboard layout coverage", () => {
       expect(source.filter((word) => word !== word.normalize("NFC")), `non-NFC ${language} words`).toEqual([]);
 
       const words = content.words.map((word) => getTypedWord(content, word));
+      // Sentences are checked by what is typed: romanized tokens for Japanese/Chinese
+      const phrases = (content.phrases ?? []).map((phrase) =>
+        content.phraseTokens?.[phrase]?.map(([, typed]) => typed).join(" ") ?? phrase
+      );
+      expect(phrases.length, `${language} phrases`).toBeGreaterThanOrEqual(MIN_PHRASES);
       for (const layoutId of layoutIds) {
         const layout = getLayout(layoutId);
         const untypeable = words.filter((word) =>
           [...word].some((char) => !canTypeChar(layout, char))
         );
         expect(untypeable, `untypeable ${language} words on ${layoutId}`).toEqual([]);
+        const untypeablePhrases = phrases.filter((phrase) =>
+          [...phrase].some((char) => !canTypeChar(layout, char))
+        );
+        expect(untypeablePhrases, `untypeable ${language} phrases on ${layoutId}`).toEqual([]);
       }
     });
   }

@@ -76,8 +76,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
       showGenerated(generator.getOne());
       setInput("");
     } else {
-      generator.update();
-      showGenerated(generator.getWords());
+      showGenerated(generator.getPhrases());
       setInput("");
     }
 

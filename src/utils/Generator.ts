@@ -105,6 +105,44 @@ export class Generator {
     return { text, hints };
   }
 
+  /**
+   * Two or three everyday sentences (Phrases mode), or random words when the
+   * language has no sentences yet
+   */
+  public getPhrases(): GeneratedText {
+    const phrases = this.content.phrases;
+    if (!phrases?.length) {
+      this.update();
+      return this.getWords();
+    }
+    const picked: string[] = [];
+    let length = 0;
+    while (picked.length < 3 && (picked.length < 2 || length < 60)) {
+      const phrase = phrases[this.rand(0, phrases.length - 1)];
+      if (picked.includes(phrase) && phrases.length > picked.length) continue;
+      picked.push(phrase);
+      length += phrase.length;
+    }
+
+    const hints: WordHint[] = [];
+    let text = '';
+    for (const phrase of picked) {
+      const tokens = this.content.phraseTokens?.[phrase];
+      if (!tokens) {
+        text += (text ? ' ' : '') + phrase;
+        continue;
+      }
+      // Romanized sentence: words separated by spaces, punctuation attached
+      for (const [native, typed] of tokens) {
+        const isWord = /\p{L}/u.test(typed);
+        if (isWord && text) text += ' ';
+        if (isWord) hints.push({ start: text.length, end: text.length + typed.length, native });
+        text += typed;
+      }
+    }
+    return { text, hints };
+  }
+
   public getLanguage() {
     return this.language;
   }

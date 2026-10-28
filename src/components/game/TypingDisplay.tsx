@@ -29,11 +29,14 @@ function renderWithHints(
     for (; index < hint.start; index++) nodes.push(renderChar(text[index], index));
     const chars: React.ReactNode[] = [];
     for (; index < hint.end; index++) chars.push(renderChar(text[index], index));
+    // inline-block: lines break between annotated words, never inside one
     nodes.push(
-      <ruby key={`hint-${hint.start}`} className="[ruby-align:center] whitespace-nowrap">
-        {chars}
-        <rt className="font-sans text-base tracking-normal text-gray-500 dark:text-gray-400 select-none">{hint.native}</rt>
-      </ruby>
+      <span key={`hint-${hint.start}`} className="inline-block">
+        <ruby className="[ruby-align:center]">
+          {chars}
+          <rt className="font-sans text-base tracking-normal text-gray-500 dark:text-gray-400 select-none">{hint.native}</rt>
+        </ruby>
+      </span>
     );
   }
   for (; index < text.length; index++) nodes.push(renderChar(text[index], index));
