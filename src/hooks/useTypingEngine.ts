@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Generator, type Language, type GeneratedText, type WordHint } from "../utils/Generator";
+import { loadContent } from "../words";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
 import { charsMatch, isPartialChar } from "../utils/typedText";
@@ -35,8 +36,22 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   const [accuracy, setAccuracy] = useState(100);
   const [lastPressedKey, setLastPressedKey] = useState<string | null>(null);
 
-  // Generator
-  const generator = useMemo(() => new Generator(language), [language]);
+  // Generator, created once the language's content has loaded. A generator
+  // for a previous language is ignored while the next one loads.
+  const [loaded, setLoaded] = useState<{ language: Language; generator: Generator } | null>(null);
+  const generator = loaded?.language === language ? loaded.generator : null;
+
+  useEffect(() => {
+    let cancelled = false;
+    loadContent(language)
+      .then((content) => {
+        if (!cancelled) setLoaded({ language, generator: new Generator(language, content) });
+      })
+      .catch((error) => console.error(`Failed to load practice content for ${language}:`, error));
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
 
   // Custom Mode State
   const [customText, setCustomText] = useState(() => getStorageItem("customText") || "");
@@ -55,6 +70,8 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   const generateText = useCallback(() => {
     if (mode === "custom") {
       setInput("");
+    } else if (!generator) {
+      return; // Content still loading
     } else if (mode === "beginner") {
       showGenerated(generator.getOne());
       setInput("");

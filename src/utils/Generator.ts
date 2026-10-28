@@ -1,89 +1,7 @@
-import { words as ukWords } from '../words/words_uk';
-import { words as enWords } from '../words/words_en';
-import { words as trWords } from '../words/words_tr';
-import { words as deWords } from '../words/words_de';
-import { words as frWords } from '../words/words_fr';
-import { words as esWords } from '../words/words_es';
-import { words as ptWords } from '../words/words_pt';
-import { words as ruWords } from '../words/words_ru';
-import { words as itWords } from '../words/words_it';
-import { words as plWords } from '../words/words_pl';
-import { words as nlWords } from '../words/words_nl';
-import { words as svWords } from '../words/words_sv';
-import { words as noWords } from '../words/words_no';
-import { words as daWords } from '../words/words_da';
-import { words as fiWords } from '../words/words_fi';
-import { words as csWords } from '../words/words_cs';
-import { words as huWords } from '../words/words_hu';
-import { words as roWords } from '../words/words_ro';
-import { words as elWords } from '../words/words_el';
-import { words as heWords } from '../words/words_he';
-import { words as jaWords } from '../words/words_ja';
-import { words as koWords } from '../words/words_ko';
-import { words as zhWords } from '../words/words_zh';
-import { words as arWords } from '../words/words_ar';
-import { words as hiWords } from '../words/words_hi';
-import { words as thWords } from '../words/words_th';
-import { words as viWords } from '../words/words_vi';
-import { words as idWords } from '../words/words_id';
-import { words as msWords } from '../words/words_ms';
-import { readings as jaReadings } from '../words/readings_ja';
-import { readings as zhReadings } from '../words/readings_zh';
 import type { LanguageCode } from '../types/keyboard';
+import type { LanguageContent } from '../words';
 
 export type Language = LanguageCode;
-
-/**
- * Registry mapping language codes to their word lists
- * This replaces the switch statement pattern for better maintainability
- */
-const LANGUAGE_WORDS_REGISTRY: Record<LanguageCode, () => string[]> = {
-  'en': () => enWords,
-  'uk': () => ukWords,
-  'tr': () => trWords,
-  'de': () => deWords,
-  'fr': () => frWords,
-  'es': () => esWords,
-  'pt': () => ptWords,
-  'ru': () => ruWords,
-  'it': () => itWords,
-  'pl': () => plWords,
-  'nl': () => nlWords,
-  'sv': () => svWords,
-  'no': () => noWords,
-  'da': () => daWords,
-  'fi': () => fiWords,
-  'cs': () => csWords,
-  'hu': () => huWords,
-  'ro': () => roWords,
-  'el': () => elWords,
-  'he': () => heWords,
-  'ja': () => jaWords,
-  'ko': () => koWords,
-  'zh': () => zhWords,
-  'ar': () => arWords,
-  'hi': () => hiWords,
-  'th': () => thWords,
-  'vi': () => viWords,
-  'id': () => idWords,
-  'ms': () => msWords,
-};
-
-/**
- * Languages written through a romanizing IME are practiced by typing the
- * romanization (romaji, pinyin) with the native word shown above it.
- */
-const ROMANIZATIONS: Partial<Record<LanguageCode, Record<string, string>>> = {
-  ja: jaReadings,
-  zh: zhReadings,
-};
-
-/**
- * What to type for a word: its romanization, or the word itself
- */
-export function getTypedWord(lang: Language, word: string): string {
-  return ROMANIZATIONS[lang]?.[word] ?? word;
-}
 
 /**
  * A native word shown above the romanization typed for it
@@ -100,41 +18,30 @@ export interface GeneratedText {
 }
 
 /**
- * Word list for a language, in NFC so it matches what keyboards and IMEs produce
+ * What to type for a word: its romanization (Japanese, Chinese), or the word
+ * itself. Romanized languages are practiced by typing romaji or pinyin with
+ * the native word shown above it.
  */
-export function getWordList(lang: Language): string[] {
-  const getter = LANGUAGE_WORDS_REGISTRY[lang];
-  return getter ? getter().map((word) => word.normalize('NFC')) : [];
+export function getTypedWord(content: LanguageContent, word: string): string {
+  return content.readings?.[word] ?? word;
 }
 
 export class Generator {
   private words: string[] = [];
   private allWords: string[];
+  private content: LanguageContent;
   private number: number;
   private language: Language;
 
-  constructor(lang: Language = 'en', number: number = 8) {
+  constructor(lang: Language, content: LanguageContent, number: number = 8) {
     this.language = lang;
-    this.allWords = this.getWordsForLanguage(lang);
-
-    // Validate that we have words to work with
+    this.content = content;
+    this.allWords = content.words;
     if (this.allWords.length === 0) {
-      console.error(`No words found for language: ${lang}. Falling back to English.`);
-      this.allWords = this.getWordsForLanguage('en');
-      this.language = 'en';
+      console.error(`No words found for language: ${lang}`);
     }
-
     this.number = number;
     this.update();
-  }
-
-  private getWordsForLanguage(lang: Language): string[] {
-    const getter = LANGUAGE_WORDS_REGISTRY[lang];
-    if (!getter) {
-      console.error(`No word list registered for language: ${lang}. Falling back to English.`);
-      return LANGUAGE_WORDS_REGISTRY['en']();
-    }
-    return getWordList(lang);
   }
 
   private rand(low: number, high: number) {
@@ -186,12 +93,12 @@ export class Generator {
 
   // Join words into the text to type, with native-word hints for romanized languages
   private toText(words: string[]): GeneratedText {
-    const romanized = !!ROMANIZATIONS[this.language];
+    const romanized = !!this.content.readings;
     const hints: WordHint[] = [];
     let text = '';
     for (const word of words) {
       if (text) text += ' ';
-      const typed = getTypedWord(this.language, word);
+      const typed = getTypedWord(this.content, word);
       if (romanized) hints.push({ start: text.length, end: text.length + typed.length, native: word });
       text += typed;
     }

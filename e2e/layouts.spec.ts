@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { getAllLayouts, getLayout } from "../src/config/layouts";
 import { VALID_LEARNING_LANGUAGES } from "../src/config/constants";
-import { getTypedWord, getWordList } from "../src/utils/Generator";
+import { getTypedWord } from "../src/utils/Generator";
+import { loadContent } from "../src/words";
 import { canTypeChar } from "../src/utils/keyStrokes";
 import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
 
@@ -23,7 +24,7 @@ test.describe("Keyboard layout coverage", () => {
   test.skip(({ browserName }) => browserName !== "chromium");
 
   for (const language of VALID_LEARNING_LANGUAGES) {
-    test(`every ${language} word can be typed on its layouts`, () => {
+    test(`every ${language} word can be typed on its layouts`, async () => {
       const layoutIds =
         FALLBACK_LAYOUTS[language] ??
         getAllLayouts()
@@ -31,7 +32,8 @@ test.describe("Keyboard layout coverage", () => {
           .map((layout) => layout.id);
       expect(layoutIds, `no layout for ${language}`).not.toHaveLength(0);
 
-      const words = getWordList(language).map((word) => getTypedWord(language, word));
+      const content = await loadContent(language);
+      const words = content.words.map((word) => getTypedWord(content, word));
       for (const layoutId of layoutIds) {
         const layout = getLayout(layoutId);
         const untypeable = words.filter((word) =>
