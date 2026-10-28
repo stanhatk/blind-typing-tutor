@@ -59,7 +59,8 @@ export const huHuLayout: KeyboardLayout = {
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom row
-    { id: 'shift-l', primary: 'shift', width: 'shift' },
+    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
+    { id: 'intlBackslash', primary: 'í', shifted: 'Í', group: 1 },
     { id: 'z', primary: 'y', shifted: 'Y', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
     { id: 'c', primary: 'c', shifted: 'C', group: 3 },

@@ -530,10 +530,8 @@ export const words: string[] = [
   "goë",
   "specifiek",
   "ïndividualiteit",
-  "œuvre",
   "schémá",
   "mémé",
-  "dœuvre",
 
   // ─── Common expressions ────────────────────────
   "hallo",

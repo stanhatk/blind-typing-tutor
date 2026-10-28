@@ -1,5 +1,5 @@
 /**
- * Romanian word dictionary for typing‑practice applications
+ * Romanian word dictionary for typing-practice applications
  * Ordered from the most frequent / easiest words → less frequent / longer words.
  */
 export const words: string[] = [
@@ -67,7 +67,7 @@ export const words: string[] = [
   "între",
   "după",
   "înainte",
-  "într‑o",
+  "într-o",
   "despre",
   "deasupra",
   "sub",

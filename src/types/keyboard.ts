@@ -44,7 +44,7 @@ export interface KeyDefinition {
   shifted?: string;     // Character when Shift is pressed (optional)
   altGr?: string;       // Character when AltGr is pressed (optional, for layouts that use it)
   group?: number;       // Finger zone group (1-8)
-  width?: 'normal' | 'tab' | 'caps' | 'enter' | 'shift' | 'space';
+  width?: 'normal' | 'tab' | 'caps' | 'enter' | 'shift' | 'shiftIso' | 'space';
 }
 
 /**

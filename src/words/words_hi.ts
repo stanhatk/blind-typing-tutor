@@ -1,5 +1,5 @@
 /**
- * Hindi word dictionary for typing‑practice applications
+ * Hindi word dictionary for typing-practice applications
  * Ordered from most frequent / easiest words → less frequent / longer words.
  */
 export const words: string[] = [
@@ -270,20 +270,20 @@ export const words: string[] = [
   // ───────────────────── Adverbs ─────────────────────
   "हमेशा",
   "कभी नहीं",
-  "बार‑बार",
-  "कभी‑कभी",
+  "बार-बार",
+  "कभी-कभी",
   "पहले",
   "अब",
   "अभी",
   "तुरंत",
   "जल्दी",
-  "धीरे‑धीरे",
+  "धीरे-धीरे",
   "बहुत",
   "थोड़ा",
   "लगभग",
   "सटीक रूप से",
   "से साथ",
-  "अलग‑अलग",
+  "अलग-अलग",
 
   // ───────────────────── Numbers (words) ─────────────────────
   "एक",

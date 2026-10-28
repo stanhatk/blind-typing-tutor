@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState, useEffect } from 'react';
-import type { KeyboardLayout, KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
+import type { KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
 import { getLayout } from '../config/layouts';
+import { getNextKeyStroke } from '../utils/keyStrokes';
 
 interface KeyboardProps {
   activeKey: string | null;
@@ -15,41 +16,14 @@ interface KeyboardProps {
 }
 
 /**
- * Find the key (and Shift side) that produces a character directly,
- * checking primary, shifted, and AltGr characters.
+ * Letter keys show the uppercase letter, like printed keycaps, but only when
+ * Shift really produces it: CSS capitalize would turn 'ς' into 'Σ' and 'ß' into 'Ss'.
  */
-function findKeyStroke(
-  layout: KeyboardLayout,
-  char: string
-): { targetKeyId: string; shiftTarget: 'l' | 'r' | null } | null {
-  // Normalize the key for comparison (handle case-insensitive matching)
-  const normalizedKey = char.toLowerCase();
-  const isUpperCase = char !== normalizedKey;
-
-  const keyDef = layout.keys.find(k => {
-    // For exact case matching when key is uppercase
-    if (isUpperCase) {
-      return k.shifted === char || k.primary === char || k.altGr === char;
-    }
-    return (
-      k.primary.toLowerCase() === normalizedKey ||
-      k.shifted?.toLowerCase() === normalizedKey ||
-      k.altGr?.toLowerCase() === normalizedKey
-    );
-  });
-  if (!keyDef) return null;
-
-  // Shift is needed if the character is the uppercase shifted character, or
-  // a lowercase character that is only on the shifted level (e.g. '!' on '1')
-  const isShifted = isUpperCase
-    ? keyDef.shifted === char
-    : keyDef.shifted?.toLowerCase() === normalizedKey &&
-      keyDef.primary.toLowerCase() !== normalizedKey;
-  if (!isShifted) return { targetKeyId: keyDef.id, shiftTarget: null };
-
-  // Use the Shift key on the opposite hand
-  const isLeftHand = layout.leftHandKeys.includes(keyDef.primary.toLowerCase());
-  return { targetKeyId: keyDef.id, shiftTarget: isLeftHand ? 'r' : 'l' };
+function getKeyLabel(keyDef: KeyDefinition, language: string): string {
+  // Locale-aware so Turkish 'i' becomes 'İ'
+  return keyDef.shifted && keyDef.shifted === keyDef.primary.toLocaleUpperCase(language)
+    ? keyDef.shifted
+    : keyDef.primary;
 }
 
 export const Keyboard: React.FC<KeyboardProps> = ({
@@ -87,17 +61,9 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       return { targetKeyId: 'space', shiftTarget: null, spaceHand: 'r' as const };
     }
 
-    const direct = findKeyStroke(layout, activeKey);
-    if (direct) return { ...direct, spaceHand: null };
-
-    // Accented letter without its own key: dead key first, then the base letter
-    // (e.g. 'ã' = '~' then 'a'; 'Á' = '´' then Shift+'a')
-    const [base, mark, ...rest] = [...activeKey.normalize('NFD')];
-    const deadChar = mark && rest.length === 0 ? layout.deadKeys?.[mark] : undefined;
-    if (deadChar) {
-      const stroke = findKeyStroke(layout, deadKeyPending ? base : deadChar);
-      if (stroke) return { ...stroke, spaceHand: null };
-    }
+    // Accented letters without their own key: dead key first, then the base letter
+    const stroke = getNextKeyStroke(layout, activeKey, deadKeyPending);
+    if (stroke) return { ...stroke, spaceHand: null };
 
     // Key not found in layout - might be a special character
     return none;
@@ -173,7 +139,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   };
 
   const getKeyClass = (keyId: string, group?: number): { className: string; style?: React.CSSProperties } => {
-    let classes = "key flex justify-center items-center border border-gray-800 rounded m-0.5 text-sm capitalize transition-colors duration-100 relative ";
+    let classes = "key flex justify-center items-center border border-gray-800 rounded m-0.5 text-sm transition-colors duration-100 relative ";
     let style: React.CSSProperties | undefined;
 
     // Size classes based on width property
@@ -182,8 +148,11 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     else if (key?.width === 'caps') classes += "w-[98px] h-[55px] ";
     else if (key?.width === 'enter') classes += "w-[98px] h-[55px] ";
     else if (key?.width === 'shift') classes += "w-[128px] h-[55px] ";
+    else if (key?.width === 'shiftIso') classes += "w-[69px] h-[55px] "; // ISO: shorter Shift plus an extra key
     else if (key?.width === 'space') classes += "w-[330px] h-[55px] ";
     else classes += "w-[55px] h-[55px] ";
+    // Special keys (Tab, Shift, ...) are capitalized; letter keys use getKeyLabel
+    if (key?.width) classes += "capitalize ";
 
     // Override group for shift keys: both left and right shift use left pinky (group 1)
     // Assign groups to special keys that don't have them in layout
@@ -256,14 +225,14 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       if (enKey && enKey.primary !== keyDef.primary) {
         return (
           <div className="flex flex-col items-center justify-center leading-tight">
-            <span className="text-[10px] opacity-60">{enKey.primary}</span>
-            <span className="text-sm font-medium">{keyDef.primary}</span>
+            <span className="text-[10px] opacity-60">{getKeyLabel(enKey, "en")}</span>
+            <span className="text-sm font-medium">{getKeyLabel(keyDef, layout.language)}</span>
           </div>
         );
       }
     }
 
-    return keyDef.primary;
+    return getKeyLabel(keyDef, layout.language);
   };
 
   // Get keys for each row using a more robust row detection system
@@ -300,7 +269,8 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   const spaceKey = row5Keys?.[0];
 
   return (
-    <div className="flex flex-col items-center justify-center mt-12 select-none opacity-100 transition-opacity duration-200 w-full max-w-[855px] mx-auto">
+    // Physical keyboards are not mirrored in right-to-left interfaces
+    <div dir="ltr" className="flex flex-col items-center justify-center mt-12 select-none opacity-100 transition-opacity duration-200 w-full max-w-[855px] mx-auto">
       {/* Row 1 - Number row */}
       <div className="flex w-full">
         {row1Keys.map(key => {

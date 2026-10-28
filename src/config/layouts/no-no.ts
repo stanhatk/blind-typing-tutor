@@ -11,6 +11,8 @@ export const noNoLayout: KeyboardLayout = {
   flag: '🇳🇴',
   leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   deadKeys: {
+      '\u0301': '´', // acute
+      '\u0300': '`', // grave
       '\u0302': '^', // circumflex
       '\u0308': '¨', // diaeresis
   },
@@ -28,7 +30,7 @@ export const noNoLayout: KeyboardLayout = {
     { id: '9', primary: '9', shifted: ')', group: 6 },
     { id: '0', primary: '0', shifted: '=', group: 7 },
     { id: 'underscore', primary: '+', shifted: '?', group: 8 },
-    { id: 'equal', primary: '\\', shifted: '|', group: 8 },
+    { id: 'equal', primary: '\\', shifted: '`', altGr: '´', group: 8 },
     { id: 'backspace', primary: 'backspace', width: 'tab' },
     
     // Row 2 - QWERTY row

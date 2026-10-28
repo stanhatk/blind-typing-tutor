@@ -12,7 +12,7 @@ export const arSaLayout: KeyboardLayout = {
   leftHandKeys: ['ض', 'ص', 'ث', 'ق', 'ف', 'ش', 'س', 'ي', 'ب', 'ل'],
   keys: [
     // Row 1 - Number row
-    { id: 'backtick', primary: '`', shifted: '~', group: 1 },
+    { id: 'backtick', primary: 'ذ', shifted: 'ّ', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '@', group: 1 },
     { id: '3', primary: '3', shifted: '#', group: 2 },

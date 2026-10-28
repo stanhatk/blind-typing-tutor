@@ -18,11 +18,11 @@ export const words: string[] = [
     // Common nouns
     'homme', 'femme', 'enfant', 'personne', 'gens', 'monde', 'vie', 'temps',
     'jour', 'année', 'mois', 'semaine', 'heure', 'minute', 'seconde',
-    'main', 'tête', 'œil', 'yeux', 'cœur', 'corps', 'visage', 'voix',
+    'main', 'tête', 'yeux', 'corps', 'visage', 'voix',
     'chose', 'façon', 'fois', 'moment', 'point', 'place', 'partie',
 
     // Family
-    'père', 'mère', 'frère', 'sœur', 'fils', 'fille', 'ami', 'amie',
+    'père', 'mère', 'frère', 'fils', 'fille', 'ami', 'amie',
     'famille', 'parent', 'enfant', 'bébé', 'grand-père', 'grand-mère',
 
     // Common adjectives
@@ -70,7 +70,7 @@ export const words: string[] = [
 
     // Body parts
     'tête', 'cheveux', 'visage', 'nez', 'bouche', 'oreille', 'cou', 'bras',
-    'jambe', 'pied', 'doigt', 'orteil', 'cœur', 'estomac', 'dos',
+    'jambe', 'pied', 'doigt', 'orteil', 'estomac', 'dos',
 
     // Longer/complex words
     'france', 'français', 'française', 'anglais', 'allemand', 'espagnol',

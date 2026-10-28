@@ -1,5 +1,5 @@
 /**
- * Polish word dictionary for typing‑practice applications
+ * Polish word dictionary for typing-practice applications
  * Ordered from the most frequent / easiest words to less frequent ones.
  */
 export const words: string[] = [
@@ -246,7 +246,7 @@ export const words: string[] = [
   "telefon",
   "tablet",
   "internet",
-  "e‑mail",
+  "e-mail",
   "strona",
   "aplikacja",
   "plik",

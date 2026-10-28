@@ -9,7 +9,11 @@ export const elGrLayout: KeyboardLayout = {
   name: 'Ελληνικά',
   language: 'el',
   flag: '🇬🇷',
-  leftHandKeys: ['α', 'σ', 'δ', 'φ', 'γ', 'ς', 'ε', 'ρ', 'τ', 'υ', 'ζ', 'ξ', 'χ', 'ψ', 'β'],
+  deadKeys: {
+    '\u0301': '΄', // tonos
+    '\u0308': '¨', // dialytika
+  },
+  leftHandKeys: [';', 'α', 'σ', 'δ', 'φ', 'γ', 'ς', 'ε', 'ρ', 'τ', 'υ', 'ζ', 'ξ', 'χ', 'ψ', 'β'],
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },
@@ -29,8 +33,8 @@ export const elGrLayout: KeyboardLayout = {
     
     // Row 2 - QWERTY row
     { id: 'tab', primary: 'tab', width: 'tab' },
-    { id: 'q', primary: 'q', shifted: 'Q', group: 1 },
-    { id: 'w', primary: 'ω', shifted: 'Ω', group: 2 },
+    { id: 'q', primary: ';', shifted: ':', group: 1 },
+    { id: 'w', primary: 'ς', group: 2 }, // Shift+W is not used for Σ; that is Shift+S,
     { id: 'e', primary: 'ε', shifted: 'Ε', group: 3 },
     { id: 'r', primary: 'ρ', shifted: 'Ρ', group: 4 },
     { id: 't', primary: 'τ', shifted: 'Τ', group: 4 },
@@ -54,7 +58,7 @@ export const elGrLayout: KeyboardLayout = {
     { id: 'j', primary: 'ξ', shifted: 'Ξ', group: 5 },
     { id: 'k', primary: 'κ', shifted: 'Κ', group: 6 },
     { id: 'l', primary: 'λ', shifted: 'Λ', group: 7 },
-    { id: 'cologn', primary: ';', shifted: ':', group: 8 },
+    { id: 'cologn', primary: '΄', shifted: '¨', group: 8 },
     { id: 'quote', primary: "'", shifted: '"', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     

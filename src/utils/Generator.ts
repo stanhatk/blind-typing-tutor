@@ -67,6 +67,14 @@ const LANGUAGE_WORDS_REGISTRY: Record<LanguageCode, () => string[]> = {
   'ms': () => msWords,
 };
 
+/**
+ * Word list for a language, in NFC so it matches what keyboards and IMEs produce
+ */
+export function getWordList(lang: Language): string[] {
+  const getter = LANGUAGE_WORDS_REGISTRY[lang];
+  return getter ? getter().map((word) => word.normalize('NFC')) : [];
+}
+
 export class Generator {
   private words: string[] = [];
   private allWords: string[];
@@ -94,8 +102,7 @@ export class Generator {
       console.error(`No word list registered for language: ${lang}. Falling back to English.`);
       return LANGUAGE_WORDS_REGISTRY['en']();
     }
-    // Store words in NFC so they match what keyboards and IMEs produce
-    return getter().map((word) => word.normalize('NFC'));
+    return getWordList(lang);
   }
 
   private rand(low: number, high: number) {

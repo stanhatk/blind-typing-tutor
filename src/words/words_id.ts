@@ -324,7 +324,7 @@ export const words: string[] = [
   "selalu",
   "tidak pernah",
   "sering",
-  "kadang‑kadang",
+  "kadang-kadang",
   "jarang",
   "sudah",
   "masih",
@@ -384,7 +384,7 @@ export const words: string[] = [
   "coklat",
   "hitam",
   "putih",
-  "abu‑abu",
+  "abu-abu",
   "emas",
   "perak",
 

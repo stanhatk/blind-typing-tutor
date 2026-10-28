@@ -9,6 +9,14 @@ export const nlNlLayout: KeyboardLayout = {
   name: 'Nederlands',
   language: 'nl',
   flag: '🇳🇱',
+  // Dutch keyboards use US-International: ' " ` ^ ~ are dead keys
+  deadKeys: {
+    '\u0301': "'", // acute
+    '\u0308': '"', // diaeresis
+    '\u0300': '`', // grave
+    '\u0302': '^', // circumflex
+    '\u0303': '~', // tilde
+  },
   leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
   keys: [
     // Row 1 - Number row

@@ -54,8 +54,8 @@ export const heIlLayout: KeyboardLayout = {
     { id: 'j', primary: 'ח', shifted: 'J', group: 5 },
     { id: 'k', primary: 'ל', shifted: 'K', group: 6 },
     { id: 'l', primary: 'ך', shifted: 'L', group: 7 },
-    { id: 'cologn', primary: ';', shifted: ':', group: 8 },
-    { id: 'quote', primary: "'", shifted: '"', group: 8 },
+    { id: 'cologn', primary: 'ף', shifted: ':', group: 8 },
+    { id: 'quote', primary: ',', shifted: '"', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom row
@@ -67,9 +67,9 @@ export const heIlLayout: KeyboardLayout = {
     { id: 'b', primary: 'נ', shifted: 'B', group: 4 },
     { id: 'n', primary: 'מ', shifted: 'N', group: 5 },
     { id: 'm', primary: 'צ', shifted: 'M', group: 5 },
-    { id: 'comma', primary: ',', shifted: '<', group: 6 },
-    { id: 'period', primary: '.', shifted: '>', group: 7 },
-    { id: 'slash', primary: '/', shifted: '?', group: 8 },
+    { id: 'comma', primary: 'ת', shifted: '>', group: 6 },
+    { id: 'period', primary: 'ץ', shifted: '<', group: 7 },
+    { id: 'slash', primary: '.', shifted: '?', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
     // Row 5 - Space bar

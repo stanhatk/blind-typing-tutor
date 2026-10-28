@@ -647,16 +647,16 @@ export const words: string[] = [
   "místo",
 
   // ─── Inverted punctuation practice ───────────────
-  "¿co?",
-  "¿kde?",
-  "¿kdy?",
-  "¿proč?",
-  "¿jak?",
-  "¡ahoj!",
-  "¡čau!",
-  "¡díky!",
-  "¡skvěle!",
-  "¡dobře!",
+  "co?",
+  "kde?",
+  "kdy?",
+  "proč?",
+  "jak?",
+  "ahoj!",
+  "čau!",
+  "díky!",
+  "skvěle!",
+  "dobře!",
 
   // ─── Common expressions ────────────────────────
   "ahoj",
