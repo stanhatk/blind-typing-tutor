@@ -10,6 +10,7 @@ import {
   BASE_URL,
   INTERFACE_LANGUAGE_OPTIONS,
 } from "../config/constants";
+import { isIndexablePage } from "../config/seo";
 
 const DEFAULT_TITLE = "Blind Typing Tutor - Master Touch Typing Online";
 const DEFAULT_DESCRIPTION = "Master touch typing with our free online blind typing tutor.";
@@ -70,6 +71,8 @@ function generateHreflangAlternates(
   const alternates: Record<string, string> = {};
 
   INTERFACE_LANGUAGE_OPTIONS.forEach((lang) => {
+    // hreflang must only point at indexable pages
+    if (studyLang && !isIndexablePage(lang.code, studyLang)) return;
     let url = `${BASE_URL}/${lang.code}`;
     if (studyLang && learningMode) {
       // For content pages, maintain the same studyLang and learningMode
@@ -271,7 +274,7 @@ export function generatePageMetadata(options: MetadataOptions): Metadata {
     description,
     keywords,
     robots: robots || {
-      index: true,
+      index: !studyLang || isIndexablePage(validatedInterfaceLang, studyLang),
       follow: true,
     },
     alternates: {

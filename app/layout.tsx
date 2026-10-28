@@ -29,10 +29,6 @@ export const metadata: Metadata = {
       "Master touch typing with our free online blind typing tutor. Practice on 28+ keyboard layouts with real-time WPM tracking, accuracy stats, and visual keyboard. Learn typing without looking at the keyboard.",
     images: ["/og-image.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default async function RootLayout({

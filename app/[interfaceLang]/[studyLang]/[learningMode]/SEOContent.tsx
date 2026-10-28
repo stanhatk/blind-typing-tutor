@@ -1,6 +1,7 @@
 import { translations } from "@/translations";
 import type { InterfaceLanguage } from "@/translations";
 import type { ContentType } from "@/utils/url";
+import { isIndexablePage } from "@/config/seo";
 
 interface SEOContentProps {
   interfaceLang: string;
@@ -195,7 +196,8 @@ export function SEOContent({
         combo.interfaceLang === interfaceLang &&
         combo.studyLang === studyLang &&
         combo.mode === learningMode
-      ),
+      ) &&
+      isIndexablePage(combo.interfaceLang, combo.studyLang),
   );
 
   return (
@@ -261,11 +263,6 @@ export function SEOContent({
         How to Practice Effectively
       </h2>
       <p className="mb-4 text-gray-700 dark:text-gray-300">{content.howTo}</p>
-
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-gray-100">
-        Practice Tips
-      </h2>
-      <p className="mb-4 text-gray-700 dark:text-gray-300">{content.tips}</p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-gray-100">
         Practice Tips

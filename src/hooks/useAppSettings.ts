@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, startTransition, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, startTransition, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import type { KeyboardLayoutId, LanguageCode } from "../types/keyboard";
 import { getAllLayouts } from "../config/layouts";
@@ -75,15 +75,9 @@ export function useAppSettings(params: UseAppSettingsParams) {
     learningMode: params.learningMode,
   });
 
-  // Initialize layout from localStorage with fallback defaults
-  const [layoutId, setLayoutId] = useState<KeyboardLayoutId>(() => {
-    const saved = getStorageItem("layoutId");
-    const allValidLayouts = getAllLayouts().map((l) => l.id);
-    if (saved && allValidLayouts.includes(saved as KeyboardLayoutId)) {
-      return saved as KeyboardLayoutId;
-    }
-    return detectKeyboardLayout() as KeyboardLayoutId;
-  });
+  // Browser-only settings (localStorage, navigator.language) start from the
+  // server defaults so hydration matches; they are loaded after mount below.
+  const [layoutId, setLayoutId] = useState<KeyboardLayoutId>("en-us");
 
   const [mode, setMode] = useState<"practice" | "beginner" | "custom">(() => {
     // Initialize from URL first if present
@@ -167,34 +161,37 @@ export function useAppSettings(params: UseAppSettingsParams) {
     }
   );
 
-  const [soundEnabled, setSoundEnabled] = useState(() => {
-    const saved = getStorageItem("soundEnabled");
-    return saved === "true";
-  });
+  const [soundEnabled, setSoundEnabled] = useState(false);
 
   // Use extracted dark mode hook
   const [darkMode, setDarkMode] = useDarkMode();
 
-  const [showKeyboard, setShowKeyboard] = useState(() => {
-    const saved = getStorageItem("showKeyboard");
-    return saved !== "false";
-  });
+  const [showKeyboard, setShowKeyboard] = useState(true);
+  const [showHands, setShowHands] = useState(true);
+  const [showColors, setShowColors] = useState(true);
+  const [correctionMode, setCorrectionMode] = useState(true);
 
-  const [showHands, setShowHands] = useState(() => {
-    const saved = getStorageItem("showHands");
-    return saved !== "false";
-  });
-
-  const [showColors, setShowColors] = useState(() => {
-    const saved = getStorageItem("showColors");
-    return saved !== "false";
-  });
-
-  const [correctionMode, setCorrectionMode] = useState(() => {
-    const saved = getStorageItem("correctionMode");
-    if (saved === null || saved === "") return true;
-    return saved === "true";
-  });
+  // Load browser-only settings before first paint. Layout effects run before
+  // the persistence effects below, so stored values are read before any write.
+  /* eslint-disable react-hooks/set-state-in-effect -- one-time hydration from localStorage */
+  useLayoutEffect(() => {
+    const savedLayout = getStorageItem("layoutId");
+    const allValidLayouts = getAllLayouts().map((l) => l.id);
+    setLayoutId(
+      savedLayout && allValidLayouts.includes(savedLayout as KeyboardLayoutId)
+        ? (savedLayout as KeyboardLayoutId)
+        : (detectKeyboardLayout() as KeyboardLayoutId)
+    );
+    setSoundEnabled(getStorageItem("soundEnabled") === "true");
+    setShowKeyboard(getStorageItem("showKeyboard") !== "false");
+    setShowHands(getStorageItem("showHands") !== "false");
+    setShowColors(getStorageItem("showColors") !== "false");
+    const savedCorrection = getStorageItem("correctionMode");
+    setCorrectionMode(
+      savedCorrection === null || savedCorrection === "" || savedCorrection === "true"
+    );
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Sync with URL params when they change (only update if different to prevent loops)
   // Use pathname as source of truth to avoid race conditions with router.replace()

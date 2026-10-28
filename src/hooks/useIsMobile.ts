@@ -8,15 +8,8 @@ import { useState, useEffect } from "react";
  * @returns boolean indicating if device is mobile
  */
 export function useIsMobile(breakpoint: number = 768): boolean {
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return (
-      window.innerWidth < breakpoint ||
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    );
-  });
+  // Start as desktop so the server render and hydration match
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +21,7 @@ export function useIsMobile(breakpoint: number = 768): boolean {
       );
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);

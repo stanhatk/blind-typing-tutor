@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import { AppContent } from "./AppContent";
 import { SEOContent } from "./SEOContent";
 import type { ContentType } from "@/utils/url";
@@ -17,6 +17,18 @@ interface PageProps {
     studyLang: string;
     learningMode: string;
   }>;
+}
+
+function isValidRoute(
+  interfaceLang: string,
+  studyLang: string,
+  learningMode: string
+): boolean {
+  return (
+    INTERFACE_LANGUAGE_OPTIONS.some((opt) => opt.code === interfaceLang) &&
+    LEARNING_LANGUAGE_OPTIONS.some((opt) => opt.code === studyLang) &&
+    CONTENT_TYPES.includes(learningMode as ContentType)
+  );
 }
 
 // Generate static params for all route combinations at build time
@@ -46,43 +58,50 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { interfaceLang, studyLang, learningMode } = await params;
+  if (!isValidRoute(interfaceLang, studyLang, learningMode)) {
+    notFound();
+  }
   return generatePageMetadata({
     interfaceLang,
     studyLang,
     learningMode,
-    robots: {
-      index: true,
-      follow: true,
-    },
   });
 }
 
 export default async function LearningModePage({ params }: PageProps) {
   const { interfaceLang, studyLang, learningMode } = await params;
 
-  // Validate interfaceLang
-  const validInterfaceLang = INTERFACE_LANGUAGE_OPTIONS.find(
-    (opt) => opt.code === interfaceLang
-  );
-  if (!validInterfaceLang) {
+  if (!isValidRoute(interfaceLang, studyLang, learningMode)) {
     notFound();
   }
 
-  // Validate studyLang
-  const validStudyLang = LEARNING_LANGUAGE_OPTIONS.find(
-    (opt) => opt.code === studyLang
-  );
-  if (!validStudyLang) {
-    notFound();
-  }
-
-  // Validate learningMode
-  if (!CONTENT_TYPES.includes(learningMode as ContentType)) {
-    redirect(`/${interfaceLang}/${studyLang}/phrases`);
-  }
+  const metadata = generatePageMetadata({
+    interfaceLang,
+    studyLang,
+    learningMode,
+  });
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: metadata.title,
+    description: metadata.description,
+    url: metadata.alternates?.canonical,
+    inLanguage: interfaceLang,
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <AppContent
         params={{
           interfaceLang,
