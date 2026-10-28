@@ -3,7 +3,7 @@ import { Generator, type Language, type GeneratedText, type WordHint } from "../
 import { loadContent } from "../words";
 import { getLayout } from "../config/layouts";
 import type { KeyboardLayoutId } from "../types/keyboard";
-import type { Level } from "../utils/difficulty";
+import type { Complexity } from "../utils/complexity";
 import { getPracticeLayout } from "../utils/practiceLayout";
 import { applyVowelSign, getDeadKeyMark, getLayoutChar } from "../utils/layoutEmulation";
 import { soundManager } from "../utils/SoundManager";
@@ -14,11 +14,11 @@ interface TypingEngineProps {
   mode: "practice" | "beginner" | "custom";
   language: Language;
   layoutId: KeyboardLayoutId;
-  level: Level; // Words mode difficulty
+  complexity: Complexity; // Words mode: letters, short or long words
   correctionMode: boolean;
 }
 
-export function useTypingEngine({ mode, language, correctionMode, layoutId, level }: TypingEngineProps) {
+export function useTypingEngine({ mode, language, correctionMode, layoutId, complexity }: TypingEngineProps) {
   const [text, setText] = useState("");
   // Native words shown above their romanization (Japanese, Chinese)
   const [hints, setHints] = useState<WordHint[]>([]);
@@ -87,7 +87,7 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
     } else if (!generator) {
       return; // Content still loading
     } else if (mode === "beginner") {
-      showGenerated(generator.getLevelWords(practiceLayout, level));
+      showGenerated(generator.getComplexityText(complexity));
       setInput("");
     } else {
       showGenerated(generator.getPhrases());
@@ -101,7 +101,7 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, leve
     setAccuracy(100);
     // Defer focus to ensure DOM is ready
     setTimeout(() => inputRef.current?.focus(), 0);
-  }, [mode, generator, practiceLayout, level]);
+  }, [mode, generator, complexity]);
 
   // Initialize text when mode or language changes
   /* eslint-disable react-hooks/set-state-in-effect -- intentional mode/language initialization */

@@ -51,7 +51,7 @@ Root `/` redirects to `/{browser-lang}/{browser-lang}/words`.
 | `src/words/` | Word lists per language, built by `scripts/build-word-lists.cjs`; `index.ts` loads one language on demand |
 | `src/phrases/` | 100 everyday sentences per language for Phrases mode (ja/zh also have generated romanization tokens) |
 | `src/utils/keyStrokes.ts` | Which keys type a character (dead keys, AltGr, Hangul jamo, tone keys); shared by the keyboard and tests |
-| `src/utils/difficulty.ts` | Words mode levels 1-5 per layout |
+| `src/utils/complexity.ts` | Words mode complexity: letters, short words, long words |
 | `src/types/keyboard.ts` | `KeyboardLayoutId`, `LanguageCode` types |
 
 ### State management
@@ -100,7 +100,7 @@ Tailwind CSS v4 via `@tailwindcss/postcss`. Dark mode uses class selector (`.dar
 
 ### Practice content
 
-- `e2e/layouts.spec.ts` fails if any word or phrase of a language cannot be typed on its layouts (`getLayoutIdsForLanguage`), on duplicates, non-NFC entries, too few words/phrases, or a Words level under 30 words.
+- `e2e/layouts.spec.ts` fails if any word or phrase of a language cannot be typed on its layouts (`getLayoutIdsForLanguage`), on duplicates, non-NFC entries, too few words/phrases, or short/long words that are not clearly different.
 - Japanese/Chinese are typed as romaji/pinyin: readings come from `scripts/generate-readings.cjs` and are reviewed by hand.
 - Word lists derived from FrequencyWords are CC BY-SA 4.0 (see README credits).
 

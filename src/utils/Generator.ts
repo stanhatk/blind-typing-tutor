@@ -1,5 +1,5 @@
-import type { KeyboardLayout, LanguageCode } from '../types/keyboard';
-import { getLevelWords, type Level } from './difficulty';
+import type { LanguageCode } from '../types/keyboard';
+import { getLetterFrequencies, getWordsByLength, type Complexity } from './complexity';
 import { getPracticeChars } from './practiceLayout';
 import type { LanguageContent } from '../words';
 
@@ -32,8 +32,9 @@ export class Generator {
   private words: string[] = [];
   private allWords: string[];
   private content: LanguageContent;
-  // Words per "layout:level", computed once
-  private levelPools = new Map<string, string[]>();
+  // Short and long words, and letter frequencies, computed once
+  private lengthPools = new Map<Complexity, string[]>();
+  private letterFrequencies?: Map<string, number>;
   private practiceChars?: Set<string>;
 
   /**
@@ -96,16 +97,39 @@ export class Generator {
   }
 
   /**
-   * Different words from one difficulty level for the active layout (Words mode)
+   * Words mode text for a complexity: random letter groups, or different
+   * short or long words
    */
-  public getLevelWords(layout: KeyboardLayout, level: Level): GeneratedText {
-    const key = `${layout.id}:${level}`;
-    let pool = this.levelPools.get(key);
+  public getComplexityText(complexity: Complexity): GeneratedText {
+    if (complexity === 'letters') return this.getLetterGroups();
+    let pool = this.lengthPools.get(complexity);
     if (!pool) {
-      pool = getLevelWords(layout, this.allWords, (word) => getTypedWord(this.content, word), level);
-      this.levelPools.set(key, pool);
+      pool = getWordsByLength(this.allWords, (word) => getTypedWord(this.content, word), complexity);
+      this.lengthPools.set(complexity, pool);
     }
     return this.toText(this.shuffle(pool).slice(0, this.number));
+  }
+
+  // Random letter groups, common letters more often (square root of their
+  // frequency, so rare letters still come up). Korean jamo are typed one per
+  // group: an IME would join neighbours into a syllable.
+  private getLetterGroups(): GeneratedText {
+    this.letterFrequencies ??= getLetterFrequencies(this.allWords.map((word) => getTypedWord(this.content, word)));
+    const letters = [...this.letterFrequencies.entries()].map(([letter, count]) => [letter, Math.sqrt(count)] as const);
+    const total = letters.reduce((sum, [, weight]) => sum + weight, 0);
+    const pick = () => {
+      let r = Math.random() * total;
+      for (const [letter, weight] of letters) {
+        r -= weight;
+        if (r <= 0) return letter;
+      }
+      return letters[letters.length - 1][0];
+    };
+    const singleLetters = this.language === 'ko';
+    const groups = Array.from({ length: singleLetters ? 12 : this.number }, () =>
+      Array.from({ length: singleLetters ? 1 : this.rand(3, 5) }, pick).join('')
+    );
+    return { text: groups.join(' '), hints: [] };
   }
 
   // Join words into the text to type, with native-word hints for romanized languages

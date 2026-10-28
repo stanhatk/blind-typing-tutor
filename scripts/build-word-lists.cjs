@@ -43,7 +43,7 @@ const BAD = { tl: 'fil' };
 const CAPITALIZED_NOUNS = new Set(['de']);
 // Names and foreign words found in review, dropped from the frequency lists
 const EXCLUDE = {
-  de: ['david', 'max', 'paris', 'the', 'you', 'okay', 'ok', 'hey', 'jack', 'john', 'mike', 'sam', 'tom', 'captain', 'sir'],
+  de: ['david', 'max', 'paris', 'the', 'you', 'okay', 'ok', 'hey', 'jack', 'john', 'mike', 'sam', 'tom', 'captain', 'sir', 'george'],
   ar: ['ماري'],
   it: ['po'], // fragment of po’
   uk: ['да', 'но'], // Russian words common in Ukrainian subtitles
@@ -190,7 +190,8 @@ async function main() {
       // Fix the casing of curated German nouns too ("gesicht" -> "Gesicht")
       const word = CAPITALIZED_NOUNS.has(lang) ? (canonical(lower(original)) ?? original) : original;
       const reason = /\p{L}/u.test(word) ? (reasonFor(word) === 'length' && [...word].length === 1 ? null : reasonFor(word)) : 'shape';
-      if (reason) dropped.push({ word, reason });
+      if (EXCLUDE[lang]?.includes(lower(word))) dropped.push({ word, reason: 'excluded' });
+      else if (reason) dropped.push({ word, reason });
       else if (!frequent.includes(word) && !kept.includes(word)) kept.push(word);
     }
 

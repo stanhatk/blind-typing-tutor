@@ -4,7 +4,7 @@ import { VALID_LEARNING_LANGUAGES } from "../src/config/constants";
 import { getTypedWord } from "../src/utils/Generator";
 import { loadContent } from "../src/words";
 import { canTypeChar } from "../src/utils/keyStrokes";
-import { LEVELS, getLevelWords } from "../src/utils/difficulty";
+import { getLetterFrequencies, getWordsByLength } from "../src/utils/complexity";
 import { getPracticeChars, getPracticeLayout } from "../src/utils/practiceLayout";
 
 /**
@@ -41,6 +41,16 @@ test.describe("Keyboard layout coverage", () => {
         content.phraseTokens?.[phrase]?.map(([, typed]) => typed).join(" ") ?? phrase
       );
       expect(phrases.length, `${language} phrases`).toBeGreaterThanOrEqual(MIN_PHRASES);
+
+      // Words mode complexity: letters, and short words really shorter than long ones
+      expect(getLetterFrequencies(words).size, `${language} letters`).toBeGreaterThanOrEqual(10);
+      const typed = (word: string) => getTypedWord(content, word);
+      const averageLength = (list: string[]) => list.reduce((sum, word) => sum + [...typed(word)].length, 0) / list.length;
+      const short = getWordsByLength(content.words, typed, "short");
+      const long = getWordsByLength(content.words, typed, "long");
+      expect(short.length, `${language} short words`).toBeGreaterThanOrEqual(30);
+      expect(long.length, `${language} long words`).toBeGreaterThanOrEqual(30);
+      expect(averageLength(long), `${language} long vs short words`).toBeGreaterThan(averageLength(short) + 1);
       for (const layoutId of layoutIds) {
         const layout = getLayout(layoutId);
         const untypeable = words.filter((word) =>
@@ -51,17 +61,14 @@ test.describe("Keyboard layout coverage", () => {
           [...phrase].some((char) => !canTypeChar(layout, char))
         );
         expect(untypeablePhrases, `untypeable ${language} phrases on ${layoutId}`).toEqual([]);
-        // Every Words mode level has enough words to practice
-        for (const level of LEVELS) {
-          const levelWords = getLevelWords(layout, content.words, (word) => getTypedWord(content, word), level);
-          expect(levelWords.length, `${language} level ${level} on ${layoutId}`).toBeGreaterThanOrEqual(30);
-        }
+        const untypeableLetters = [...getLetterFrequencies(words).keys()].filter((letter) => !canTypeChar(layout, letter));
+        expect(untypeableLetters, `untypeable ${language} letters on ${layoutId}`).toEqual([]);
       }
     });
   }
 
   // Any keyboard shown with any practice language: the practice layout must
-  // type every character, and Words mode levels must really differ
+  // type every character
   for (const language of VALID_LEARNING_LANGUAGES) {
     test(`every keyboard can practice ${language}`, async () => {
       const content = await loadContent(language);
@@ -70,8 +77,6 @@ test.describe("Keyboard layout coverage", () => {
         const practice = getPracticeLayout(getLayout(id), language, chars);
         const untypeable = [...chars].filter((char) => !canTypeChar(practice, char));
         expect(untypeable, `${language} on ${id} via ${practice.id}`).toEqual([]);
-        const levelOne = getLevelWords(practice, content.words, (word) => getTypedWord(content, word), 1);
-        expect(levelOne.length, `${language} level 1 on ${id} is the whole list`).toBeLessThan(content.words.length);
       }
     });
   }

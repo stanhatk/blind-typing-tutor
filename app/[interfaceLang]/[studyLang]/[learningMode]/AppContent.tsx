@@ -108,8 +108,8 @@ export function AppContent({ params }: AppContentProps) {
           showHands={settings.showHands}
           showColors={settings.showColors}
           correctionMode={settings.correctionMode}
-          level={settings.level}
-          setLevel={settings.setLevel}
+          complexity={settings.complexity}
+          setComplexity={settings.setComplexity}
           soundEnabled={settings.soundEnabled}
           onToggleKeyboard={() => settings.setShowKeyboard((v) => !v)}
           onToggleHands={() => settings.setShowHands((v) => !v)}

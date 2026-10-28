@@ -4,7 +4,7 @@ import React from "react";
 import { Gamepad2, ChevronDown, BookOpen, Signal } from "lucide-react";
 import type { LanguageCode } from "../../types/keyboard";
 import type { TranslationKeys } from "../../translations";
-import { LEVELS, type Level } from "../../utils/difficulty";
+import { COMPLEXITIES, type Complexity } from "../../utils/complexity";
 
 interface GameControlsProps {
   mode: "practice" | "beginner" | "custom";
@@ -18,8 +18,8 @@ interface GameControlsProps {
     name: string;
     flag: string;
   }>;
-  level: Level;
-  setLevel: (level: Level) => void;
+  complexity: Complexity;
+  setComplexity: (complexity: Complexity) => void;
   translations: TranslationKeys;
 }
 
@@ -29,8 +29,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
   learningLanguage,
   setLearningLanguage,
   learningLanguageOptions,
-  level,
-  setLevel,
+  complexity,
+  setComplexity,
   translations,
 }) => {
   return (
@@ -83,22 +83,22 @@ export const GameControls: React.FC<GameControlsProps> = ({
         </div>
       )}
 
-      {/* Difficulty level, for Words mode */}
+      {/* Complexity, for Words mode */}
       {mode === "beginner" && (
         <div className="relative group">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-700 dark:text-gray-300">
             <Signal size={18} />
           </div>
           <select
-            data-testid="level-selector"
-            value={level}
-            onChange={(e) => setLevel(Number(e.target.value) as Level)}
+            data-testid="complexity-selector"
+            value={complexity}
+            onChange={(e) => setComplexity(e.target.value as Complexity)}
             className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
-            title={translations.level}
+            title={translations.complexity}
           >
-            {LEVELS.map((value) => (
+            {COMPLEXITIES.map((value) => (
               <option key={value} value={value}>
-                {value}. {translations.levelNames[value - 1]}
+                {translations.complexityNames[value]}
               </option>
             ))}
           </select>
