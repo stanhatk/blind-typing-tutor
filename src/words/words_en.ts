@@ -1,34 +1,117 @@
+/**
+ * English words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
+ */
 export const words: string[] = [
-  // ─── Articles / Determiners ─────────────────
-  "the", "a", "an", "this", "that", "these", "those", "my", "your", "his", "her", "its", "our", "their", "some", "any", "each", "every", "few", "many", "several",
-
-  // ─── Pronouns ───────────────────────────────
-  "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them", "mine", "yours", "ours", "theirs", "who", "whom", "which", "what", "someone", "anyone", "everyone", "noone", "somebody", "anybody", "everybody", "nobody",
-
-  // ─── Prepositions ────────────────────────────
-  "of", "in", "to", "for", "with", "on", "at", "by", "from", "up", "down", "out", "over", "under", "between", "among", "into", "through", "against", "amongst", "around", "near", "beyond", "within", "without", "across", "behind", "beside", "before", "after", "since", "until", "upon", "instead", "toward",
-
-  // ─── Conjunctions ───────────────────────────
-  "and", "but", "or", "nor", "so", "yet", "for", "because", "although", "though", "if", "when", "while", "as", "since", "unless", "where", "wherever", "whenever", "after", "before", "once",
-
-  // ─── Auxiliary verbs ────────────────────────
-  "be", "am", "is", "are", "was", "were", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "will", "shall", "can", "could", "may", "might", "must", "should", "would", "ought",
-
-  // ─── Common verbs ───────────────────────────
-  "go", "come", "see", "look", "watch", "hear", "listen", "say", "tell", "ask", "answer", "know", "think", "understand", "feel", "want", "need", "like", "love", "work", "play", "run", "walk", "read", "write", "make", "take", "give", "help", "use", "find", "keep", "put", "bring", "hold", "stay", "turn", "stop", "start", "continue", "change", "show", "offer", "call", "pay", "receive", "buy", "sell", "send", "move", "grow", "open", "close", "cut", "talk", "meet", "learn", "teach", "remember", "forget", "sleep", "eat", "drink", "cook", "clean", "draw", "build",
-
-  // ─── Common nouns ───────────────────────────
-  "time", "year", "people", "day", "world", "hand", "part", "place", "case", "woman", "life", "child", "thing", "eye", "day", "week", "month", "city", "school", "family", "home", "room", "door", "friend", "father", "mother", "brother", "sister", "boy", "girl", "dog", "cat", "car", "road", "name", "water", "food", "night", "house", "road", "money", "work", "word", "story", "problem", "answer", "idea", "system", "area", "thing", "service", "group", "result", "minute", "hour", "law", "book", "paper", "picture", "mind", "body", "face", "night", "day", "air", "river", "mountain", "sea", "language", "nation", "computer", "music", "film", "game", "love", "death", "life", "light", "energy", "fire", "earth", "space", "science",
-
-  // ─── Adjectives ─────────────────────────────
-  "good", "new", "first", "last", "long", "great", "little", "own", "other", "old", "right", "big", "high", "different", "small", "large", "next", "early", "young", "important", "possible", "real", "certain", "whole", "clear", "full", "special", "easy", "hard", "strong", "fast", "slow", "simple", "bright", "dark", "cold", "hot", "wet", "dry", "wide", "deep", "thin", "fat", "high", "low", "free", "true", "false", "healthy", "healthy", "safe", "dangerous", "quiet", "loud", "rich", "poor", "popular", "common", "usual", "main", "major", "minor", "separate", "different", "similar", "available", "available", "available", "available",
-
-  // ─── Adverbs ───────────────────────────────
-  "not", "also", "very", "just", "still", "already", "still", "still", "ever", "never", "always", "usually", "often", "sometimes", "rarely", "together", "alone", "here", "there", "everywhere", "now", "then", "later", "before", "after", "again", "once", "twice", "almost", "already", "already", "already", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still", "still",
-
-  // ─── Numbers (words) ───────────────────────
-  "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
-
-  // ─── Miscellaneous useful words ─────────────
-  "yes", "no", "maybe", "sure", "please", "thanks", "sorry", "welcome", "good", "bad", "right", "wrong", "true", "false", "big", "small", "new", "old", "young", "old", "high", "low", "fast", "slow", "hard", "easy", "light", "dark", "close", "far", "near", "early", "late", "today", "tomorrow", "yesterday", "now", "then", "again", "once", "twice", "once", "twice", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again", "again"
+  "you", "the", "to", "it", "and", "that", "of", "is", "in", "what",
+  "we", "me", "this", "he", "for", "my", "on", "have", "your", "do",
+  "was", "no", "not", "be", "are", "know", "can", "with", "but", "all",
+  "so", "just", "there", "here", "they", "like", "get", "she", "go", "if",
+  "right", "out", "about", "up", "at", "him", "now", "one", "come", "well",
+  "her", "how", "yeah", "will", "got", "want", "think", "as", "see", "did",
+  "good", "who", "why", "from", "let", "his", "yes", "when", "going", "time",
+  "an", "okay", "back", "look", "us", "would", "them", "where", "were", "take",
+  "then", "had", "or", "been", "our", "gonna", "tell", "really", "man", "some",
+  "say", "could", "by", "need", "something", "has", "too", "more", "way", "down",
+  "make", "very", "never", "only", "people", "over", "because", "little", "please", "love",
+  "should", "mean", "said", "sorry", "give", "off", "am", "thank", "any", "two",
+  "even", "much", "doing", "sure", "thing", "these", "help", "first", "into", "anything",
+  "still", "find", "life", "nothing", "day", "work", "their", "again", "maybe", "must",
+  "before", "other", "wait", "stop", "call", "after", "won", "talk", "away", "than",
+  "thought", "home", "night", "put", "great", "those", "last", "better", "everything", "told",
+  "new", "things", "always", "keep", "long", "years", "leave", "does", "money", "around",
+  "name", "place", "ever", "feel", "guys", "father", "guy", "made", "old", "which",
+  "big", "lot", "done", "hello", "nice", "believe", "girl", "someone", "fine", "thanks",
+  "wanted", "kind", "coming", "every", "ok", "through", "being", "course", "stay", "left",
+  "dad", "enough", "happened", "came", "may", "mother", "wrong", "world", "bad", "might",
+  "three", "today", "listen", "another", "understand", "hear", "remember", "ask", "own", "same",
+  "show", "else", "kill", "talking", "found", "next", "getting", "care", "car", "looking",
+  "son", "try", "woman", "went", "dead", "many", "mind", "friend", "best", "mom",
+  "hell", "morning", "trying", "boy", "together", "yourself", "job", "saw", "family", "real",
+  "without", "baby", "room", "already", "move", "most", "seen", "live", "miss", "actually",
+  "huh", "both", "heard", "once", "ready", "head", "called", "used", "idea", "knew",
+  "hold", "happy", "door", "such", "brother", "also", "pretty", "bit", "took", "haven",
+  "yet", "men", "whole", "start", "use", "while", "since", "wife", "days", "guess",
+  "tomorrow", "matter", "meet", "bring", "tonight", "everyone", "run", "wanna", "hard", "alone",
+  "myself", "school", "gone", "end", "saying", "phone", "play", "looks", "problem", "few",
+  "friends", "gotta", "ago", "open", "anyone", "killed", "hope", "face", "until", "lost",
+  "police", "excuse", "turn", "business", "case", "wants", "says", "true", "die", "heart",
+  "soon", "each", "worry", "later", "year", "watch", "music", "hand", "having", "probably",
+  "beautiful", "doctor", "sit", "eat", "thinking", "young", "second", "working", "water", "person",
+  "part", "kids", "late", "stuff", "exactly", "under", "death", "minute", "pay", "crazy",
+  "forget", "everybody", "kid", "change", "gave", "happen", "damn", "five", "drink", "far",
+  "knows", "its", "whatever", "eyes", "shut", "hit", "taking", "easy", "times", "check",
+  "hands", "minutes", "deal", "different", "means", "point", "inside", "makes", "asked", "somebody",
+  "mine", "making", "body", "afraid", "sleep", "chance", "dear", "quite", "four", "anyway",
+  "close", "party", "fun", "against", "word", "comes", "important", "set", "shall", "story",
+  "number", "daughter", "least", "waiting", "hurt", "wish", "moment", "fight", "week", "husband",
+  "girls", "rest", "married", "fire", "game", "nobody", "children", "side", "stand", "read",
+  "though", "cut", "started", "sister", "supposed", "between", "child", "goes", "hours", "speak",
+  "women", "behind", "almost", "truth", "blood", "able", "lady", "anymore", "playing", "gets",
+  "shot", "reason", "trouble", "break", "war", "city", "walk", "town", "met", "office",
+  "question", "brought", "yours", "welcome", "high", "wow", "couple", "half", "died", "cool",
+  "free", "either", "seems", "power", "bye", "buy", "telling", "honey", "tried", "front",
+  "team", "answer", "gun", "boys", "line", "send", "news", "stupid", "bed", "hurry",
+  "full", "months", "save", "sometimes", "become", "along", "hate", "food", "outside", "light",
+  "needs", "dog", "country", "clear", "order", "em", "fact", "captain", "six", "hot",
+  "funny", "alive", "pick", "feeling", "living", "cause", "ahead", "lose", "plan", "dinner",
+  "sort", "leaving", "running", "boss", "alright", "promise", "taken", "safe", "book", "sent",
+  "white", "hour", "anybody", "small", "perfect", "lives", "special", "parents", "himself", "perhaps",
+  "sounds", "serious", "sick", "company", "scared", "uncle", "poor", "red", "past", "possible",
+  "shoot", "touch", "sound", "top", "laughs", "cannot", "asking", "win", "glad", "control",
+  "human", "drive", "hair", "luck", "murder", "happens", "air", "ten", "finally", "fast",
+  "cold", "seem", "laughing", "words", "hospital", "hang", "dance", "meeting", "till", "others",
+  "catch", "follow", "sense", "lie", "evening", "master", "known", "dream", "write", "million",
+  "voice", "sweet", "rather", "felt", "sign", "lucky", "somewhere", "bet", "longer", "calling",
+  "worked", "quiet", "looked", "less", "pull", "beat", "careful", "coffee", "return", "secret",
+  "weeks", "date", "seeing", "fall", "given", "fault", "straight", "takes", "song", "future",
+  "gentlemen", "loved", "changed", "road", "calm", "wonderful", "mad", "turned", "drop", "ladies",
+  "learn", "step", "absolutely", "early", "explain", "clean", "piece", "yesterday", "throw", "picture",
+  "land", "feet", "wonder", "questions", "speaking", "worth", "dude", "giving", "eye", "quick",
+  "moving", "figure", "state", "strong", "none", "amazing", "ones", "works", "act", "needed",
+  "weird", "law", "worried", "report", "goodbye", "missing", "choice", "happening", "chief", "wedding",
+  "strange", "general", "pain", "kidding", "decided", "ya", "pass", "tired", "class", "officer",
+  "kept", "wake", "worse", "busy", "mistake", "kiss", "court", "building", "finish", "during",
+  "age", "ship", "caught", "marry", "meant", "sell", "dark", "watching", "system", "suppose",
+  "evidence", "movie", "ride", "completely", "mouth", "totally", "birthday", "tv", "forgive", "born",
+  "imagine", "information", "instead", "definitely", "security", "certainly", "film", "month", "lying", "unless",
+  "train", "seven", "wear", "clothes", "hotel", "attack", "round", "expect", "sing", "terrible",
+  "bag", "history", "blue", "near", "broke", "station", "seriously", "forever", "except", "thinks",
+  "message", "entire", "table", "talked", "across", "rock", "lovely", "handle", "middle", "buddy",
+  "paid", "protect", "using", "floor", "ran", "swear", "spend", "situation", "ring", "anywhere",
+  "dangerous", "bill", "lead", "bought", "finished", "fair", "sun", "letter", "fool", "attention",
+  "club", "simple", "interesting", "space", "test", "box", "group", "single", "sitting", "marriage",
+  "join", "fear", "peace", "forgot", "force", "short", "normal", "present", "enjoy", "crime",
+  "horse", "ground", "count", "area", "charge", "honor", "lunch", "miles", "radio", "idiot",
+  "ball", "surprise", "paper", "key", "boat", "quickly", "gold", "bar", "fish", "mark",
+  "wearing", "crying", "accident", "government", "eight", "fell", "cover", "certain", "interested", "deep",
+  "star", "sea", "agree", "problems", "detective", "prison", "major", "stick", "offer", "difficult",
+  "smart", "personal", "record", "stopped", "hide", "whether", "trip", "relax", "public", "list",
+  "afternoon", "brain", "fix", "proud", "tea", "service", "screaming", "forward", "angry", "soul",
+  "fighting", "rich", "agent", "blow", "dress", "missed", "scene", "killing", "standing", "saved",
+  "mm", "respect", "killer", "ice", "mess", "tough", "feels", "sad", "cell", "drunk",
+  "share", "camera", "within", "card", "fly", "girlfriend", "laugh", "smell", "broken", "mum",
+  "honest", "often", "starting", "calls", "spent", "third", "visit", "mama", "judge", "window",
+  "hungry", "dare", "relationship", "moved", "prove", "private", "wall", "seat", "position", "lieutenant",
+  "realize", "especially", "machine", "walking", "art", "pleasure", "bloody", "college", "involved", "cry",
+  "became", "lived", "impossible", "obviously", "neither", "accept", "boyfriend", "besides", "teacher", "cops",
+  "sake", "loves", "carry", "teach", "apartment", "upset", "green", "liked", "cute", "evil",
+  "professor", "contact", "joke", "cop", "huge", "store", "jail", "likes", "lawyer", "doubt",
+  "continue", "appreciate", "cat", "shop", "driving", "congratulations", "wrote", "village", "quit", "field",
+  "wine", "decision", "sleeping", "slow", "laughter", "island", "glass", "beginning", "cash", "dying",
+  "hundred", "whose", "difference", "plane", "push", "continues", "singing", "eating", "tree", "gift",
+  "truck", "putting", "bear", "board", "grab", "beer", "stuck", "magic", "support", "rules",
+  "partner", "reach", "wind", "immediately", "seconds", "thousand", "gives", "experience", "cheers", "victim",
+  "upon", "computer", "planet", "promised", "bus", "dirty", "search", "staying", "dreams", "arrest",
+  "a", "several", "i", "ours", "theirs", "whom", "noone", "among", "amongst", "beyond",
+  "beside", "toward", "nor", "although", "wherever", "whenever", "ought", "receive", "grow", "cook",
+  "draw", "build", "house", "result", "river", "mountain", "language", "nation", "energy", "earth",
+  "science", "large", "bright", "wet", "dry", "wide", "thin", "fat", "low", "false",
+  "healthy", "loud", "popular", "common", "usual", "main", "minor", "separate", "similar", "available",
+  "usually", "rarely", "everywhere", "twice", "nine", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+  "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+  "eighty", "ninety", "billion", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
 ];

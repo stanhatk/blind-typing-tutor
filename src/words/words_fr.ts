@@ -1,95 +1,124 @@
 /**
- * French word dictionary for typing practice
- * Sorted by frequency and difficulty
+ * French words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
  */
 export const words: string[] = [
-    // Very common short words (2-4 letters)
-    'le', 'la', 'les', 'un', 'une', 'de', 'du', 'des', 'et', 'ou',
-    'je', 'tu', 'il', 'elle', 'on', 'nous', 'vous', 'ils', 'elles',
-    'ce', 'qui', 'que', 'où', 'pas', 'non', 'oui', 'bien', 'très',
-    'tout', 'tous', 'pour', 'par', 'sur', 'avec', 'dans', 'sans',
-
-    // Common 5-7 letter words
-    'être', 'avoir', 'faire', 'dire', 'aller', 'voir', 'savoir', 'pouvoir',
-    'vouloir', 'venir', 'devoir', 'prendre', 'donner', 'trouver', 'passer',
-    'mettre', 'parler', 'aimer', 'croire', 'tenir', 'porter', 'laisser',
-    'suivre', 'vivre', 'écrire', 'lire', 'entendre', 'rendre', 'attendre',
-
-    // Common nouns
-    'homme', 'femme', 'enfant', 'personne', 'gens', 'monde', 'vie', 'temps',
-    'jour', 'année', 'mois', 'semaine', 'heure', 'minute', 'seconde',
-    'main', 'tête', 'yeux', 'corps', 'visage', 'voix',
-    'chose', 'façon', 'fois', 'moment', 'point', 'place', 'partie',
-
-    // Family
-    'père', 'mère', 'frère', 'fils', 'fille', 'ami', 'amie',
-    'famille', 'parent', 'enfant', 'bébé', 'grand-père', 'grand-mère',
-
-    // Common adjectives
-    'bon', 'bonne', 'grand', 'grande', 'petit', 'petite', 'jeune', 'vieux',
-    'nouveau', 'nouvelle', 'premier', 'dernier', 'seul', 'même', 'autre',
-    'beau', 'belle', 'joli', 'jolie', 'long', 'court', 'haut', 'bas',
-    'fort', 'faible', 'rapide', 'lent', 'facile', 'difficile', 'important',
-
-    // Numbers
-    'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dix',
-    'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'vingt', 'trente',
-    'quarante', 'cinquante', 'soixante', 'cent', 'mille', 'million',
-
-    // Colors
-    'rouge', 'bleu', 'vert', 'jaune', 'noir', 'blanc', 'gris', 'rose',
-    'orange', 'violet', 'marron', 'beige',
-
-    // Time and dates
-    'aujourd\'hui', 'demain', 'hier', 'maintenant', 'toujours', 'jamais',
-    'souvent', 'parfois', 'rarement', 'déjà', 'encore', 'bientôt',
-    'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche',
-    'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août',
-    'septembre', 'octobre', 'novembre', 'décembre',
-
-    // Common verbs (longer)
-    'travailler', 'jouer', 'apprendre', 'enseigner', 'acheter', 'vendre',
-    'manger', 'boire', 'dormir', 'écouter', 'regarder', 'comprendre',
-    'expliquer', 'commencer', 'finir', 'ouvrir', 'fermer', 'entrer', 'sortir',
-
-    // Places
-    'maison', 'ville', 'pays', 'rue', 'route', 'chemin', 'place', 'porte',
-    'fenêtre', 'chambre', 'cuisine', 'salle', 'école', 'église', 'magasin',
-
-    // Technology
-    'ordinateur', 'internet', 'téléphone', 'portable', 'email', 'site',
-    'programme', 'logiciel', 'fichier', 'dossier', 'écran', 'clavier',
-
-    // Nature
-    'arbre', 'fleur', 'herbe', 'montagne', 'vallée', 'rivière', 'lac', 'mer',
-    'soleil', 'lune', 'étoile', 'ciel', 'nuage', 'pluie', 'neige', 'vent',
-
-    // Food and drink
-    'pain', 'fromage', 'viande', 'poisson', 'légume', 'fruit', 'pomme', 'poire',
-    'eau', 'lait', 'café', 'thé', 'vin', 'bière', 'jus',
-
-    // Body parts
-    'tête', 'cheveux', 'visage', 'nez', 'bouche', 'oreille', 'cou', 'bras',
-    'jambe', 'pied', 'doigt', 'orteil', 'estomac', 'dos',
-
-    // Longer/complex words
-    'france', 'français', 'française', 'anglais', 'allemand', 'espagnol',
-    'italien', 'portugais', 'russe', 'chinois', 'japonais',
-    'université', 'bibliothèque', 'musée', 'hôpital', 'pharmacie',
-    'restaurant', 'boulangerie', 'pâtisserie', 'boucherie', 'marché',
-    'aéroport', 'gare', 'métro', 'autobus', 'avenue', 'boulevard',
-
-    // Words with accents (important for French typing practice)
-    'été', 'café', 'thé', 'passé', 'allé', 'donné', 'parlé', 'mangé',
-    'être', 'fenêtre', 'fête', 'tête', 'même', 'extrême', 'problème',
-    'père', 'mère', 'frère', 'première', 'dernière', 'lumière', 'matière',
-    'à', 'là', 'déjà', 'voilà', 'où', 'dû', 'sûr', 'mûr',
-    'français', 'anglais', 'après', 'très', 'près', 'succès', 'progrès',
-    'ça', 'français', 'garçon', 'leçon', 'façon', 'reçu',
-    'naïf', 'maïs', 'haïr', 'coïncidence',
-
-    // Common expressions and phrases
-    'bonjour', 'bonsoir', 'bonne nuit', 'au revoir', 'salut', 'merci',
-    's\'il vous plaît', 'excusez-moi', 'pardon', 'comment', 'pourquoi',
-    'quand', 'combien', 'beaucoup', 'peu', 'assez', 'trop', 'plus', 'moins',
+  "de", "je", "est", "pas", "le", "que", "la", "vous", "tu", "un",
+  "et", "il", "ne", "les", "en", "on", "ça", "une", "ce", "pour",
+  "ai", "des", "qui", "mais", "dans", "nous", "elle", "me", "bien", "si",
+  "du", "suis", "non", "avec", "tout", "plus", "mon", "te", "au", "fait",
+  "moi", "oui", "va", "était", "as", "faire", "ils", "sur", "quoi", "se",
+  "comme", "sais", "être", "veux", "ici", "ma", "toi", "est-ce", "dit", "lui",
+  "votre", "es", "pourquoi", "où", "là", "rien", "cette", "sont", "quand", "peux",
+  "dire", "son", "avez", "vais", "alors", "ton", "comment", "par", "ou", "chose",
+  "bon", "ont", "merci", "juste", "très", "jamais", "été", "aussi", "avoir", "vraiment",
+  "voir", "même", "sa", "maintenant", "tous", "peut", "deux", "ces", "êtes", "allez",
+  "ta", "autre", "peu", "temps", "quelque", "fais", "toujours", "encore", "notre", "mes",
+  "besoin", "avait", "accord", "faut", "dois", "vie", "peut-être", "aller", "fois", "vu",
+  "donc", "sans", "monde", "étais", "parce", "avant", "sûr", "trop", "parler", "personne",
+  "avais", "père", "crois", "après", "aux", "ses", "pense", "eu", "aime", "leur",
+  "homme", "viens", "vrai", "femme", "ok", "doit", "veut", "ans", "mal", "chez",
+  "déjà", "depuis", "beaucoup", "vos", "bonne", "mort", "mieux", "vas", "mère", "sera",
+  "dis", "fille", "tes", "gens", "quel", "vois", "désolé", "ca", "voilà", "avons",
+  "petit", "maison", "soit", "cela", "autres", "toute", "soir", "passé", "prendre", "jour",
+  "monsieur", "nos", "savoir", "choses", "salut", "cet", "nom", "argent", "nuit", "raison",
+  "moins", "arrive", "maman", "reste", "moment", "voulais", "seul", "aider", "entre", "papa",
+  "passe", "aurais", "problème", "peur", "regarde", "voulez", "gars", "trouvé", "fils", "attends",
+  "savez", "trouver", "trois", "assez", "famille", "dû", "eh", "toutes", "plaît", "pourrait",
+  "travail", "pris", "pu", "tête", "quelle", "sait", "sommes", "appelle", "quelques", "faites",
+  "partir", "vite", "arrête", "seule", "serait", "voiture", "enfants", "tuer", "pendant", "idée",
+  "chance", "parle", "aurait", "part", "elles", "jours", "grand", "aujourd’hui", "venir", "ami",
+  "demain", "hein", "tard", "puis", "truc", "passer", "petite", "tant", "connais", "combien",
+  "mec", "sens", "pouvez", "porte", "sortir", "super", "heure", "contre", "coup", "comprends",
+  "entendu", "vient", "allons", "ensemble", "nouveau", "amour", "importe", "sang", "désolée", "cas",
+  "sous", "rester", "amis", "prends", "fini", "hommes", "tué", "question", "partie", "histoire",
+  "devrais", "aide", "dernière", "demande", "chercher", "pensais", "genre", "seulement", "police", "car",
+  "mois", "frère", "laisser", "aucun", "mettre", "eux", "laisse", "chaque", "ville", "arrivé",
+  "devrait", "parlé", "avez-vous", "vont", "longtemps", "aucune", "heures", "bébé", "place", "revoir",
+  "compris", "ni", "savais", "leurs", "étaient", "attention", "donner", "affaire", "endroit", "pourrais",
+  "corps", "façon", "donné", "est-il", "voici", "train", "dont", "écoute", "yeux", "trouve",
+  "pouvoir", "type", "perdu", "premier", "première", "côté", "point", "tellement", "main", "tiens",
+  "sois", "enfant", "vieux", "matin", "venu", "pardon", "là-bas", "suite", "vers", "minutes",
+  "demandé", "venez", "devant", "enfin", "arrêter", "cause", "nouvelle", "attendez", "chambre", "droit",
+  "parti", "mis", "eau", "compte", "dirait", "terre", "belle", "espère", "loin", "mari",
+  "donne", "fin", "croire", "aura", "gros", "boulot", "plutôt", "prêt", "filles", "bureau",
+  "mourir", "hier", "possible", "jouer", "demander", "celui", "voulait", "beau", "jeune", "dehors",
+  "docteur", "a-t-il", "confiance", "appeler", "années", "vérité", "école", "chef", "femmes", "propos",
+  "semaine", "vivre", "regardez", "feu", "journée", "téléphone", "près", "affaires", "meilleur", "devez",
+  "dessus", "mains", "prie", "équipe", "grande", "manger", "arriver", "dur", "guerre", "ait",
+  "appelé", "marche", "sécurité", "garçon", "essaie", "important", "dites", "exactement", "font", "fort",
+  "presque", "plein", "derrière", "mariage", "parents", "capitaine", "dernier", "fou", "ceux", "tomber",
+  "attendre", "vue", "pensé", "souviens", "envie", "fête", "jeu", "génial", "pays", "garde",
+  "cours", "bientôt", "numéro", "personnes", "cinq", "parfait", "laissé", "ainsi", "retour", "semble",
+  "autant", "peine", "minute", "essayé", "plan", "instant", "serai", "prison", "penser", "essayer",
+  "prend", "arme", "mauvais", "mot", "travailler", "quatre", "rentrer", "regarder", "choix", "êtes-vous",
+  "parfois", "film", "abord", "voyez", "faute", "facile", "croyais", "bas", "changer", "entendre",
+  "plaisir", "heureux", "entrer", "voudrais", "propre", "étiez", "tour", "fera", "ensuite", "garder",
+  "agent", "allait", "lit", "travaille", "adore", "amie", "rendre", "route", "lieu", "année",
+  "voit", "commence", "service", "devoir", "attend", "drôle", "difficile", "sûre", "pire", "peuvent",
+  "sujet", "état", "ceci", "impossible", "sorte", "perdre", "dollars", "voulu", "morte", "ira",
+  "faisait", "bizarre", "oublié", "ferai", "serais", "tôt", "inquiète", "payer", "coeur", "dès",
+  "pouvais", "reviens", "chien", "suffit", "prenez", "pensez", "café", "calme", "cherche", "montrer",
+  "photo", "ferme", "problèmes", "sûrement", "verre", "devons", "veulent", "doute", "musique", "courant",
+  "sauf", "moyen", "nouvelles", "avis", "sauver", "hôpital", "questions", "meurtre", "sérieux", "seconde",
+  "trucs", "comprendre", "esprit", "cool", "marché", "fous", "haut", "salle", "malade", "changé",
+  "gentil", "allé", "six", "simple", "semaines", "celle", "appris", "dîner", "sors", "commencé",
+  "suppose", "chemin", "partout", "bras", "prochaine", "visage", "meilleure", "face", "soirée", "roi",
+  "surtout", "retard", "écrit", "livre", "rapport", "message", "vaut", "ferais", "morts", "boire",
+  "soyez", "président", "bois", "sinon", "erreur", "rentre", "rendez-vous", "devait", "revenir", "joue",
+  "pauvre", "devenir", "rencontrer", "sort", "commencer", "pouvait", "occupe", "souvent", "pièce", "reçu",
+  "grave", "mets", "intérieur", "honneur", "dormir", "an", "faux", "messieurs", "groupe", "rêve",
+  "carte", "aviez", "appel", "manque", "envoyé", "début", "puisse", "content", "secret", "venue",
+  "cher", "effet", "voyons", "sac", "continue", "acheter", "voix", "certains", "occuper", "gagner",
+  "grâce", "maître", "prix", "mauvaise", "général", "âge", "long", "rue", "tirer", "apprendre",
+  "cheveux", "noir", "promis", "avaient", "patron", "avocat", "force", "accident", "dix", "probablement",
+  "laissez", "bout", "ordre", "armes", "cru", "déteste", "retrouver", "millions", "incroyable", "voyage",
+  "ailleurs", "oublie", "ressemble", "bienvenue", "disparu", "protéger", "utiliser", "situation", "petits", "connaissez",
+  "simplement", "scène", "prête", "oncle", "devriez", "liste", "soeur", "complètement", "dos", "armée",
+  "paix", "battre", "crime", "anniversaire", "finir", "réussi", "agit", "retourner", "sale", "libre",
+  "bouge", "contrôle", "rappelle", "arrêté", "hôtel", "idiot", "rencontré", "absolument", "mots", "victime",
+  "impression", "décidé", "sympa", "pars", "fasse", "avion", "habitude", "table", "rouge", "système",
+  "photos", "médecin", "seras", "bateau", "stupide", "faim", "autour", "fond", "surprise", "croyez",
+  "devais", "ligne", "porter", "imagine", "colère", "clair", "seront", "savait", "balle", "gagné",
+  "or", "hors", "magnifique", "risque", "terminé", "su", "heureuse", "mission", "jolie", "parlez",
+  "présent", "sorti", "cadeau", "expliquer", "volé", "plusieurs", "gauche", "ferait", "neuf", "passe-t-il",
+  "ouvre", "disais", "dedans", "disent", "pouvons", "suivre", "pourra", "inspecteur", "réponse", "lumière",
+  "pieds", "pote", "montre", "pied", "marcher", "envoyer", "vraie", "espèce", "doivent", "pareil",
+  "soleil", "camp", "fallait", "coin", "ignore", "moitié", "selon", "tenir", "grosse", "vouloir",
+  "vieille", "devenu", "continuer", "rend", "sortie", "recherche", "arrière", "lire", "doucement", "joli",
+  "avance", "exact", "disait", "club", "arrivée", "tue", "laquelle", "poser", "chaud", "aimé",
+  "professeur", "quitter", "loi", "tueur", "flics", "connaître", "lettre", "forme", "connaît", "bar",
+  "normal", "danger", "dangereux", "folle", "jure", "tiré", "essaye", "bonnes", "offre", "but",
+  "froid", "prêts", "tranquille", "gamin", "classe", "joué", "poste", "attaque", "boîte", "enquête",
+  "visite", "juge", "moi-même", "bord", "debout", "envoie", "preuve", "oublier", "bons", "vivant",
+  "ciel", "lu", "touche", "aimer", "télé", "met", "écouter", "serez", "pourtant", "change",
+  "triste", "droite", "tombe", "sentir", "ouvrir", "travers", "santé", "dossier", "jeunes", "coucher",
+  "cuisine", "monte", "signifie", "entrez", "relation", "centre", "dame", "chacun", "chanson", "voler",
+  "blanc", "certain", "don", "âme", "manière", "flic", "décision", "mange", "vit", "compagnie",
+  "déjeuner", "différent", "tire", "ordres", "clé", "vaisseau", "secondes", "enfer", "sortez", "vendre",
+  "faisais", "responsable", "mecs", "nulle", "signe", "lieutenant", "aille", "acheté", "étrange", "viennent",
+  "monter", "là-dedans", "capable", "emmener", "écrire", "honte", "bouche", "préfère", "coupable", "rire",
+  "payé", "soin", "milieu", "appartement", "prochain", "cerveau", "blague", "choisi", "époque", "aurez",
+  "voie", "réunion", "connu", "allée", "intérêt", "cheval", "combat", "silence", "coups", "existe",
+  "retourne", "tel", "trou", "public", "oeil", "pleine", "cacher", "amoureux", "drogue", "commandant",
+  "garçons", "faisons", "tient", "est-elle", "prise", "gouvernement", "dirai", "client", "adresse", "journal",
+  "contact", "dingue", "sent", "récupérer", "base", "preuves", "présente", "peau", "servir", "peuple",
+  "parent", "grand-père", "grand-mère", "court", "faible", "rapide", "lent", "sept", "huit", "onze",
+  "douze", "treize", "quatorze", "quinze", "seize", "vingt", "trente", "quarante", "cinquante", "soixante",
+  "cent", "mille", "million", "bleu", "vert", "jaune", "gris", "rose", "orange", "violet",
+  "marron", "beige", "rarement", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche",
+  "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
+  "novembre", "décembre", "enseigner", "fermer", "fenêtre", "église", "magasin", "ordinateur", "internet", "portable",
+  "email", "site", "programme", "logiciel", "fichier", "écran", "clavier", "arbre", "fleur", "herbe",
+  "montagne", "vallée", "rivière", "lac", "mer", "lune", "étoile", "nuage", "pluie", "neige",
+  "vent", "pain", "fromage", "viande", "poisson", "légume", "fruit", "pomme", "poire", "lait",
+  "thé", "vin", "bière", "jus", "nez", "oreille", "cou", "jambe", "doigt", "orteil",
+  "estomac", "france", "français", "française", "anglais", "allemand", "espagnol", "italien", "portugais", "russe",
+  "chinois", "japonais", "université", "bibliothèque", "musée", "pharmacie", "restaurant", "boulangerie", "pâtisserie", "boucherie",
+  "aéroport", "gare", "métro", "autobus", "avenue", "boulevard", "mangé", "extrême", "matière", "à",
+  "mûr", "succès", "progrès", "leçon", "naïf", "maïs", "haïr", "coïncidence", "bonjour", "bonsoir",
+  "excusez-moi",
 ];

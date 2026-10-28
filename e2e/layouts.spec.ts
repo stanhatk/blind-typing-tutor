@@ -13,6 +13,9 @@ import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
  * Chinese are checked by their romaji/pinyin, which is what gets typed.
  */
 
+// Smallest acceptable word list (hand-curated Japanese, Chinese and Thai lists are ~450)
+const MIN_WORDS = 400;
+
 // Languages written with a layout of another language
 const FALLBACK_LAYOUTS: Partial<Record<LanguageCode, KeyboardLayoutId[]>> = {
   id: ["en-us"],
@@ -33,6 +36,12 @@ test.describe("Keyboard layout coverage", () => {
       expect(layoutIds, `no layout for ${language}`).not.toHaveLength(0);
 
       const content = await loadContent(language);
+      expect(content.words.length, `${language} word count`).toBeGreaterThanOrEqual(MIN_WORDS);
+      const duplicates = content.words.filter((word, i) => content.words.indexOf(word) !== i);
+      expect(duplicates, `duplicate ${language} words`).toEqual([]);
+      const source = (await import(`../src/words/words_${language}`)).words as string[];
+      expect(source.filter((word) => word !== word.normalize("NFC")), `non-NFC ${language} words`).toEqual([]);
+
       const words = content.words.map((word) => getTypedWord(content, word));
       for (const layoutId of layoutIds) {
         const layout = getLayout(layoutId);

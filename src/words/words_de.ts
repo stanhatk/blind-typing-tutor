@@ -1,86 +1,123 @@
 /**
- * German word dictionary for typing practice
- * Sorted by frequency and difficulty
+ * German words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
  */
 export const words: string[] = [
-    // Very common short words (2-4 letters)
-    'der', 'die', 'das', 'und', 'ist', 'ich', 'du', 'er', 'sie', 'es',
-    'wir', 'ihr', 'ein', 'mit', 'von', 'zu', 'auf', 'für', 'an', 'bei',
-    'aus', 'um', 'als', 'bis', 'wie', 'was', 'wer', 'wo', 'ja', 'nein',
-    'gut', 'alt', 'neu', 'groß', 'klein', 'viel', 'mehr', 'hier', 'da',
-
-    // Common 5-7 letter words
-    'haben', 'sein', 'werden', 'können', 'müssen', 'sollen', 'wollen',
-    'machen', 'geben', 'kommen', 'gehen', 'sehen', 'lassen', 'stehen',
-    'finden', 'bleiben', 'liegen', 'halten', 'nennen', 'mögen', 'zeigen',
-    'führen', 'sprechen', 'bringen', 'leben', 'fahren', 'laufen', 'denken',
-
-    // Common nouns
-    'mensch', 'mann', 'frau', 'kind', 'jahr', 'tag', 'zeit', 'hand',
-    'auge', 'haus', 'welt', 'leben', 'arbeit', 'teil', 'land', 'stadt',
-    'frage', 'ende', 'fall', 'weg', 'recht', 'sache', 'wort', 'zahl',
-    'grund', 'form', 'stunde', 'minute', 'sekunde', 'woche', 'monat',
-
-    // Family and people
-    'vater', 'mutter', 'bruder', 'schwester', 'sohn', 'tochter', 'freund',
-    'leute', 'herr', 'dame', 'junge', 'mädchen', 'baby', 'person',
-
-    // Common adjectives
-    'andere', 'erste', 'letzte', 'ganze', 'eigene', 'große', 'kleine',
-    'lange', 'kurze', 'neue', 'alte', 'junge', 'schöne', 'gute', 'beste',
-    'schnell', 'langsam', 'hoch', 'tief', 'weit', 'nah', 'früh', 'spät',
-    'richtig', 'falsch', 'wichtig', 'möglich', 'schwer', 'leicht',
-
-    // Numbers
-    'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht',
-    'neun', 'zehn', 'elf', 'zwölf', 'zwanzig', 'dreißig', 'hundert', 'tausend',
-
-    // Colors
-    'rot', 'blau', 'grün', 'gelb', 'schwarz', 'weiß', 'grau', 'braun',
-    'orange', 'rosa', 'lila', 'violett',
-
-    // Time and dates
-    'heute', 'morgen', 'gestern', 'jetzt', 'immer', 'nie', 'oft', 'manchmal',
-    'montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag', 'samstag', 'sonntag',
-    'januar', 'februar', 'märz', 'april', 'mai', 'juni', 'juli', 'august',
-    'september', 'oktober', 'november', 'dezember',
-
-    // Common verbs (longer)
-    'arbeiten', 'spielen', 'lernen', 'lehren', 'kaufen', 'verkaufen',
-    'essen', 'trinken', 'schlafen', 'wachen', 'hören', 'fühlen',
-    'verstehen', 'erklären', 'beginnen', 'enden', 'öffnen', 'schließen',
-
-    // Technology and modern words
-    'computer', 'internet', 'telefon', 'handy', 'email', 'website',
-    'programm', 'software', 'hardware', 'daten', 'datei', 'ordner',
-
-    // Nature
-    'baum', 'blume', 'gras', 'berg', 'tal', 'fluss', 'see', 'meer',
-    'sonne', 'mond', 'stern', 'himmel', 'wolke', 'regen', 'schnee', 'wind',
-
-    // Food and drink
-    'brot', 'käse', 'fleisch', 'fisch', 'gemüse', 'obst', 'apfel', 'birne',
-    'wasser', 'milch', 'kaffee', 'tee', 'bier', 'wein', 'saft',
-
-    // Body parts
-    'kopf', 'haar', 'gesicht', 'nase', 'mund', 'ohr', 'hals', 'arm',
-    'bein', 'fuß', 'finger', 'zehe', 'herz', 'magen', 'rücken',
-
-    // Longer/complex words
-    'deutschland', 'österreich', 'schweiz', 'sprache', 'deutsch',
-    'englisch', 'französisch', 'spanisch', 'italienisch', 'russisch',
-    'universität', 'schule', 'kindergarten', 'bibliothek', 'museum',
-    'krankenhaus', 'apotheke', 'restaurant', 'geschäft', 'supermarkt',
-    'flughafen', 'bahnhof', 'bushaltestelle', 'straße', 'platz',
-
-    // Words with umlauts (important for German typing practice)
-    'über', 'für', 'tür', 'müde', 'grün', 'schön', 'können', 'mögen',
-    'hören', 'größer', 'kleiner', 'länger', 'kürzer', 'stärker', 'schwächer',
-    'ärger', 'ähnlich', 'öffnen', 'ölgemälde', 'übung', 'prüfung',
-    'fähigkeit', 'möglichkeit', 'schwierigkeit', 'persönlich', 'natürlich',
-    'gewöhnlich', 'plötzlich', 'kürzlich', 'nämlich', 'tatsächlich',
-
-    // ß words (Eszett - important for German)
-    'straße', 'fuß', 'groß', 'weiß', 'heiß', 'süß', 'außen', 'draußen',
-    'schließen', 'gießen', 'fließen', 'genießen', 'vergessen', 'messen',
+  "ich", "sie", "das", "ist", "du", "nicht", "die", "es", "und", "der",
+  "wir", "was", "zu", "er", "ein", "in", "ja", "mir", "mit", "wie",
+  "den", "mich", "auf", "dass", "aber", "eine", "so", "hat", "hier", "haben",
+  "für", "sind", "war", "von", "wenn", "dich", "ihr", "nein", "habe", "an",
+  "bin", "noch", "nur", "da", "dir", "sich", "einen", "uns", "hast", "dem",
+  "kann", "gut", "auch", "schon", "als", "sein", "mal", "jetzt", "ihn", "dann",
+  "aus", "meine", "um", "im", "wird", "mein", "bist", "doch", "alles", "weiß",
+  "keine", "oder", "nach", "nichts", "man", "muss", "werden", "will", "ihnen", "geht",
+  "wo", "etwas", "oh", "mehr", "bei", "also", "bitte", "immer", "hab", "warum",
+  "vor", "los", "können", "wieder", "sagen", "machen", "danke", "sehr", "alle", "denn",
+  "Mann", "tun", "ihm", "zum", "gehen", "sehen", "vielleicht", "einem", "wer", "ihre",
+  "diese", "euch", "einer", "komm", "über", "gibt", "wissen", "deine", "müssen", "soll",
+  "werde", "nie", "wirklich", "kein", "viel", "weg", "würde", "tut", "am", "des",
+  "einfach", "leben", "hatte", "Zeit", "weil", "willst", "kommen", "dein", "heute", "kommt",
+  "wollen", "damit", "ganz", "wäre", "wollte", "weißt", "sicher", "gesagt", "Frau", "nun",
+  "bis", "wurde", "leid", "na", "kannst", "macht", "dieser", "zurück", "lassen", "Hallo",
+  "meinen", "Gott", "seine", "hätte", "zwei", "könnte", "genau", "waren", "zur", "lass",
+  "klar", "morgen", "Leute", "Vater", "schön", "glaube", "ab", "gerade", "Tag", "gesehen",
+  "reden", "wohl", "Liebe", "sollte", "sagte", "unsere", "jemand", "Geld", "durch", "ob",
+  "keinen", "Mutter", "raus", "gemacht", "paar", "mach", "passiert", "dachte", "besser", "musst",
+  "wieso", "dieses", "selbst", "gehört", "möchte", "ohne", "Hör", "her", "sag", "meiner",
+  "anderen", "helfen", "Nacht", "finden", "diesen", "gute", "wirst", "lange", "natürlich", "ach",
+  "meinem", "gar", "ins", "sei", "dort", "weiter", "geben", "seit", "gleich", "sagt",
+  "recht", "ihren", "richtig", "Ordnung", "vom", "hören", "sieht", "davon", "dafür", "geh",
+  "diesem", "wegen", "Hause", "sollten", "Mädchen", "hin", "sollen", "Abend", "Haus", "denke",
+  "viele", "drei", "deinen", "Freund", "guten", "unser", "warte", "machst", "Menschen", "essen",
+  "Angst", "bleiben", "zusammen", "Welt", "unter", "habt", "schnell", "andere", "tot", "getan",
+  "darf", "erst", "rein", "stimmt", "nehmen", "Kinder", "eines", "glauben", "bringen", "ganze",
+  "genug", "brauchen", "gegen", "Moment", "junge", "steht", "sonst", "Musik", "Arbeit", "seid",
+  "ihrer", "Fragen", "Herr", "dabei", "heißt", "Familie", "warten", "niemand", "sofort", "bevor",
+  "Jahre", "einmal", "Problem", "Sohn", "wann", "brauche", "fertig", "halt", "allein", "beim",
+  "sprechen", "beide", "gefunden", "hatten", "Sache", "Hilfe", "verdammt", "ne", "jeder", "warst",
+  "gern", "konnte", "darüber", "halten", "siehst", "verstehe", "Jahren", "kam", "Kind", "wusste",
+  "wahr", "seinen", "dazu", "Bruder", "daran", "ihrem", "denken", "könnten", "dank", "würden",
+  "lieber", "Fall", "deiner", "sehe", "egal", "kennen", "deinem", "vergessen", "Frage", "mache",
+  "komme", "sage", "mag", "echt", "gib", "eigentlich", "jeden", "gab", "Uhr", "Stadt",
+  "Männer", "Baby", "fahren", "Namen", "bekommen", "Kopf", "gehe", "kleine", "später", "Glück",
+  "letzte", "Freunde", "all", "darauf", "Ende", "bald", "töten", "Dinge", "toll", "eins",
+  "Minuten", "vielen", "bereit", "weit", "Ahnung", "seiner", "bisschen", "Tür", "Auto", "Jungs",
+  "eure", "Augen", "Polizei", "stehen", "sterben", "hätten", "draußen", "kenne", "fast", "runter",
+  "vorbei", "treffen", "gerne", "dran", "wurden", "arbeiten", "verrückt", "neue", "ging", "hinter",
+  "sorgen", "einzige", "jemanden", "darum", "Tochter", "braucht", "Idee", "Schwester", "drin", "ruhig",
+  "sah", "ganzen", "spät", "ziemlich", "solltest", "Name", "sogar", "kurz", "Kerl", "Frauen",
+  "liegt", "suchen", "finde", "je", "woher", "lang", "Job", "keiner", "seinem", "hört",
+  "verstehen", "spielen", "überhaupt", "Teufel", "verstanden", "verloren", "große", "Hand", "Grund", "Jahr",
+  "Mama", "Ruhe", "gewesen", "Tod", "Stunden", "hoffe", "oben", "gestern", "versuchen", "Art",
+  "letzten", "Schatz", "endlich", "etwa", "erzählt", "läuft", "schwer", "anders", "Miss", "musste",
+  "fünf", "Wasser", "lässt", "erste", "versucht", "gekommen", "Geschichte", "wenig", "holen", "bedeutet",
+  "nett", "Wahrheit", "Woche", "bringt", "deshalb", "welche", "bestimmt", "hoch", "alter", "sagst",
+  "Schau", "Land", "Zimmer", "Wagen", "vier", "gefallen", "Spaß", "niemals", "schuld", "getötet",
+  "wollten", "verlassen", "zeigen", "beste", "ernst", "unserer", "denen", "Ort", "bleibt", "manchmal",
+  "Seite", "zwischen", "eben", "während", "Spiel", "nehme", "ersten", "guter", "Chance", "Freundin",
+  "Krieg", "gefällt", "kleinen", "erzählen", "anderes", "Tage", "entschuldigen", "wichtig", "gehst", "allen",
+  "Bett", "Sachen", "schlecht", "Schule", "Entschuldigung", "Wort", "hättest", "wären", "Typ", "schlafen",
+  "euer", "Gesicht", "falls", "neuen", "bloß", "unten", "Teil", "beiden", "Mensch", "kleiner",
+  "stellen", "oft", "Sorge", "gedacht", "trinken", "einige", "dies", "Ding", "unseren", "kriegen",
+  "Blut", "ehrlich", "Eltern", "scheint", "Herz", "glücklich", "alte", "alt", "Wiedersehen", "frei",
+  "wen", "drauf", "möglich", "irgendwie", "reicht", "fest", "besten", "Waffe", "kaum", "irgendwas",
+  "klingt", "Platz", "brauchst", "Rede", "Papa", "falsch", "sondern", "alten", "Nummer", "früher",
+  "jungen", "wohin", "außer", "früh", "setzen", "zuerst", "wahrscheinlich", "dürfen", "jede", "Telefon",
+  "tue", "willkommen", "Plan", "großen", "retten", "hierher", "wär", "Fehler", "wollt", "Dollar",
+  "zehn", "allem", "Pass", "nächste", "Stunde", "Hände", "gegeben", "Menge", "langsam", "bereits",
+  "wartet", "sechs", "lieben", "meines", "Büro", "nächsten", "gebe", "Wochen", "Ruf", "schaffen",
+  "leider", "Hölle", "trotzdem", "New", "voll", "Film", "überall", "Hund", "geworden", "direkt",
+  "Tat", "denkt", "Schiff", "neues", "wem", "König", "danach", "funktioniert", "lernen", "deswegen",
+  "nennen", "Feuer", "laufen", "alleine", "erinnern", "völlig", "kleines", "könnt", "Stelle", "Kumpel",
+  "verlieren", "Probleme", "spricht", "Kaffee", "Luft", "fand", "entschuldige", "ziehen", "verschwinden", "könntest",
+  "seht", "aufhören", "eigenen", "richtige", "unserem", "Suche", "zwar", "groß", "Buch", "krank",
+  "fühle", "jedes", "Wert", "Arzt", "froh", "versuche", "Straße", "rufen", "heiraten", "super",
+  "lebt", "gutes", "lasse", "Onkel", "total", "gebracht", "Party", "erklären", "spielt", "Wahl",
+  "Vertrauen", "damals", "Tagen", "leicht", "nachdem", "gegangen", "Gefühl", "kaufen", "geschafft", "Typen",
+  "interessiert", "möchten", "halte", "hält", "glaub", "irgendwo", "Stück", "genauso", "kennt", "genommen",
+  "Zukunft", "weniger", "cool", "Licht", "getroffen", "Himmel", "Nachricht", "drüben", "passt", "sagten",
+  "kümmern", "laut", "angerufen", "sitzen", "daß", "Erde", "großer", "Schlüssel", "Rest", "passieren",
+  "eher", "gefragt", "Gefängnis", "Opfer", "Körper", "solche", "Mist", "Mr", "findet", "schreiben",
+  "böse", "gesprochen", "Versuch", "vorstellen", "wovon", "sobald", "nochmal", "Herren", "Sex", "Waffen",
+  "Wohnung", "weh", "heißen", "Krankenhaus", "bringe", "höre", "Millionen", "Klasse", "hart", "worden",
+  "Sinn", "außerdem", "verletzt", "ändern", "erfahren", "tragen", "wenigstens", "vorsichtig", "stolz", "stark",
+  "fällt", "möchtest", "Leuten", "besonders", "schöne", "schicken", "Person", "schätze", "solange", "länger",
+  "großartig", "lacht", "anrufen", "stand", "fühlen", "erwartet", "Boden", "Boss", "Stimme", "glaubt",
+  "still", "Sicherheit", "setz", "ma", "Mund", "kämpfen", "lachen", "Zeug", "lustig", "umbringen",
+  "schlimm", "unglaublich", "laden", "führen", "gestorben", "schauen", "Meinung", "lesen", "Mörder", "Frank",
+  "geschehen", "Geschäft", "fliegen", "Team", "General", "aufs", "York", "vorher", "Schluss", "schneller",
+  "liebt", "verdient", "mögen", "meisten", "umgebracht", "perfekt", "versprochen", "Handy", "hinten", "Monate",
+  "erinnere", "acht", "arbeitet", "fallen", "rufe", "nötig", "Mord", "heraus", "Tages", "unmöglich",
+  "Liebling", "Charlie", "tatsächlich", "folgen", "bitten", "behalten", "Nähe", "arbeite", "Joe", "plötzlich",
+  "Lebens", "hole", "Tisch", "Michael", "hörte", "jemals", "liegen", "verkaufen", "gefährlich", "anfangen",
+  "bekommt", "machte", "ha", "Hotel", "hilft", "werdet", "Meister", "Kampf", "Antwort", "konnten",
+  "geschickt", "jedem", "obwohl", "sieben", "komisch", "gewinnen", "ihres", "bezahlt", "voller", "unterwegs",
+  "dumm", "Ärger", "Bild", "George", "neu", "bezahlen", "dagegen", "seien", "starb", "Monaten",
+  "Leiche", "niemanden", "Auge", "verheiratet", "Peter", "nimmt", "gerettet", "Agent", "Traum", "Entscheidung",
+  "schlimmer", "Regeln", "Fenster", "fangen", "fort", "ständig", "findest", "Gefahr", "absolut", "Mary",
+  "Augenblick", "Bescheid", "rum", "Gedanken", "werd", "Ziel", "benutzt", "Bewegung", "jemandem", "wünschte",
+  "Worte", "kamen", "welcher", "zahlen", "Anfang", "legen", "Anwalt", "sitzt", "offen", "schönen",
+  "Monsieur", "müsste", "arme", "Bier", "fürs", "Partner", "klein", "Klappe", "süß", "herum",
+  "Finger", "ehe", "Rolle", "ließ", "gleiche", "Monat", "Hochzeit", "führt", "wach", "wozu",
+  "Arm", "geschrieben", "Chef", "benutzen", "Informationen", "erledigt", "hoffentlich", "müsst", "fühlt", "tanzen",
+  "ansehen", "zuhause", "wunderbar", "Reise", "gewonnen", "Dame", "irgendwann", "Alex", "steckt", "jedenfalls",
+  "schreit", "tolle", "rüber", "nennt", "Raum", "heiß", "Foto", "kalt", "Paul", "irgendetwas",
+  "Weile", "bisher", "Minute", "unbedingt", "Zug", "Sekunden", "wofür", "Beweise", "nahm", "aller",
+  "Zahl", "Form", "Sekunde", "eigene", "kurze", "tief", "nah", "neun", "elf", "zwölf",
+  "zwanzig", "dreißig", "hundert", "tausend", "rot", "blau", "grün", "Gelb", "schwarz", "grau",
+  "Braun", "orange", "rosa", "lila", "violett", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag",
+  "Samstag", "Sonntag", "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
+  "September", "Oktober", "November", "Dezember", "lehren", "wachen", "beginnen", "enden", "öffnen", "schließen",
+  "Computer", "Internet", "email", "Website", "Programm", "Software", "Hardware", "Daten", "Datei", "Ordner",
+  "Baum", "Blume", "Gras", "Berg", "Tal", "Fluss", "See", "Meer", "Sonne", "Mond",
+  "Stern", "Wolke", "Regen", "Schnee", "Wind", "Brot", "Käse", "Fleisch", "Fisch", "Gemüse",
+  "Obst", "Apfel", "birne", "Milch", "Tee", "Wein", "Saft", "Haar", "Nase", "Ohr",
+  "Hals", "Bein", "Fuß", "zehe", "Magen", "rücken", "Deutschland", "Österreich", "Schweiz", "Sprache",
+  "Deutsch", "Englisch", "Französisch", "spanisch", "italienisch", "russisch", "Universität", "Kindergarten", "Bibliothek", "Museum",
+  "Apotheke", "Restaurant", "Supermarkt", "Flughafen", "Bahnhof", "Bushaltestelle", "müde", "größer", "kürzer", "stärker",
+  "schwächer", "ähnlich", "Ölgemälde", "Übung", "Prüfung", "Fähigkeit", "Möglichkeit", "schwierigkeit", "persönlich", "gewöhnlich",
+  "kürzlich", "nämlich", "außen", "gießen", "fließen", "genießen", "messen",
 ];

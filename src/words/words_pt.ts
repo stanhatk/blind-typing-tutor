@@ -1,107 +1,127 @@
 /**
- * Portuguese word dictionary for typing practice
- * Sorted by frequency and difficulty
+ * Portuguese words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
  */
 export const words: string[] = [
-    // Very common short words (2-4 letters)
-    'o', 'a', 'os', 'as', 'um', 'uma', 'de', 'do', 'da', 'dos', 'das',
-    'e', 'ou', 'em', 'no', 'na', 'nos', 'nas', 'por', 'para', 'com',
-    'eu', 'tu', 'ele', 'ela', 'nós', 'vós', 'eles', 'elas', 'você',
-    'que', 'se', 'não', 'sim', 'bem', 'mal', 'muito', 'mais', 'menos',
-
-    // Common 5-7 letter words
-    'ser', 'estar', 'ter', 'haver', 'fazer', 'poder', 'dizer', 'ir',
-    'ver', 'dar', 'saber', 'querer', 'chegar', 'passar', 'dever', 'pôr',
-    'parecer', 'ficar', 'crer', 'falar', 'levar', 'deixar', 'seguir',
-    'encontrar', 'chamar', 'vir', 'pensar', 'sair', 'voltar', 'tomar',
-
-    // Common nouns
-    'homem', 'mulher', 'criança', 'pessoa', 'gente', 'mundo', 'vida',
-    'tempo', 'dia', 'ano', 'mês', 'semana', 'hora', 'minuto', 'segundo',
-    'mão', 'cabeça', 'olho', 'olhos', 'rosto', 'voz', 'corpo', 'coração',
-    'coisa', 'forma', 'vez', 'momento', 'ponto', 'lugar', 'parte', 'casa',
-
-    // Family
-    'pai', 'mãe', 'irmão', 'irmã', 'filho', 'filha', 'amigo', 'amiga',
-    'família', 'pais', 'avô', 'avó', 'tio', 'tia', 'primo', 'prima',
-
-    // Common adjectives
-    'bom', 'boa', 'mau', 'má', 'grande', 'pequeno', 'pequena',
-    'novo', 'nova', 'velho', 'velha', 'jovem', 'primeiro', 'último',
-    'mesmo', 'mesma', 'outro', 'outra', 'cada', 'todo', 'toda', 'algum',
-    'bonito', 'bonita', 'feio', 'feia', 'longo', 'curto', 'alto', 'baixo',
-    'rápido', 'lento', 'fácil', 'difícil', 'importante', 'possível',
-
-    // Numbers
-    'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez',
-    'onze', 'doze', 'treze', 'catorze', 'quinze', 'dezesseis', 'vinte', 'trinta',
-    'quarenta', 'cinquenta', 'sessenta', 'setenta', 'oitenta', 'noventa', 'cem', 'mil',
-
-    // Colors
-    'vermelho', 'azul', 'verde', 'amarelo', 'preto', 'branco', 'cinza', 'rosa',
-    'laranja', 'roxo', 'violeta', 'marrom', 'castanho',
-
-    // Time and dates
-    'hoje', 'amanhã', 'ontem', 'agora', 'sempre', 'nunca', 'às vezes',
-    'ainda', 'já', 'logo', 'cedo', 'tarde', 'depois', 'antes', 'durante',
-    'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo',
-    'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto',
-    'setembro', 'outubro', 'novembro', 'dezembro',
-
-    // Common verbs (longer)
-    'trabalhar', 'jogar', 'aprender', 'ensinar', 'comprar', 'vender',
-    'comer', 'beber', 'dormir', 'ouvir', 'escutar', 'olhar', 'entender',
-    'explicar', 'começar', 'terminar', 'abrir', 'fechar', 'entrar', 'sair',
-
-    // Places
-    'cidade', 'país', 'rua', 'caminho', 'praça', 'porta', 'janela',
-    'quarto', 'cozinha', 'sala', 'escola', 'igreja', 'loja', 'mercado',
-
-    // Technology
-    'computador', 'internet', 'telefone', 'celular', 'móvel', 'email',
-    'correio', 'site', 'programa', 'arquivo', 'pasta', 'tela', 'teclado',
-
-    // Nature
-    'árvore', 'flor', 'grama', 'montanha', 'vale', 'rio', 'lago', 'mar',
-    'sol', 'lua', 'estrela', 'céu', 'nuvem', 'chuva', 'neve', 'vento',
-
-    // Food and drink
-    'pão', 'queijo', 'carne', 'peixe', 'legume', 'fruta', 'maçã', 'pera',
-    'água', 'leite', 'café', 'chá', 'vinho', 'cerveja', 'suco', 'sumo',
-
-    // Body parts
-    'cabeça', 'cabelo', 'rosto', 'nariz', 'boca', 'orelha', 'pescoço', 'braço',
-    'perna', 'pé', 'dedo', 'coração', 'estômago', 'costas', 'mão',
-
-    // Longer/complex words
-    'portugal', 'brasil', 'português', 'portuguesa', 'inglês', 'alemão',
-    'francês', 'espanhol', 'italiano', 'russo', 'chinês', 'japonês',
-    'universidade', 'biblioteca', 'museu', 'hospital', 'farmácia',
-    'restaurante', 'supermercado', 'aeroporto', 'estação', 'autocarro', 'ônibus',
-
-    // Words with ç (important for Portuguese typing practice)
-    'ação', 'canção', 'coração', 'atenção', 'lição', 'solução', 'nação',
-    'criança', 'ança', 'ança', 'começar', 'cabeça', 'ança', 'serviço',
-    'preço', 'peça', 'força', 'ança', 'praça', 'frança', 'ança',
-
-    // Words with til (~) - nasal vowels
-    'não', 'são', 'mão', 'pão', 'irmão', 'irmã', 'manhã', 'amanhã',
-    'alemão', 'alemã', 'órfão', 'órfã', 'cidadão', 'cidadã', 'cristão',
-    'ação', 'canção', 'lição', 'nação', 'estação', 'informação',
-    'mãe', 'põe', 'cães', 'pães', 'capitães', 'alemães',
-
-    // Words with accents (á, é, í, ó, ú, â, ê, ô, à)
-    'está', 'até', 'você', 'café', 'josé', 'três', 'português',
-    'é', 'já', 'só', 'pé', 'fé', 'mês', 'país', 'aí', 'saí',
-    'avô', 'avó', 'vovô', 'vovó', 'pôr', 'ônibus', 'você', 'inglês',
-    'água', 'pêssego', 'tênis', 'ângulo', 'ânimo', 'âncora',
-
-    // Common expressions
-    'olá', 'oi', 'tchau', 'adeus', 'bom dia', 'boa tarde', 'boa noite',
-    'obrigado', 'obrigada', 'por favor', 'desculpe', 'com licença', 'de nada',
-    'tudo bem', 'muito', 'pouco', 'bastante', 'demais', 'nada', 'algo', 'alguém', 'ninguém',
-
-    // Brazilian Portuguese specific
-    'você', 'vocês', 'gente', 'legal', 'bacana', 'maneiro', 'massa',
-    'ônibus', 'trem', 'metrô', 'celular', 'computador',
+  "que", "não", "de", "um", "para", "eu", "uma", "está", "com", "se",
+  "do", "por", "os", "ele", "mas", "em", "bem", "isso", "da", "como",
+  "sim", "as", "no", "mais", "na", "meu", "aqui", "me", "muito", "foi",
+  "ela", "isto", "estou", "fazer", "vamos", "já", "ser", "vai", "minha", "só",
+  "ao", "tem", "tudo", "te", "porque", "há", "tenho", "vou", "tu", "sei",
+  "quando", "agora", "estás", "você", "lá", "então", "ter", "era", "quem", "onde",
+  "nada", "ou", "coisa", "dizer", "são", "quero", "estava", "sou", "seu", "pode",
+  "mesmo", "esta", "eles", "nós", "sua", "dos", "todos", "nos", "mim", "posso",
+  "bom", "ver", "este", "casa", "temos", "tens", "tua", "nunca", "estão", "até",
+  "assim", "teu", "acho", "falar", "disse", "ainda", "tempo", "também", "ir", "pai",
+  "sobre", "vez", "quê", "quer", "és", "favor", "depois", "tão", "melhor", "mãe",
+  "talvez", "obrigado", "noite", "ti", "sempre", "estamos", "alguém", "dia", "certo", "nem",
+  "alguma", "vida", "anos", "dele", "sem", "das", "tinha", "estar", "queres", "coisas",
+  "homem", "pessoas", "algo", "pelo", "ficar", "boa", "sabe", "parece", "claro", "dois",
+  "verdade", "tipo", "preciso", "antes", "senhor", "lhe", "apenas", "faz", "vocês", "ninguém",
+  "trabalho", "outra", "espera", "saber", "comigo", "vão", "dinheiro", "aí", "podemos", "pouco",
+  "essa", "esse", "grande", "pois", "pela", "qualquer", "disso", "num", "qual", "desculpa",
+  "dela", "hoje", "toda", "deve", "mulher", "queria", "fora", "filho", "cá", "seja",
+  "meus", "nosso", "olha", "vá", "daqui", "sério", "oh", "nossa", "certeza", "diz",
+  "nome", "às", "outro", "todo", "dar", "tentar", "sair", "têm", "quanto", "pensar",
+  "mal", "volta", "aconteceu", "consigo", "três", "mundo", "menos", "amigo", "contigo", "embora",
+  "numa", "passa", "porquê", "problema", "carro", "lado", "vezes", "nas", "fez", "seus",
+  "novo", "parte", "todas", "aos", "obrigada", "primeiro", "será", "lugar", "voltar", "pensei",
+  "algum", "vem", "dentro", "família", "ali", "razão", "aquele", "dias", "fui", "anda",
+  "querida", "sabia", "duas", "ideia", "hora", "si", "podem", "forma", "entre", "caso",
+  "gosto", "atrás", "homens", "devia", "aquilo", "amor", "pessoa", "ok", "podia", "uns",
+  "desde", "somos", "cabeça", "horas", "deles", "fica", "ajudar", "tarde", "momento", "tal",
+  "tenha", "pronto", "fiz", "foram", "ia", "cidade", "amigos", "encontrar", "frente", "sido",
+  "passar", "deixar", "vi", "nenhum", "gente", "durante", "seria", "outros", "entrar", "chegar",
+  "nova", "trabalhar", "quase", "amanhã", "tanto", "fosse", "história", "irmão", "cima", "contra",
+  "morrer", "maneira", "suas", "enquanto", "alguns", "ajuda", "precisa", "morto", "primeira", "porta",
+  "minhas", "medo", "morte", "aquela", "caminho", "vir", "feliz", "sinto", "minutos", "ouvir",
+  "desta", "tive", "neste", "matar", "cada", "estes", "acontecer", "espero", "ano", "rapaz",
+  "precisamos", "for", "causa", "feito", "sorte", "lamento", "filha", "acha", "teus", "levar",
+  "conta", "estas", "arma", "pessoal", "quarto", "olhos", "adeus", "cara", "disto", "algumas",
+  "juntos", "difícil", "última", "única", "manhã", "importante", "poder", "mãos", "água", "começar",
+  "faço", "perto", "cuidado", "sangue", "nossos", "semana", "mesma", "usar", "significa", "acredito",
+  "querem", "cinco", "acabou", "problemas", "corpo", "altura", "nisso", "chefe", "jogo", "guerra",
+  "fala", "procura", "sabemos", "ouve", "realmente", "havia", "ontem", "umas", "dólares", "comer",
+  "dormir", "dá", "escola", "logo", "querido", "sabem", "fim", "deste", "eram", "agente",
+  "equipa", "rapariga", "marido", "calma", "coração", "segurança", "viver", "parar", "teve", "segundo",
+  "muitas", "quatro", "mão", "baixo", "maior", "meio", "meses", "mau", "vê", "ouvi",
+  "andar", "rápido", "número", "vejo", "mulheres", "morreu", "nenhuma", "acordo", "festa", "capitão",
+  "raio", "pais", "suficiente", "poderia", "crianças", "estavam", "força", "muitos", "nesta", "presidente",
+  "buscar", "filhos", "perder", "esperar", "viu", "irmã", "chega", "possível", "sai", "acabar",
+  "rapazes", "precisas", "elas", "contar", "olhar", "vossa", "teria", "pena", "mil", "longe",
+  "faça", "penso", "tivesse", "pedir", "estranho", "importa", "fácil", "muita", "veio", "brincar",
+  "bebé", "plano", "devo", "prazer", "velho", "conseguir", "passado", "tomar", "além", "jantar",
+  "depressa", "pergunta", "tirar", "pequeno", "descobrir", "sala", "ah", "telefone", "trás", "seis",
+  "culpa", "vos", "exactamente", "possa", "deixa", "errado", "vivo", "menina", "casamento", "outras",
+  "espere", "pensa", "nossas", "correr", "mudar", "diga", "paz", "sentir", "cama", "gostava",
+  "sozinho", "pelos", "comida", "sequer", "falta", "ficou", "conheço", "gosta", "passou", "bastante",
+  "deu", "provavelmente", "palavra", "demasiado", "diferente", "essas", "armas", "digo", "licença", "demais",
+  "pagar", "médico", "seguir", "semanas", "dizem", "matou", "único", "acreditar", "local", "fazem",
+  "pior", "próprio", "continua", "vosso", "consegue", "fico", "país", "gostaria", "forte", "partir",
+  "prisão", "próxima", "especial", "esteja", "livro", "oportunidade", "chegou", "esses", "continuar", "resto",
+  "ar", "estive", "sítio", "fazê-lo", "raios", "ligar", "minuto", "irá", "sentido", "atenção",
+  "vim", "quis", "queremos", "direito", "café", "venha", "visto", "criança", "luz", "filme",
+  "música", "portanto", "haver", "esteve", "aqueles", "pôr", "querer", "sexo", "fogo", "connosco",
+  "beber", "toma", "houve", "tratar", "pequena", "ganhar", "ponto", "milhões", "manter", "precisar",
+  "rua", "pé", "fazemos", "encontrei", "existe", "arranjar", "dez", "último", "assassino", "estávamos",
+  "cedo", "boca", "boas", "acontece", "jovem", "comprar", "situação", "esposa", "sistema", "devem",
+  "jogar", "capaz", "certa", "amiga", "seguro", "questão", "relação", "perguntas", "encontro", "sob",
+  "cão", "negócio", "quiser", "sinal", "linda", "facto", "mensagem", "próximo", "apanhar", "adoro",
+  "crime", "banho", "própria", "grandes", "chamada", "finalmente", "novamente", "futuro", "começou", "perguntar",
+  "notícias", "acabei", "fique", "ambos", "lhes", "chamar", "entendo", "cabelo", "entra", "grupo",
+  "doutor", "salvar", "livre", "viagem", "vontade", "sozinha", "conversa", "tipos", "fugir", "palavras",
+  "consegui", "tinham", "lista", "lutar", "escritório", "peço", "final", "procurar", "deixou", "alto",
+  "interessa", "bonito", "chão", "campo", "perfeito", "tio", "estiver", "pelas", "dito", "respeito",
+  "completamente", "deveria", "vista", "breve", "melhores", "bonita", "normal", "devemos", "fiquei", "mortos",
+  "faria", "tom", "mesa", "preso", "simples", "iria", "emprego", "achei", "chama", "linha",
+  "real", "nave", "assunto", "vale", "ataque", "pensava", "ai", "graças", "escolha", "ordem",
+  "viva", "fundo", "terá", "doente", "acidente", "má", "modo", "provas", "resposta", "bocado",
+  "avião", "deixe-me", "vindo", "após", "erro", "acredita", "verdadeiro", "idade", "fizeram", "pare",
+  "morta", "leva", "percebo", "saiu", "advogado", "conhece", "espaço", "estivesse", "fazia", "serviço",
+  "missão", "ler", "louco", "bons", "conhecer", "nele", "lindo", "informação", "abrir", "mente",
+  "perceber", "programa", "veja", "sol", "fomos", "simplesmente", "sete", "senhores", "hotel", "nessa",
+  "gostar", "incrível", "amo", "dor", "dessa", "presente", "carta", "governo", "barco", "loja",
+  "energia", "pra", "vítima", "roupa", "voz", "trouxe", "luta", "disse-me", "fome", "professor",
+  "mostrar", "hipótese", "telemóvel", "reunião", "prova", "percebi", "casar", "general", "volto", "trazer",
+  "olho", "chamado", "conseguiu", "através", "lei", "banco", "naquela", "deixe", "nesse", "disseram",
+  "conseguimos", "segunda", "tempos", "tocar", "mês", "tiro", "soube", "quantos", "creio", "papel",
+  "sonho", "desse", "tínhamos", "bar", "povo", "tentei", "eras", "fizemos", "cena", "tenente",
+  "tivemos", "conversar", "vê-lo", "proteger", "diabo", "parabéns", "bebida", "base", "tradução", "excelente",
+  "comandante", "voltou", "namorada", "precisam", "empresa", "resolver", "metade", "impossível", "lembro", "desapareceu",
+  "interessante", "acerca", "segundos", "cair", "engraçado", "bela", "mentir", "costas", "chave", "divertido",
+  "juro", "escrever", "piada", "oito", "levou", "passada", "controlo", "daí", "apartamento", "segredo",
+  "decisão", "funciona", "posição", "surpresa", "parecia", "cerca", "céu", "negócios", "cabo", "receber",
+  "motivo", "imediatamente", "olhem", "vidas", "passo", "contacto", "começa", "ora", "ótimo", "bolas",
+  "trabalha", "tenham", "inferno", "estrada", "delas", "falei", "diria", "cheio", "companhia", "horrível",
+  "escuta", "saída", "ordens", "namorado", "explicar", "aprender", "senhoras", "fazendo", "encontrou", "quente",
+  "esquece", "prometo", "saia", "padre", "ouro", "perigo", "perdi", "falou", "coronel", "alma",
+  "diferentes", "naquele", "vestido", "últimos", "planeta", "máquina", "raparigas", "pés", "maioria", "tiver",
+  "debaixo", "pronta", "parecer", "velha", "esquerda", "avó", "confiar", "destino", "contente", "pudesse",
+  "frio", "vejam", "lidar", "regras", "homicídio", "precisava", "aonde", "vêm", "aniversário", "funcionar",
+  "abre", "carne", "tenta", "quantas", "vender", "sente-se", "abaixo", "desculpem", "direita", "liberdade",
+  "cavalo", "droga", "área", "destes", "parem", "quais", "triste", "bomba", "espécie", "cérebro",
+  "venham", "podíamos", "tanta", "vive", "estaria", "esquecer", "contrário", "cerveja", "experiência", "diferença",
+  "animais", "humano", "honra", "mandar", "tentou", "esperança", "sente", "falo", "acaso", "saúde",
+  "trata", "estará", "perigoso", "entendido", "inteligente", "drogas", "conheci", "ideias", "público", "irei",
+  "o", "a", "e", "vós", "dever", "crer", "rosto", "avô", "tia", "primo",
+  "prima", "feio", "feia", "longo", "curto", "lento", "nove", "onze", "doze", "treze",
+  "catorze", "quinze", "dezesseis", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta",
+  "noventa", "cem", "vermelho", "azul", "verde", "amarelo", "preto", "branco", "cinza", "rosa",
+  "laranja", "roxo", "violeta", "marrom", "castanho", "terça", "quarta", "quinta", "sexta", "sábado",
+  "domingo", "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro",
+  "outubro", "novembro", "dezembro", "ensinar", "escutar", "entender", "terminar", "fechar", "praça", "janela",
+  "cozinha", "igreja", "mercado", "computador", "internet", "celular", "móvel", "email", "correio", "site",
+  "arquivo", "pasta", "tela", "teclado", "árvore", "flor", "grama", "montanha", "rio", "lago",
+  "mar", "lua", "estrela", "nuvem", "chuva", "neve", "vento", "pão", "queijo", "peixe",
+  "legume", "fruta", "maçã", "pera", "leite", "chá", "vinho", "suco", "sumo", "nariz",
+  "orelha", "pescoço", "braço", "perna", "dedo", "estômago", "portugal", "brasil", "português", "portuguesa",
+  "inglês", "alemão", "francês", "espanhol", "italiano", "russo", "chinês", "japonês", "universidade", "biblioteca",
+  "museu", "hospital", "farmácia", "restaurante", "supermercado", "aeroporto", "estação", "autocarro", "ônibus", "ação",
+  "canção", "lição", "solução", "nação", "ança", "preço", "peça", "frança", "alemã", "órfão",
+  "órfã", "cidadão", "cidadã", "cristão", "põe", "cães", "pães", "capitães", "alemães", "josé",
+  "é", "fé", "saí", "vovô", "vovó", "pêssego", "tênis", "ângulo", "ânimo", "âncora",
+  "olá", "oi", "tchau", "desculpe", "legal", "bacana", "maneiro", "massa", "trem", "metrô",
 ];

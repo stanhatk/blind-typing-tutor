@@ -1,102 +1,125 @@
 /**
- * Spanish word dictionary for typing practice
- * Sorted by frequency and difficulty
+ * Spanish words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
  */
 export const words: string[] = [
-  // Very common short words (2-4 letters)
-  'el', 'la', 'los', 'las', 'un', 'una', 'de', 'del', 'y', 'o',
-  'yo', 'tú', 'él', 'ella', 'usted', 'nos', 'vos', 'ellos', 'ellas',
-  'que', 'qué', 'por', 'para', 'con', 'sin', 'en', 'a', 'al',
-  'no', 'sí', 'muy', 'más', 'menos', 'todo', 'todos', 'bien', 'mal',
-
-  // Common 5-7 letter words
-  'ser', 'estar', 'haber', 'tener', 'hacer', 'poder', 'decir', 'ir',
-  'ver', 'dar', 'saber', 'querer', 'llegar', 'pasar', 'deber', 'poner',
-  'parecer', 'quedar', 'creer', 'hablar', 'llevar', 'dejar', 'seguir',
-  'encontrar', 'llamar', 'venir', 'pensar', 'salir', 'volver', 'tomar',
-
-  // Common nouns
-  'hombre', 'mujer', 'niño', 'niña', 'persona', 'gente', 'mundo', 'vida',
-  'tiempo', 'día', 'año', 'mes', 'semana', 'hora', 'minuto', 'segundo',
-  'mano', 'cabeza', 'ojo', 'ojos', 'cara', 'voz', 'cuerpo', 'corazón',
-  'cosa', 'forma', 'vez', 'momento', 'punto', 'lugar', 'parte', 'casa',
-
-  // Family
-  'padre', 'madre', 'hermano', 'hermana', 'hijo', 'hija', 'amigo', 'amiga',
-  'familia', 'padres', 'abuelo', 'abuela', 'tío', 'tía', 'primo', 'prima',
-
-  // Common adjectives
-  'bueno', 'buena', 'malo', 'mala', 'grande', 'pequeño', 'pequeña',
-  'nuevo', 'nueva', 'viejo', 'vieja', 'joven', 'primero', 'último',
-  'mismo', 'otra', 'otro', 'cada', 'mucho', 'poco', 'todo', 'alguno',
-  'bonito', 'bonita', 'feo', 'fea', 'largo', 'corto', 'alto', 'bajo',
-  'rápido', 'lento', 'fácil', 'difícil', 'importante', 'posible',
-
-  // Numbers
-  'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
-  'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'veinte', 'treinta',
-  'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa', 'cien', 'mil',
-
-  // Colors
-  'rojo', 'azul', 'verde', 'amarillo', 'negro', 'blanco', 'gris', 'rosa',
-  'naranja', 'morado', 'violeta', 'marrón', 'café',
-
-  // Time and dates
-  'hoy', 'mañana', 'ayer', 'ahora', 'siempre', 'nunca', 'a veces',
-  'todavía', 'ya', 'pronto', 'tarde', 'temprano', 'luego', 'después', 'antes',
-  'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo',
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
-  'septiembre', 'octubre', 'noviembre', 'diciembre',
-
-  // Common verbs (longer)
-  'trabajar', 'jugar', 'aprender', 'enseñar', 'comprar', 'vender',
-  'comer', 'beber', 'dormir', 'escuchar', 'mirar', 'entender',
-  'explicar', 'empezar', 'terminar', 'abrir', 'cerrar', 'entrar', 'salir',
-
-  // Places
-  'ciudad', 'país', 'calle', 'camino', 'plaza', 'puerta', 'ventana',
-  'habitación', 'cocina', 'sala', 'escuela', 'iglesia', 'tienda', 'mercado',
-
-  // Technology
-  'computadora', 'ordenador', 'internet', 'teléfono', 'móvil', 'celular',
-  'correo', 'email', 'sitio', 'programa', 'archivo', 'carpeta', 'pantalla',
-
-  // Nature
-  'árbol', 'flor', 'hierba', 'montaña', 'valle', 'río', 'lago', 'mar',
-  'sol', 'luna', 'estrella', 'cielo', 'nube', 'lluvia', 'nieve', 'viento',
-
-  // Food and drink
-  'pan', 'queso', 'carne', 'pescado', 'verdura', 'fruta', 'manzana', 'pera',
-  'agua', 'leche', 'café', 'té', 'vino', 'cerveza', 'jugo', 'zumo',
-
-  // Body parts
-  'cabeza', 'pelo', 'cara', 'nariz', 'boca', 'oreja', 'cuello', 'brazo',
-  'pierna', 'pie', 'dedo', 'corazón', 'estómago', 'espalda', 'mano',
-
-  // Longer/complex words
-  'españa', 'español', 'española', 'inglés', 'alemán', 'francés',
-  'italiano', 'portugués', 'ruso', 'chino', 'japonés',
-  'universidad', 'biblioteca', 'museo', 'hospital', 'farmacia',
-  'restaurante', 'supermercado', 'aeropuerto', 'estación', 'autobús',
-
-  // Words with ñ (important for Spanish typing practice)
-  'año', 'niño', 'niña', 'señor', 'señora', 'señorita', 'mañana',
-  'español', 'española', 'pequeño', 'pequeña', 'montaña', 'baño',
-  'enseñar', 'sueño', 'dueño', 'diseño', 'caña', 'uña', 'peña',
-
-  // Words with accents
-  'más', 'está', 'están', 'qué', 'cómo', 'dónde', 'cuándo', 'quién',
-  'así', 'aquí', 'allí', 'ahí', 'también', 'después', 'además',
-  'café', 'mamá', 'papá', 'sofá', 'José', 'María', 'Jesús',
-  'inglés', 'francés', 'alemán', 'japonés', 'portugués',
-  'rápido', 'fácil', 'difícil', 'útil', 'móvil', 'débil',
-
-  // Inverted punctuation practice words
-  '¿qué?', '¿cómo?', '¿dónde?', '¿cuándo?', '¿quién?', '¿por qué?',
-  '¡hola!', '¡adiós!', '¡gracias!', '¡bien!', '¡perfecto!',
-
-  // Common expressions
-  'hola', 'adiós', 'buenos días', 'buenas tardes', 'buenas noches',
-  'gracias', 'por favor', 'perdón', 'disculpe', 'de nada',
-  'mucho', 'poco', 'bastante', 'demasiado', 'nada', 'algo', 'alguien', 'nadie',
+  "de", "que", "no", "la", "el", "es", "en", "lo", "un", "por",
+  "qué", "me", "una", "los", "se", "te", "con", "para", "está", "mi",
+  "pero", "sí", "si", "bien", "eso", "su", "las", "yo", "del", "como",
+  "aquí", "tu", "al", "más", "le", "esto", "todo", "ya", "estoy", "ahora",
+  "muy", "ha", "esta", "así", "vamos", "algo", "hay", "bueno", "tengo", "él",
+  "cuando", "estás", "sé", "tú", "nos", "nada", "cómo", "este", "he", "ser",
+  "tiene", "puedo", "ella", "quiero", "hacer", "fue", "gracias", "vez", "era", "soy",
+  "sólo", "todos", "porque", "son", "tienes", "creo", "voy", "sabes", "estaba", "puede",
+  "eres", "ese", "usted", "entonces", "solo", "verdad", "casa", "tan", "quién", "sus",
+  "tiempo", "dos", "esa", "nunca", "dónde", "va", "oh", "favor", "mucho", "mí",
+  "quieres", "siento", "señor", "mejor", "hace", "has", "decir", "también", "sobre", "sin",
+  "tenemos", "están", "ti", "puedes", "ver", "hombre", "vida", "alguien", "cosas", "siempre",
+  "hasta", "ahí", "ir", "años", "antes", "estar", "ni", "poco", "día", "uno",
+  "noche", "hecho", "mis", "estamos", "otra", "acuerdo", "trabajo", "nosotros", "parece", "gente",
+  "sea", "padre", "mira", "mismo", "dijo", "nadie", "quiere", "podría", "hablar", "vas",
+  "ellos", "tal", "pasa", "fuera", "después", "han", "desde", "dinero", "mundo", "claro",
+  "momento", "les", "tener", "estado", "otro", "había", "mañana", "tenía", "madre", "vale",
+  "lugar", "haciendo", "donde", "seguro", "sabe", "podemos", "tus", "espera", "nuevo", "sido",
+  "cosa", "hijo", "allí", "menos", "tipo", "amigo", "gran", "nuestro", "mujer", "mamá",
+  "luego", "papá", "días", "dice", "hoy", "tres", "buena", "necesito", "dije", "oye",
+  "gusta", "quería", "será", "haber", "parte", "todas", "crees", "buen", "conmigo", "nombre",
+  "nuestra", "mal", "debe", "realmente", "estas", "aún", "mío", "toda", "hacerlo", "cada",
+  "visto", "importa", "contigo", "tienen", "hemos", "razón", "alguna", "tanto", "saber", "hizo",
+  "veces", "serio", "ven", "idea", "eh", "tarde", "problema", "hora", "cierto", "dicho",
+  "quien", "demasiado", "amor", "entre", "ve", "pasado", "familia", "estos", "debería", "ustedes",
+  "chica", "esos", "chicos", "cuenta", "haces", "todavía", "salir", "algún", "vaya", "unos",
+  "veo", "amigos", "hermano", "pensé", "sabía", "cabeza", "cariño", "digo", "van", "hombres",
+  "buenas", "somos", "cualquier", "forma", "mientras", "lado", "debo", "sería", "caso", "pueden",
+  "pasó", "primera", "genial", "chico", "supuesto", "hice", "pues", "adiós", "muchas", "personas",
+  "señora", "volver", "esas", "quizá", "contra", "camino", "durante", "hablando", "manera", "muerto",
+  "persona", "rápido", "cuál", "ayuda", "historia", "iba", "supongo", "nueva", "entiendo", "dentro",
+  "casi", "puerta", "ves", "pasar", "primero", "significa", "semana", "hacia", "quizás", "espero",
+  "juntos", "año", "niños", "pronto", "tío", "suerte", "ciudad", "siquiera", "feliz", "venir",
+  "hija", "gustaría", "minutos", "cuánto", "os", "muerte", "dejar", "realidad", "deja", "problemas",
+  "vi", "da", "importante", "dijiste", "corazón", "miedo", "jefe", "agua", "haré", "justo",
+  "horas", "poder", "esposa", "manos", "debes", "viene", "venga", "nuestros", "ojos", "adelante",
+  "encontrar", "mano", "cinco", "niño", "ninguna", "otros", "cara", "cuidado", "bajo", "cerca",
+  "viejo", "noches", "bastante", "fin", "tomar", "único", "misma", "escucha", "ningún", "suficiente",
+  "punto", "cuándo", "sigue", "haya", "equipo", "grande", "necesita", "llegar", "incluso", "algunos",
+  "doctor", "difícil", "aunque", "hubiera", "primer", "coche", "hago", "clase", "cuatro", "mas",
+  "dices", "pequeño", "llama", "toma", "hiciste", "allá", "última", "arriba", "tierra", "guerra",
+  "pensar", "pueda", "igual", "loco", "sangre", "mujeres", "vuelta", "fui", "trabajar", "tenido",
+  "juego", "deberías", "cuerpo", "algunas", "entrar", "cree", "podía", "debemos", "oportunidad", "teléfono",
+  "necesitamos", "final", "listo", "fiesta", "muchos", "estabas", "quieren", "auto", "dar", "vivir",
+  "posible", "ok", "hermana", "número", "meses", "exactamente", "culpa", "abajo", "escuela", "ido",
+  "fuerte", "diciendo", "habla", "esté", "ello", "pregunta", "chicas", "eran", "unas", "pasando",
+  "atrás", "malo", "capitán", "bebé", "segundo", "sabemos", "mayor", "comida", "morir", "conozco",
+  "dame", "fácil", "comer", "vino", "lista", "haga", "necesitas", "hijos", "probablemente", "padres",
+  "habitación", "creer", "pensando", "fueron", "dime", "trata", "buscando", "tuve", "tampoco", "amo",
+  "joven", "podrías", "sola", "par", "única", "hacen", "seguir", "simplemente", "dicen", "medio",
+  "saben", "sentido", "hagas", "segura", "esperar", "lejos", "arma", "alto", "pequeña", "dólares",
+  "seis", "estaban", "seguridad", "maldita", "estuvo", "preocupes", "palabra", "esperando", "queda", "oficina",
+  "matar", "iré", "cama", "además", "último", "oído", "habría", "estará", "dio", "recuerdo",
+  "siendo", "acerca", "tenga", "luz", "correcto", "demonios", "nuestras", "verte", "dormir", "sitio",
+  "ayudar", "conseguir", "di", "marido", "paz", "plan", "dado", "cuanto", "peor", "murió",
+  "pueblo", "vivo", "venido", "basta", "paso", "deberíamos", "música", "diga", "minuto", "anoche",
+  "llamar", "piensa", "país", "digas", "perdón", "mucha", "falta", "pienso", "diablos", "perdido",
+  "niña", "diez", "lleva", "hospital", "grandes", "otras", "llamado", "hacemos", "llevar", "fuego",
+  "tuvo", "poner", "calle", "acaba", "prueba", "increíble", "libro", "orden", "semanas", "especial",
+  "mía", "café", "duro", "empezar", "afuera", "queremos", "perro", "cielo", "puesto", "viaje",
+  "detrás", "cuarto", "querida", "haría", "preguntas", "piensas", "querido", "libre", "buscar", "cual",
+  "diré", "suena", "jugar", "cambio", "película", "millones", "habrá", "llamada", "resto", "vemos",
+  "extraño", "mala", "presidente", "irme", "ropa", "perder", "vuelve", "agente", "palabras", "información",
+  "raro", "hará", "éste", "trabajando", "tratando", "general", "trato", "usar", "perfecto", "derecho",
+  "modo", "ayer", "conoces", "demás", "quieras", "podríamos", "noticias", "asesino", "encontrado", "control",
+  "odio", "frente", "decirle", "estaré", "divertido", "armas", "amiga", "grupo", "asunto", "acabo",
+  "mensaje", "encima", "atención", "diferente", "daño", "sucede", "cambiar", "siguiente", "sino", "seas",
+  "médico", "dejó", "error", "jamás", "largo", "pena", "voz", "futuro", "siente", "secreto",
+  "baño", "mil", "pensaba", "novia", "propia", "sueño", "haz", "fuerza", "deben", "supone",
+  "estábamos", "ambos", "ay", "estuve", "encontré", "vuelto", "dolor", "encanta", "edad", "darle",
+  "pie", "negro", "ganar", "aire", "lamento", "verlo", "asesinato", "vio", "llegado", "cita",
+  "estaría", "fuiste", "sistema", "gusto", "pobre", "negocio", "mente", "tuyo", "campo", "mire",
+  "situación", "tras", "hotel", "vosotros", "funciona", "foto", "abogado", "loca", "propio", "alrededor",
+  "próxima", "terminado", "hablas", "pagar", "mató", "llamo", "personal", "sientes", "ocurre", "ésta",
+  "recuerda", "mitad", "quiera", "pelo", "tenías", "viste", "oficial", "llegó", "compañía", "relación",
+  "conoce", "pase", "montón", "mejores", "creí", "cena", "sentir", "través", "accidente", "ellas",
+  "caja", "tranquilo", "bonito", "eras", "asi", "pudo", "vive", "vista", "línea", "caballeros",
+  "haremos", "dan", "tienda", "comprar", "entendido", "centro", "salvo", "mes", "sol", "tonto",
+  "hambre", "mesa", "respuesta", "completamente", "carta", "totalmente", "imposible", "pruebas", "novio", "normal",
+  "gustan", "pude", "traje", "dirección", "siete", "dijeron", "placer", "sean", "tendrá", "barco",
+  "blanco", "profesor", "servicio", "muchacho", "reunión", "dejado", "ley", "quisiera", "hubo", "programa",
+  "carrera", "cumpleaños", "muchachos", "canción", "hermosa", "boda", "decirme", "cualquiera", "tengas", "hacía",
+  "estés", "sala", "llevo", "decisión", "espere", "necesario", "sal", "entra", "prisa", "carajo",
+  "embargo", "interesante", "tendrás", "escuchar", "abuela", "hicieron", "detective", "horrible", "suelo", "fotos",
+  "cárcel", "acá", "decía", "intentando", "maldición", "silencio", "muerta", "capaz", "salió", "club",
+  "terminar", "temo", "broma", "prometo", "media", "terrible", "llamó", "regalo", "amable", "dulce",
+  "muertos", "querías", "ataque", "das", "negocios", "pudiera", "ocho", "avión", "investigación", "acabó",
+  "mantener", "papel", "partes", "ten", "diría", "principio", "delante", "teniente", "deseo", "vayas",
+  "nave", "sale", "basura", "vine", "contacto", "esposo", "tren", "encontramos", "dale", "verdadero",
+  "tuya", "alma", "hazlo", "disculpa", "junto", "anda", "tendré", "matrimonio", "saberlo", "locura",
+  "oro", "permiso", "director", "peligro", "libertad", "alegro", "baja", "tendremos", "derecha", "encuentra",
+  "pies", "segunda", "maravilloso", "espacio", "rato", "abuelo", "esperaba", "mirando", "salud", "sorpresa",
+  "ninguno", "miren", "triste", "aun", "pensado", "maestro", "según", "infierno", "podrían", "tipos",
+  "tía", "crimen", "conocido", "ante", "intento", "mayoría", "doy", "hicimos", "escena", "piso",
+  "señal", "honor", "llamas", "abre", "cerebro", "viendo", "pone", "pregunto", "cocina", "vestido",
+  "inteligente", "vieja", "caballo", "vienen", "vidas", "bar", "sucedió", "adentro", "drogas", "enseguida",
+  "busca", "agradable", "carne", "parecía", "lindo", "mar", "duda", "edificio", "conocer", "cargo",
+  "víctima", "energía", "frío", "hablo", "baile", "trabaja", "misión", "listos", "ayudarte", "izquierda",
+  "beber", "deje", "finalmente", "simple", "sabías", "puedas", "puso", "creía", "regresar", "llega",
+  "entender", "mirar", "sacar", "cambiado", "trae", "opinión", "verás", "linda", "apenas", "segundos",
+  "y", "o", "vos", "a", "querer", "deber", "parecer", "quedar", "ojo", "primo",
+  "prima", "alguno", "bonita", "feo", "fea", "corto", "lento", "nueve", "once", "doce",
+  "trece", "catorce", "quince", "dieciséis", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta",
+  "ochenta", "noventa", "cien", "rojo", "azul", "verde", "amarillo", "gris", "rosa", "naranja",
+  "morado", "violeta", "marrón", "temprano", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado",
+  "domingo", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre",
+  "octubre", "noviembre", "diciembre", "aprender", "enseñar", "vender", "explicar", "abrir", "cerrar", "plaza",
+  "ventana", "iglesia", "mercado", "computadora", "ordenador", "internet", "móvil", "celular", "correo", "email",
+  "archivo", "carpeta", "pantalla", "árbol", "flor", "hierba", "montaña", "valle", "río", "lago",
+  "luna", "estrella", "nube", "lluvia", "nieve", "viento", "pan", "queso", "pescado", "verdura",
+  "fruta", "manzana", "pera", "leche", "té", "cerveza", "jugo", "zumo", "nariz", "boca",
+  "oreja", "cuello", "brazo", "pierna", "dedo", "estómago", "espalda", "españa", "español", "española",
+  "inglés", "alemán", "francés", "italiano", "portugués", "ruso", "chino", "japonés", "universidad", "biblioteca",
+  "museo", "farmacia", "restaurante", "supermercado", "aeropuerto", "estación", "autobús", "señorita", "dueño", "diseño",
+  "caña", "uña", "peña", "sofá", "José", "María", "Jesús", "útil", "débil", "hola",
+  "disculpe",
 ];

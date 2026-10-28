@@ -1,76 +1,124 @@
 /**
- * Common Turkish words for typing practice
- * Sorted by frequency and difficulty
+ * Turkish words for typing practice, most frequent first.
+ * Built by scripts/build-word-lists.cjs from FrequencyWords (Hermit Dave,
+ * OpenSubtitles 2018, CC BY-SA 4.0), checked against the Leipzig Corpora
+ * Collection (CC BY 4.0), plus hand-curated words.
+ * This list is licensed CC BY-SA 4.0.
  */
 export const words: string[] = [
-  // Common short words
-  'bir', 've', 'bu', 'için', 'ne', 'ile', 'var', 'ki', 'da', 'de',
-  'mi', 'ben', 'sen', 'o', 'biz', 'siz', 'onlar', 'şu', 'şey',
-
-  // Common verbs
-  'ol', 'et', 'yap', 'ver', 'al', 'gel', 'git', 'gör', 'bil', 'kal',
-  'çık', 'bul', 'dur', 'geç', 'iç', 'oku', 'yaz', 'konuş', 'dinle',
-
-  // Common nouns
-  'ev', 'iş', 'gün', 'yıl', 'ay', 'hafta', 'saat', 'dakika', 'saniye',
-  'adam', 'kadın', 'çocuk', 'insan', 'kişi', 'arkadaş', 'aile',
-  'anne', 'baba', 'kardeş', 'ağabey', 'abla', 'dede', 'nine',
-
-  // Common adjectives
-  'iyi', 'güzel', 'büyük', 'küçük', 'yeni', 'eski', 'uzun', 'kısa',
-  'çok', 'az', 'fazla', 'tam', 'yarım', 'bütün', 'her', 'hiç',
-
-  // Medium difficulty words
-  'türkiye', 'istanbul', 'ankara', 'izmir', 'bursa', 'antalya',
-  'okul', 'üniversite', 'öğrenci', 'öğretmen', 'kitap', 'defter',
-  'kalem', 'masa', 'sandalye', 'pencere', 'kapı', 'duvar',
-  'bilgisayar', 'telefon', 'internet', 'program', 'uygulama',
-
-  // Words with Turkish-specific characters
-  'çay', 'çiçek', 'çocuk', 'çalış', 'çok', 'çeşit', 'çağ', 'çevre',
-  'ğ', 'dağ', 'yağmur', 'doğru', 'eğitim', 'öğren', 'değer',
-  'ışık', 'kışın', 'başka', 'düşün', 'yaşam', 'işte', 'üzgün',
-  'şehir', 'şimdi', 'şeker', 'şarkı', 'şans', 'işçi', 'başarı',
-  'özel', 'özgür', 'önem', 'ödül', 'öğle', 'ölçü', 'örnek',
-  'ülke', 'ünlü', 'ürün', 'üzüm', 'üst', 'ütü', 'ücret',
-
-  // Common phrases and longer words
-  'merhaba', 'günaydın', 'iyi akşamlar', 'iyi geceler', 'hoşça kal',
-  'teşekkür', 'lütfen', 'evet', 'hayır', 'tamam', 'pardon',
-  'nasılsın', 'iyiyim', 'sağol', 'rica ederim', 'özür dilerim',
-
-  // Technology and modern words
-  'yazılım', 'donanım', 'ağ', 'sunucu', 'veri', 'dosya', 'klasör',
-  'ekran', 'klavye', 'fare', 'yazıcı', 'tarayıcı', 'kamera',
-
-  // Nature and environment
-  'göl', 'deniz', 'nehir', 'orman', 'ağaç', 'çiçek', 'yaprak',
-  'güneş', 'ay', 'yıldız', 'bulut', 'yağmur', 'kar', 'rüzgar',
-
-  // Food and drink
-  'ekmek', 'su', 'süt', 'yemek', 'kahvaltı', 'öğle', 'akşam',
-  'meyve', 'sebze', 'et', 'balık', 'tavuk', 'peynir', 'yoğurt',
-
-  // Colors
-  'beyaz', 'siyah', 'kırmızı', 'mavi', 'yeşil', 'sarı', 'turuncu',
-  'mor', 'pembe', 'kahverengi', 'gri', 'lacivert',
-
-  // Numbers and time
-  'bir', 'iki', 'üç', 'dört', 'beş', 'altı', 'yedi', 'sekiz', 'dokuz', 'on',
-  'yirmi', 'otuz', 'kırk', 'elli', 'yüz', 'bin', 'milyon',
-  'bugün', 'dün', 'yarın', 'şimdi', 'sonra', 'önce', 'her zaman',
-
-  // Actions and activities
-  'koş', 'yürü', 'otur', 'kalk', 'uyu', 'uyan', 'ye', 'iç', 'gül',
-  'ağla', 'düşün', 'hatırla', 'unut', 'sev', 'nefret', 'iste',
-
-  // Emotions and states
-  'mutlu', 'üzgün', 'kızgın', 'yorgun', 'aç', 'tok', 'hasta',
-  'sağlıklı', 'güçlü', 'zayıf', 'hızlı', 'yavaş', 'sessiz',
-
-  // More complex words for advanced practice
-  'cumhuriyet', 'demokrasi', 'özgürlük', 'bağımsızlık', 'gelişme',
-  'değişiklik', 'toplum', 'kültür', 'medeniyet', 'tarih', 'coğrafya',
-  'ekonomi', 'siyaset', 'bilim', 'teknoloji', 'sanat', 'müzik',
-  'edebiyat', 'felsefe', 'psikoloji', 'sosyoloji', 'matematik',
+  "bir", "bu", "ne", "ve", "için", "mi", "de", "ben", "çok", "ama",
+  "evet", "var", "da", "mı", "değil", "şey", "hayır", "daha", "sen", "kadar",
+  "bana", "gibi", "yok", "bunu", "onu", "iyi", "tamam", "beni", "seni", "her",
+  "benim", "sana", "ki", "ya", "neden", "zaman", "sadece", "senin", "burada", "olduğunu",
+  "nasıl", "hiç", "sonra", "şimdi", "en", "öyle", "mu", "şu", "misin", "önce",
+  "biraz", "güzel", "musun", "oldu", "yani", "böyle", "ona", "lütfen", "onun", "bile",
+  "bak", "çünkü", "peki", "eğer", "artık", "gerçekten", "geri", "biliyorum", "istiyorum", "kim",
+  "olarak", "başka", "belki", "tek", "doğru", "büyük", "olan", "biri", "olur", "buraya",
+  "in", "olacak", "adam", "ile", "hiçbir", "biz", "yardım", "demek", "sanırım", "ın",
+  "bilmiyorum", "bunun", "tüm", "teşekkürler", "fazla", "yeni", "gün", "ederim", "nerede", "şeyi",
+  "merhaba", "efendim", "orada", "son", "kötü", "şeyler", "gece", "biliyor", "sorun", "iki",
+  "harika", "gerek", "et", "tam", "işte", "bütün", "diye", "hemen", "siz", "üzgünüm",
+  "ol", "olabilir", "olsun", "küçük", "size", "yüzden", "aynı", "teşekkür", "hakkında", "tabii",
+  "gel", "onları", "kendi", "kız", "nin", "devam", "bize", "oluyor", "ver", "izin",
+  "iş", "bizi", "buna", "anne", "selam", "vardı", "geldi", "bizim", "sizi", "dur",
+  "kimse", "göre", "asla", "özür", "seninle", "baba", "değilim", "aslında", "önemli", "tekrar",
+  "git", "nın", "yoksa", "hala", "benimle", "içinde", "mısın", "yine", "mü", "bence",
+  "şekilde", "olmak", "bugün", "birlikte", "olmaz", "uzun", "lazım", "zaten", "para", "ilk",
+  "geliyor", "onunla", "gerçek", "dostum", "bakalım", "onlar", "haydi", "birkaç", "emin", "üç",
+  "herkes", "dakika", "söyledi", "istiyorsun", "pek", "ister", "saat", "yapıyorsun", "eve", "yıl",
+  "miyim", "çocuk", "yer", "hep", "şunu", "neler", "dilerim", "sizin", "bırak", "olduğu",
+  "ilgili", "gidelim", "yere", "etmek", "an", "dan", "nedir", "un", "nereye", "hepsi",
+  "istemiyorum", "olmalı", "buradan", "lanet", "karşı", "kaç", "az", "burası", "hazır", "fakat",
+  "eski", "çocuklar", "kendini", "ediyorum", "gerekiyor", "benden", "yapmak", "kadın", "söz", "kesinlikle",
+  "zor", "işe", "anda", "tane", "diğer", "bunlar", "işi", "kişi", "görmek", "kabul",
+  "niye", "istiyor", "seviyorum", "aman", "sağ", "zorunda", "misiniz", "yarın", "kez", "bundan",
+  "elbette", "falan", "gidip", "hem", "yanlış", "onlara", "senden", "hoş", "doktor", "yapma",
+  "özel", "yemek", "hafta", "kontrol", "ediyor", "gereken", "yerde", "oraya", "geç", "dedim",
+  "mutlu", "ye", "bazı", "birini", "ayrıca", "ondan", "eminim", "nereden", "etti", "dışarı",
+  "beri", "gitti", "yalan", "edin", "bakın", "yalnız", "insan", "gördüm", "değildi", "merak",
+  "insanlar", "polis", "ihtiyacım", "erkek", "görüşürüz", "dün", "ah", "haber", "musunuz", "babam",
+  "gidiyor", "yi", "olmuş", "akşam", "den", "geçen", "sakin", "ha", "sanki", "beş",
+  "karar", "nefret", "sabah", "yaptım", "veya", "dikkat", "umarım", "yerine", "çabuk", "etme",
+  "olması", "farklı", "ay", "sonunda", "ettim", "fark", "üzerinde", "aptal", "kendimi", "tamamen",
+  "oldukça", "su", "boyunca", "kendine", "tarafından", "yeter", "dünya", "yı", "olduğumu", "bunları",
+  "vardır", "öldü", "olursa", "açık", "neyse", "annem", "istediğim", "adı", "yaptın", "yap",
+  "hangi", "olamaz", "ancak", "söyledim", "görünüyor", "dört", "yüzünden", "aldım", "olsa", "birşey",
+  "birisi", "be", "yoktu", "kolay", "dolar", "dedi", "sahip", "ise", "olmadığını", "yanında",
+  "gelecek", "adamı", "bende", "buldum", "yol", "geldim", "bazen", "konuşmak", "başına", "gitmek",
+  "anlıyorum", "beraber", "henüz", "yapıyor", "yolu", "bitti", "onların", "cevap", "evde", "yardımcı",
+  "zamanı", "almak", "konusunda", "genç", "oldum", "nun", "takip", "kal", "durum", "tabi",
+  "günü", "ateş", "adamın", "muhtemelen", "adım", "istedim", "söylemek", "azından", "düşündüm", "yaptı",
+  "neredeyse", "eder", "olun", "yeniden", "ciddi", "herhangi", "ev", "hızlı", "sanmıyorum", "süre",
+  "içeri", "altında", "mükemmel", "göz", "kan", "düşünüyorum", "ara", "boş", "miyiz", "konuda",
+  "halde", "duydum", "oğlum", "şeyin", "uzak", "gelen", "aç", "işin", "hayatta", "çıktı",
+  "sakın", "saniye", "yakın", "anladım", "garip", "olduğuna", "on", "arada", "hayal", "gidiyorum",
+  "araba", "çalışıyorum", "söylüyor", "sürü", "hepimiz", "kaldı", "galiba", "canım", "hayatım", "rahat",
+  "kimin", "olacağım", "güçlü", "savaş", "verdi", "ta", "ortaya", "şeye", "başladı", "gelip",
+  "hayat", "bilirsin", "çalışıyor", "durumda", "hatta", "geldin", "yaptığını", "sende", "olay", "şeyleri",
+  "adamım", "kesin", "arasında", "arkadaşım", "hareket", "altı", "bebek", "kardeşim", "çocuğu", "böylece",
+  "acaba", "sürekli", "bin", "ihtiyacı", "soru", "olmadan", "hava", "terk", "silah", "olacağını",
+  "yapacağım", "gelir", "varsa", "komik", "kısa", "aynen", "etmeye", "üzerine", "el", "zarar",
+  "şaka", "birinin", "güle", "zamanda", "daki", "acele", "telefon", "ait", "gizli", "oyun",
+  "kızı", "diyorsun", "yeterince", "verdim", "evlat", "geçti", "olmayacak", "dışında", "yolunda", "hepsini",
+  "uygun", "dans", "kapıyı", "olurdu", "tuhaf", "memnun", "hissediyorum", "fikir", "yüksek", "olmadı",
+  "beyler", "tür", "verin", "değildir", "korkunç", "rahatsız", "gidiyoruz", "gerektiğini", "geceler", "aldı",
+  "iyiyim", "kere", "eden", "gelin", "veriyorum", "edecek", "beyaz", "yaşlı", "mümkün", "neyi",
+  "dolu", "içine", "çıkar", "ölüm", "sensin", "bilmek", "belli", "sevindim", "yakında", "varmış",
+  "tahmin", "durun", "parayı", "şöyle", "yalnızca", "vermek", "biliyordum", "ediyorsun", "acı", "mısınız",
+  "yapmaya", "neydi", "hasta", "üzere", "yapacağız", "istedi", "güvenlik", "bizimle", "geliyorum", "yapacak",
+  "dair", "neyin", "sizinle", "dikkatli", "yapıyorum", "ihtiyacın", "olmayan", "ihtiyacımız", "ölü", "aile",
+  "bırakın", "birine", "istediğini", "tatlı", "deli", "milyon", "normal", "dışarıda", "insanların", "diyorum",
+  "sefer", "olup", "otur", "yemin", "ana", "te", "keşke", "ettin", "dünyanın", "şans",
+  "baş", "evine", "biliyoruz", "aşağı", "yeri", "aşk", "bununla", "çık", "miydi", "at",
+  "durumu", "bilmem", "arkadaş", "kendisi", "herkesin", "kusura", "doğum", "yapar", "isterim", "yaşında",
+  "oradan", "kahve", "hata", "seks", "kızlar", "kaptan", "yavaş", "alıp", "bakma", "hayatını",
+  "dek", "yeterli", "mıydı", "zamandır", "asıl", "bunların", "önünde", "sessiz", "kızım", "erken",
+  "aldın", "sıcak", "tehlikeli", "düşünüyor", "dön", "bilgi", "getir", "güç", "hak", "ufak",
+  "buradayım", "bilmiyor", "cinayet", "diyor", "gelmiş", "üstüne", "mesaj", "nefes", "ele", "birçok",
+  "olmasını", "yüz", "basit", "yukarı", "çek", "olduğum", "köpek", "edeceğim", "evi", "gayet",
+  "şarkı", "tıpkı", "benziyor", "anlaşıldı", "inanamıyorum", "olduğun", "bulmak", "söylüyorum", "kızın", "vakit",
+  "yıldır", "görüyorum", "haklı", "ses", "olsaydı", "sonraki", "konu", "almaya", "işler", "muhteşem",
+  "gidin", "olacaksın", "neye", "dalga", "film", "adını", "kimsenin", "bi", "yerinde", "bilmiyordum",
+  "yapmam", "istediğin", "yu", "olmalısın", "ikinci", "hatırlıyor", "insanları", "acil", "lan", "sebebi",
+  "fena", "söylemiştim", "yedi", "özellikle", "zamanlar", "yaptığı", "bilir", "yaparım", "alabilir", "birden",
+  "ajan", "yanına", "sebep", "eğlenceli", "adına", "rağmen", "olmaya", "görünüşe", "herhalde", "yapalım",
+  "buradaki", "yoktur", "yemeği", "temiz", "babası", "arkadaşın", "içki", "söyleme", "burda", "parçası",
+  "biriyle", "üstünde", "şeyden", "istiyorsan", "uyuşturucu", "konuşma", "olduğundan", "öldürmek", "sesini", "bekliyor",
+  "suç", "görüyor", "gerçeği", "alın", "katil", "sevgili", "yerini", "defa", "gerekir", "müzik",
+  "kayıp", "güvenli", "tercih", "patron", "gerekiyordu", "çoğu", "değiliz", "işim", "geldik", "kimseye",
+  "çoktan", "dürüst", "alacağım", "eskiden", "teklif", "arkadaşı", "dolayı", "numara", "sonsuza", "geldiniz",
+  "bilemiyorum", "sonu", "olma", "unutma", "kırmızı", "teslim", "canlı", "oda", "yapan", "saçma",
+  "işini", "babamın", "yaptığın", "soğuk", "verir", "kimsin", "bağlı", "yapabilirim", "onlardan", "bizden",
+  "bulduk", "hanımefendi", "herşey", "seviyor", "alan", "yaşıyor", "olmasın", "onlarla", "davet", "yapmış",
+  "ölmüş", "sahibi", "kalk", "elinde", "sıra", "istemiyor", "çocukları", "tanıyor", "burayı", "görmeye",
+  "kalan", "istiyoruz", "sert", "olası", "fikrim", "aşık", "günler", "adamlar", "dava", "sene",
+  "çekil", "iyisi", "zorundayım", "anlat", "kavga", "anlamı", "alır", "görmedim", "kendime", "kalmak",
+  "geldiğini", "okul", "şehir", "gitsin", "park", "bekleyin", "gelmek", "kapı", "yaptığım", "anlamına",
+  "takım", "yola", "altına", "kendim", "çocuğun", "kara", "istemedim", "hatırlıyorum", "söyleyeyim", "edebilir",
+  "canına", "mesela", "iç", "güneş", "orası", "herkese", "sesi", "olayı", "şimdiye", "pislik",
+  "önceki", "ağır", "yarım", "sık", "adama", "düşünüyordum", "vereceğim", "hale", "anlaşma", "öğrenmek",
+  "etmiş", "ikna", "aşkına", "duruyor", "olabilirim", "getirdim", "gurur", "deki", "demektir", "sırada",
+  "ifade", "sıkı", "bölüm", "siyah", "yazık", "kalp", "arka", "verici", "suçlu", "kadının",
+  "oldun", "yapmayı", "kalın", "başıma", "şef", "telefonu", "silahı", "annesi", "edeyim", "resmi",
+  "gittim", "hoşuma", "vakti", "veriyor", "hepiniz", "gider", "serbest", "üst", "göster", "kaldım",
+  "kadınlar", "kitap", "kelime", "dünyada", "birileri", "günün", "gidecek", "istiyorsunuz", "arabayı", "sürece",
+  "satın", "zengin", "sona", "tehdit", "bira", "ilginç", "sekiz", "söyleyeceğim", "ettiğini", "üçüncü",
+  "almış", "hayatı", "olmayı", "na", "tarafa", "yıllar", "olanlar", "verdin", "mıyım", "nedeni",
+  "zamanlarda", "iyilik", "altın", "istemem", "çalışan", "öldürdü", "yaklaşık", "yapıyoruz", "mantıklı", "konuş",
+  "değer", "taraftan", "isim", "niçin", "gideceğim", "dua", "dinleyin", "deniz", "duymak", "okula",
+  "o", "al", "gör", "bil", "bul", "oku", "yaz", "dinle", "kardeş", "ağabey",
+  "abla", "dede", "nine", "türkiye", "istanbul", "ankara", "izmir", "bursa", "antalya", "üniversite",
+  "öğrenci", "öğretmen", "defter", "kalem", "masa", "sandalye", "pencere", "duvar", "bilgisayar", "internet",
+  "program", "uygulama", "çay", "çiçek", "çalış", "çeşit", "çağ", "çevre", "ğ", "dağ",
+  "yağmur", "eğitim", "öğren", "ışık", "kışın", "düşün", "yaşam", "üzgün", "şeker", "işçi",
+  "başarı", "özgür", "önem", "ödül", "öğle", "ölçü", "örnek", "ülke", "ünlü", "ürün",
+  "üzüm", "ütü", "ücret", "günaydın", "pardon", "nasılsın", "sağol", "yazılım", "donanım", "ağ",
+  "sunucu", "veri", "dosya", "klasör", "ekran", "klavye", "fare", "yazıcı", "tarayıcı", "kamera",
+  "göl", "nehir", "orman", "ağaç", "yaprak", "yıldız", "bulut", "kar", "rüzgar", "ekmek",
+  "süt", "kahvaltı", "meyve", "sebze", "balık", "tavuk", "peynir", "yoğurt", "mavi", "yeşil",
+  "sarı", "turuncu", "mor", "pembe", "kahverengi", "gri", "lacivert", "dokuz", "yirmi", "otuz",
+  "kırk", "elli", "koş", "yürü", "uyu", "uyan", "gül", "ağla", "hatırla", "unut",
+  "sev", "iste", "kızgın", "yorgun", "tok", "sağlıklı", "zayıf", "cumhuriyet", "demokrasi", "özgürlük",
+  "bağımsızlık", "gelişme", "değişiklik", "toplum", "kültür", "medeniyet", "tarih", "coğrafya", "ekonomi", "siyaset",
+  "bilim", "teknoloji", "sanat", "edebiyat", "felsefe", "psikoloji", "sosyoloji", "matematik",
 ];
