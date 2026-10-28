@@ -3,6 +3,13 @@ import { Generator, type Language } from "../utils/Generator";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
 
+// Typographic and typewriter apostrophes are typed with the same key
+const APOSTROPHES = "'\u2019\u2018\u02BC";
+
+function charsMatch(typed: string, expected: string): boolean {
+  return typed === expected || (APOSTROPHES.includes(typed) && APOSTROPHES.includes(expected));
+}
+
 interface TypingEngineProps {
   mode: "practice" | "beginner" | "custom";
   language: Language;
@@ -14,6 +21,13 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const completionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Dead keys and IMEs compose characters: macOS shows a temporary '´' until
+  // the base letter is typed. While composing, the input shows the raw value
+  // and nothing is scored; the committed character is scored on compositionend.
+  const isComposingRef = useRef(false);
+  const [composingValue, setComposingValue] = useState<string | null>(null);
+  const [deadKeyPending, setDeadKeyPending] = useState(false);
 
   // Stats State
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -68,10 +82,10 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
         setText("");
         setCustomText(saved || "");
       } else if (isInitialMountRef.current && saved && saved.trim()) {
-        setText(saved.trim());
+        setText(saved.trim().normalize("NFC"));
         setIsCustomSetup(false);
       } else if (saved && saved.trim()) {
-        setText(saved.trim());
+        setText(saved.trim().normalize("NFC"));
         setIsCustomSetup(false);
       } else {
         setIsCustomSetup(true);
@@ -103,65 +117,87 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
     return () => clearInterval(interval);
   }, [startTime, totalTyped]);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-
-    if (val.length > text.length) {
-      e.target.value = input;
-      return;
-    }
-
-    if (!startTime && val.length > 0) {
-      setStartTime(Date.now());
-    }
+  const processValue = (rawValue: string) => {
+    // Compare in NFC so 'é' typed as 'e' + combining accent matches 'é'
+    const val = rawValue.normalize("NFC");
+    setDeadKeyPending(false);
 
     if (val.length > input.length) {
-      const lastCharIndex = val.length - 1;
-      const expectedChar = text[lastCharIndex];
-      const typedChar = val[lastCharIndex];
+      if (!startTime) {
+        setStartTime(Date.now());
+      }
 
-      setTotalTyped((prev) => prev + 1);
+      // Check every inserted character (paste, autocomplete and IMEs can insert several)
+      let accepted = input;
+      let typed = 0;
+      let wrong = 0;
+      for (let i = input.length; i < val.length && accepted.length < text.length; i++) {
+        const expectedChar = text[accepted.length];
+        typed++;
+        if (charsMatch(val[i], expectedChar)) {
+          accepted += expectedChar;
+        } else {
+          wrong++;
+          if (correctionMode) break;
+          accepted += val[i];
+        }
+      }
+      if (typed === 0) return;
 
-      if (typedChar !== expectedChar) {
+      const newTotal = totalTyped + typed;
+      const newErrors = errors + wrong;
+      setTotalTyped(newTotal);
+      setErrors(newErrors);
+      setAccuracy(Math.max(0, ((newTotal - newErrors) / newTotal) * 100));
+      if (wrong > 0) {
         soundManager.playError();
-        setErrors((prev) => {
-          const newErrors = prev + 1;
-          const newTotal = totalTyped + 1;
-          setAccuracy(Math.max(0, ((newTotal - newErrors) / newTotal) * 100));
-          return newErrors;
-        });
-
-        if (correctionMode) return;
       } else {
         soundManager.playClick();
-        const newTotal = totalTyped + 1;
-        setAccuracy(Math.max(0, ((newTotal - errors) / newTotal) * 100));
+      }
+
+      setInput(accepted);
+      if (accepted.length === text.length) {
+        if (completionTimeoutRef.current) clearTimeout(completionTimeoutRef.current);
+        completionTimeoutRef.current = setTimeout(() => {
+          generateText();
+          completionTimeoutRef.current = null;
+        }, 300);
       }
     } else if (val.length < input.length) {
       // Backspace
       let currentErrors = 0;
       for (let i = 0; i < val.length; i++) {
-        if (val[i] !== text[i]) currentErrors++;
+        if (!charsMatch(val[i], text[i])) currentErrors++;
       }
       setErrors(currentErrors);
       setAccuracy(val.length > 0 ? Math.max(0, ((val.length - currentErrors) / val.length) * 100) : 100);
       setTotalTyped(val.length);
+      setInput(val);
     }
+  };
 
-    setInput(val);
-
-    if (val.length === text.length) {
-      if (completionTimeoutRef.current) clearTimeout(completionTimeoutRef.current);
-      completionTimeoutRef.current = setTimeout(() => {
-        generateText();
-        completionTimeoutRef.current = null;
-      }, 300);
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isComposingRef.current || (e.nativeEvent as InputEvent).isComposing) {
+      setComposingValue(e.target.value);
+      return;
     }
+    processValue(e.target.value);
+  };
+
+  const handleCompositionStart = () => {
+    isComposingRef.current = true;
+    setDeadKeyPending(true);
+  };
+
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
+    isComposingRef.current = false;
+    setComposingValue(null);
+    processValue(e.currentTarget.value);
   };
 
   const handleCustomSubmit = () => {
     if (customText.trim()) {
-      const trimmedText = customText.trim();
+      const trimmedText = customText.trim().normalize("NFC");
       setText(trimmedText);
       setStorageItem("customText", trimmedText);
       setIsCustomSetup(false);
@@ -188,6 +224,8 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
       timeoutRefs.forEach(clearTimeout);
       timeoutRefs.length = 0;
 
+      if (e.key === "Dead") setDeadKeyPending(true);
+
       let keyLabel: string | null = null;
       if (e.key.length === 1) keyLabel = e.key;
       else if (["Backspace", "Enter", "Tab", " "].includes(e.key)) {
@@ -211,8 +249,9 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
   return {
     text, input, setInput, inputRef,
     startTime, errors, totalTyped, wpm, accuracy,
-    lastPressedKey, activeKey,
+    lastPressedKey, activeKey, deadKeyPending,
+    inputValue: composingValue ?? input,
     customText, setCustomText, isCustomSetup, setIsCustomSetup,
-    handleInput, handleCustomSubmit, generateText
+    handleInput, handleCompositionStart, handleCompositionEnd, handleCustomSubmit, generateText
   };
 }

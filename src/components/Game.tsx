@@ -76,10 +76,14 @@ export const Game: React.FC<GameProps> = ({
     errors,
     lastPressedKey,
     activeKey,
+    deadKeyPending,
+    inputValue,
     customText,
     setCustomText,
     isCustomSetup,
     handleInput,
+    handleCompositionStart,
+    handleCompositionEnd,
     handleCustomSubmit,
   } = useTypingEngine({ mode, language, correctionMode });
 
@@ -124,7 +128,10 @@ export const Game: React.FC<GameProps> = ({
       <TypingDisplay
         text={text}
         input={input}
+        inputValue={inputValue}
         handleInput={handleInput}
+        handleCompositionStart={handleCompositionStart}
+        handleCompositionEnd={handleCompositionEnd}
         inputRef={inputRef}
       />
 
@@ -154,6 +161,7 @@ export const Game: React.FC<GameProps> = ({
             showColors={showColors}
             showEnglishHints={shouldShowHints}
             lastPressedKey={lastPressedKey}
+            deadKeyPending={deadKeyPending}
           />
           <div className="mt-6 flex justify-center">
             <a

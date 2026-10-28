@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from 'react';
-import type { KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
+import type { KeyboardLayout, KeyboardLayoutId, KeyDefinition } from '../types/keyboard';
 import { getLayout } from '../config/layouts';
 
 interface KeyboardProps {
@@ -11,6 +11,45 @@ interface KeyboardProps {
   showColors: boolean;
   showEnglishHints?: boolean; // Show English characters as hints on non-English layouts
   lastPressedKey?: string | null; // Last key that was physically pressed (for highlighting)
+  deadKeyPending?: boolean; // A dead key was pressed and is waiting for its base letter
+}
+
+/**
+ * Find the key (and Shift side) that produces a character directly,
+ * checking primary, shifted, and AltGr characters.
+ */
+function findKeyStroke(
+  layout: KeyboardLayout,
+  char: string
+): { targetKeyId: string; shiftTarget: 'l' | 'r' | null } | null {
+  // Normalize the key for comparison (handle case-insensitive matching)
+  const normalizedKey = char.toLowerCase();
+  const isUpperCase = char !== normalizedKey;
+
+  const keyDef = layout.keys.find(k => {
+    // For exact case matching when key is uppercase
+    if (isUpperCase) {
+      return k.shifted === char || k.primary === char || k.altGr === char;
+    }
+    return (
+      k.primary.toLowerCase() === normalizedKey ||
+      k.shifted?.toLowerCase() === normalizedKey ||
+      k.altGr?.toLowerCase() === normalizedKey
+    );
+  });
+  if (!keyDef) return null;
+
+  // Shift is needed if the character is the uppercase shifted character, or
+  // a lowercase character that is only on the shifted level (e.g. '!' on '1')
+  const isShifted = isUpperCase
+    ? keyDef.shifted === char
+    : keyDef.shifted?.toLowerCase() === normalizedKey &&
+      keyDef.primary.toLowerCase() !== normalizedKey;
+  if (!isShifted) return { targetKeyId: keyDef.id, shiftTarget: null };
+
+  // Use the Shift key on the opposite hand
+  const isLeftHand = layout.leftHandKeys.includes(keyDef.primary.toLowerCase());
+  return { targetKeyId: keyDef.id, shiftTarget: isLeftHand ? 'r' : 'l' };
 }
 
 export const Keyboard: React.FC<KeyboardProps> = ({
@@ -19,7 +58,8 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   showHands,
   showColors,
   showEnglishHints = false,
-  lastPressedKey = null
+  lastPressedKey = null,
+  deadKeyPending = false
 }) => {
   const layout = getLayout(layoutId);
   const enLayout = layoutId !== 'en-us' ? getLayout('en-us') : null;
@@ -37,8 +77,9 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   // Compute target key and shift state from activeKey using useMemo instead of useEffect
   const { targetKeyId, shiftTarget, spaceHand } = useMemo(() => {
+    const none = { targetKeyId: null, shiftTarget: null, spaceHand: null };
     if (!activeKey) {
-      return { targetKeyId: null, shiftTarget: null, spaceHand: null };
+      return none;
     }
 
     // Handle space character
@@ -46,59 +87,21 @@ export const Keyboard: React.FC<KeyboardProps> = ({
       return { targetKeyId: 'space', shiftTarget: null, spaceHand: 'r' as const };
     }
 
-    // Normalize the key for comparison (handle case-insensitive matching)
-    const normalizedKey = activeKey.toLowerCase();
-    const isUpperCase = activeKey !== normalizedKey;
+    const direct = findKeyStroke(layout, activeKey);
+    if (direct) return { ...direct, spaceHand: null };
 
-    // Find the key in the layout - check primary, shifted, and altGr
-    const keyDef = layout.keys.find(k => {
-      const primaryMatch = k.primary.toLowerCase() === normalizedKey;
-      const shiftedMatch = k.shifted?.toLowerCase() === normalizedKey;
-      const altGrMatch = k.altGr?.toLowerCase() === normalizedKey;
-
-      // For exact case matching when key is uppercase
-      if (isUpperCase) {
-        return k.shifted === activeKey || k.primary === activeKey || k.altGr === activeKey;
-      }
-
-      return primaryMatch || shiftedMatch || altGrMatch;
-    });
-
-    if (keyDef) {
-      // Check if shift is needed
-      // Shift is needed ONLY if:
-      // 1. The activeKey is uppercase AND matches the shifted key, OR
-      // 2. The activeKey (case-insensitive) matches the shifted key AND the primary key is different
-      // For lowercase characters, they should match the primary key (no shift needed)
-      let isShifted = false;
-      if (isUpperCase) {
-        // Uppercase character - check if it matches the shifted key
-        isShifted = keyDef.shifted === activeKey;
-      } else {
-        // Lowercase character - check if it matches primary key
-        // If it matches shifted key but not primary, then shift is needed (for special characters)
-        const matchesPrimary = keyDef.primary.toLowerCase() === normalizedKey;
-        const matchesShifted = keyDef.shifted?.toLowerCase() === normalizedKey;
-        // Only need shift if it matches shifted but NOT primary (e.g., '!' on '1' key)
-        isShifted = matchesShifted && !matchesPrimary;
-      }
-
-      if (isShifted) {
-        // Determine shift side based on which hand types the key
-        const isLeftHand = layout.leftHandKeys.includes(keyDef.primary.toLowerCase());
-        return {
-          targetKeyId: keyDef.id,
-          shiftTarget: (isLeftHand ? 'r' : 'l') as 'l' | 'r',
-          spaceHand: null
-        };
-      } else {
-        return { targetKeyId: keyDef.id, shiftTarget: null, spaceHand: null };
-      }
-    } else {
-      // Key not found in layout - might be a special character
-      return { targetKeyId: null, shiftTarget: null, spaceHand: null };
+    // Accented letter without its own key: dead key first, then the base letter
+    // (e.g. 'ã' = '~' then 'a'; 'Á' = '´' then Shift+'a')
+    const [base, mark, ...rest] = [...activeKey.normalize('NFD')];
+    const deadChar = mark && rest.length === 0 ? layout.deadKeys?.[mark] : undefined;
+    if (deadChar) {
+      const stroke = findKeyStroke(layout, deadKeyPending ? base : deadChar);
+      if (stroke) return { ...stroke, spaceHand: null };
     }
-  }, [activeKey, layout.keys, layout.leftHandKeys]);
+
+    // Key not found in layout - might be a special character
+    return none;
+  }, [activeKey, layout, deadKeyPending]);
 
   // Compute pressed key ID from lastPressedKey using useMemo instead of useEffect
   const pressedKeyId = useMemo(() => {

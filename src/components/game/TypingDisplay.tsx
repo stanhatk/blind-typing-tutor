@@ -5,14 +5,20 @@ import React, { useRef, useEffect } from "react";
 interface TypingDisplayProps {
   text: string;
   input: string;
+  inputValue: string; // Raw input value, including an in-progress dead key/IME composition
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCompositionStart: () => void;
+  handleCompositionEnd: (e: React.CompositionEvent<HTMLInputElement>) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
 export const TypingDisplay: React.FC<TypingDisplayProps> = ({
   text,
   input,
+  inputValue,
   handleInput,
+  handleCompositionStart,
+  handleCompositionEnd,
   inputRef,
 }) => {
   const textDisplayRef = useRef<HTMLDivElement>(null);
@@ -65,9 +71,18 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
         data-testid="typing-input"
         ref={inputRef}
         type="text"
-        value={input}
+        value={inputValue}
         onChange={handleInput}
-        className="absolute opacity-0 top-0 left-0 h-0 w-0"
+        onCompositionStart={handleCompositionStart}
+        onCompositionEnd={handleCompositionEnd}
+        // Keep mobile keyboards from changing what was typed
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck={false}
+        // Hidden but not zero-width: Chrome drops text before a dead-key/IME
+        // composition when the input has no content width
+        className="absolute opacity-0 top-0 left-0 w-full h-px p-0 border-0 text-base pointer-events-none"
         autoFocus
         onBlur={() => inputRef.current?.focus()}
       />

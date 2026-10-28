@@ -10,6 +10,11 @@ export const deDeLayout: KeyboardLayout = {
     language: 'de',
     flag: '🇩🇪',
     leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b', 'ü', 'ö', 'ä'],
+    deadKeys: {
+        '\u0301': '´', // acute
+        '\u0300': '`', // grave
+        '\u0302': '^', // circumflex
+    },
     keys: [
         // Row 1 - Number row
         { id: 'backtick', primary: '^', shifted: '°', group: 1 },

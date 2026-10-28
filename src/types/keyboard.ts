@@ -57,6 +57,12 @@ export interface KeyboardLayout {
   flag: string;         // Emoji flag for UI
   keys: KeyDefinition[];
   leftHandKeys: string[]; // Array of primary characters typed with left hand
+  /**
+   * Dead keys: combining accent (e.g. '\u0301' acute) -> the dead-key character
+   * shown on the keyboard (e.g. '´'). Accented letters not on any key are typed
+   * as dead key + base letter, e.g. 'ã' = '~' then 'a'.
+   */
+  deadKeys?: Partial<Record<string, string>>;
 }
 
 /**

@@ -10,6 +10,10 @@ export const noNoLayout: KeyboardLayout = {
   language: 'no',
   flag: '🇳🇴',
   leftHandKeys: ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'],
+  deadKeys: {
+      '\u0302': '^', // circumflex
+      '\u0308': '¨', // diaeresis
+  },
   keys: [
     // Row 1 - Number row
     { id: 'backtick', primary: '§', shifted: '½', group: 1 },

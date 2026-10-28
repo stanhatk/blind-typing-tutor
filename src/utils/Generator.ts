@@ -94,7 +94,8 @@ export class Generator {
       console.error(`No word list registered for language: ${lang}. Falling back to English.`);
       return LANGUAGE_WORDS_REGISTRY['en']();
     }
-    return getter();
+    // Store words in NFC so they match what keyboards and IMEs produce
+    return getter().map((word) => word.normalize('NFC'));
   }
 
   private rand(low: number, high: number) {

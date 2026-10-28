@@ -313,11 +313,12 @@ export function useAppSettings(params: UseAppSettingsParams) {
       return;
     }
     const expectedContentType = getContentTypeFromMode(mode);
-    // Only update if there's an actual mismatch
+    // Only update if there's an actual mismatch. Not a transition: an
+    // in-flight navigation would commit first and remount the page from the
+    // old URL, discarding this update (e.g. Cancel right after choosing Custom).
     if (learningContentType !== expectedContentType) {
-      startTransition(() => {
-        setLearningContentType(expectedContentType);
-      });
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- must commit before the pending navigation
+      setLearningContentType(expectedContentType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
@@ -368,16 +369,13 @@ export function useAppSettings(params: UseAppSettingsParams) {
     // Only navigate if the path is actually different
     // Use a more precise comparison to avoid unnecessary redirects
     if (currentPath && currentPath !== expectedPath) {
-      // Set flag before navigating to prevent sync effect from running
-      isUpdatingFromUrl.current = true;
       // Record the target so the URL sync effect can distinguish an in-flight
-      // navigation from a legitimate external URL change.
+      // navigation from a legitimate external URL change. Don't set
+      // isUpdatingFromUrl here: this is a user-driven change, and the flag would
+      // make the mode effect drop another change made before the navigation
+      // lands (e.g. Cancel right after choosing Custom).
       pendingTargetPathRef.current = expectedPath;
       router.replace(expectedPath);
-      // Reset flag after navigation completes - use longer delay to ensure router has processed
-      setTimeout(() => {
-        isUpdatingFromUrl.current = false;
-      }, 100);
     }
   }, [interfaceLanguage, learningContentType, learningLanguage, router, pathname]);
 
