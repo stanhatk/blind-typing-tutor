@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "界面语言",
   words: "单词",
   phrases: "短语",
+  level: "级别",
+  levelNames: ["基准行", "上排", "所有字母", "Shift 与符号", "长单词"],
   programming: "编程",
   support: "支持",
   supportTitle: "支持这个项目",

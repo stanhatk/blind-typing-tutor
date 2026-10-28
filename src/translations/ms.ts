@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Bahasa Antara Muka",
   words: "Perkataan",
   phrases: "Frasa",
+  level: "Tahap",
+  levelNames: ["Baris tengah", "Baris atas", "Semua huruf", "Shift dan aksen", "Perkataan panjang"],
   programming: "Pengaturcaraan",
   support: "Sokong",
   supportTitle: "Sokong projek ini",

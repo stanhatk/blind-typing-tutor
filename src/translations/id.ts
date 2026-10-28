@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Bahasa Antarmuka",
   words: "Kata",
   phrases: "Frasa",
+  level: "Tingkat",
+  levelNames: ["Baris tengah", "Baris atas", "Semua huruf", "Shift dan aksen", "Kata panjang"],
   programming: "Pemrograman",
   support: "Dukung",
   supportTitle: "Dukung proyek ini",

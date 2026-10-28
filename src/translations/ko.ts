@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "인터페이스 언어",
   words: "단어",
   phrases: "구문",
+  level: "단계",
+  levelNames: ["기본 줄", "윗줄", "모든 글자", "Shift와 기호", "긴 단어"],
   programming: "프로그래밍",
   support: "지원",
   supportTitle: "이 프로젝트 지원",

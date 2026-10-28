@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Arayüz Dili",
   words: "Kelimeler",
   phrases: "İfadeler",
+  level: "Seviye",
+  levelNames: ["Temel sıra", "Üst sıra", "Tüm harfler", "Shift ve aksanlar", "Uzun kelimeler"],
   programming: "Programlama",
   support: "Destek",
   supportTitle: "Bu projeyi destekle",

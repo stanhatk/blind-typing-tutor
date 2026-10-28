@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Limba Interfeței",
   words: "Cuvinte",
   phrases: "Fraze",
+  level: "Nivel",
+  levelNames: ["Rândul de bază", "Rândul de sus", "Toate literele", "Shift și diacritice", "Cuvinte lungi"],
   programming: "Programare",
   support: "Sprijină",
   supportTitle: "Sprijină acest proiect",

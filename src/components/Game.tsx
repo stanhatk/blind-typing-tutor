@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { type Language } from "../utils/Generator";
+import type { Level } from "../utils/difficulty";
 import type { KeyboardLayoutId } from "../types/keyboard";
 import { getLayout } from "../config/layouts";
 import { Keyboard } from "./Keyboard";
@@ -28,6 +29,8 @@ interface GameProps {
   showHands: boolean;
   showColors: boolean;
   correctionMode: boolean;
+  level: Level;
+  setLevel: (level: Level) => void;
   soundEnabled: boolean;
   onToggleKeyboard: () => void;
   onToggleHands: () => void;
@@ -57,6 +60,8 @@ export const Game: React.FC<GameProps> = ({
   showHands,
   showColors,
   correctionMode,
+  level,
+  setLevel,
   soundEnabled,
   onToggleKeyboard,
   onToggleHands,
@@ -87,7 +92,7 @@ export const Game: React.FC<GameProps> = ({
     handleCompositionStart,
     handleCompositionEnd,
     handleCustomSubmit,
-  } = useTypingEngine({ mode, language, correctionMode });
+  } = useTypingEngine({ mode, language, correctionMode, layoutId, level });
 
   const currentLayout = useMemo(() => getLayout(layoutId), [layoutId]);
   const shouldShowHints = currentLayout.language !== learningLanguage;
@@ -124,6 +129,8 @@ export const Game: React.FC<GameProps> = ({
         learningLanguage={learningLanguage}
         setLearningLanguage={setLearningLanguage}
         learningLanguageOptions={learningLanguageOptions}
+        level={level}
+        setLevel={setLevel}
         translations={gameTranslations}
       />
 

@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Langue de l'Interface",
   words: "Mots",
   phrases: "Phrases",
+  level: "Niveau",
+  levelNames: ["Rangée de repos", "Rangée du haut", "Toutes les lettres", "Maj et accents", "Mots longs"],
   programming: "Programmation",
   support: "Soutenir",
   supportTitle: "Soutenir ce projet",

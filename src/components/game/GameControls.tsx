@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Gamepad2, ChevronDown, BookOpen } from "lucide-react";
+import { Gamepad2, ChevronDown, BookOpen, Signal } from "lucide-react";
 import type { LanguageCode } from "../../types/keyboard";
 import type { TranslationKeys } from "../../translations";
+import { LEVELS, type Level } from "../../utils/difficulty";
 
 interface GameControlsProps {
   mode: "practice" | "beginner" | "custom";
@@ -17,6 +18,8 @@ interface GameControlsProps {
     name: string;
     flag: string;
   }>;
+  level: Level;
+  setLevel: (level: Level) => void;
   translations: TranslationKeys;
 }
 
@@ -26,6 +29,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
   learningLanguage,
   setLearningLanguage,
   learningLanguageOptions,
+  level,
+  setLevel,
   translations,
 }) => {
   return (
@@ -69,6 +74,31 @@ export const GameControls: React.FC<GameControlsProps> = ({
             {learningLanguageOptions.map((lang) => (
               <option key={lang.code} value={lang.code}>
                 {lang.flag} {translations.languageNames[lang.code]}
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
+            <ChevronDown size={14} />
+          </div>
+        </div>
+      )}
+
+      {/* Difficulty level, for Words mode */}
+      {mode === "beginner" && (
+        <div className="relative group">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-700 dark:text-gray-300">
+            <Signal size={18} />
+          </div>
+          <select
+            data-testid="level-selector"
+            value={level}
+            onChange={(e) => setLevel(Number(e.target.value) as Level)}
+            className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
+            title={translations.level}
+          >
+            {LEVELS.map((value) => (
+              <option key={value} value={value}>
+                {value}. {translations.levelNames[value - 1]}
               </option>
             ))}
           </select>

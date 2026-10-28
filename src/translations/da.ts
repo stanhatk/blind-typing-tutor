@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Grænsefladesprog",
   words: "Ord",
   phrases: "Fraser",
+  level: "Niveau",
+  levelNames: ["Hjemrækken", "Øverste række", "Alle bogstaver", "Skift og accenter", "Lange ord"],
   programming: "Programmering",
   support: "Støt",
   supportTitle: "Støt dette projekt",

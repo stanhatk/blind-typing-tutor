@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Generator, type Language, type GeneratedText, type WordHint } from "../utils/Generator";
 import { loadContent } from "../words";
+import { getLayout } from "../config/layouts";
+import type { KeyboardLayoutId } from "../types/keyboard";
+import type { Level } from "../utils/difficulty";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
 import { charsMatch, isPartialChar } from "../utils/typedText";
@@ -8,10 +11,12 @@ import { charsMatch, isPartialChar } from "../utils/typedText";
 interface TypingEngineProps {
   mode: "practice" | "beginner" | "custom";
   language: Language;
+  layoutId: KeyboardLayoutId;
+  level: Level; // Words mode difficulty
   correctionMode: boolean;
 }
 
-export function useTypingEngine({ mode, language, correctionMode }: TypingEngineProps) {
+export function useTypingEngine({ mode, language, correctionMode, layoutId, level }: TypingEngineProps) {
   const [text, setText] = useState("");
   // Native words shown above their romanization (Japanese, Chinese)
   const [hints, setHints] = useState<WordHint[]>([]);
@@ -73,7 +78,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
     } else if (!generator) {
       return; // Content still loading
     } else if (mode === "beginner") {
-      showGenerated(generator.getOne());
+      showGenerated(generator.getLevelWords(getLayout(layoutId), level));
       setInput("");
     } else {
       showGenerated(generator.getPhrases());
@@ -87,7 +92,7 @@ export function useTypingEngine({ mode, language, correctionMode }: TypingEngine
     setAccuracy(100);
     // Defer focus to ensure DOM is ready
     setTimeout(() => inputRef.current?.focus(), 0);
-  }, [mode, generator]);
+  }, [mode, generator, layoutId, level]);
 
   // Initialize text when mode or language changes
   /* eslint-disable react-hooks/set-state-in-effect -- intentional mode/language initialization */

@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "インターフェース言語",
   words: "単語",
   phrases: "フレーズ",
+  level: "レベル",
+  levelNames: ["ホーム段", "上段", "すべての文字", "Shiftと記号", "長い単語"],
   programming: "プログラミング",
   support: "サポート",
   supportTitle: "このプロジェクトをサポート",

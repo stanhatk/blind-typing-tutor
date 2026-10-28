@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Oberflächensprache",
   words: "Wörter",
   phrases: "Phrasen",
+  level: "Stufe",
+  levelNames: ["Grundreihe", "Obere Reihe", "Alle Buchstaben", "Umschalt & Akzente", "Lange Wörter"],
   programming: "Programmierung",
   support: "Unterstützen",
   supportTitle: "Dieses Projekt unterstützen",

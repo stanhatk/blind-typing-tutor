@@ -1,4 +1,5 @@
-import type { LanguageCode } from '../types/keyboard';
+import type { KeyboardLayout, LanguageCode } from '../types/keyboard';
+import { getLevelWords, type Level } from './difficulty';
 import type { LanguageContent } from '../words';
 
 export type Language = LanguageCode;
@@ -30,6 +31,8 @@ export class Generator {
   private words: string[] = [];
   private allWords: string[];
   private content: LanguageContent;
+  // Words per "layout:level", computed once
+  private levelPools = new Map<string, string[]>();
   private number: number;
   private language: Language;
 
@@ -82,13 +85,17 @@ export class Generator {
     return this.toText(this.shuffle(this.words));
   }
 
-  public getOne(): GeneratedText {
-    if (this.allWords.length === 0) {
-      console.error('Cannot get word: word list is empty');
-      return { text: '', hints: [] };
+  /**
+   * Different words from one difficulty level for the active layout (Words mode)
+   */
+  public getLevelWords(layout: KeyboardLayout, level: Level): GeneratedText {
+    const key = `${layout.id}:${level}`;
+    let pool = this.levelPools.get(key);
+    if (!pool) {
+      pool = getLevelWords(layout, this.allWords, (word) => getTypedWord(this.content, word), level);
+      this.levelPools.set(key, pool);
     }
-    const word = this.allWords[this.rand(0, this.allWords.length - 1)];
-    return this.toText(Array(this.number).fill(word));
+    return this.toText(this.shuffle(pool).slice(0, this.number));
   }
 
   // Join words into the text to type, with native-word hints for romanized languages

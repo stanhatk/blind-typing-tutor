@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "שפת ממשק",
   words: "מילים",
   phrases: "ביטויים",
+  level: "רמה",
+  levelNames: ["שורת הבית", "השורה העליונה", "כל האותיות", "Shift וסימנים", "מילים ארוכות"],
   programming: "תכנות",
   support: "תמיכה",
   supportTitle: "תמכו בפרויקט זה",

@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "لغة الواجهة",
   words: "كلمات",
   phrases: "عبارات",
+  level: "المستوى",
+  levelNames: ["الصف الأوسط", "الصف العلوي", "كل الحروف", "Shift والحركات", "كلمات طويلة"],
   programming: "برمجة",
   support: "دعم",
   supportTitle: "دعم هذا المشروع",

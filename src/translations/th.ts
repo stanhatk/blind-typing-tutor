@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "ภาษาอินเทอร์เฟซ",
   words: "คำ",
   phrases: "วลี",
+  level: "ระดับ",
+  levelNames: ["แถวเหย้า", "แถวบน", "ตัวอักษรทั้งหมด", "Shift และวรรณยุกต์", "คำยาว"],
   programming: "การเขียนโปรแกรม",
   support: "สนับสนุน",
   supportTitle: "สนับสนุนโปรเจกต์นี้",

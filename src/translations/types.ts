@@ -55,6 +55,8 @@ export type TranslationKeys = {
   interfaceLanguage: string;
   words: string;
   phrases: string;
+  level: string; // Words mode difficulty level
+  levelNames: string[]; // Names of levels 1-5
   programming: string;
   support: string;
   supportTitle: string;

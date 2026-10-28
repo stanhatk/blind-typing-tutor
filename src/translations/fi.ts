@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Käyttöliittymän kieli",
   words: "Sanat",
   phrases: "Lausekkeet",
+  level: "Taso",
+  levelNames: ["Perusrivi", "Ylärivi", "Kaikki kirjaimet", "Vaihto ja aksentit", "Pitkät sanat"],
   programming: "Ohjelmointi",
   support: "Tue",
   supportTitle: "Tue tätä projektia",

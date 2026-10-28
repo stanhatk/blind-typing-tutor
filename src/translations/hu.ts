@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Felület Nyelve",
   words: "Szavak",
   phrases: "Kifejezések",
+  level: "Szint",
+  levelNames: ["Alapsor", "Felső sor", "Minden betű", "Shift és ékezetek", "Hosszú szavak"],
   programming: "Programozás",
   support: "Támogatás",
   supportTitle: "Támogasd ezt a projektet",

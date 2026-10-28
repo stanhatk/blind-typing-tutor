@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Interface Taal",
   words: "Woorden",
   phrases: "Zinnen",
+  level: "Niveau",
+  levelNames: ["Middelste rij", "Bovenste rij", "Alle letters", "Shift en accenten", "Lange woorden"],
   programming: "Programmeren",
   support: "Ondersteun",
   supportTitle: "Ondersteun dit project",

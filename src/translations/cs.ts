@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Jazyk Rozhraní",
   words: "Slova",
   phrases: "Fráze",
+  level: "Úroveň",
+  levelNames: ["Základní řada", "Horní řada", "Všechna písmena", "Shift a diakritika", "Dlouhá slova"],
   programming: "Programování",
   support: "Podpořit",
   supportTitle: "Podpořit tento projekt",

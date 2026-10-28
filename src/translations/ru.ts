@@ -24,6 +24,8 @@ export const translations = {
   interfaceLanguage: "Язык Интерфейса",
   words: "Слова",
   phrases: "Фразы",
+  level: "Уровень",
+  levelNames: ["Основной ряд", "Верхний ряд", "Все буквы", "Shift и знаки", "Длинные слова"],
   programming: "Программирование",
   support: "Поддержать",
   supportTitle: "Поддержать этот проект",

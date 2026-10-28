@@ -16,6 +16,7 @@ import { soundManager } from "../utils/SoundManager";
 import { parseUrlPath, buildUrlPath, type ContentType } from "../utils/url";
 import { isValidInterfaceLanguage, VALID_LEARNING_LANGUAGES } from "../config/constants";
 import { useDarkMode } from "./useDarkMode";
+import { LEVELS, type Level } from "../utils/difficulty";
 
 interface UseAppSettingsParams {
   interfaceLang?: string;
@@ -170,6 +171,7 @@ export function useAppSettings(params: UseAppSettingsParams) {
   const [showHands, setShowHands] = useState(true);
   const [showColors, setShowColors] = useState(true);
   const [correctionMode, setCorrectionMode] = useState(true);
+  const [level, setLevel] = useState<Level>(1);
 
   // Load browser-only settings before first paint. Layout effects run before
   // the persistence effects below, so stored values are read before any write.
@@ -186,6 +188,8 @@ export function useAppSettings(params: UseAppSettingsParams) {
     setShowKeyboard(getStorageItem("showKeyboard") !== "false");
     setShowHands(getStorageItem("showHands") !== "false");
     setShowColors(getStorageItem("showColors") !== "false");
+    const savedLevel = Number(getStorageItem("level"));
+    if (LEVELS.includes(savedLevel as Level)) setLevel(savedLevel as Level);
     const savedCorrection = getStorageItem("correctionMode");
     setCorrectionMode(
       savedCorrection === null || savedCorrection === "" || savedCorrection === "true"
@@ -401,6 +405,9 @@ export function useAppSettings(params: UseAppSettingsParams) {
   useEffect(() => {
     setStorageItem("correctionMode", String(correctionMode));
   }, [correctionMode]);
+  useEffect(() => {
+    setStorageItem("level", String(level));
+  }, [level]);
 
   // URL change listener (e.g. back button) - React Router handles this, but keep for compatibility
   useEffect(() => {
@@ -484,5 +491,7 @@ export function useAppSettings(params: UseAppSettingsParams) {
     setShowColors,
     correctionMode,
     setCorrectionMode,
+    level,
+    setLevel,
   };
 }

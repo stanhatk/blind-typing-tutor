@@ -4,6 +4,7 @@ import { VALID_LEARNING_LANGUAGES } from "../src/config/constants";
 import { getTypedWord } from "../src/utils/Generator";
 import { loadContent } from "../src/words";
 import { canTypeChar } from "../src/utils/keyStrokes";
+import { LEVELS, getLevelWords } from "../src/utils/difficulty";
 import type { KeyboardLayoutId, LanguageCode } from "../src/types/keyboard";
 
 /**
@@ -59,6 +60,11 @@ test.describe("Keyboard layout coverage", () => {
           [...phrase].some((char) => !canTypeChar(layout, char))
         );
         expect(untypeablePhrases, `untypeable ${language} phrases on ${layoutId}`).toEqual([]);
+        // Every Words mode level has enough words to practice
+        for (const level of LEVELS) {
+          const levelWords = getLevelWords(layout, content.words, (word) => getTypedWord(content, word), level);
+          expect(levelWords.length, `${language} level ${level} on ${layoutId}`).toBeGreaterThanOrEqual(30);
+        }
       }
     });
   }
