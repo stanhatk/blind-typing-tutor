@@ -2,8 +2,9 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import type { KeyboardLayoutId, KeyDefinition, LanguageCode } from '../types/keyboard';
-import { getLayout, getLayoutIdsForLanguage } from '../config/layouts';
-import { findKeyStroke, getNextKeyChar } from '../utils/keyStrokes';
+import { getLayout } from '../config/layouts';
+import { findKeyStroke, getKeyHighlight } from '../utils/keyStrokes';
+import { getKeyLayouts } from '../utils/practiceLayout';
 
 interface KeyboardProps {
   upcomingText: string; // Text still to type, starting at the cursor
@@ -48,6 +49,14 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   practiceLayoutId = layoutId
 }) => {
   const layout = getLayout(layoutId);
+  // Keys drawn: the shown layout's, plus the ISO key left of Z when the
+  // practice layout types on it (Ukrainian ґ on a US keyboard)
+  const keys = useMemo(() => {
+    const shownKeys = getLayout(layoutId).keys;
+    const isoKey = getLayout(practiceLayoutId).keys.find(k => k.id === 'intlBackslash');
+    if (!isoKey || shownKeys.some(k => k.id === 'intlBackslash')) return shownKeys;
+    return shownKeys.flatMap(k => k.id === 'shift-l' ? [{ ...k, width: 'shiftIso' as const }, isoKey] : [k]);
+  }, [layoutId, practiceLayoutId]);
   // Hints on keys: the practice layout's characters when another layout is
   // practiced, else English letters on non-English layouts
   const practicesOtherLayout = practiceLayoutId !== layoutId;
@@ -66,49 +75,25 @@ export const Keyboard: React.FC<KeyboardProps> = ({
 
   const effectiveShowEnglishHints = mounted && (showEnglishHints || practicesOtherLayout);
 
-  // Layouts to find keys on: the shown one, then the practice language's own
-  // layouts and US QWERTY. Practicing English on a Ukrainian keyboard, the
-  // system layout is switched but the same physical keys are pressed, and key
-  // ids are physical positions, so those keys are highlighted on this layout.
-  const keyLayouts = useMemo(() => {
-    const ids = [
-      practiceLayoutId,
-      layoutId,
-      ...(practiceLanguage ? getLayoutIdsForLanguage(practiceLanguage) : []),
-      'en-us' as const,
-    ];
-    return [...new Set(ids)].map((id) => getLayout(id));
-  }, [practiceLayoutId, layoutId, practiceLanguage]);
+  // Layouts to find keys on (see getKeyLayouts). Practicing English on a
+  // Ukrainian keyboard, the same physical keys are pressed, and key ids are
+  // physical positions, so those keys are highlighted on this layout.
+  const keyLayouts = useMemo(
+    () => getKeyLayouts(layoutId, practiceLayoutId, practiceLanguage),
+    [layoutId, practiceLayoutId, practiceLanguage]
+  );
 
   // Compute target key, Shift and AltGr for the next keystroke
   const { targetKeyId, shiftTarget, altGrTarget, spaceHand } = useMemo(() => {
-    const none = { targetKeyId: null, shiftTarget: null, altGrTarget: false, spaceHand: null };
-    // Two characters, because a Korean IME can start the next syllable on the current one
-    const upcoming = upcomingText.slice(0, 2).replace(/\u00A0/g, ' ');
-    let nextChar: string | null = null;
-    let keyLayout = layout;
-    for (const candidate of keyLayouts) {
-      nextChar = getNextKeyChar(candidate, upcoming, pendingText, deadKeyPending);
-      if (nextChar) {
-        keyLayout = candidate;
-        break;
-      }
-    }
-    if (!nextChar) return none;
-
-    if (nextChar === ' ') {
-      return { ...none, targetKeyId: 'space', spaceHand: 'r' as const };
-    }
-
-    const stroke = findKeyStroke(keyLayout, nextChar);
-    if (!stroke) return none;
+    const stroke = getKeyHighlight(keyLayouts, upcomingText, pendingText, deadKeyPending);
+    if (!stroke) return { targetKeyId: null, shiftTarget: null, altGrTarget: false, spaceHand: null };
     return {
       targetKeyId: stroke.targetKeyId,
       shiftTarget: stroke.shiftTarget,
       altGrTarget: stroke.altGr,
-      spaceHand: null,
+      spaceHand: stroke.targetKeyId === 'space' ? ('r' as const) : null,
     };
-  }, [upcomingText, pendingText, layout, keyLayouts, deadKeyPending]);
+  }, [upcomingText, pendingText, keyLayouts, deadKeyPending]);
 
   // Compute pressed key ID from lastPressedKey using useMemo instead of useEffect
   const pressedKeyId = useMemo(() => {
@@ -172,7 +157,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     let style: React.CSSProperties | undefined;
 
     // Size classes based on width property
-    const key = layout.keys.find(k => k.id === keyId);
+    const key = keys.find(k => k.id === keyId);
     if (key?.width === 'tab') classes += "w-[82px] h-[55px] ";
     else if (key?.width === 'caps') classes += "w-[98px] h-[55px] ";
     else if (key?.width === 'enter') classes += "w-[98px] h-[55px] ";
@@ -215,7 +200,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
         const colorStyle = getGroupColor(effectiveGroup, 1);
         if (colorStyle) style = colorStyle;
       }
-      classes += "text-black border-2 border-gray-800 ";
+      classes += "key-active text-black border-2 border-gray-800 ";
       // The hand sprite has no AltGr pose
       if (showHands && keyId !== 'altgr') classes += "key-target ";
     } else if (isPressed) {
@@ -272,7 +257,6 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   // Get keys for each row using a more robust row detection system
   // This determines rows based on key positions relative to row markers
   const rowKeys = useMemo(() => {
-    const keys = layout.keys;
     const tabIndex = keys.findIndex(k => k.id === 'tab');
     const capsIndex = keys.findIndex(k => k.id === 'caps_lock');
     const shiftLIndex = keys.findIndex(k => k.id === 'shift-l');
@@ -297,11 +281,12 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     });
 
     return rows;
-  }, [layout.keys]);
+  }, [keys]);
 
   const [row1Keys, row2Keys, row3Keys, row4Keys, row5Keys] = rowKeys;
   const spaceKey = row5Keys?.[0];
-  const hasAltGr = layout.keys.some(k => k.altGr);
+  // AltGr is drawn when the shown or the practiced layout uses it
+  const hasAltGr = [layout, getLayout(practiceLayoutId)].some(l => l.keys.some(k => k.altGr));
 
   return (
     // Physical keyboards are not mirrored in right-to-left interfaces

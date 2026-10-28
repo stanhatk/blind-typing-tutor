@@ -1,8 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * US English QWERTY keyboard layout
- * Standard layout matching typical US keyboard configuration
+ * English (US) keyboard layout, converted from Microsoft's KBDUS definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const enUsLayout: KeyboardLayout = {
   id: 'en-us',
@@ -11,7 +11,6 @@ export const enUsLayout: KeyboardLayout = {
   flag: '🇺🇸',
   keys: [
     // Row 1 - Number/Symbol row (top row)
-    // ~ ! @ # $ % ^ & * ( ) _ + Backspace
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '@', group: 1 },
@@ -28,7 +27,6 @@ export const enUsLayout: KeyboardLayout = {
     { id: 'backspace', primary: 'backspace', width: 'tab' },
     
     // Row 2 - QWERTY row
-    // Tab Q W E R T Y U I O P { } |
     { id: 'tab', primary: 'tab', width: 'tab' },
     { id: 'q', primary: 'q', shifted: 'Q', group: 1 },
     { id: 'w', primary: 'w', shifted: 'W', group: 2 },
@@ -45,7 +43,6 @@ export const enUsLayout: KeyboardLayout = {
     { id: 'backSlash', primary: '\\', shifted: '|', group: 8 },
     
     // Row 3 - Home row (ASDF)
-    // Caps Lock A S D F G H J K L : " Enter
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'a', shifted: 'A', group: 1 },
     { id: 's', primary: 's', shifted: 'S', group: 2 },
@@ -57,11 +54,10 @@ export const enUsLayout: KeyboardLayout = {
     { id: 'k', primary: 'k', shifted: 'K', group: 6 },
     { id: 'l', primary: 'l', shifted: 'L', group: 7 },
     { id: 'cologn', primary: ';', shifted: ':', group: 8 },
-    { id: 'quote', primary: "'", shifted: '"', group: 8 },
+    { id: 'quote', primary: '\'', shifted: '"', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom letter row (ZXCV)
-    // Shift Z X C V B N M < > ? Shift
     { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'z', shifted: 'Z', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
@@ -76,8 +72,6 @@ export const enUsLayout: KeyboardLayout = {
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
     // Row 5 - Space bar row
-    // Ctrl+Alt Space Ctrl+Alt
-    // Note: Ctrl+Alt keys are typically not used in typing practice, so we only include space
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };

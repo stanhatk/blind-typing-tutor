@@ -1,8 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * UK English QWERTY keyboard layout
- * Standard layout used in United Kingdom and Ireland
+ * English (UK) keyboard layout, converted from Microsoft's KBDUK definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const enGbLayout: KeyboardLayout = {
   id: 'en-gb',
@@ -10,8 +10,8 @@ export const enGbLayout: KeyboardLayout = {
   language: 'en',
   flag: '🇬🇧',
   keys: [
-    // Row 1 - Number row
-    { id: 'backtick', primary: '`', shifted: '¬', group: 1 },
+    // Row 1 - Number/Symbol row (top row)
+    { id: 'backtick', primary: '`', shifted: '¬', altGr: '¦', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '"', group: 1 },
     { id: '3', primary: '3', shifted: '£', group: 2 },
@@ -30,21 +30,21 @@ export const enGbLayout: KeyboardLayout = {
     { id: 'tab', primary: 'tab', width: 'tab' },
     { id: 'q', primary: 'q', shifted: 'Q', group: 1 },
     { id: 'w', primary: 'w', shifted: 'W', group: 2 },
-    { id: 'e', primary: 'e', shifted: 'E', group: 3 },
+    { id: 'e', primary: 'e', shifted: 'E', altGr: 'é', group: 3 },
     { id: 'r', primary: 'r', shifted: 'R', group: 4 },
     { id: 't', primary: 't', shifted: 'T', group: 4 },
     { id: 'y', primary: 'y', shifted: 'Y', group: 5 },
-    { id: 'u', primary: 'u', shifted: 'U', group: 5 },
-    { id: 'i', primary: 'i', shifted: 'I', group: 6 },
-    { id: 'o', primary: 'o', shifted: 'O', group: 7 },
+    { id: 'u', primary: 'u', shifted: 'U', altGr: 'ú', group: 5 },
+    { id: 'i', primary: 'i', shifted: 'I', altGr: 'í', group: 6 },
+    { id: 'o', primary: 'o', shifted: 'O', altGr: 'ó', group: 7 },
     { id: 'p', primary: 'p', shifted: 'P', group: 8 },
     { id: 'leftSquareBracket', primary: '[', shifted: '{', group: 8 },
     { id: 'rightSquareBracket', primary: ']', shifted: '}', group: 8 },
-    { id: 'backSlash', primary: '#', shifted: '~', group: 8 },
+    { id: 'backSlash', primary: '#', shifted: '~', altGr: '\\', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
-    { id: 'a', primary: 'a', shifted: 'A', group: 1 },
+    { id: 'a', primary: 'a', shifted: 'A', altGr: 'á', group: 1 },
     { id: 's', primary: 's', shifted: 'S', group: 2 },
     { id: 'd', primary: 'd', shifted: 'D', group: 3 },
     { id: 'f', primary: 'f', shifted: 'F', group: 4 },
@@ -54,11 +54,12 @@ export const enGbLayout: KeyboardLayout = {
     { id: 'k', primary: 'k', shifted: 'K', group: 6 },
     { id: 'l', primary: 'l', shifted: 'L', group: 7 },
     { id: 'cologn', primary: ';', shifted: ':', group: 8 },
-    { id: 'quote', primary: "'", shifted: '@', group: 8 },
+    { id: 'quote', primary: '\'', shifted: '@', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
-    { id: 'shift-l', primary: 'shift', width: 'shift' },
+    // Row 4 - Bottom letter row (ZXCV)
+    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
+    { id: 'intlBackslash', primary: '\\', shifted: '|', group: 1 },
     { id: 'z', primary: 'z', shifted: 'Z', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
     { id: 'c', primary: 'c', shifted: 'C', group: 3 },
@@ -71,8 +72,7 @@ export const enGbLayout: KeyboardLayout = {
     { id: 'slash', primary: '/', shifted: '?', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };
-

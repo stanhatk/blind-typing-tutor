@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 test.describe("Blind Typing Tutor E2E Tests", () => {
   test.beforeEach(async ({ page, browserName }) => {
@@ -474,34 +474,65 @@ test.describe("Blind Typing Tutor E2E Tests", () => {
     await expect(textarea).not.toBeVisible();
   });
 
+  // Open a page and choose a keyboard layout ('load' can stall in Chromium)
+  async function openWithLayout(page: Page, path: string, layoutId: string) {
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    // A highlighted key means the app is hydrated and its text loaded
+    await expect(page.locator(".key.key-active").first()).toBeAttached({ timeout: 20000 });
+    const selector = page.locator('[data-testid="keyboard-layout-selector"]');
+    await selector.selectOption(layoutId);
+    await expect(selector).toHaveValue(layoutId);
+  }
+
   test("highlights keys when the practice language differs from the layout", async ({ page }) => {
     // English practice on a Ukrainian keyboard: the same physical keys are pressed
-    await page.goto("/uk/en/words");
-    await page.evaluate(() => localStorage.setItem("layoutId", "uk-ua"));
-    await page.reload();
+    await openWithLayout(page, "/uk/en/words", "uk-ua");
     await expect(page.locator('[data-testid="keyboard-layout-selector"]')).toHaveValue("uk-ua");
     await expect(page.locator(".key.key-target")).toHaveCount(1);
   });
 
-  test("types a language whose layout is not installed by emulating it", async ({ page }) => {
-    // Urdu practice on a US system layout: pressing the highlighted physical
-    // keys types Urdu letters
-    await page.goto("/uk/ur/phrases");
-    await page.evaluate(() => localStorage.setItem("layoutId", "en-us"));
-    await page.reload();
+  // Press the highlighted keys (with Shift/AltGr) on the test browser's US
+  // system layout; Alt stands in for AltGr, as on systems without it
+  async function followHighlightedKeys(page: Page, keyCount: number) {
     const input = page.locator('[data-testid="typing-input"]');
     await expect(input).toBeAttached();
     await input.focus();
-    const codes: Record<string, string> = { comma: "Comma", period: "Period", slash: "Slash", cologn: "Semicolon", quote: "Quote", space: "Space" };
-    for (let i = 0; i < 6; i++) {
-      const target = page.locator(".key.key-target").first();
-      await expect(target).toBeAttached();
-      const id = (await target.getAttribute("id"))!;
-      const shift = (await page.locator("#shift-l.key-target, #shift-r.key-target").count()) > 0;
+    const codes: Record<string, string> = {
+      backtick: "Backquote", underscore: "Minus", equal: "Equal", leftSquareBracket: "BracketLeft",
+      rightSquareBracket: "BracketRight", backSlash: "Backslash", cologn: "Semicolon", quote: "Quote",
+      comma: "Comma", period: "Period", slash: "Slash", intlBackslash: "IntlBackslash", space: "Space",
+    };
+    for (let i = 0; i < keyCount; i++) {
+      await expect(page.locator(".key.key-active:not([id^=shift]):not(#altgr)")).toHaveCount(1);
+      // Read the whole highlight at once, after rendering settles
+      const { id, shift, altGr } = await page.evaluate(async () => {
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          id: document.querySelector(".key.key-active:not([id^=shift]):not(#altgr)")!.id,
+          shift: !!document.querySelector("#shift-l.key-active, #shift-r.key-active"),
+          altGr: !!document.querySelector("#altgr.key-active"),
+        };
+      });
       const code = codes[id] ?? (/^\d$/.test(id) ? `Digit${id}` : `Key${id.toUpperCase()}`);
-      await page.keyboard.press(shift ? `Shift+${code}` : code);
+      await page.keyboard.press(`${altGr ? "Alt+" : ""}${shift ? "Shift+" : ""}${code}`);
     }
     await expect(input).not.toHaveValue("");
     await expect(page.locator('[data-testid="errors-stat"]')).toContainText("0");
-  });
+  }
+
+  // Practicing on a US system layout, whatever keyboard is shown
+  for (const [path, layoutId, what] of [
+    ["/uk/ur/phrases", "en-us", "Urdu on a US keyboard"],
+    ["/uk/en/words", "uk-ua", "English with a Ukrainian keyboard shown"],
+    ["/en/pt/phrases", "pt-pt", "Portuguese dead keys"],
+    ["/en/ta/words", "ta-in", "Tamil vowel signs"],
+    ["/en/pl/phrases", "pl-pl", "Polish letters with Alt"],
+    ["/en/pl/phrases", "en-us", "Polish on a US keyboard"],
+    ["/en/uk/phrases", "en-us", "Ukrainian on a US keyboard"],
+  ] as const) {
+    test(`follows the highlighted keys: ${what}`, async ({ page }) => {
+      await openWithLayout(page, path, layoutId);
+      await followHighlightedKeys(page, 30);
+    });
+  }
 });

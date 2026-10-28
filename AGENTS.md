@@ -90,6 +90,8 @@ Tailwind CSS v4 via `@tailwindcss/postcss`. Dark mode uses class selector (`.dar
 - Layout definitions in `src/config/layouts/{id}.ts`
 - Type `KeyboardLayoutId` in `src/types/keyboard.ts` — must be updated for new layouts
 - `POPULAR_LAYOUT_IDS` in `src/config/constants.ts` controls dropdown order
+- Generated from Microsoft's Windows definitions (KLC files from kbdlayout.info) with `scripts/klc-to-layout.cjs`; only `ko-kr`, `zh-cn` and `ja-jp` are hand-written. Regenerate rather than hand-edit.
+- Typing logic shared by the app and the tests: `getKeyHighlight` (`src/utils/keyStrokes.ts`), `getPracticeLayout`/`getKeyLayouts` (`src/utils/practiceLayout.ts`), `emulateKeyPress` (`src/utils/layoutEmulation.ts`), `scoreInput` (`src/utils/typedText.ts`), `composeHangul` (`src/utils/hangul.ts`)
 
 ### SEO
 
@@ -111,6 +113,16 @@ Tailwind CSS v4 via `@tailwindcss/postcss`. Dark mode uses class selector (`.dar
 - Firefox gets longer timeouts (30s vs 10s)
 - Tests use `[data-testid="..."]` selectors
 - Run specific browser: `npx playwright test --project=chromium`
+- `e2e/keyboard-matrix.spec.ts` simulates following the highlighted keys for every keyboard × practice language × system layout (shown, practice, the language's own); it must report no problems
+- `e2e/layouts.spec.ts` checks every word, phrase and letter is typeable and key ids are physical positions
+- With a cold dev server, parallel Chromium runs can time out while pages compile; start `yarn dev` first
+
+### Manual keyboard checklist (before a release)
+
+Real input methods that tests cannot reproduce:
+- Windows: German, Polish and Korean layouts installed; type a phrase following the highlighted keys
+- macOS: Option-key accents, dead-key composition (´ then e), Korean and Japanese IMEs
+- Any OS: Urdu or Ukrainian practice with no such layout installed (emulation)
 
 ### ESLint
 

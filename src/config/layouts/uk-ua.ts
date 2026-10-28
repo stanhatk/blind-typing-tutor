@@ -1,7 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * Ukrainian keyboard layout (Cyrillic)
+ * Українська keyboard layout, converted from Microsoft's KBDUR1 definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const ukUaLayout: KeyboardLayout = {
   id: 'uk-ua',
@@ -9,10 +10,8 @@ export const ukUaLayout: KeyboardLayout = {
   language: 'uk',
   flag: '🇺🇦',
   keys: [
-    // Row 1 - Number row
-    // Note: Standard Ukrainian keyboard does not include ё (that's Russian)
-    // The backtick position is typically empty or unused in standard Ukrainian layouts
-    { id: 'backtick', primary: '\\', shifted: '/', group: 1 },
+    // Row 1 - Number/Symbol row (top row)
+    { id: 'backtick', primary: '\'', shifted: '₴', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '"', group: 1 },
     { id: '3', primary: '3', shifted: '№', group: 2 },
@@ -27,7 +26,7 @@ export const ukUaLayout: KeyboardLayout = {
     { id: 'equal', primary: '=', shifted: '+', group: 8 },
     { id: 'backspace', primary: 'backspace', width: 'tab' },
     
-    // Row 2 - ЙЦУКЕН row
+    // Row 2 - QWERTY row
     { id: 'tab', primary: 'tab', width: 'tab' },
     { id: 'q', primary: 'й', shifted: 'Й', group: 1 },
     { id: 'w', primary: 'ц', shifted: 'Ц', group: 2 },
@@ -35,15 +34,15 @@ export const ukUaLayout: KeyboardLayout = {
     { id: 'r', primary: 'к', shifted: 'К', group: 4 },
     { id: 't', primary: 'е', shifted: 'Е', group: 4 },
     { id: 'y', primary: 'н', shifted: 'Н', group: 5 },
-    { id: 'u', primary: 'г', shifted: 'Г', group: 5 },
+    { id: 'u', primary: 'г', shifted: 'Г', altGr: 'ґ', group: 5 },
     { id: 'i', primary: 'ш', shifted: 'Ш', group: 6 },
     { id: 'o', primary: 'щ', shifted: 'Щ', group: 7 },
     { id: 'p', primary: 'з', shifted: 'З', group: 8 },
     { id: 'leftSquareBracket', primary: 'х', shifted: 'Х', group: 8 },
     { id: 'rightSquareBracket', primary: 'ї', shifted: 'Ї', group: 8 },
-    { id: 'backSlash', primary: 'ʼ', shifted: 'ʼ', group: 8 },
+    { id: 'backSlash', primary: '\\', shifted: '/', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'ф', shifted: 'Ф', group: 1 },
     { id: 's', primary: 'і', shifted: 'І', group: 2 },
@@ -58,8 +57,9 @@ export const ukUaLayout: KeyboardLayout = {
     { id: 'quote', primary: 'є', shifted: 'Є', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
-    { id: 'shift-l', primary: 'shift', width: 'shift' },
+    // Row 4 - Bottom letter row (ZXCV)
+    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
+    { id: 'intlBackslash', primary: 'ґ', shifted: 'Ґ', group: 1 },
     { id: 'z', primary: 'я', shifted: 'Я', group: 1 },
     { id: 'x', primary: 'ч', shifted: 'Ч', group: 2 },
     { id: 'c', primary: 'с', shifted: 'С', group: 3 },
@@ -72,7 +72,7 @@ export const ukUaLayout: KeyboardLayout = {
     { id: 'slash', primary: '.', shifted: ',', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };

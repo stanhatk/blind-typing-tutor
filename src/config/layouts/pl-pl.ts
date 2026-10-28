@@ -1,16 +1,21 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * Polish QWERTY keyboard layout
- * Standard layout used in Poland
+ * Polski keyboard layout, converted from Microsoft's KBDPL1 definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const plPlLayout: KeyboardLayout = {
   id: 'pl-pl',
   name: 'Polski',
   language: 'pl',
   flag: '🇵🇱',
+  deadKeys: {
+    '\u0328': '~', // ogonek
+    '\u0301': '~', // acute
+    '\u0307': '~', // dot above
+  },
   keys: [
-    // Row 1 - Number row
+    // Row 1 - Number/Symbol row (top row)
     { id: 'backtick', primary: '`', shifted: '~', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '@', group: 1 },
@@ -42,7 +47,7 @@ export const plPlLayout: KeyboardLayout = {
     { id: 'rightSquareBracket', primary: ']', shifted: '}', group: 8 },
     { id: 'backSlash', primary: '\\', shifted: '|', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'a', shifted: 'A', altGr: 'ą', group: 1 },
     { id: 's', primary: 's', shifted: 'S', altGr: 'ś', group: 2 },
@@ -54,10 +59,10 @@ export const plPlLayout: KeyboardLayout = {
     { id: 'k', primary: 'k', shifted: 'K', group: 6 },
     { id: 'l', primary: 'l', shifted: 'L', altGr: 'ł', group: 7 },
     { id: 'cologn', primary: ';', shifted: ':', group: 8 },
-    { id: 'quote', primary: "'", shifted: '"', group: 8 },
+    { id: 'quote', primary: '\'', shifted: '"', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
+    // Row 4 - Bottom letter row (ZXCV)
     { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'z', shifted: 'Z', altGr: 'ż', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', altGr: 'ź', group: 2 },
@@ -71,8 +76,7 @@ export const plPlLayout: KeyboardLayout = {
     { id: 'slash', primary: '/', shifted: '?', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };
-

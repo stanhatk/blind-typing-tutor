@@ -58,8 +58,7 @@ export const faIrLayout: KeyboardLayout = {
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom letter row (ZXCV)
-    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
-    { id: 'intlBackslash', primary: '\\', shifted: '|', group: 1 },
+    { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'ظ', shifted: 'ك', group: 1 },
     { id: 'x', primary: 'ط', shifted: 'ط', group: 2 },
     { id: 'c', primary: 'ز', shifted: 'ژ', group: 3 },

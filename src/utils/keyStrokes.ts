@@ -154,3 +154,25 @@ export function getNextKeyChar(
   const isPrefix = typed.length < sequence.length && typed.every((key, i) => key === sequence[i]);
   return isPrefix ? sequence[typed.length] : sequence[0];
 }
+
+/**
+ * The key to highlight next (with Shift/AltGr), searching the layouts in
+ * order: the first that can type the upcoming text decides the key position.
+ * Space is reported as targetKeyId "space".
+ */
+export function getKeyHighlight(
+  keyLayouts: KeyboardLayout[],
+  upcomingText: string,
+  pendingText: string,
+  deadKeyPending: boolean
+): KeyStroke | null {
+  // Two characters, because a Korean IME can start the next syllable on the current one
+  const upcoming = upcomingText.slice(0, 2).replace(/\u00A0/g, ' ');
+  for (const layout of keyLayouts) {
+    const nextChar = getNextKeyChar(layout, upcoming, pendingText, deadKeyPending);
+    if (!nextChar) continue;
+    if (nextChar === ' ') return { targetKeyId: 'space', shiftTarget: null, altGr: false };
+    return findKeyStroke(layout, nextChar);
+  }
+  return null;
+}

@@ -1,8 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * Italian QWERTY keyboard layout
- * Standard layout used in Italy
+ * Italiano keyboard layout, converted from Microsoft's KBDIT definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const itItLayout: KeyboardLayout = {
   id: 'it-it',
@@ -10,19 +10,19 @@ export const itItLayout: KeyboardLayout = {
   language: 'it',
   flag: '🇮🇹',
   keys: [
-    // Row 1 - Number row
+    // Row 1 - Number/Symbol row (top row)
     { id: 'backtick', primary: '\\', shifted: '|', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '"', group: 1 },
-    { id: '3', primary: '3', shifted: '£', altGr: '#', group: 2 },
-    { id: '4', primary: '4', shifted: '$', altGr: '€', group: 3 },
-    { id: '5', primary: '5', shifted: '%', group: 4 },
+    { id: '3', primary: '3', shifted: '£', group: 2 },
+    { id: '4', primary: '4', shifted: '$', group: 3 },
+    { id: '5', primary: '5', shifted: '%', altGr: '€', group: 4 },
     { id: '6', primary: '6', shifted: '&', group: 4 },
     { id: '7', primary: '7', shifted: '/', group: 5 },
     { id: '8', primary: '8', shifted: '(', group: 5 },
     { id: '9', primary: '9', shifted: ')', group: 6 },
     { id: '0', primary: '0', shifted: '=', group: 7 },
-    { id: 'underscore', primary: "'", shifted: '?', group: 8 },
+    { id: 'underscore', primary: '\'', shifted: '?', group: 8 },
     { id: 'equal', primary: 'ì', shifted: '^', group: 8 },
     { id: 'backspace', primary: 'backspace', width: 'tab' },
     
@@ -38,11 +38,11 @@ export const itItLayout: KeyboardLayout = {
     { id: 'i', primary: 'i', shifted: 'I', group: 6 },
     { id: 'o', primary: 'o', shifted: 'O', group: 7 },
     { id: 'p', primary: 'p', shifted: 'P', group: 8 },
-    { id: 'leftSquareBracket', primary: 'è', shifted: 'é', group: 8 },
-    { id: 'rightSquareBracket', primary: '+', shifted: '*', altGr: '~', group: 8 },
+    { id: 'leftSquareBracket', primary: 'è', shifted: 'é', altGr: '[', group: 8 },
+    { id: 'rightSquareBracket', primary: '+', shifted: '*', altGr: ']', group: 8 },
     { id: 'backSlash', primary: 'ù', shifted: '§', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'a', shifted: 'A', group: 1 },
     { id: 's', primary: 's', shifted: 'S', group: 2 },
@@ -53,12 +53,13 @@ export const itItLayout: KeyboardLayout = {
     { id: 'j', primary: 'j', shifted: 'J', group: 5 },
     { id: 'k', primary: 'k', shifted: 'K', group: 6 },
     { id: 'l', primary: 'l', shifted: 'L', group: 7 },
-    { id: 'cologn', primary: 'ò', shifted: 'ç', group: 8 },
-    { id: 'quote', primary: 'à', shifted: '°', group: 8 },
+    { id: 'cologn', primary: 'ò', shifted: 'ç', altGr: '@', group: 8 },
+    { id: 'quote', primary: 'à', shifted: '°', altGr: '#', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
-    { id: 'shift-l', primary: 'shift', width: 'shift' },
+    // Row 4 - Bottom letter row (ZXCV)
+    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
+    { id: 'intlBackslash', primary: '<', shifted: '>', group: 1 },
     { id: 'z', primary: 'z', shifted: 'Z', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
     { id: 'c', primary: 'c', shifted: 'C', group: 3 },
@@ -71,8 +72,7 @@ export const itItLayout: KeyboardLayout = {
     { id: 'slash', primary: '-', shifted: '_', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };
-

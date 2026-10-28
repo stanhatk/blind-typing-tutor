@@ -1,8 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * Danish QWERTY keyboard layout
- * Standard layout used in Denmark
+ * Dansk keyboard layout, converted from Microsoft's KBDDA definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const daDkLayout: KeyboardLayout = {
   id: 'da-dk',
@@ -10,13 +10,14 @@ export const daDkLayout: KeyboardLayout = {
   language: 'da',
   flag: '🇩🇰',
   deadKeys: {
-      '\u0301': '´', // acute
-      '\u0300': '`', // grave
-      '\u0302': '^', // circumflex
-      '\u0308': '¨', // diaeresis
+    '\u0301': '´', // acute
+    '\u0300': '`', // grave
+    '\u0308': '¨', // diaeresis
+    '\u0302': '^', // circumflex
+    '\u0303': '~', // tilde
   },
   keys: [
-    // Row 1 - Number row
+    // Row 1 - Number/Symbol row (top row)
     { id: 'backtick', primary: '½', shifted: '§', group: 1 },
     { id: '1', primary: '1', shifted: '!', group: 1 },
     { id: '2', primary: '2', shifted: '"', altGr: '@', group: 1 },
@@ -24,19 +25,19 @@ export const daDkLayout: KeyboardLayout = {
     { id: '4', primary: '4', shifted: '¤', altGr: '$', group: 3 },
     { id: '5', primary: '5', shifted: '%', altGr: '€', group: 4 },
     { id: '6', primary: '6', shifted: '&', group: 4 },
-    { id: '7', primary: '7', shifted: '/', group: 5 },
-    { id: '8', primary: '8', shifted: '(', group: 5 },
-    { id: '9', primary: '9', shifted: ')', group: 6 },
-    { id: '0', primary: '0', shifted: '=', group: 7 },
+    { id: '7', primary: '7', shifted: '/', altGr: '{', group: 5 },
+    { id: '8', primary: '8', shifted: '(', altGr: '[', group: 5 },
+    { id: '9', primary: '9', shifted: ')', altGr: ']', group: 6 },
+    { id: '0', primary: '0', shifted: '=', altGr: '}', group: 7 },
     { id: 'underscore', primary: '+', shifted: '?', group: 8 },
-    { id: 'equal', primary: '´', shifted: '`', group: 8 },
+    { id: 'equal', primary: '´', shifted: '`', altGr: '|', group: 8 },
     { id: 'backspace', primary: 'backspace', width: 'tab' },
     
     // Row 2 - QWERTY row
     { id: 'tab', primary: 'tab', width: 'tab' },
     { id: 'q', primary: 'q', shifted: 'Q', group: 1 },
     { id: 'w', primary: 'w', shifted: 'W', group: 2 },
-    { id: 'e', primary: 'e', shifted: 'E', group: 3 },
+    { id: 'e', primary: 'e', shifted: 'E', altGr: '€', group: 3 },
     { id: 'r', primary: 'r', shifted: 'R', group: 4 },
     { id: 't', primary: 't', shifted: 'T', group: 4 },
     { id: 'y', primary: 'y', shifted: 'Y', group: 5 },
@@ -45,10 +46,10 @@ export const daDkLayout: KeyboardLayout = {
     { id: 'o', primary: 'o', shifted: 'O', group: 7 },
     { id: 'p', primary: 'p', shifted: 'P', group: 8 },
     { id: 'leftSquareBracket', primary: 'å', shifted: 'Å', group: 8 },
-    { id: 'rightSquareBracket', primary: '¨', shifted: '^', group: 8 },
-    { id: 'backSlash', primary: "'", shifted: '*', group: 8 },
+    { id: 'rightSquareBracket', primary: '¨', shifted: '^', altGr: '~', group: 8 },
+    { id: 'backSlash', primary: '\'', shifted: '*', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'a', shifted: 'A', group: 1 },
     { id: 's', primary: 's', shifted: 'S', group: 2 },
@@ -59,26 +60,26 @@ export const daDkLayout: KeyboardLayout = {
     { id: 'j', primary: 'j', shifted: 'J', group: 5 },
     { id: 'k', primary: 'k', shifted: 'K', group: 6 },
     { id: 'l', primary: 'l', shifted: 'L', group: 7 },
-    { id: 'cologn', primary: 'ø', shifted: 'Ø', group: 8 },
-    { id: 'quote', primary: 'æ', shifted: 'Æ', group: 8 },
+    { id: 'cologn', primary: 'æ', shifted: 'Æ', group: 8 },
+    { id: 'quote', primary: 'ø', shifted: 'Ø', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
-    { id: 'shift-l', primary: 'shift', width: 'shift' },
+    // Row 4 - Bottom letter row (ZXCV)
+    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
+    { id: 'intlBackslash', primary: '<', shifted: '>', altGr: '\\', group: 1 },
     { id: 'z', primary: 'z', shifted: 'Z', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
     { id: 'c', primary: 'c', shifted: 'C', group: 3 },
     { id: 'v', primary: 'v', shifted: 'V', group: 4 },
     { id: 'b', primary: 'b', shifted: 'B', group: 4 },
     { id: 'n', primary: 'n', shifted: 'N', group: 5 },
-    { id: 'm', primary: 'm', shifted: 'M', group: 5 },
+    { id: 'm', primary: 'm', shifted: 'M', altGr: 'µ', group: 5 },
     { id: 'comma', primary: ',', shifted: ';', group: 6 },
     { id: 'period', primary: '.', shifted: ':', group: 7 },
     { id: 'slash', primary: '-', shifted: '_', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };
-

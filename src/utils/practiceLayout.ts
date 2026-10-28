@@ -1,4 +1,4 @@
-import type { KeyboardLayout, LanguageCode } from '../types/keyboard';
+import type { KeyboardLayout, KeyboardLayoutId, LanguageCode } from '../types/keyboard';
 import type { LanguageContent } from '../words';
 import { getLayout, getLayoutIdsForLanguage } from '../config/layouts';
 import { canTypeChar } from './keyStrokes';
@@ -39,4 +39,17 @@ export function getPracticeLayout(
   if (canTypeAll(shown)) return shown;
   const candidates = [...getLayoutIdsForLanguage(language), 'en-us' as const].map((id) => getLayout(id));
   return candidates.find(canTypeAll) ?? candidates[0];
+}
+
+/**
+ * Layouts to find keys on, in order: the practice layout, the shown one,
+ * the language's own layouts and US QWERTY (key ids are positions)
+ */
+export function getKeyLayouts(
+  shownId: KeyboardLayoutId,
+  practiceId: KeyboardLayoutId,
+  language?: LanguageCode
+): KeyboardLayout[] {
+  const ids = [practiceId, shownId, ...(language ? getLayoutIdsForLanguage(language) : []), 'en-us' as const];
+  return [...new Set(ids)].map((id) => getLayout(id));
 }

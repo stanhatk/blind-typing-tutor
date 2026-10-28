@@ -97,7 +97,9 @@ lines.forEach((line, j) => {
 // Template: rows, ids, groups and widths of the US layout
 const template = fs.readFileSync(path.join(__dirname, '../src/config/layouts/en-us.ts'), 'utf8');
 const quote = (value) => `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
-const usesIsoKey = !!chars.intlBackslash?.primary;
+// The ISO key left of Z: on layouts for ANSI keyboards (US) it only repeats
+// the backslash key, so it is left out there
+const usesIsoKey = !!chars.intlBackslash?.primary && chars.intlBackslash.primary !== chars.backSlash?.primary;
 const body = template
   .slice(template.indexOf('  keys: ['))
   // Keep only the row headings of the US template's comments
@@ -137,5 +139,10 @@ export const ${exportName}: KeyboardLayout = {
   flag: '${flag}',
 ${deadKeyLines ? `  deadKeys: {\n${deadKeyLines}\n  },\n` : ''}${body}`;
 
-fs.writeFileSync(path.join(__dirname, `../src/config/layouts/${id}.ts`), file);
+// Keep hand-added rules the KLC cannot express (Tamil 99 vowel signs)
+const outFile = path.join(__dirname, `../src/config/layouts/${id}.ts`);
+const previous = fs.existsSync(outFile) ? fs.readFileSync(outFile, 'utf8') : '';
+const kept = previous.match(/\n( *\/\/[^\n]*\n)? *vowelSignKeys: \{[^}]*\},\n/);
+const output = kept ? file.replace(`  flag: '${flag}',\n`, `  flag: '${flag}',${kept[0]}`) : file;
+fs.writeFileSync(outFile, output);
 console.log(`${id}: ${Object.keys(chars).length} keys, ISO key: ${usesIsoKey}, dead keys: ${Object.keys(deadKeys).length}`);

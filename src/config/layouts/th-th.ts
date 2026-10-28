@@ -1,9 +1,8 @@
 import type { KeyboardLayout } from '../../types/keyboard';
 
 /**
- * Thai Kedmanee keyboard layout
- * Standard layout used in Thailand. Vowel signs and tone marks are separate
- * keystrokes typed after the consonant, in the order they are stored.
+ * ไทย (เกษมณี) keyboard layout, converted from Microsoft's KBDTH0 definition
+ * by scripts/klc-to-layout.cjs.
  */
 export const thThLayout: KeyboardLayout = {
   id: 'th-th',
@@ -11,7 +10,7 @@ export const thThLayout: KeyboardLayout = {
   language: 'th',
   flag: '🇹🇭',
   keys: [
-    // Row 1 - Number row
+    // Row 1 - Number/Symbol row (top row)
     { id: 'backtick', primary: '_', shifted: '%', group: 1 },
     { id: '1', primary: 'ๅ', shifted: '+', group: 1 },
     { id: '2', primary: '/', shifted: '๑', group: 1 },
@@ -43,7 +42,7 @@ export const thThLayout: KeyboardLayout = {
     { id: 'rightSquareBracket', primary: 'ล', shifted: ',', group: 8 },
     { id: 'backSlash', primary: 'ฃ', shifted: 'ฅ', group: 8 },
     
-    // Row 3 - Home row
+    // Row 3 - Home row (ASDF)
     { id: 'caps_lock', primary: 'caps', width: 'caps' },
     { id: 'a', primary: 'ฟ', shifted: 'ฤ', group: 1 },
     { id: 's', primary: 'ห', shifted: 'ฆ', group: 2 },
@@ -58,7 +57,7 @@ export const thThLayout: KeyboardLayout = {
     { id: 'quote', primary: 'ง', shifted: '.', group: 8 },
     { id: 'enter', primary: 'enter', width: 'enter' },
     
-    // Row 4 - Bottom row
+    // Row 4 - Bottom letter row (ZXCV)
     { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'ผ', shifted: '(', group: 1 },
     { id: 'x', primary: 'ป', shifted: ')', group: 2 },
@@ -72,8 +71,7 @@ export const thThLayout: KeyboardLayout = {
     { id: 'slash', primary: 'ฝ', shifted: 'ฦ', group: 8 },
     { id: 'shift-r', primary: 'shift', width: 'shift' },
     
-    // Row 5 - Space bar
+    // Row 5 - Space bar row
     { id: 'space', primary: ' ', width: 'space' },
   ],
 };
-

@@ -58,8 +58,7 @@ export const urPkLayout: KeyboardLayout = {
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom letter row (ZXCV)
-    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
-    { id: 'intlBackslash', primary: '\\', shifted: '|', group: 1 },
+    { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'ق', shifted: '‍', group: 1 },
     { id: 'x', primary: 'ف', shifted: '‌', group: 2 },
     { id: 'c', primary: 'ے', shifted: 'ۓ', group: 3 },

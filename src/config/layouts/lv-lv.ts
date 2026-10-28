@@ -63,8 +63,7 @@ export const lvLvLayout: KeyboardLayout = {
     { id: 'enter', primary: 'enter', width: 'enter' },
     
     // Row 4 - Bottom letter row (ZXCV)
-    { id: 'shift-l', primary: 'shift', width: 'shiftIso' },
-    { id: 'intlBackslash', primary: '\\', shifted: '|', group: 1 },
+    { id: 'shift-l', primary: 'shift', width: 'shift' },
     { id: 'z', primary: 'z', shifted: 'Z', altGr: 'ž', group: 1 },
     { id: 'x', primary: 'x', shifted: 'X', group: 2 },
     { id: 'c', primary: 'c', shifted: 'C', altGr: 'č', group: 3 },

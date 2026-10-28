@@ -5,10 +5,10 @@ import { getLayout } from "../config/layouts";
 import type { KeyboardLayoutId } from "../types/keyboard";
 import type { Complexity } from "../utils/complexity";
 import { getPracticeLayout } from "../utils/practiceLayout";
-import { applyVowelSign, getDeadKeyMark, getLayoutChar } from "../utils/layoutEmulation";
+import { emulateKeyPress } from "../utils/layoutEmulation";
 import { soundManager } from "../utils/SoundManager";
 import { getStorageItem, setStorageItem } from "../utils/storage";
-import { charsMatch, isPartialChar } from "../utils/typedText";
+import { charsMatch, scoreInput } from "../utils/typedText";
 
 interface TypingEngineProps {
   mode: "practice" | "beginner" | "custom";
@@ -163,26 +163,9 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, comp
         setStartTime(Date.now());
       }
 
-      // Check every inserted character (paste, autocomplete and IMEs can insert several)
-      let accepted = input;
-      let typed = 0;
-      let wrong = 0;
-      for (let i = input.length; i < val.length && accepted.length < text.length; i++) {
-        const expectedChar = text[accepted.length];
-        // The rest is an unfinished form of the next character: wait for more keys
-        if (isPartialChar(val.slice(i), expectedChar)) {
-          setPendingValue(accepted + val.slice(i));
-          break;
-        }
-        typed++;
-        if (charsMatch(val[i], expectedChar)) {
-          accepted += expectedChar;
-        } else {
-          wrong++;
-          if (correctionMode) break;
-          accepted += val[i];
-        }
-      }
+      // Check every inserted character; unfinished ones wait for more keys
+      const { input: accepted, pending, typed, wrong } = scoreInput(text, input, val, correctionMode);
+      setPendingValue(pending);
       if (typed === 0) return;
 
       const newTotal = totalTyped + typed;
@@ -225,44 +208,34 @@ export function useTypingEngine({ mode, language, correctionMode, layoutId, comp
     processValue(e.target.value);
   };
 
-  // Characters of the practice text: when the system layout types something
-  // else at a key (Latin letters while practicing Urdu), the practice layout
-  // is emulated by physical key position
-  const practiceChars = useMemo(() => {
-    const chars = new Set(generator?.getPracticeChars() ?? []);
-    for (const char of text) chars.add(char);
-    return chars;
-  }, [generator, text]);
-  // Combining mark of an emulated dead key, waiting for its base letter
+  // Mark of an emulated dead key, waiting for its letter
   const emulatedDeadMarkRef = useRef<string | null>(null);
 
+  // Typing without the practice layout installed: see emulateKeyPress
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.nativeEvent.isComposing || e.key === "Dead" || e.metaKey || (e.ctrlKey && !e.altKey)) return;
-    const altGr = e.getModifierState("AltGraph") || (e.ctrlKey && e.altKey);
-    const char = getLayoutChar(practiceLayout, e.code, e.shiftKey, altGr);
-    if (!char) return;
-    // The system layout already types the practice language here (unless an
-    // emulated dead key is waiting for this key's letter)
-    const deadKeyWaiting = emulatedDeadMarkRef.current !== null;
-    const current = pendingValue ?? input;
-    const expected = text[current.length];
-    const systemTypesIt = e.key === char || practiceChars.has(e.key) || (!!expected && charsMatch(e.key, expected));
-    if (!deadKeyWaiting && e.key.length === 1 && systemTypesIt) return;
-
+    if (e.nativeEvent.isComposing || e.metaKey || (e.ctrlKey && !e.altKey)) return;
+    const value = pendingValue ?? input;
+    const result = emulateKeyPress({
+      practiceLayout,
+      text,
+      input,
+      value,
+      systemKey: e.key,
+      code: e.code,
+      shift: e.shiftKey,
+      // AltGr, or Alt/Option on systems without AltGr (US, macOS)
+      altGr: e.getModifierState("AltGraph") || e.altKey,
+      deadMark: emulatedDeadMarkRef.current,
+    });
+    if (result.kind === "native") return;
     e.preventDefault();
-    const mark = getDeadKeyMark(practiceLayout, char);
-    if (mark && !emulatedDeadMarkRef.current) {
-      emulatedDeadMarkRef.current = mark;
+    if (result.kind === "deadKey") {
+      emulatedDeadMarkRef.current = result.mark;
       setDeadKeyPending(true);
       return;
     }
-    let typed = char;
-    if (emulatedDeadMarkRef.current) {
-      const composed = (char + emulatedDeadMarkRef.current).normalize("NFC");
-      typed = [...composed].length === 1 ? composed : char;
-      emulatedDeadMarkRef.current = null;
-    }
-    processValue(current + applyVowelSign(practiceLayout, current, typed));
+    emulatedDeadMarkRef.current = null;
+    processValue(result.value);
   };
 
   const handleCompositionStart = () => {
