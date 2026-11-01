@@ -15,21 +15,30 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-XXXXXX
 export const initGA = () => {
   if (typeof window === "undefined" || window.GAManifest) return;
 
-  const script1 = document.createElement("script");
-  script1.async = true;
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script1);
+  // Queue events right away; gtag.js reads the queue once it loads
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    // gtag.js expects the arguments object, not an array
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments);
+  };
+  window.gtag("js", new Date() as unknown as string);
+  window.gtag("config", GA_MEASUREMENT_ID, {
+    send_page_view: false, // We will handle page views manually
+  });
 
-  const script2 = document.createElement("script");
-  script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_MEASUREMENT_ID}', {
-            send_page_view: false // We will handle page views manually
-        });
-    `;
-  document.head.appendChild(script2);
+  // Load the library when the browser is idle, after the trainer is usable
+  const load = () => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
+  };
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(load, { timeout: 4000 });
+  } else {
+    setTimeout(load, 2000);
+  }
 
   window.GAManifest = true;
 };

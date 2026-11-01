@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { translations } from "@/translations";
 import type { InterfaceLanguage } from "@/translations";
 import type { ContentType } from "@/utils/url";
@@ -9,6 +10,7 @@ import {
   getLayoutIdsForLanguage,
 } from "@/config/layouts";
 import { loadContent } from "@/words";
+import { getGuideForLanguage } from "@/guides";
 import type { LanguageCode } from "@/types/keyboard";
 
 const LAYOUT_COUNT = getAllLayouts().length;
@@ -100,6 +102,8 @@ export async function SEOContent({
       isIndexablePage(interfaceLang, link.studyLang)
   );
 
+  const guide = getGuideForLanguage(interfaceLang);
+
   const h2 = "text-xl font-semibold mt-8 mb-3 text-gray-900 dark:text-gray-100";
 
   return (
@@ -113,6 +117,19 @@ export async function SEOContent({
           .replace("{mode}", modeName(learningMode))}
       </h1>
       <p className="mb-4">{t.articleIntro}</p>
+      <figure className="mb-6">
+        <Image
+          src="/screenshot-light.png"
+          alt={t.articleFeatureKeyboard}
+          width={2400}
+          height={1262}
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="w-full h-auto rounded-lg border border-gray-200 dark:border-gray-700"
+        />
+        <figcaption className="mt-2 text-sm text-center">
+          {t.articleFeatureKeyboard}
+        </figcaption>
+      </figure>
       {t.articleScreenReaderNote && (
         <p className="mb-4 text-sm">{t.articleScreenReaderNote}</p>
       )}
@@ -122,6 +139,16 @@ export async function SEOContent({
 
       <h2 className={h2}>{t.articleHowToHeading}</h2>
       <p className="mb-4">{t.articleHowToText}</p>
+      {guide && (
+        <p className="mb-4">
+          <a
+            href={`/${guide.interfaceLang}/${guide.slug}`}
+            className="text-indigo-700 dark:text-indigo-300 underline hover:no-underline"
+          >
+            {guide.h1}
+          </a>
+        </p>
+      )}
 
       <h2 className={h2}>{t.articleFeaturesHeading}</h2>
       <ul className="list-disc ps-6 mb-4 space-y-1">

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { headers } from "next/headers";
 import { INTERFACE_LANGUAGE_OPTIONS } from "@/config/constants";
 import { getTextDirection, getLanguageTag } from "@/utils/textDirection";
 import type { InterfaceLanguage } from "@/translations";
-import "./globals.css";
 
 // Self-hosted by next/font: no render-blocking request to Google Fonts
 const inter = Inter({
@@ -19,7 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-export const metadata: Metadata = {
+// Ads only on the production deployment, not on previews or localhost.
+// Read at build time, so pages stay static.
+const showAdsense = process.env.VERCEL_ENV === "production";
+
+/** Metadata shared by every root layout; pages override title and description */
+export const rootMetadata: Metadata = {
   metadataBase: new URL("https://blind-typing-tutor.wordmemo.net"),
   title: "Touch Typing Trainer | Blind Typing Practice Online",
   description:
@@ -44,30 +47,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
+interface RootDocumentProps {
+  interfaceLang: string;
   children: React.ReactNode;
-}>) {
-  // Extract interface language from URL path
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || "";
-  const host = (headersList.get("x-forwarded-host") || headersList.get("host") || "")
-    .split(",")[0]
-    .trim()
-    .replace(/:\d+$/, "");
-  const showAdsense = host === "blind-typing-tutor.wordmemo.net";
+}
 
-  // Parse interface language from path (format: /[interfaceLang]/...)
-  const pathSegments = pathname.split("/").filter(Boolean);
-  const interfaceLangCode = pathSegments[0] || "en";
-
+/**
+ * The <html> document for every root layout. The interface language comes
+ * from the route, not from request headers, so pages can be prerendered.
+ */
+export function RootDocument({ interfaceLang, children }: RootDocumentProps) {
   // Validate interface language
   const validLang = INTERFACE_LANGUAGE_OPTIONS.find(
-    (opt) => opt.code === interfaceLangCode,
+    (opt) => opt.code === interfaceLang,
   );
   const validatedLang = (
-    validLang ? interfaceLangCode : "en"
+    validLang ? interfaceLang : "en"
   ) as InterfaceLanguage;
 
   // Get language attributes

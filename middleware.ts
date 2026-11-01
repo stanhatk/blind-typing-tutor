@@ -1,30 +1,31 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { VALID_INTERFACE_LANGUAGES } from "@/config/constants";
+import type { InterfaceLanguage } from "@/translations";
 
+/**
+ * Redirect "/" to the visitor's language. Only the root runs through
+ * middleware, so every other page can be served from the static cache.
+ */
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  // Parse accept-language header (format: "en-US,en;q=0.9,es;q=0.8")
+  const preferredLanguages = (request.headers.get("accept-language") || "")
+    .split(",")
+    .map((lang) => lang.trim().split(";")[0].split("-")[0].toLowerCase())
+    .filter(Boolean);
 
-  // Add pathname to headers for RootLayout to access
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-pathname", pathname);
+  // Find first matching supported language
+  const interfaceLang =
+    preferredLanguages.find((lang) =>
+      VALID_INTERFACE_LANGUAGES.includes(lang as InterfaceLanguage),
+    ) || "en";
 
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  // 307, not permanent: the target depends on the visitor
+  return NextResponse.redirect(
+    new URL(`/${interfaceLang}/${interfaceLang}/words`, request.url),
+  );
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public files (images, etc.)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|xml|txt)).*)",
-  ],
+  matcher: "/",
 };

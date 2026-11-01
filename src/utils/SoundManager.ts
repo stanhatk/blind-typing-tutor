@@ -3,6 +3,8 @@ export class SoundManager {
   private enabled: boolean = false;
 
   constructor() {
+    // No audio while prerendering on the server
+    if (typeof window === "undefined") return;
     try {
       // Support both standard AudioContext and webkit-prefixed version
       const AudioContextClass =

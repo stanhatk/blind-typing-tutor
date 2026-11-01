@@ -5,6 +5,7 @@ import {
   BASE_URL,
 } from "@/config/constants";
 import { isIndexablePage } from "@/config/seo";
+import { GUIDES } from "@/guides";
 
 // Content types for practice modes
 const CONTENT_TYPES = ["words", "phrases", "custom"] as const;
@@ -41,6 +42,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // lastmod, changefreq and priority are omitted: a build timestamp on every
   // URL is not a real change date, and Google ignores the other two
   urls.push({ url: `${BASE_URL}/privacy` });
+  GUIDES.forEach((guide) =>
+    urls.push({ url: `${BASE_URL}/${guide.interfaceLang}/${guide.slug}` })
+  );
 
   return urls;
 }

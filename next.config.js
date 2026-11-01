@@ -19,6 +19,12 @@ const nextConfig = {
   // Next streams metadata into <body> for Googlebot by default. Google ignores
   // rel=canonical outside <head>, so render metadata in <head> for it too.
   htmlLimitedBots: new RegExp(`Googlebot|${HTML_LIMITED_BOT_UA_RE.source}`, 'i'),
+
+  // app/global-not-found.tsx: unmatched URLs, since there is no app/layout.tsx
+  // (each interface language has its own root layout so <html lang> is static)
+  experimental: {
+    globalNotFound: true,
+  },
 };
 
 export default nextConfig;
