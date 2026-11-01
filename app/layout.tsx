@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { headers } from "next/headers";
 import { INTERFACE_LANGUAGE_OPTIONS } from "@/config/constants";
 import { getTextDirection, getLanguageTag } from "@/utils/textDirection";
 import type { InterfaceLanguage } from "@/translations";
 import "./globals.css";
+
+// Self-hosted by next/font: no render-blocking request to Google Fonts
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://blind-typing-tutor.wordmemo.net"),
@@ -62,7 +75,12 @@ export default async function RootLayout({
   const dir = getTextDirection(validatedLang);
 
   return (
-    <html lang={lang} dir={dir} suppressHydrationWarning>
+    <html
+      lang={lang}
+      dir={dir}
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Prevent dark mode flicker - runs before any content renders */}
         <script
@@ -78,16 +96,6 @@ export default async function RootLayout({
               })();
             `,
           }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
         />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link

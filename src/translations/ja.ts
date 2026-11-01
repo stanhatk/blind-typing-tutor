@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "問題を報告",
   reportIssueTitle: "GitHubで問題を報告",
   privacyAndContact: "プライバシーとお問い合わせ",
+  typingInputLabel: "入力欄",
+  close: "閉じる",
+  articleH1: "タッチタイピング練習 – {lang}：{mode}",
+  articleIntro: "タッチタイピング（ブラインドタッチ）とは、キーボードを見ずに10本の指で入力することです。各指はホームポジションから始まり、担当するキーが決まっているので、続けて練習すると手がどの文字も記憶で探せるようになります。この無料のタイピング練習ソフトは、入力中に次のキーと指を表示します。",
+  articleWordsHeading: "単語で練習",
+  articleWordsText: "単語モードでは、頻度リストから選んだよく使われる単語を入力します。まず1文字ずつ始め、キーに慣れたら短い単語、次に長い単語へ進みましょう。こうした短い練習が、速さの土台となる指の記憶を作ります。",
+  articlePhrasesHeading: "フレーズで練習",
+  articlePhrasesText: "フレーズモードでは、スペースや句読点を含む日常的な文を100文入力します。文全体を打つことで一定のリズムが身につき、指より少し先を読む力が育ちます。",
+  articleCustomHeading: "自分のテキストで練習",
+  articleCustomText: "カスタムモードでは、記事やコード、学習中の単語など好きなテキストを貼り付けて、同じキーボードのヒントとリアルタイムの統計で練習できます。",
+  articleHowToHeading: "練習のしかた",
+  articleHowToText: "指をホームポジションに置き、手ではなくテキストを見ましょう。画面キーボードで強調表示されたキーと指に従います。まず正確さを優先し、速さは練習とともについてきます。1回の長い練習より、毎日10〜15分のほうが効果的です。訂正モードをオンにすると、ミスを直してから先に進めます。",
+  articleFeaturesHeading: "主な機能",
+  articleFeatureKeyboard: "次のキーを強調表示する画面キーボード（指のヒントと色分け付き）",
+  articleFeatureLanguages: "練習できる言語は{languages}、キーボード配列は{layouts}種類",
+  articleFeatureStats: "速度（WPM）、正確さ、ミスの数をリアルタイム表示",
+  articleFeatureFree: "無料・登録不要。設定はブラウザに保存されます",
+  articleRelatedHeading: "ほかの練習",
   metaDescription:
     "無料のオンラインブラインドタイピング練習でタッチタイピングをマスターしましょう。45の言語で40以上のキーボードレイアウト（QWERTY、QWERTZ、AZERTY）で練習できます。リアルタイムの単語/分追跡、正確性の統計、および視覚的なキーボードが利用可能です。",
   cancel: "キャンセル",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "デスクトップキーボードが必要です",
   mobileDescription:
     "このアプリケーションは物理キーボードを使用したデスクトップ使用向けに設計されています。タッチタイピングを練習するには、デスクトップまたはラップトップコンピューターでこのサイトにアクセスしてください。",
-  mobileFooter:
-    "タッチタイピングには、最適な学習体験のために物理キーボードが必要です。",
   languageNames: {
     en: "英語",
     uk: "ウクライナ語",

@@ -3,28 +3,30 @@
 import { useState, useEffect } from "react";
 
 /**
- * Hook to detect if the current device is mobile
- * @param breakpoint - Width breakpoint in pixels (default: 768)
+ * Hook to detect a device without a physical keyboard: no fine pointer
+ * (touch only), or a phone user agent. Tablets with a mouse or trackpad and
+ * narrow desktop windows count as desktop.
  * @returns boolean indicating if device is mobile
  */
-export function useIsMobile(breakpoint: number = 768): boolean {
+export function useIsMobile(): boolean {
   // Start as desktop so the server render and hydration match
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
+    const finePointer = window.matchMedia("(any-pointer: fine)");
+    const update = () => {
       setIsMobile(
-        window.innerWidth < breakpoint ||
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        !finePointer.matches ||
+        /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
         )
       );
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [breakpoint]);
+    update();
+    finePointer.addEventListener("change", update);
+    return () => finePointer.removeEventListener("change", update);
+  }, []);
 
   return isMobile;
 }

@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Ilmoita Ongelma",
   reportIssueTitle: "Ilmoita ongelma GitHubissa",
   privacyAndContact: "Tietosuoja ja yhteystiedot",
+  typingInputLabel: "Kirjoituskenttä",
+  close: "Sulje",
+  articleH1: "Kymmensormijärjestelmän harjoittelu – {lang}: {mode}",
+  articleIntro: "Kymmensormijärjestelmässä kirjoitetaan kaikilla sormilla katsomatta näppäimistöä. Jokainen sormi aloittaa perusriviltä ja vastaa omista näppäimistään, joten säännöllisellä harjoittelulla kädet löytävät jokaisen kirjaimen muistista. Tämä ilmainen kirjoitusharjoitus näyttää kirjoittaessasi, mikä näppäin ja mikä sormi tulevat seuraavaksi.",
+  articleWordsHeading: "Harjoittele sanoilla",
+  articleWordsText: "Sanat-tila antaa yleisiä sanoja yleisyyslistoista. Aloita yksittäisillä kirjaimilla, siirry lyhyisiin sanoihin ja sitten pitkiin sanoihin, kun näppäimet tulevat tutuiksi. Tällaiset lyhyet harjoitukset rakentavat sormimuistin, josta nopeus syntyy.",
+  articlePhrasesHeading: "Harjoittele lauseilla",
+  articlePhrasesText: "Fraasit-tila antaa 100 arkista lausetta isoine kirjaimineen, välilyönteineen ja välimerkkeineen. Kokonaisten lauseiden kirjoittaminen harjoittaa tasaista rytmiä ja opettaa lukemaan hieman sormien edellä.",
+  articleCustomHeading: "Harjoittele omalla tekstillä",
+  articleCustomText: "Mukautettu tila antaa liittää minkä tahansa tekstin, kuten artikkelin, koodia tai opettelemiasi sanoja, ja kirjoittaa sen samoilla näppäimistövihjeillä ja reaaliaikaisilla tilastoilla.",
+  articleHowToHeading: "Näin harjoittelet",
+  articleHowToText: "Lepuuta sormia perusrivillä ja pidä katse tekstissä, ei käsissä. Seuraa korostettua näppäintä ja sormea näyttönäppäimistöllä. Tavoittele ensin tarkkuutta, nopeus tulee harjoittelemalla. Kymmenen–viisitoista minuuttia päivässä toimii paremmin kuin yksi pitkä harjoitus. Ota korjaustila käyttöön, niin korjaat jokaisen virheen ennen jatkamista.",
+  articleFeaturesHeading: "Mitä harjoitusohjelma tarjoaa",
+  articleFeatureKeyboard: "Näyttönäppäimistö korostaa seuraavan näppäimen, ja siinä on sormivihjeet ja värialueet",
+  articleFeatureLanguages: "Harjoituskieliä {languages}, näppäimistöasetteluja {layouts}",
+  articleFeatureStats: "Nopeus (WPM), tarkkuus ja virheiden määrä reaaliajassa",
+  articleFeatureFree: "Ilmainen, ei rekisteröitymistä; asetuksesi pysyvät selaimessasi",
+  articleRelatedHeading: "Lisää harjoituksia",
   metaDescription:
     "Opi sokkakirjoitus ilmaisella verkkovalmentajallamme. Harjoittele yli 40 näppäimistöasettelulla 45 kielellä. Reaaliaikainen sanaa/minuutti-seuranta, tarkkuustilastot, visuaalinen näppäimistö ja äänipalaute.",
   cancel: "Peruuta",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Työpöytänäppäimistö vaaditaan",
   mobileDescription:
     "Tämä sovellus on suunniteltu käytettäväksi työpöydällä fyysisellä näppäimistöllä. Vieraile tällä sivustolla työpöytätietokoneella tai kannettavalla tietokoneella harjoitellaksesi sokkakirjoitusta.",
-  mobileFooter:
-    "Sokkakirjoitus vaatii fyysisen näppäimistön parhaaseen oppimiskokemukseen.",
   languageNames: {
     en: "Englanti",
     uk: "Ukraina",

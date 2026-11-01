@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Segnala Problema",
   reportIssueTitle: "Segnala un problema su GitHub",
   privacyAndContact: "Privacy e contatti",
+  typingInputLabel: "Campo di digitazione",
+  close: "Chiudi",
+  articleH1: "Esercizi di dattilografia a 10 dita – {lang}: {mode}",
+  articleIntro: "Scrivere a 10 dita significa digitare con tutte le dita senza guardare la tastiera. Ogni dito parte dalla riga centrale e si occupa dei propri tasti, così con un esercizio costante le mani trovano ogni lettera a memoria. Questo corso di dattilografia gratuito mostra quale tasto e quale dito vengono dopo mentre scrivi.",
+  articleWordsHeading: "Esercitarsi con le parole",
+  articleWordsText: "La modalità Parole propone parole comuni prese da liste di frequenza. Inizia con le singole lettere, passa alle parole brevi e poi a quelle lunghe man mano che i tasti diventano familiari. Esercizi brevi come questi costruiscono la memoria delle dita da cui nasce la velocità.",
+  articlePhrasesHeading: "Esercitarsi con le frasi",
+  articlePhrasesText: "La modalità Frasi propone 100 frasi quotidiane con maiuscole, spazi e punteggiatura. Scrivere frasi intere allena un ritmo costante e insegna a leggere un po' più avanti delle dita.",
+  articleCustomHeading: "Esercitarsi con il proprio testo",
+  articleCustomText: "La modalità personalizzata ti permette di incollare qualsiasi testo, come un articolo, del codice o il vocabolario che stai imparando, e di scriverlo con gli stessi suggerimenti della tastiera e le statistiche in tempo reale.",
+  articleHowToHeading: "Come esercitarsi",
+  articleHowToText: "Appoggia le dita sulla riga centrale e tieni gli occhi sul testo, non sulle mani. Segui il tasto e il dito evidenziati sulla tastiera a schermo. Punta prima alla precisione: la velocità arriva con la pratica. Dieci-quindici minuti al giorno funzionano meglio di una lunga sessione. Attiva la modalità correzione per correggere ogni errore prima di proseguire.",
+  articleFeaturesHeading: "Cosa offre il programma",
+  articleFeatureKeyboard: "Tastiera a schermo che evidenzia il tasto successivo, con suggerimenti sulle dita e zone colorate",
+  articleFeatureLanguages: "{languages} lingue di esercizio e {layouts} layout di tastiera",
+  articleFeatureStats: "Velocità (PPM), precisione e numero di errori in tempo reale",
+  articleFeatureFree: "Gratuito e senza registrazione; le impostazioni restano nel tuo browser",
+  articleRelatedHeading: "Altri esercizi",
   metaDescription:
     "Impara la dattilografia con il nostro tutor online gratuito. Esercitati su oltre 40 layout di tastiera in 45 lingue. Monitoraggio parole/minuto in tempo reale, statistiche di precisione, tastiera visiva e feedback audio.",
   cancel: "Annulla",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Tastiera desktop richiesta",
   mobileDescription:
     "Questa applicazione è progettata per l'uso su desktop con una tastiera fisica. Si prega di visitare questo sito su un computer desktop o laptop per praticare la dattilografia.",
-  mobileFooter:
-    "La dattilografia richiede una tastiera fisica per la migliore esperienza di apprendimento.",
   languageNames: {
     en: "Inglese",
     uk: "Ucraino",

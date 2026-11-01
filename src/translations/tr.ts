@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Sorun Bildir",
   reportIssueTitle: "GitHub'da sorun bildir",
   privacyAndContact: "Gizlilik ve iletişim",
+  typingInputLabel: "Yazma alanı",
+  close: "Kapat",
+  articleH1: "On parmak klavye çalışması – {lang}: {mode}",
+  articleIntro: "On parmak klavye, klavyeye bakmadan on parmakla yazmak demektir. Her parmak temel sırada başlar ve kendi tuşlarından sorumludur; düzenli çalışmayla elleriniz her harfi ezberden bulur. Bu ücretsiz klavye kursu, yazarken sıradaki tuşu ve parmağı gösterir.",
+  articleWordsHeading: "Kelimelerle çalışma",
+  articleWordsText: "Kelimeler modu, sıklık listelerinden alınmış yaygın kelimeler verir. Tek harflerle başlayın, tuşlar tanıdık geldikçe kısa, ardından uzun kelimelere geçin. Bu tür kısa alıştırmalar hızın temelini oluşturan parmak hafızasını geliştirir.",
+  articlePhrasesHeading: "İfadelerle çalışma",
+  articlePhrasesText: "İfadeler modu, büyük harf, boşluk ve noktalama içeren 100 günlük cümle verir. Tam cümleler yazmak düzenli bir ritim kazandırır ve parmaklarınızın biraz önünden okumayı öğretir.",
+  articleCustomHeading: "Kendi metninizle çalışma",
+  articleCustomText: "Özel mod; bir makale, kod ya da öğrendiğiniz kelimeler gibi herhangi bir metni yapıştırıp aynı klavye ipuçları ve canlı istatistiklerle yazmanızı sağlar.",
+  articleHowToHeading: "Nasıl çalışılır",
+  articleHowToText: "Parmaklarınızı temel sıraya koyun ve ellerinize değil metne bakın. Ekran klavyesinde vurgulanan tuşu ve parmağı takip edin. Önce doğruluğa odaklanın; hız pratikle gelir. Günde on-on beş dakika, tek bir uzun oturumdan daha etkilidir. Devam etmeden önce her hatayı düzeltmek için düzeltme modunu açın.",
+  articleFeaturesHeading: "Programın sundukları",
+  articleFeatureKeyboard: "Sıradaki tuşu vurgulayan, parmak ipuçları ve renk bölgeleri olan ekran klavyesi",
+  articleFeatureLanguages: "{languages} çalışma dili ve {layouts} klavye düzeni",
+  articleFeatureStats: "Canlı hız (WPM), doğruluk ve hata sayısı",
+  articleFeatureFree: "Ücretsiz, kayıt gerekmez; ayarlarınız tarayıcınızda kalır",
+  articleRelatedHeading: "Daha fazla alıştırma",
   metaDescription:
     "Ücretsiz çevrimiçi kör yazma eğitmenimizle on parmak yazmayı öğrenin. 45 dilde 40'tan fazla klavye düzeninde (QWERTY, QWERTZ, AZERTY) pratik yapın. Gerçek zamanlı DPD takibi, doğruluk istatistikleri ve görsel klavye.",
   cancel: "İptal",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Masaüstü Klavyesi Gerekli",
   mobileDescription:
     "Bu uygulama fiziksel bir klavye ile masaüstü kullanımı için tasarlanmıştır. Dokunmatik yazma pratiği yapmak için lütfen bu siteyi bir masaüstü veya dizüstü bilgisayarda ziyaret edin.",
-  mobileFooter:
-    "Dokunmatik yazma, en iyi öğrenme deneyimi için fiziksel bir klavye gerektirir.",
   languageNames: {
     en: "İngilizce",
     uk: "Ukraynaca",

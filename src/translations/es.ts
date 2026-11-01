@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Reportar Problema",
   reportIssueTitle: "Reportar un problema en GitHub",
   privacyAndContact: "Privacidad y contacto",
+  typingInputLabel: "Campo de escritura",
+  close: "Cerrar",
+  articleH1: "Práctica de mecanografía al tacto – {lang}: {mode}",
+  articleIntro: "La mecanografía al tacto consiste en escribir con los diez dedos sin mirar el teclado. Cada dedo parte de la fila guía y se encarga de sus propias teclas, así que con práctica regular tus manos encuentran cada letra de memoria. Este mecanógrafo gratuito te muestra qué tecla y qué dedo vienen después mientras escribes.",
+  articleWordsHeading: "Practicar con palabras",
+  articleWordsText: "El modo Palabras te ofrece palabras comunes sacadas de listas de frecuencia. Empieza con letras sueltas, pasa a palabras cortas y luego a palabras largas a medida que las teclas te resulten familiares. Estos ejercicios cortos crean la memoria de los dedos de la que nace la velocidad.",
+  articlePhrasesHeading: "Practicar con frases",
+  articlePhrasesText: "El modo Frases te ofrece 100 oraciones cotidianas con mayúsculas, espacios y puntuación. Escribir oraciones completas entrena un ritmo constante y te enseña a leer un poco por delante de tus dedos.",
+  articleCustomHeading: "Practicar con tu propio texto",
+  articleCustomText: "El modo personalizado te permite pegar cualquier texto, como un artículo, código o el vocabulario que estás aprendiendo, y escribirlo con las mismas pistas del teclado y estadísticas en directo.",
+  articleHowToHeading: "Cómo practicar",
+  articleHowToText: "Apoya los dedos en la fila guía y mantén la vista en el texto, no en las manos. Sigue la tecla y el dedo resaltados en el teclado de la pantalla. Busca primero la precisión: la velocidad llega con la práctica. Diez o quince minutos al día funcionan mejor que una sesión larga. Activa el modo de corrección para corregir cada error antes de seguir.",
+  articleFeaturesHeading: "Qué ofrece el entrenador",
+  articleFeatureKeyboard: "Teclado en pantalla que resalta la siguiente tecla, con pistas de dedos y zonas de color",
+  articleFeatureLanguages: "{languages} idiomas de práctica y {layouts} distribuciones de teclado",
+  articleFeatureStats: "Velocidad (PPM), precisión y número de errores en directo",
+  articleFeatureFree: "Gratis y sin registro; tus ajustes se guardan en tu navegador",
+  articleRelatedHeading: "Más práctica",
   metaDescription:
     "Domine la mecanografía con nuestro entrenador en línea gratuito. Practique en más de 40 diseños de teclado en 45 idiomas. Seguimiento de PPM en tiempo real, estadísticas de precisión, teclado visual y respuesta de audio.",
   cancel: "Cancelar",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Teclado de escritorio requerido",
   mobileDescription:
     "Esta aplicación está diseñada para uso en escritorio con un teclado físico. Por favor, visite este sitio en una computadora de escritorio o portátil para practicar mecanografía.",
-  mobileFooter:
-    "La mecanografía requiere un teclado físico para la mejor experiencia de aprendizaje.",
   languageNames: {
     en: "Inglés",
     uk: "Ucraniano",

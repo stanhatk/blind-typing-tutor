@@ -8,7 +8,7 @@ import { useAppSettings } from "@/hooks/useAppSettings";
 import { buildUrlPath } from "@/utils/url";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { Header } from "@/components/layout/Header";
-import { MobileMessage } from "@/components/layout/MobileMessage";
+import { MobileNotice } from "@/components/layout/MobileNotice";
 import { initGA, trackPageView } from "@/utils/analytics";
 import {
   POPULAR_LAYOUT_IDS,
@@ -57,20 +57,8 @@ export function AppContent({ params }: AppContentProps) {
       return 0;
     });
 
-  // Mobile detection
+  // Touch-only devices get a notice above the trainer, not instead of it
   const isMobile = useIsMobile();
-
-  if (isMobile) {
-    return (
-      <MobileMessage
-        title={t.title}
-        desktopRequired={t.mobileDesktopRequired}
-        description={t.mobileDescription}
-        footer={t.mobileFooter}
-        darkMode={settings.darkMode}
-      />
-    );
-  }
 
   return (
     <div
@@ -97,6 +85,13 @@ export function AppContent({ params }: AppContentProps) {
       />
 
       <main className="grow pt-20">
+        {isMobile && (
+          <MobileNotice
+            desktopRequired={t.mobileDesktopRequired}
+            description={t.mobileDescription}
+            closeLabel={t.close}
+          />
+        )}
         <Game
           mode={settings.mode}
           setMode={settings.setMode}

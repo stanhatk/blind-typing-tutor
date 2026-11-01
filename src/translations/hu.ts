@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Probléma Bejelentése",
   reportIssueTitle: "Probléma bejelentése a GitHubon",
   privacyAndContact: "Adatvédelem és kapcsolat",
+  typingInputLabel: "Beviteli mező",
+  close: "Bezárás",
+  articleH1: "Vakírás gyakorlás – {lang}: {mode}",
+  articleIntro: "A vakírás azt jelenti, hogy mind a tíz ujjal gépelsz, a billentyűzetre nézés nélkül. Minden ujj az alapsorról indul és a saját billentyűiért felel, így rendszeres gyakorlással a kezed fejből megtalál minden betűt. Ez az ingyenes gépíróprogram gépelés közben mutatja, melyik billentyű és melyik ujj következik.",
+  articleWordsHeading: "Gyakorlás szavakkal",
+  articleWordsText: "A Szavak mód gyakorisági listákból vett gyakori szavakat ad. Kezdd egyes betűkkel, majd térj át a rövid, aztán a hosszú szavakra, ahogy a billentyűk ismerőssé válnak. Az ilyen rövid gyakorlatok építik fel azt az ujjmemóriát, amelyből a sebesség születik.",
+  articlePhrasesHeading: "Gyakorlás mondatokkal",
+  articlePhrasesText: "A Kifejezések mód 100 hétköznapi mondatot ad nagybetűkkel, szóközökkel és írásjelekkel. Egész mondatok gépelése egyenletes ritmust fejleszt, és megtanít kicsit az ujjaid előtt olvasni.",
+  articleCustomHeading: "Gyakorlás saját szöveggel",
+  articleCustomText: "Az egyéni módban bármilyen szöveget beilleszthetsz, például egy cikket, kódot vagy a tanult szavakat, és ugyanazokkal a billentyűzet-tippekkel és élő statisztikákkal gépelheted.",
+  articleHowToHeading: "Hogyan gyakorolj",
+  articleHowToText: "Pihentesd az ujjaidat az alapsoron, és a szöveget nézd, ne a kezedet. Kövesd a kiemelt billentyűt és ujjat a képernyő-billentyűzeten. Először a pontosságra törekedj, a sebesség a gyakorlással jön. Napi tíz-tizenöt perc többet ér egy hosszú alkalomnál. Kapcsold be a javítási módot, hogy minden hibát kijavíts, mielőtt továbblépsz.",
+  articleFeaturesHeading: "Amit a program kínál",
+  articleFeatureKeyboard: "Képernyő-billentyűzet, amely kiemeli a következő billentyűt, ujjtippekkel és színzónákkal",
+  articleFeatureLanguages: "{languages} gyakorló nyelv és {layouts} billentyűzetkiosztás",
+  articleFeatureStats: "Élő sebesség (WPM), pontosság és hibaszám",
+  articleFeatureFree: "Ingyenes, regisztráció nélkül; a beállításaid a böngésződben maradnak",
+  articleRelatedHeading: "További gyakorlatok",
   metaDescription:
     "Tanuljon meg vakon gépelni ingyenes online oktatónkkal. Gyakoroljon több mint billentyűzetkiosztáson 45 nyelven. Valós idejű szó/perc-követés, pontossági statisztikák és vizuális billentyűzet.",
   cancel: "Mégse",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Asztali billentyűzet szükséges",
   mobileDescription:
     "Ez az alkalmazás asztali használatra készült fizikai billentyűzettel. Kérjük, látogassa meg ezt a webhelyet asztali számítógépen vagy laptopon a vak gépelés gyakorlásához.",
-  mobileFooter:
-    "A vak gépeléshez fizikai billentyűzet szükséges a legjobb tanulási élményhez.",
   languageNames: {
     en: "Angol",
     uk: "Ukrán",

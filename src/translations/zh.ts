@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "报告问题",
   reportIssueTitle: "在 GitHub 上报告问题",
   privacyAndContact: "隐私与联系",
+  typingInputLabel: "输入框",
+  close: "关闭",
+  articleH1: "盲打练习 – {lang}：{mode}",
+  articleIntro: "盲打就是不看键盘、用十根手指打字。每根手指从基准键位出发，负责自己的按键，坚持练习后，双手能凭记忆找到每个字母。这款免费打字练习工具会在你打字时提示下一个按键和对应的手指。",
+  articleWordsHeading: "单词练习",
+  articleWordsText: "单词模式提供取自词频表的常用词。先从单个字母开始，熟悉按键后再练短词，然后是长词。这样的短时练习能培养手指记忆，而速度正是由此而来。",
+  articlePhrasesHeading: "短语练习",
+  articlePhrasesText: "短语模式提供 100 个包含空格和标点的日常句子。输入完整句子能练出稳定的节奏，并学会让眼睛比手指稍微领先。",
+  articleCustomHeading: "自定义文本练习",
+  articleCustomText: "自定义模式可以粘贴任意文本，比如文章、代码或正在学的词汇，并在同样的键盘提示和实时统计下练习。",
+  articleHowToHeading: "如何练习",
+  articleHowToText: "把手指放在基准键位上，眼睛看文本，不要看手。按照屏幕键盘上高亮的按键和手指来打。先追求准确，速度会随练习提高。每天练十到十五分钟，比一次长时间练习更有效。开启纠错模式后，必须改正每个错误才能继续。",
+  articleFeaturesHeading: "工具功能",
+  articleFeatureKeyboard: "屏幕键盘高亮下一个按键，并提供手指提示和颜色分区",
+  articleFeatureLanguages: "{languages} 种练习语言，{layouts} 种键盘布局",
+  articleFeatureStats: "实时显示速度（WPM）、准确率和错误数",
+  articleFeatureFree: "免费，无需注册；设置保存在你的浏览器中",
+  articleRelatedHeading: "更多练习",
   metaDescription:
     "通过我们的免费在线盲打训练器掌握触摸打字。在 45 种语言的 40 多种键盘布局（QWERTY、QWERTZ、AZERTY）上进行练习。实时词/分钟跟踪、准确度统计和视觉键盘。",
   cancel: "取消",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "需要桌面键盘",
   mobileDescription:
     "此应用程序专为使用物理键盘的桌面使用而设计。请在台式机或笔记本电脑上访问此网站以练习打字。",
-  mobileFooter:
-    "触摸打字需要物理键盘才能获得最佳学习体验。",
   languageNames: {
     en: "英语",
     uk: "乌克兰语",

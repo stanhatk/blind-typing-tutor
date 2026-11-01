@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Báo Cáo Vấn Đề",
   reportIssueTitle: "Báo cáo vấn đề trên GitHub",
   privacyAndContact: "Quyền riêng tư và liên hệ",
+  typingInputLabel: "Ô nhập liệu",
+  close: "Đóng",
+  articleH1: "Luyện gõ 10 ngón – {lang}: {mode}",
+  articleIntro: "Gõ 10 ngón là gõ phím bằng cả mười ngón tay mà không nhìn bàn phím. Mỗi ngón bắt đầu ở hàng phím cơ sở và phụ trách các phím riêng, nên khi luyện tập đều đặn, tay bạn sẽ tìm thấy mọi chữ cái theo trí nhớ. Công cụ luyện gõ miễn phí này cho bạn biết phím và ngón tay tiếp theo khi bạn gõ.",
+  articleWordsHeading: "Luyện với từ",
+  articleWordsText: "Chế độ Từ đưa ra các từ thông dụng lấy từ danh sách tần suất. Hãy bắt đầu với từng chữ cái, chuyển sang từ ngắn rồi đến từ dài khi đã quen phím. Những bài luyện ngắn như vậy xây dựng trí nhớ ngón tay, nền tảng của tốc độ.",
+  articlePhrasesHeading: "Luyện với câu",
+  articlePhrasesText: "Chế độ Cụm từ đưa ra 100 câu thường ngày có chữ hoa, dấu cách và dấu câu. Gõ cả câu giúp rèn nhịp đều và dạy bạn đọc trước ngón tay một chút.",
+  articleCustomHeading: "Luyện với văn bản của bạn",
+  articleCustomText: "Chế độ tùy chỉnh cho phép bạn dán bất kỳ văn bản nào, như một bài báo, mã nguồn hay từ vựng đang học, và gõ lại với cùng gợi ý bàn phím và thống kê trực tiếp.",
+  articleHowToHeading: "Cách luyện tập",
+  articleHowToText: "Đặt ngón tay lên hàng phím cơ sở và nhìn vào văn bản, không nhìn tay. Làm theo phím và ngón tay được tô sáng trên bàn phím ảo. Hãy ưu tiên độ chính xác trước, tốc độ sẽ đến khi luyện tập. Mười đến mười lăm phút mỗi ngày hiệu quả hơn một buổi dài. Bật chế độ sửa lỗi để sửa từng lỗi trước khi gõ tiếp.",
+  articleFeaturesHeading: "Công cụ có gì",
+  articleFeatureKeyboard: "Bàn phím ảo tô sáng phím tiếp theo, kèm gợi ý ngón tay và vùng màu",
+  articleFeatureLanguages: "{languages} ngôn ngữ luyện tập và {layouts} bố cục bàn phím",
+  articleFeatureStats: "Tốc độ (WPM), độ chính xác và số lỗi theo thời gian thực",
+  articleFeatureFree: "Miễn phí, không cần đăng ký; cài đặt được lưu trong trình duyệt của bạn",
+  articleRelatedHeading: "Luyện tập thêm",
   metaDescription:
     "Làm chủ kỹ năng đánh máy bằng phương pháp cảm ứng với gia sư đánh máy mù trực tuyến miễn phí của chúng tôi. Luyện tập trên hơn 40 bố cục bàn phím ở 45 ngôn ngữ. Theo dõi từ/phút thời gian thực, độ chính xác.",
   cancel: "Hủy",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Cần bàn phím máy tính để bàn",
   mobileDescription:
     "Ứng dụng này được thiết kế để sử dụng trên máy tính để bàn với bàn phím vật lý. Vui lòng truy cập trang web này trên máy tính để bàn hoặc máy tính xách tay để luyện tập đánh máy.",
-  mobileFooter:
-    "Đánh máy bằng phương pháp cảm ứng yêu cầu bàn phím vật lý để có trải nghiệm học tập tốt nhất.",
   languageNames: {
     en: "Tiếng Anh",
     uk: "Tiếng Ukraina",

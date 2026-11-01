@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Rapporter Problem",
   reportIssueTitle: "Rapporter et problem på GitHub",
   privacyAndContact: "Personvern og kontakt",
+  typingInputLabel: "Inndatafelt",
+  close: "Lukk",
+  articleH1: "Øv touchmetoden – {lang}: {mode}",
+  articleIntro: "Touchmetoden betyr å skrive med alle ti fingrene uten å se på tastaturet. Hver finger starter på grunnraden og har ansvar for sine egne taster, så med jevnlig øving finner hendene hver bokstav på hukommelsen. Denne gratis skrivetreneren viser hvilken tast og hvilken finger som kommer neste mens du skriver.",
+  articleWordsHeading: "Øv med ord",
+  articleWordsText: "Ord-modus gir deg vanlige ord fra frekvenslister. Start med enkeltbokstaver, gå videre til korte ord og deretter lange ord når tastene blir kjente. Korte øvelser som disse bygger fingerhukommelsen som fart består av.",
+  articlePhrasesHeading: "Øv med setninger",
+  articlePhrasesText: "Frase-modus gir deg 100 hverdagssetninger med store bokstaver, mellomrom og tegnsetting. Hele setninger trener en jevn rytme og lærer deg å lese litt foran fingrene.",
+  articleCustomHeading: "Øv med din egen tekst",
+  articleCustomText: "Egendefinert modus lar deg lime inn hvilken som helst tekst, for eksempel en artikkel, kode eller gloser du lærer, og skrive den med de samme tastaturhintene og live statistikk.",
+  articleHowToHeading: "Slik øver du",
+  articleHowToText: "Hvil fingrene på grunnraden og hold blikket på teksten, ikke på hendene. Følg den markerte tasten og fingeren på skjermtastaturet. Gå for nøyaktighet først: farten kommer med øving. Ti til femten minutter om dagen fungerer bedre enn én lang økt. Slå på korrigeringsmodus for å rette hver feil før du går videre.",
+  articleFeaturesHeading: "Hva treneren tilbyr",
+  articleFeatureKeyboard: "Skjermtastatur som markerer neste tast, med fingerhint og fargesoner",
+  articleFeatureLanguages: "{languages} øvingsspråk og {layouts} tastaturoppsett",
+  articleFeatureStats: "Live hastighet (WPM), nøyaktighet og antall feil",
+  articleFeatureFree: "Gratis og uten registrering; innstillingene dine blir i nettleseren din",
+  articleRelatedHeading: "Flere øvelser",
   metaDescription:
     "Lær blindskrift med vår gratis online trener. Øv på over 40 tastaturoppsett på 45 språk. Real-time ord/minutt-sporing, nøyaktighetsstatistikk, visuelt tastatur og lydtilbakemelding.",
   cancel: "Avbryt",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Skrivebordstastatur kreves",
   mobileDescription:
     "Denne applikasjonen er designet for bruk på skrivebord med et fysisk tastatur. Vennligst besøk denne nettstedet på en skrivebordsdatamaskin eller bærbar datamaskin for å øve blindskriving.",
-  mobileFooter:
-    "Blindskriving krever et fysisk tastatur for den beste læringsopplevelsen.",
   languageNames: {
     en: "Engelsk",
     uk: "Ukrainsk",

@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Raportează Problemă",
   reportIssueTitle: "Raportează o problemă pe GitHub",
   privacyAndContact: "Confidențialitate și contact",
+  typingInputLabel: "Câmp de tastare",
+  close: "Închide",
+  articleH1: "Exerciții de dactilografie oarbă – {lang}: {mode}",
+  articleIntro: "Dactilografia oarbă înseamnă să tastezi cu toate cele zece degete fără să te uiți la tastatură. Fiecare deget pornește de pe rândul de bază și răspunde de propriile taste, așa că prin exercițiu regulat mâinile găsesc fiecare literă din memorie. Acest program gratuit îți arată, în timp ce tastezi, ce tastă și ce deget urmează.",
+  articleWordsHeading: "Exersează cu cuvinte",
+  articleWordsText: "Modul Cuvinte îți oferă cuvinte uzuale din liste de frecvență. Începe cu litere izolate, treci la cuvinte scurte și apoi la cuvinte lungi pe măsură ce tastele devin familiare. Astfel de exerciții scurte construiesc memoria degetelor din care se naște viteza.",
+  articlePhrasesHeading: "Exersează cu fraze",
+  articlePhrasesText: "Modul Fraze îți oferă 100 de propoziții de zi cu zi cu majuscule, spații și punctuație. Tastarea propozițiilor întregi antrenează un ritm constant și te învață să citești puțin înaintea degetelor.",
+  articleCustomHeading: "Exersează cu propriul text",
+  articleCustomText: "Modul personalizat îți permite să lipești orice text, cum ar fi un articol, cod sau vocabularul pe care îl înveți, și să-l tastezi cu aceleași indicii de tastatură și statistici în timp real.",
+  articleHowToHeading: "Cum să exersezi",
+  articleHowToText: "Sprijină degetele pe rândul de bază și ține ochii pe text, nu pe mâini. Urmează tasta și degetul evidențiate pe tastatura de pe ecran. Urmărește întâi precizia: viteza vine cu exercițiul. Zece-cincisprezece minute pe zi funcționează mai bine decât o sesiune lungă. Activează modul de corectare pentru a repara fiecare greșeală înainte de a continua.",
+  articleFeaturesHeading: "Ce oferă programul",
+  articleFeatureKeyboard: "Tastatură pe ecran care evidențiază următoarea tastă, cu indicii pentru degete și zone colorate",
+  articleFeatureLanguages: "Limbi de exersat: {languages}, aranjamente de tastatură: {layouts}",
+  articleFeatureStats: "Viteză (WPM), precizie și număr de greșeli în timp real",
+  articleFeatureFree: "Gratuit, fără înregistrare; setările rămân în browserul tău",
+  articleRelatedHeading: "Mai multe exerciții",
   metaDescription:
     "Învață dactilografia cu ajutorul antrenorului nostru online gratuit. Exersează pe peste 40 de aspecte de tastatură în 45 limbi. Monitorizare cuvinte/minut în timp real, statistici de precizie și tastatură vizuală.",
   cancel: "Anulează",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Tastatură desktop necesară",
   mobileDescription:
     "Această aplicație este proiectată pentru utilizare pe desktop cu o tastatură fizică. Vă rugăm să vizitați acest site pe un computer desktop sau laptop pentru a practica dactilografia.",
-  mobileFooter:
-    "Dactilografia necesită o tastatură fizică pentru cea mai bună experiență de învățare.",
   languageNames: {
     en: "Engleză",
     uk: "Ucraineană",

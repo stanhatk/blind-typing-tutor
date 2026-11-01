@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Rapporter Problem",
   reportIssueTitle: "Rapporter et problem på GitHub",
   privacyAndContact: "Privatliv og kontakt",
+  typingInputLabel: "Indtastningsfelt",
+  close: "Luk",
+  articleH1: "Øv blindskrift – {lang}: {mode}",
+  articleIntro: "Blindskrift betyder at skrive med alle ti fingre uden at se på tastaturet. Hver finger starter på grundrækken og har sine egne taster, så med jævnlig øvelse finder dine hænder hvert bogstav på hukommelsen. Denne gratis skrivetræner viser, hvilken tast og hvilken finger der kommer næst, mens du skriver.",
+  articleWordsHeading: "Øv med ord",
+  articleWordsText: "Ord-tilstanden giver dig almindelige ord fra frekvenslister. Start med enkelte bogstaver, gå videre til korte ord og derefter lange ord, når tasterne bliver velkendte. Korte øvelser som disse opbygger den fingerhukommelse, som hastighed er lavet af.",
+  articlePhrasesHeading: "Øv med sætninger",
+  articlePhrasesText: "Sætnings-tilstanden giver dig 100 hverdagssætninger med store bogstaver, mellemrum og tegnsætning. Hele sætninger træner en jævn rytme og lærer dig at læse lidt foran fingrene.",
+  articleCustomHeading: "Øv med din egen tekst",
+  articleCustomText: "Den brugerdefinerede tilstand lader dig indsætte enhver tekst, fx en artikel, kode eller gloser, du lærer, og skrive den med de samme tastaturhints og live statistik.",
+  articleHowToHeading: "Sådan øver du",
+  articleHowToText: "Hvil fingrene på grundrækken og hold øjnene på teksten, ikke på hænderne. Følg den fremhævede tast og finger på skærmtastaturet. Gå efter præcision først: hastigheden kommer med øvelse. Ti til femten minutter om dagen virker bedre end én lang session. Slå rettetilstand til for at rette hver fejl, før du går videre.",
+  articleFeaturesHeading: "Hvad træneren tilbyder",
+  articleFeatureKeyboard: "Skærmtastatur der fremhæver næste tast, med fingerhints og farvezoner",
+  articleFeatureLanguages: "{languages} øvesprog og {layouts} tastaturlayouts",
+  articleFeatureStats: "Live hastighed (WPM), præcision og antal fejl",
+  articleFeatureFree: "Gratis og uden tilmelding; dine indstillinger bliver i din browser",
+  articleRelatedHeading: "Flere øvelser",
   metaDescription:
     "Lær blindskrift med vores gratis online træner. Øv dig på over 40 tastaturlayouts på 45 sprog. Realtids ord/minut-sporing, nøjagtighedsstatistik, visuelt tastatur og lydfeedback.",
   cancel: "Annuller",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Skrivebordstastatur påkrævet",
   mobileDescription:
     "Denne applikation er designet til brug på skrivebord med et fysisk tastatur. Besøg venligst dette websted på en skrivebordscomputer eller bærbar computer for at øve blindskrivning.",
-  mobileFooter:
-    "Blindskrivning kræver et fysisk tastatur for den bedste læringserfaring.",
   languageNames: {
     en: "Engelsk",
     uk: "Ukrainsk",

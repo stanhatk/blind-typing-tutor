@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Reportar Problema",
   reportIssueTitle: "Reportar un problema no GitHub",
   privacyAndContact: "Privacidade e contato",
+  typingInputLabel: "Campo de digitação",
+  close: "Fechar",
+  articleH1: "Treino de digitação às cegas – {lang}: {mode}",
+  articleIntro: "Digitar às cegas significa usar os dez dedos sem olhar para o teclado. Cada dedo começa na fileira base e cuida das próprias teclas, então, com treino regular, suas mãos encontram cada letra de memória. Este curso de digitação gratuito mostra qual tecla e qual dedo vêm a seguir enquanto você digita.",
+  articleWordsHeading: "Treinar com palavras",
+  articleWordsText: "O modo Palavras traz palavras comuns tiradas de listas de frequência. Comece com letras soltas, passe para palavras curtas e depois para palavras longas conforme as teclas ficam familiares. Exercícios curtos assim criam a memória dos dedos que gera velocidade.",
+  articlePhrasesHeading: "Treinar com frases",
+  articlePhrasesText: "O modo Frases traz 100 frases do dia a dia com maiúsculas, espaços e pontuação. Digitar frases inteiras treina um ritmo constante e ensina você a ler um pouco à frente dos dedos.",
+  articleCustomHeading: "Treinar com seu próprio texto",
+  articleCustomText: "O modo personalizado permite colar qualquer texto, como um artigo, código ou o vocabulário que você está aprendendo, e digitá-lo com as mesmas dicas de teclado e estatísticas ao vivo.",
+  articleHowToHeading: "Como treinar",
+  articleHowToText: "Apoie os dedos na fileira base e mantenha os olhos no texto, não nas mãos. Siga a tecla e o dedo destacados no teclado da tela. Busque primeiro a precisão: a velocidade vem com a prática. Dez a quinze minutos por dia funcionam melhor do que uma sessão longa. Ative o modo de correção para corrigir cada erro antes de continuar.",
+  articleFeaturesHeading: "O que o treinador oferece",
+  articleFeatureKeyboard: "Teclado na tela que destaca a próxima tecla, com dicas de dedos e zonas de cor",
+  articleFeatureLanguages: "{languages} idiomas para praticar e {layouts} layouts de teclado",
+  articleFeatureStats: "Velocidade (PPM), precisão e número de erros ao vivo",
+  articleFeatureFree: "Grátis e sem cadastro; suas configurações ficam no seu navegador",
+  articleRelatedHeading: "Mais prática",
   metaDescription:
     "Domine a digitação com nosso treinador online gratuito. Pratique em mais de 40 layouts de teclado em 45 idiomas. Acompanhamento de PPM em tempo real, estatísticas de precisão, teclado visual e feedback de áudio.",
   cancel: "Cancelar",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Teclado de desktop necessário",
   mobileDescription:
     "Este aplicativo é projetado para uso em desktop com um teclado físico. Por favor, visite este site em um computador desktop ou laptop para praticar digitação.",
-  mobileFooter:
-    "A digitação requer um teclado físico para a melhor experiência de aprendizado.",
   languageNames: {
     en: "Inglês",
     uk: "Ucraniano",

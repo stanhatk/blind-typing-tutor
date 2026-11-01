@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Signaler un Problème",
   reportIssueTitle: "Signaler un problème sur GitHub",
   privacyAndContact: "Confidentialité et contact",
+  typingInputLabel: "Zone de saisie",
+  close: "Fermer",
+  articleH1: "Apprendre à taper avec 10 doigts – {lang} : {mode}",
+  articleIntro: "La dactylographie à l'aveugle consiste à taper avec les dix doigts sans regarder le clavier. Chaque doigt part de la rangée de repos et s'occupe de ses propres touches : avec un entraînement régulier, vos mains trouvent chaque lettre de mémoire. Ce logiciel de dactylo gratuit indique la touche et le doigt suivants pendant que vous tapez.",
+  articleWordsHeading: "S'entraîner avec des mots",
+  articleWordsText: "Le mode Mots propose des mots courants tirés de listes de fréquence. Commencez par des lettres isolées, puis passez aux mots courts et enfin aux mots longs à mesure que les touches deviennent familières. Ces exercices courts construisent la mémoire des doigts qui fait la vitesse.",
+  articlePhrasesHeading: "S'entraîner avec des phrases",
+  articlePhrasesText: "Le mode Phrases propose 100 phrases du quotidien avec majuscules, espaces et ponctuation. Taper des phrases entières donne un rythme régulier et apprend à lire un peu en avance sur les doigts.",
+  articleCustomHeading: "S'entraîner avec votre propre texte",
+  articleCustomText: "Le mode personnalisé vous permet de coller n'importe quel texte (un article, du code ou le vocabulaire que vous apprenez) et de le taper avec les mêmes indications de clavier et statistiques en direct.",
+  articleHowToHeading: "Comment s'entraîner",
+  articleHowToText: "Posez les doigts sur la rangée de repos et gardez les yeux sur le texte, pas sur les mains. Suivez la touche et le doigt mis en évidence sur le clavier à l'écran. Visez d'abord la précision : la vitesse vient avec la pratique. Dix à quinze minutes par jour valent mieux qu'une longue séance. Activez le mode correction pour corriger chaque erreur avant de continuer.",
+  articleFeaturesHeading: "Ce que propose l'entraîneur",
+  articleFeatureKeyboard: "Clavier à l'écran qui met en évidence la touche suivante, avec indications des doigts et zones de couleur",
+  articleFeatureLanguages: "{languages} langues d'entraînement et {layouts} dispositions de clavier",
+  articleFeatureStats: "Vitesse (MPM), précision et nombre d'erreurs en direct",
+  articleFeatureFree: "Gratuit, sans inscription ; vos réglages restent dans votre navigateur",
+  articleRelatedHeading: "Autres exercices",
   metaDescription:
     "Maîtrisez la dactylographie avec notre entraîneur en ligne gratuit. Entraînez-vous sur plus de 40 dispositions de clavier dans 45 langues. Suivi du MPM en temps réel, statistiques de précision et clavier visuel.",
   cancel: "Annuler",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Clavier de bureau requis",
   mobileDescription:
     "Cette application est conçue pour une utilisation sur bureau avec un clavier physique. Veuillez visiter ce site sur un ordinateur de bureau ou portable pour pratiquer la dactylographie.",
-  mobileFooter:
-    "La dactylographie nécessite un clavier physique pour la meilleure expérience d'apprentissage.",
   languageNames: {
     en: "Anglais",
     uk: "Ukrainien",

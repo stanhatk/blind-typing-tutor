@@ -15,6 +15,7 @@ interface TypingDisplayProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
   language: string; // Practice language, for lang/dir of the text
   dir: "rtl" | "ltr";
+  ariaLabel: string;
 }
 
 /**
@@ -58,6 +59,7 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
   inputRef,
   language,
   dir,
+  ariaLabel,
 }) => {
   const textDisplayRef = useRef<HTMLDivElement>(null);
   const currentCharRef = useRef<HTMLSpanElement>(null);
@@ -111,6 +113,7 @@ export const TypingDisplay: React.FC<TypingDisplayProps> = ({
 
       <input
         data-testid="typing-input"
+        aria-label={ariaLabel}
         ref={inputRef}
         type="text"
         value={inputValue}

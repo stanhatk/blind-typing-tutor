@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Problem Melden",
   reportIssueTitle: "Problem auf GitHub melden",
   privacyAndContact: "Datenschutz & Kontakt",
+  typingInputLabel: "Eingabefeld",
+  close: "Schließen",
+  articleH1: "10-Finger-Schreiben üben – {lang}: {mode}",
+  articleIntro: "Beim 10-Finger-Schreiben (Blindschreiben) tippst du mit allen zehn Fingern, ohne auf die Tastatur zu schauen. Jeder Finger liegt auf der Grundreihe und ist für eigene Tasten zuständig, sodass deine Hände mit regelmäßiger Übung jeden Buchstaben aus dem Gedächtnis finden. Dieser kostenlose Tipptrainer zeigt beim Tippen, welche Taste und welcher Finger als Nächstes dran sind.",
+  articleWordsHeading: "Mit Wörtern üben",
+  articleWordsText: "Im Wörter-Modus tippst du häufige Wörter aus Häufigkeitslisten. Beginne mit einzelnen Buchstaben, gehe dann zu kurzen und schließlich zu langen Wörtern über, sobald dir die Tasten vertraut sind. Solche kurzen Übungen bauen das Fingergedächtnis auf, aus dem Geschwindigkeit entsteht.",
+  articlePhrasesHeading: "Mit Sätzen üben",
+  articlePhrasesText: "Im Sätze-Modus tippst du 100 alltägliche Sätze mit Großbuchstaben, Leerzeichen und Satzzeichen. Ganze Sätze trainieren einen gleichmäßigen Rhythmus und lehren dich, ein Stück vor deinen Fingern mitzulesen.",
+  articleCustomHeading: "Mit eigenem Text üben",
+  articleCustomText: "Im eigenen Modus fügst du beliebigen Text ein, etwa einen Artikel, Code oder Vokabeln, und tippst ihn mit denselben Tastaturhinweisen und Live-Statistiken.",
+  articleHowToHeading: "So übst du richtig",
+  articleHowToText: "Lege die Finger auf die Grundreihe und schau auf den Text, nicht auf die Hände. Folge der markierten Taste und dem Finger auf der Bildschirmtastatur. Achte zuerst auf Genauigkeit, die Geschwindigkeit kommt mit der Übung. Zehn bis fünfzehn Minuten täglich bringen mehr als eine lange Sitzung. Mit dem Korrekturmodus musst du jeden Fehler beheben, bevor es weitergeht.",
+  articleFeaturesHeading: "Was der Trainer bietet",
+  articleFeatureKeyboard: "Bildschirmtastatur, die die nächste Taste markiert, mit Fingerhinweisen und Farbzonen",
+  articleFeatureLanguages: "{languages} Übungssprachen und {layouts} Tastaturlayouts",
+  articleFeatureStats: "Live-Anzeige von Tempo (WPM), Genauigkeit und Fehlern",
+  articleFeatureFree: "Kostenlos und ohne Anmeldung; deine Einstellungen bleiben in deinem Browser",
+  articleRelatedHeading: "Weitere Übungen",
   metaDescription:
     "Meistern Sie das Blindschreiben mit unserem kostenlosen Online-Trainer. Üben Sie auf über 40 Tastaturlayouts in 45 Sprachen. Echtzeit-Wörter/Minute-Tracking, Genauigkeitsstatistiken, virtuelle Tastatur und Audio-Feedback.",
   cancel: "Abbrechen",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Desktop-Tastatur erforderlich",
   mobileDescription:
     "Diese Anwendung ist für die Verwendung auf einem Desktop mit einer physischen Tastatur konzipiert. Bitte besuchen Sie diese Website auf einem Desktop-Computer oder Laptop, um das Blindschreiben zu üben.",
-  mobileFooter:
-    "Blindschreiben erfordert eine physische Tastatur für die beste Lernerfahrung.",
   languageNames: {
     en: "Englisch",
     uk: "Ukrainisch",

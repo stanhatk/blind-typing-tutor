@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "문제 보고",
   reportIssueTitle: "GitHub에서 문제 보고",
   privacyAndContact: "개인정보 및 문의",
+  typingInputLabel: "입력란",
+  close: "닫기",
+  articleH1: "타자 연습 – {lang}: {mode}",
+  articleIntro: "터치 타이핑은 키보드를 보지 않고 열 손가락으로 입력하는 방법입니다. 각 손가락은 기본 자리에서 시작해 맡은 키를 담당하므로, 꾸준히 연습하면 손이 모든 글자를 기억으로 찾게 됩니다. 이 무료 타자 연습 도구는 입력하는 동안 다음 키와 손가락을 보여 줍니다.",
+  articleWordsHeading: "낱말 연습",
+  articleWordsText: "낱말 모드는 빈도 목록에서 뽑은 자주 쓰는 낱말을 제공합니다. 한 글자씩 시작해 키가 익숙해지면 짧은 낱말, 그다음 긴 낱말로 넘어가세요. 이런 짧은 연습이 속도의 바탕이 되는 손가락 기억을 만듭니다.",
+  articlePhrasesHeading: "문장 연습",
+  articlePhrasesText: "문장 모드는 띄어쓰기와 문장 부호가 들어간 일상 문장 100개를 제공합니다. 문장 전체를 입력하면 일정한 리듬이 생기고 손가락보다 조금 앞서 읽는 법을 익히게 됩니다.",
+  articleCustomHeading: "내 글로 연습",
+  articleCustomText: "사용자 지정 모드에서는 기사, 코드, 공부 중인 단어 등 원하는 글을 붙여 넣고 같은 키보드 안내와 실시간 통계로 연습할 수 있습니다.",
+  articleHowToHeading: "연습 방법",
+  articleHowToText: "손가락을 기본 자리에 두고 손이 아닌 글을 보세요. 화면 키보드에 강조된 키와 손가락을 따라 입력합니다. 먼저 정확도에 집중하세요. 속도는 연습하면 따라옵니다. 한 번에 오래 하는 것보다 매일 10~15분이 더 효과적입니다. 교정 모드를 켜면 오타를 고친 뒤에 다음으로 넘어갑니다.",
+  articleFeaturesHeading: "주요 기능",
+  articleFeatureKeyboard: "다음 키를 강조하는 화면 키보드, 손가락 안내와 색 영역 포함",
+  articleFeatureLanguages: "연습 언어 {languages}개, 키보드 배열 {layouts}개",
+  articleFeatureStats: "실시간 타수(WPM), 정확도, 오타 수",
+  articleFeatureFree: "무료, 가입 불필요. 설정은 브라우저에 저장됩니다",
+  articleRelatedHeading: "다른 연습",
   metaDescription:
     "무료 온라인 맹목 타이핑 튜터로 터치 타이핑을 마스터하세요. 45개 국어의 40개 이상의 키보드 레이아웃(QWERTY, QWERTZ, AZERTY)에서 연습하세요。 실시간 단어/분 추적, 정확도 통계 및 시각적 키보드를 제공합니다。",
   cancel: "취소",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "데스크톱 키보드 필요",
   mobileDescription:
     "이 애플리케이션은 물리적 키보드가 있는 데스크톱 사용을 위해 설계되었습니다. 터치 타이핑을 연습하려면 데스크톱 또는 노트북 컴퓨터에서 이 사이트를 방문하세요.",
-  mobileFooter:
-    "터치 타이핑은 최상의 학습 경험을 위해 물리적 키보드가 필요합니다.",
   languageNames: {
     en: "영어",
     uk: "우크라이나어",

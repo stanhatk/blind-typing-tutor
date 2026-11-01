@@ -63,6 +63,26 @@ export type TranslationKeys = {
   reportIssue: string;
   reportIssueTitle: string;
   privacyAndContact: string;
+  typingInputLabel: string; // Accessible name of the hidden typing input
+  close: string;
+  // Visible article below the trainer; {lang}, {mode}, {languages}, {layouts} are replaced at render
+  articleH1: string;
+  articleIntro: string;
+  articleWordsHeading: string;
+  articleWordsText: string;
+  articlePhrasesHeading: string;
+  articlePhrasesText: string;
+  articleCustomHeading: string;
+  articleCustomText: string;
+  articleHowToHeading: string;
+  articleHowToText: string;
+  articleFeaturesHeading: string;
+  articleFeatureKeyboard: string;
+  articleFeatureLanguages: string;
+  articleFeatureStats: string;
+  articleFeatureFree: string;
+  articleRelatedHeading: string;
+  articleScreenReaderNote?: string; // English only: "blind typing" also means software for blind users
   metaDescription: string;
   cancel: string;
   selectKeyboardLayout: string;
@@ -79,7 +99,6 @@ export type TranslationKeys = {
   seoBlindTypingDescription: string; // High-value keyword description with "blind typing" (includes {lang} placeholder)
   mobileDesktopRequired: string;
   mobileDescription: string;
-  mobileFooter: string;
   languageNames: Record<LanguageCode, string>; // Must include all language codes
 };
 

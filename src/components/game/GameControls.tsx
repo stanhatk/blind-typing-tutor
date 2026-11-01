@@ -47,6 +47,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           }
           className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
           title={translations.learningMode}
+          aria-label={translations.learningMode}
         >
           <option value="beginner">{translations.beginner}</option>
           <option value="practice">{translations.practice}</option>
@@ -70,6 +71,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
             }}
             className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
             title={translations.learningLanguage}
+            aria-label={translations.learningLanguage}
           >
             {learningLanguageOptions.map((lang) => (
               <option key={lang.code} value={lang.code}>
@@ -95,6 +97,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
             onChange={(e) => setComplexity(e.target.value as Complexity)}
             className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
             title={translations.complexity}
+            aria-label={translations.complexity}
           >
             {COMPLEXITIES.map((value) => (
               <option key={value} value={value}>

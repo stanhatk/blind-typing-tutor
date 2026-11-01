@@ -15,14 +15,14 @@ body {
   background: var(--bg-gradient);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
   color: #1f2937;
 }
 
 code,
 pre,
 .font-mono {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
 
 .dark body {
@@ -149,12 +149,12 @@ pre,
 
 /* RTL font support - ensure proper font rendering for Arabic and Hebrew */
 [lang="ar"] {
-  font-family: "Inter", "Segoe UI", "Tahoma", "Arial", "Arabic Typesetting",
+  font-family: var(--font-inter), "Inter", "Segoe UI", "Tahoma", "Arial", "Arabic Typesetting",
     sans-serif;
 }
 
 [lang="he"] {
-  font-family: "Inter", "Segoe UI", "Tahoma", "Arial", "David", "Guttman Yad",
+  font-family: var(--font-inter), "Inter", "Segoe UI", "Tahoma", "Arial", "David", "Guttman Yad",
     sans-serif;
 }
 

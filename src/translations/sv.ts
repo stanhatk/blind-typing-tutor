@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Rapportera Problem",
   reportIssueTitle: "Rapportera ett problem på GitHub",
   privacyAndContact: "Integritet och kontakt",
+  typingInputLabel: "Inmatningsfält",
+  close: "Stäng",
+  articleH1: "Lär dig skriva blint – {lang}: {mode}",
+  articleIntro: "Att skriva blint betyder att skriva med alla tio fingrar utan att titta på tangentbordet. Varje finger börjar på grundraden och ansvarar för sina egna tangenter, så med regelbunden träning hittar händerna varje bokstav ur minnet. Den här gratis skrivträningen visar vilken tangent och vilket finger som kommer härnäst medan du skriver.",
+  articleWordsHeading: "Öva med ord",
+  articleWordsText: "Ordläget ger dig vanliga ord från frekvenslistor. Börja med enstaka bokstäver, gå vidare till korta ord och sedan långa ord när tangenterna känns bekanta. Korta övningar som dessa bygger det fingerminne som snabbhet består av.",
+  articlePhrasesHeading: "Öva med meningar",
+  articlePhrasesText: "Frasläget ger dig 100 vardagliga meningar med versaler, mellanslag och skiljetecken. Att skriva hela meningar tränar en jämn rytm och lär dig att läsa lite före fingrarna.",
+  articleCustomHeading: "Öva med egen text",
+  articleCustomText: "Det anpassade läget låter dig klistra in valfri text, till exempel en artikel, kod eller glosor du lär dig, och skriva den med samma tangentbordstips och statistik i realtid.",
+  articleHowToHeading: "Så övar du",
+  articleHowToText: "Vila fingrarna på grundraden och håll blicken på texten, inte på händerna. Följ den markerade tangenten och fingret på skärmtangentbordet. Sikta på noggrannhet först: snabbheten kommer med övning. Tio till femton minuter om dagen fungerar bättre än ett långt pass. Slå på korrigeringsläget för att rätta varje fel innan du går vidare.",
+  articleFeaturesHeading: "Vad tränaren erbjuder",
+  articleFeatureKeyboard: "Skärmtangentbord som markerar nästa tangent, med fingertips och färgzoner",
+  articleFeatureLanguages: "{languages} övningsspråk och {layouts} tangentbordslayouter",
+  articleFeatureStats: "Hastighet (WPM), noggrannhet och antal fel i realtid",
+  articleFeatureFree: "Gratis och utan registrering; dina inställningar stannar i din webbläsare",
+  articleRelatedHeading: "Fler övningar",
   metaDescription:
     "Lär dig blindskrift med vår gratis onlinetränare. Öva på över 40 tangentbordslayouter på 45 språk. ord/minut-spårning i realtid, noggrannhetsstatistik, visuellt tangentbord och ljudåterkoppling.",
   cancel: "Avbryt",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Skrivbordstangentbord krävs",
   mobileDescription:
     "Denna applikation är designad för användning på skrivbord med ett fysiskt tangentbord. Vänligen besök denna webbplats på en skrivbordsdator eller bärbar dator för att öva blindskrivning.",
-  mobileFooter:
-    "Blindskrivning kräver ett fysiskt tangentbord för den bästa inlärningsupplevelsen.",
   languageNames: {
     en: "Engelska",
     uk: "Ukrainska",

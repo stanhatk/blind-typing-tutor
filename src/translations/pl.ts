@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Zgłoś Problem",
   reportIssueTitle: "Zgłoś problem na GitHub",
   privacyAndContact: "Prywatność i kontakt",
+  typingInputLabel: "Pole wpisywania",
+  close: "Zamknij",
+  articleH1: "Nauka pisania bezwzrokowego – {lang}: {mode}",
+  articleIntro: "Pisanie bezwzrokowe to pisanie wszystkimi dziesięcioma palcami bez patrzenia na klawiaturę. Każdy palec zaczyna w rzędzie podstawowym i odpowiada za własne klawisze, więc dzięki regularnym ćwiczeniom dłonie odnajdują każdą literę z pamięci. Ten darmowy kurs pisania pokazuje podczas pisania, który klawisz i który palec są następne.",
+  articleWordsHeading: "Ćwiczenia na słowach",
+  articleWordsText: "Tryb Słowa podaje popularne słowa z list frekwencyjnych. Zacznij od pojedynczych liter, potem przejdź do krótkich, a następnie długich słów, gdy klawisze staną się znajome. Takie krótkie ćwiczenia budują pamięć palców, z której bierze się szybkość.",
+  articlePhrasesHeading: "Ćwiczenia na zdaniach",
+  articlePhrasesText: "Tryb Frazy podaje 100 codziennych zdań z wielkimi literami, spacjami i interpunkcją. Pisanie całych zdań wyrabia równy rytm i uczy czytania nieco przed palcami.",
+  articleCustomHeading: "Ćwiczenia na własnym tekście",
+  articleCustomText: "Tryb własny pozwala wkleić dowolny tekst, na przykład artykuł, kod lub słówka, których się uczysz, i przepisywać go z tymi samymi podpowiedziami klawiatury i statystykami na żywo.",
+  articleHowToHeading: "Jak ćwiczyć",
+  articleHowToText: "Połóż palce na rzędzie podstawowym i patrz na tekst, nie na dłonie. Podążaj za podświetlonym klawiszem i palcem na klawiaturze ekranowej. Najpierw dbaj o dokładność, szybkość przyjdzie z praktyką. Dziesięć–piętnaście minut dziennie działa lepiej niż jedna długa sesja. Włącz tryb poprawiania, aby poprawić każdy błąd przed przejściem dalej.",
+  articleFeaturesHeading: "Co oferuje trener",
+  articleFeatureKeyboard: "Klawiatura ekranowa podświetlająca następny klawisz, z podpowiedziami palców i strefami kolorów",
+  articleFeatureLanguages: "Języki do ćwiczeń: {languages}, układy klawiatury: {layouts}",
+  articleFeatureStats: "Szybkość (WPM), dokładność i liczba błędów na żywo",
+  articleFeatureFree: "Za darmo i bez rejestracji; ustawienia zostają w Twojej przeglądarce",
+  articleRelatedHeading: "Więcej ćwiczeń",
   metaDescription:
     "Opanuj pisanie bezwzrokowe z naszym darmowym trenerem online. Ćwicz na ponad 40 układach klawiatury w 45 językach. Śledzenie słów/minutę w czasie rzeczywistym, statystyki dokładności, wizualna klawiatura i dźwięki.",
   cancel: "Anuluj",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Wymagana klawiatura stacjonarna",
   mobileDescription:
     "Ta aplikacja jest przeznaczona do użytku na komputerze stacjonarnym z fizyczną klawiaturą. Proszę odwiedzić tę stronę na komputerze stacjonarnym lub laptopie, aby ćwiczyć pisanie bezwzrokowe.",
-  mobileFooter:
-    "Pisanie bezwzrokowe wymaga fizycznej klawiatury dla najlepszego doświadczenia w nauce.",
   languageNames: {
     en: "Angielski",
     uk: "Ukraiński",

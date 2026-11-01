@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Laporkan Masalah",
   reportIssueTitle: "Laporkan masalah di GitHub",
   privacyAndContact: "Privasi & kontak",
+  typingInputLabel: "Kolom ketik",
+  close: "Tutup",
+  articleH1: "Latihan mengetik 10 jari – {lang}: {mode}",
+  articleIntro: "Mengetik 10 jari berarti mengetik dengan semua jari tanpa melihat keyboard. Setiap jari mulai dari baris dasar dan bertanggung jawab atas tombolnya sendiri, sehingga dengan latihan rutin tangan Anda menemukan setiap huruf dari ingatan. Latihan mengetik gratis ini menunjukkan tombol dan jari berikutnya saat Anda mengetik.",
+  articleWordsHeading: "Latihan dengan kata",
+  articleWordsText: "Mode Kata memberikan kata-kata umum dari daftar frekuensi. Mulailah dengan huruf tunggal, lalu beralih ke kata pendek dan kemudian kata panjang seiring tombol menjadi akrab. Latihan singkat seperti ini membangun memori jari yang menjadi dasar kecepatan.",
+  articlePhrasesHeading: "Latihan dengan kalimat",
+  articlePhrasesText: "Mode Frasa memberikan 100 kalimat sehari-hari dengan huruf kapital, spasi, dan tanda baca. Mengetik kalimat utuh melatih ritme yang stabil dan mengajarkan Anda membaca sedikit di depan jari.",
+  articleCustomHeading: "Latihan dengan teks sendiri",
+  articleCustomText: "Mode kustom memungkinkan Anda menempelkan teks apa pun, seperti artikel, kode, atau kosakata yang sedang dipelajari, lalu mengetiknya dengan petunjuk keyboard dan statistik langsung yang sama.",
+  articleHowToHeading: "Cara berlatih",
+  articleHowToText: "Letakkan jari di baris dasar dan arahkan mata ke teks, bukan ke tangan. Ikuti tombol dan jari yang disorot di keyboard layar. Utamakan ketepatan dulu; kecepatan datang dengan latihan. Sepuluh hingga lima belas menit sehari lebih efektif daripada satu sesi panjang. Aktifkan mode koreksi untuk memperbaiki setiap kesalahan sebelum melanjutkan.",
+  articleFeaturesHeading: "Yang ditawarkan pelatih ini",
+  articleFeatureKeyboard: "Keyboard layar yang menyorot tombol berikutnya, dengan petunjuk jari dan zona warna",
+  articleFeatureLanguages: "{languages} bahasa latihan dan {layouts} tata letak keyboard",
+  articleFeatureStats: "Kecepatan (WPM), ketepatan, dan jumlah kesalahan secara langsung",
+  articleFeatureFree: "Gratis tanpa pendaftaran; pengaturan Anda tersimpan di browser Anda",
+  articleRelatedHeading: "Latihan lainnya",
   metaDescription:
     "Kuasai teknik mengetik sepuluh jari dengan tutor mengetik buta online gratis kami. Berlatihlah di lebih dari 40 tata letak keyboard dalam 45 bahasa. Pelacakan kata/menit real-time, statistik akurasi, dan keyboard visual.",
   cancel: "Batal",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Keyboard desktop diperlukan",
   mobileDescription:
     "Aplikasi ini dirancang untuk penggunaan desktop dengan keyboard fisik. Silakan kunjungi situs ini di komputer desktop atau laptop untuk berlatih mengetik.",
-  mobileFooter:
-    "Mengetik sepuluh jari memerlukan keyboard fisik untuk pengalaman belajar terbaik.",
   languageNames: {
     en: "Bahasa Inggris",
     uk: "Bahasa Ukraina",

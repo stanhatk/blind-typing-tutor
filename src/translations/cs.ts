@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Nahlásit Problém",
   reportIssueTitle: "Nahlásit problém na GitHub",
   privacyAndContact: "Soukromí a kontakt",
+  typingInputLabel: "Pole pro psaní",
+  close: "Zavřít",
+  articleH1: "Psaní všemi deseti – {lang}: {mode}",
+  articleIntro: "Psaní všemi deseti znamená psát všemi prsty, aniž byste se dívali na klávesnici. Každý prst začíná na základní řadě a má na starosti své klávesy, takže při pravidelném cvičení ruce najdou každé písmeno zpaměti. Tento bezplatný trenažér při psaní ukazuje, která klávesa a který prst přijdou na řadu.",
+  articleWordsHeading: "Cvičení se slovy",
+  articleWordsText: "Režim Slova nabízí běžná slova z frekvenčních seznamů. Začněte jednotlivými písmeny, pak přejděte ke krátkým a nakonec k dlouhým slovům, jakmile vám klávesy zevšední. Taková krátká cvičení budují paměť prstů, ze které vzniká rychlost.",
+  articlePhrasesHeading: "Cvičení s větami",
+  articlePhrasesText: "Režim Fráze nabízí 100 každodenních vět s velkými písmeny, mezerami a interpunkcí. Psaní celých vět trénuje plynulý rytmus a učí číst kousek před prsty.",
+  articleCustomHeading: "Cvičení s vlastním textem",
+  articleCustomText: "Vlastní režim vám umožní vložit libovolný text, třeba článek, kód nebo slovíčka, která se učíte, a psát ho se stejnými nápovědami klávesnice a živými statistikami.",
+  articleHowToHeading: "Jak cvičit",
+  articleHowToText: "Položte prsty na základní řadu a dívejte se na text, ne na ruce. Řiďte se zvýrazněnou klávesou a prstem na klávesnici na obrazovce. Nejdřív se soustřeďte na přesnost, rychlost přijde s praxí. Deset až patnáct minut denně funguje lépe než jedno dlouhé cvičení. Zapněte režim opravy, abyste každou chybu opravili, než budete pokračovat.",
+  articleFeaturesHeading: "Co trenažér nabízí",
+  articleFeatureKeyboard: "Klávesnice na obrazovce zvýrazňuje další klávesu, s nápovědou prstů a barevnými zónami",
+  articleFeatureLanguages: "Jazyky k procvičování: {languages}, rozložení klávesnice: {layouts}",
+  articleFeatureStats: "Rychlost (WPM), přesnost a počet chyb v reálném čase",
+  articleFeatureFree: "Zdarma a bez registrace; nastavení zůstává ve vašem prohlížeči",
+  articleRelatedHeading: "Další cvičení",
   metaDescription:
     "Naučte se psát všemi deseti s naším bezplatným online trenérem. Cvičte na více než 40 rozloženích klávesnice v 45 jazycích. Sledování slov/minutu v reálném čase, statistiky přesnosti a vizuální klávesnice.",
   cancel: "Zrušit",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Vyžaduje se stolní klávesnice",
   mobileDescription:
     "Tato aplikace je navržena pro použití na stolním počítači s fyzickou klávesnicí. Navštivte prosím tento web na stolním počítači nebo notebooku, abyste mohli cvičit slepé psaní.",
-  mobileFooter:
-    "Slepé psaní vyžaduje fyzickou klávesnici pro nejlepší zážitek z učení.",
   languageNames: {
     en: "Angličtina",
     uk: "Ukrajinština",

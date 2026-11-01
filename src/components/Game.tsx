@@ -149,6 +149,7 @@ export const Game: React.FC<GameProps> = ({
         inputRef={inputRef}
         language={language}
         dir={getPracticeTextDirection(language)}
+        ariaLabel={gameTranslations.typingInputLabel}
       />
 
       <BottomControls

@@ -60,6 +60,7 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               onChange={(e) => setLayoutId(e.target.value as KeyboardLayoutId)}
               className="appearance-none bg-white dark:bg-gray-800 border-2 border-indigo-200 dark:border-indigo-800 text-gray-900 dark:text-white py-2.5 pl-10 pr-8 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none text-sm font-semibold transition-all shadow-sm hover:shadow-md"
               title={translations.selectKeyboardLayout}
+              aria-label={translations.selectKeyboardLayout}
             >
               {availableLayouts.map((layout) => (
                 <option key={layout.id} value={layout.id}>
@@ -83,6 +84,8 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-gray-800/60"
             }`}
           title={translations.toggleKeyboard}
+          aria-label={translations.toggleKeyboard}
+          aria-pressed={showKeyboard}
         >
           <KeyboardIcon size={18} />
         </button>
@@ -95,6 +98,8 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-gray-800/60"
             }`}
           title={translations.toggleHands}
+          aria-label={translations.toggleHands}
+          aria-pressed={showHands}
         >
           <Hand size={18} />
         </button>
@@ -107,6 +112,8 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-gray-800/60"
             }`}
           title={translations.toggleColors}
+          aria-label={translations.toggleColors}
+          aria-pressed={showColors}
         >
           <Palette size={18} />
         </button>
@@ -119,6 +126,8 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-gray-800/60"
             }`}
           title={translations.toggleCorrection}
+          aria-label={translations.toggleCorrection}
+          aria-pressed={correctionMode}
         >
           <CheckCircle size={18} />
         </button>
@@ -131,6 +140,8 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
               : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-gray-800/60"
             }`}
           title={soundEnabled ? translations.soundOn : translations.soundOff}
+          aria-label={soundEnabled ? translations.soundOn : translations.soundOff}
+          aria-pressed={soundEnabled}
         >
           {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
         </button>

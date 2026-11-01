@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Probleem Melden",
   reportIssueTitle: "Probleem melden op GitHub",
   privacyAndContact: "Privacy & contact",
+  typingInputLabel: "Invoerveld",
+  close: "Sluiten",
+  articleH1: "Blind typen oefenen – {lang}: {mode}",
+  articleIntro: "Blind typen betekent typen met tien vingers zonder naar het toetsenbord te kijken. Elke vinger begint op de thuisrij en is verantwoordelijk voor eigen toetsen, zodat je handen met regelmatige oefening elke letter uit het geheugen vinden. Deze gratis typecursus laat tijdens het typen zien welke toets en welke vinger de volgende zijn.",
+  articleWordsHeading: "Oefenen met woorden",
+  articleWordsText: "De modus Woorden geeft je veelvoorkomende woorden uit frequentielijsten. Begin met losse letters, ga dan naar korte woorden en daarna naar lange woorden zodra de toetsen vertrouwd voelen. Zulke korte oefeningen bouwen het vingergeheugen op waar snelheid uit voortkomt.",
+  articlePhrasesHeading: "Oefenen met zinnen",
+  articlePhrasesText: "De modus Zinnen geeft je 100 alledaagse zinnen met hoofdletters, spaties en leestekens. Hele zinnen typen traint een gelijkmatig ritme en leert je een stukje vóór je vingers uit te lezen.",
+  articleCustomHeading: "Oefenen met je eigen tekst",
+  articleCustomText: "Met de eigen modus plak je elke tekst, zoals een artikel, code of woordjes die je leert, en typ je die met dezelfde toetsenbordhints en live statistieken.",
+  articleHowToHeading: "Zo oefen je",
+  articleHowToText: "Leg je vingers op de thuisrij en houd je ogen op de tekst, niet op je handen. Volg de gemarkeerde toets en vinger op het schermtoetsenbord. Ga eerst voor nauwkeurigheid: snelheid komt met oefening. Tien tot vijftien minuten per dag werkt beter dan één lange sessie. Zet de correctiemodus aan om elke fout te herstellen voordat je verdergaat.",
+  articleFeaturesHeading: "Wat de trainer biedt",
+  articleFeatureKeyboard: "Schermtoetsenbord dat de volgende toets markeert, met vingerhints en kleurzones",
+  articleFeatureLanguages: "{languages} oefentalen en {layouts} toetsenbordindelingen",
+  articleFeatureStats: "Live snelheid (WPM), nauwkeurigheid en aantal fouten",
+  articleFeatureFree: "Gratis en zonder account; je instellingen blijven in je browser",
+  articleRelatedHeading: "Meer oefeningen",
   metaDescription:
     "Leer blind typen met onze gratis online trainer. Oefen op meer dan 40 toetsenbordindelingen in 45 talen. Realtime woorden/minuut-tracking, nauwkeurigheidsstatistieken, visueel toetsenbord en audiofeedback.",
   cancel: "Annuleren",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Desktop toetsenbord vereist",
   mobileDescription:
     "Deze applicatie is ontworpen voor gebruik op een desktop met een fysiek toetsenbord. Bezoek deze site op een desktop of laptop computer om blind typen te oefenen.",
-  mobileFooter:
-    "Blind typen vereist een fysiek toetsenbord voor de beste leerervaring.",
   languageNames: {
     en: "Engels",
     uk: "Oekraïens",

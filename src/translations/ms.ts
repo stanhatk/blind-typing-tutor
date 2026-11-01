@@ -32,6 +32,24 @@ export const translations = {
   reportIssue: "Laporkan Masalah",
   reportIssueTitle: "Laporkan masalah di GitHub",
   privacyAndContact: "Privasi & hubungi",
+  typingInputLabel: "Ruang taip",
+  close: "Tutup",
+  articleH1: "Latihan menaip sentuh – {lang}: {mode}",
+  articleIntro: "Menaip sentuh bermaksud menaip dengan kesemua sepuluh jari tanpa melihat papan kekunci. Setiap jari bermula di baris asas dan bertanggungjawab atas kekuncinya sendiri, jadi dengan latihan berterusan tangan anda menemui setiap huruf daripada ingatan. Latihan menaip percuma ini menunjukkan kekunci dan jari seterusnya semasa anda menaip.",
+  articleWordsHeading: "Berlatih dengan perkataan",
+  articleWordsText: "Mod Perkataan memberi anda perkataan biasa daripada senarai kekerapan. Mulakan dengan huruf tunggal, kemudian beralih ke perkataan pendek dan seterusnya perkataan panjang apabila kekunci menjadi biasa. Latihan pendek seperti ini membina ingatan jari yang menjadi asas kelajuan.",
+  articlePhrasesHeading: "Berlatih dengan ayat",
+  articlePhrasesText: "Mod Frasa memberi anda 100 ayat harian dengan huruf besar, ruang dan tanda baca. Menaip ayat penuh melatih rentak yang stabil dan mengajar anda membaca sedikit di hadapan jari.",
+  articleCustomHeading: "Berlatih dengan teks sendiri",
+  articleCustomText: "Mod tersuai membolehkan anda menampal sebarang teks, seperti artikel, kod atau kosa kata yang sedang dipelajari, dan menaipnya dengan petunjuk papan kekunci serta statistik langsung yang sama.",
+  articleHowToHeading: "Cara berlatih",
+  articleHowToText: "Letakkan jari di baris asas dan pandang teks, bukan tangan. Ikut kekunci dan jari yang diserlahkan pada papan kekunci skrin. Utamakan ketepatan dahulu; kelajuan datang dengan latihan. Sepuluh hingga lima belas minit sehari lebih berkesan daripada satu sesi panjang. Hidupkan mod pembetulan untuk membetulkan setiap kesilapan sebelum meneruskan.",
+  articleFeaturesHeading: "Apa yang ditawarkan",
+  articleFeatureKeyboard: "Papan kekunci skrin yang menyerlahkan kekunci seterusnya, dengan petunjuk jari dan zon warna",
+  articleFeatureLanguages: "{languages} bahasa latihan dan {layouts} susun atur papan kekunci",
+  articleFeatureStats: "Kelajuan (WPM), ketepatan dan bilangan kesilapan secara langsung",
+  articleFeatureFree: "Percuma tanpa pendaftaran; tetapan anda kekal dalam pelayar anda",
+  articleRelatedHeading: "Latihan lain",
   metaDescription:
     "Kuasai kemahiran menaip pantas dengan tutor menaip buta dalam talian percuma kami. Berlatih pada lebih 40 reka letak papan kekunci dalam 45 bahasa. Penjejakan perkataan/minit masa nyata, statistik ketepatan dan papan kekunci visual.",
   cancel: "Batal",
@@ -52,8 +70,6 @@ export const translations = {
   mobileDesktopRequired: "Papan kekunci desktop diperlukan",
   mobileDescription:
     "Aplikasi ini direka untuk kegunaan desktop dengan papan kekunci fizikal. Sila lawati laman web ini di komputer desktop atau komputer riba untuk berlatih menaip.",
-  mobileFooter:
-    "Menaip pantas memerlukan papan kekunci fizikal untuk pengalaman pembelajaran terbaik.",
   languageNames: {
     en: "Bahasa Inggeris",
     uk: "Bahasa Ukraine",
