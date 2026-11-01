@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Støt dette projekt",
   reportIssue: "Rapporter Problem",
   reportIssueTitle: "Rapporter et problem på GitHub",
+  privacyAndContact: "Privatliv og kontakt",
   metaDescription:
-    "Lær blindskrift med vores gratis online træner. Øv dig på over 40 tastaturlayouts på 8 sprog. Realtids ord/minut-sporing, nøjagtighedsstatistik, visuelt tastatur og lydfeedback.",
+    "Lær blindskrift med vores gratis online træner. Øv dig på over 40 tastaturlayouts på 45 sprog. Realtids ord/minut-sporing, nøjagtighedsstatistik, visuelt tastatur og lydfeedback.",
   cancel: "Annuller",
   selectKeyboardLayout: "Tastaturlayout vælg",
   seoTitle: "Blindskrivning Træner | Skriveøvelser Online",
   seoDescription:
-    "Lær blindskrift med vores gratis online træner. Øv dig på over 40 tastaturlayouts på 8 sprog med realtids ord/minut-sporing, nøjagtighedsstatistik, visuelt tastatur og lydfeedback. Lær at skrive uden at kigge på tastaturet.",
+    "Lær blindskrift med vores gratis online træner. Øv dig på over 40 tastaturlayouts på 45 sprog med realtids ord/minut-sporing, nøjagtighedsstatistik, visuelt tastatur og lydfeedback. Lær at skrive uden at kigge på tastaturet.",
   seoKeywords:
     "blindskrivning, skrivning, skrivetræner, tastaturtræner, skriveøvelser, skrivehastighed, ord per minut, skrivenøjagtighed, online skrivetræner, lære blindskrivning, skrive uden at kigge, tastaturtræning, skrivelektioner, skriveøvelser",
   seoTitleWords: "Øv blindskrift med ord — {lang} | Blindskrift-træner",

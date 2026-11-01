@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Támogasd ezt a projektet",
   reportIssue: "Probléma Bejelentése",
   reportIssueTitle: "Probléma bejelentése a GitHubon",
+  privacyAndContact: "Adatvédelem és kapcsolat",
   metaDescription:
-    "Tanuljon meg vakon gépelni ingyenes online oktatónkkal. Gyakoroljon több mint billentyűzetkiosztáson 8 nyelven. Valós idejű szó/perc-követés, pontossági statisztikák és vizuális billentyűzet.",
+    "Tanuljon meg vakon gépelni ingyenes online oktatónkkal. Gyakoroljon több mint billentyűzetkiosztáson 45 nyelven. Valós idejű szó/perc-követés, pontossági statisztikák és vizuális billentyűzet.",
   cancel: "Mégse",
   selectKeyboardLayout: "Billentyűzetkiosztás kiválasztása",
   seoTitle: "Vak Gépelés Oktató | Gépelés Gyakorlás Online",
   seoDescription:
-    "Tanuljon meg vakon gépelni ingyenes online oktatónkkal. Gyakoroljon több mint 28 billentyűzetkiosztáson 8 nyelven valós idejű szó/perc-követéssel, pontossági statisztikákkal és vizuális billentyűzettel. Tanuljon meg gépelni a billentyűzetre nézés nélkül.",
+    "Tanuljon meg vakon gépelni ingyenes online oktatónkkal. Gyakoroljon több mint 40 billentyűzetkiosztáson 45 nyelven valós idejű szó/perc-követéssel, pontossági statisztikákkal és vizuális billentyűzettel. Tanuljon meg gépelni a billentyűzetre nézés nélkül.",
   seoKeywords:
     "vak gépelés, gépelés, gépelés oktató, billentyűzet oktató, gépelés gyakorlás, gépelési sebesség, szó per perc, gépelési pontosság, online gépelés oktató, megtanulni vak gépelést, gépelés nézés nélkül, billentyűzet képzés, gépelés leckék, gépelés gyakorlatok",
   seoTitleWords: "Vakon gépelés szavakkal — {lang} | Gépírás gyakorló",

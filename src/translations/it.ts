@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Supporta questo progetto",
   reportIssue: "Segnala Problema",
   reportIssueTitle: "Segnala un problema su GitHub",
+  privacyAndContact: "Privacy e contatti",
   metaDescription:
-    "Impara la dattilografia con il nostro tutor online gratuito. Esercitati su oltre 28 layout di tastiera in 8 lingue. Monitoraggio parole/minuto in tempo reale, statistiche di precisione, tastiera visiva e feedback audio.",
+    "Impara la dattilografia con il nostro tutor online gratuito. Esercitati su oltre 40 layout di tastiera in 45 lingue. Monitoraggio parole/minuto in tempo reale, statistiche di precisione, tastiera visiva e feedback audio.",
   cancel: "Annulla",
   selectKeyboardLayout: "Seleziona layout tastiera",
   seoTitle: "Tutor di Dattilografia | Pratica di Scrittura Online",
   seoDescription:
-    "Impara la dattilografia con il nostro tutor online gratuito. Esercitati su oltre 28 layout di tastiera con monitoraggio parole/minuto in tempo reale, statistiche di precisione e tastiera visiva. Impara a digitare senza guardare la tastiera.",
+    "Impara la dattilografia con il nostro tutor online gratuito. Esercitati su oltre 40 layout di tastiera con monitoraggio parole/minuto in tempo reale, statistiche di precisione e tastiera visiva. Impara a digitare senza guardare la tastiera.",
   seoKeywords:
     "dattilografia, scrittura alla cieca, tutor di dattilografia, trainer di tastiera, pratica di dattilografia, velocità di scrittura, parole al minuto, precisione di scrittura, tutor di dattilografia online, imparare dattilografia, digitare senza guardare, formazione tastiera, lezioni di dattilografia, esercizi di dattilografia",
   seoTitleWords: "Dattilografia con le parole — {lang} | Corso di dattilografia",

@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Apoiar este projeto",
   reportIssue: "Reportar Problema",
   reportIssueTitle: "Reportar un problema no GitHub",
+  privacyAndContact: "Privacidade e contato",
   metaDescription:
-    "Domine a digitação com nosso treinador online gratuito. Pratique em mais de 28 layouts de teclado em 8 idiomas. Acompanhamento de PPM em tempo real, estatísticas de precisão, teclado visual e feedback de áudio.",
+    "Domine a digitação com nosso treinador online gratuito. Pratique em mais de 40 layouts de teclado em 45 idiomas. Acompanhamento de PPM em tempo real, estatísticas de precisão, teclado visual e feedback de áudio.",
   cancel: "Cancelar",
   selectKeyboardLayout: "Disposiciones de teclado",
   seoTitle: "Treinador de Digitação | Prática de Digitação Online",
   seoDescription:
-    "Domine a digitação com nosso treinador online gratuito. Pratique em mais de 28 layouts de teclado com acompanhamento de PPM em tempo real, estatísticas de precisão e teclado visual. Aprenda a digitar sem olhar para o teclado.",
+    "Domine a digitação com nosso treinador online gratuito. Pratique em mais de 40 layouts de teclado com acompanhamento de PPM em tempo real, estatísticas de precisão e teclado visual. Aprenda a digitar sem olhar para o teclado.",
   seoKeywords:
     "digitação, digitação às cegas, tutor de digitação, treinador de teclado, prática de digitação, velocidade de digitação, PPM, precisão de digitação, treinador de digitação online, aprender digitação, digitar sem olhar, treinamento de teclado, lições de digitação, exercícios de digitação",
   seoTitleWords: "Praticar Digitação com Palavras | Tutor {lang}",

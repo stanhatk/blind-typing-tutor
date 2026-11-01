@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Dukung proyek ini",
   reportIssue: "Laporkan Masalah",
   reportIssueTitle: "Laporkan masalah di GitHub",
+  privacyAndContact: "Privasi & kontak",
   metaDescription:
-    "Kuasai teknik mengetik sepuluh jari dengan tutor mengetik buta online gratis kami. Berlatihlah di lebih dari 28 tata letak keyboard dalam 8 bahasa. Pelacakan kata/menit real-time, statistik akurasi, dan keyboard visual.",
+    "Kuasai teknik mengetik sepuluh jari dengan tutor mengetik buta online gratis kami. Berlatihlah di lebih dari 40 tata letak keyboard dalam 45 bahasa. Pelacakan kata/menit real-time, statistik akurasi, dan keyboard visual.",
   cancel: "Batal",
   selectKeyboardLayout: "Pilih tata letak keyboard",
   seoTitle: "Tutor Mengetik Buta | Latihan Mengetik Online",
   seoDescription:
-    "Kuasai teknik mengetik sepuluh jari dengan tutor mengetik buta online gratis kami. Berlatihlah di lebih dari 28 tata letak keyboard dalam 8 bahasa dengan pelacakan kata/menit real-time, statistik akurasi, dan keyboard visual. Belajar mengetik tanpa melihat keyboard.",
+    "Kuasai teknik mengetik sepuluh jari dengan tutor mengetik buta online gratis kami. Berlatihlah di lebih dari 40 tata letak keyboard dalam 45 bahasa dengan pelacakan kata/menit real-time, statistik akurasi, dan keyboard visual. Belajar mengetik tanpa melihat keyboard.",
   seoKeywords:
     "mengetik sepuluh jari, mengetik buta, tutor mengetik, pelatih keyboard, latihan mengetik, kecepatan mengetik, kata per menit, akurasi mengetik, tutor mengetik online, belajar mengetik sepuluh jari, mengetik tanpa melihat, pelatihan keyboard, pelajaran mengetik, latihan mengetik",
   seoTitleWords: "Latihan Mengetik {lang} dengan Kata | Mengetik 10 Jari",

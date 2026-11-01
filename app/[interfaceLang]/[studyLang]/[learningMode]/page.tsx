@@ -4,10 +4,12 @@ import { AppContent } from "./AppContent";
 import { SEOContent } from "./SEOContent";
 import type { ContentType } from "@/utils/url";
 import {
+  BASE_URL,
   INTERFACE_LANGUAGE_OPTIONS,
   LEARNING_LANGUAGE_OPTIONS,
 } from "@/config/constants";
 import { generatePageMetadata } from "@/utils/metadata";
+import { translations, type InterfaceLanguage } from "@/translations";
 
 const CONTENT_TYPES: ContentType[] = ["words", "phrases", "custom"];
 
@@ -80,18 +82,79 @@ export default async function LearningModePage({ params }: PageProps) {
     studyLang,
     learningMode,
   });
+  const t = translations[interfaceLang as InterfaceLanguage];
+  const pageUrl = String(metadata.alternates?.canonical);
+  const studyLangName =
+    t.languageNames[studyLang as keyof typeof t.languageNames] ?? studyLang;
+  const modeName =
+    learningMode === "words"
+      ? t.words
+      : learningMode === "phrases"
+        ? t.phrases
+        : t.custom;
+
+  // One site-wide entity graph; only the WebPage and breadcrumbs vary per URL
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: metadata.title,
-    description: metadata.description,
-    url: metadata.alternates?.canonical,
-    inLanguage: interfaceLang,
-    applicationCategory: "EducationalApplication",
-    operatingSystem: "Any",
-    browserRequirements: "Requires JavaScript",
-    isAccessibleForFree: true,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${BASE_URL}/#org`,
+        name: "WordMemo",
+        url: "https://www.wordmemo.net/",
+        logo: `${BASE_URL}/apple-touch-icon.png`,
+        founder: { "@type": "Person", name: "Stanislav Khatko" },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: `${BASE_URL}/`,
+        name: "Blind Typing Tutor",
+        publisher: { "@id": `${BASE_URL}/#org` },
+      },
+      {
+        "@type": "WebApplication",
+        "@id": `${BASE_URL}/#app`,
+        name: "Blind Typing Tutor",
+        url: `${BASE_URL}/`,
+        applicationCategory: "EducationalApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript",
+        isAccessibleForFree: true,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        publisher: { "@id": `${BASE_URL}/#org` },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#page`,
+        url: pageUrl,
+        name: metadata.title,
+        description: metadata.description,
+        inLanguage: interfaceLang,
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        mainEntity: { "@id": `${BASE_URL}/#app` },
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: t.title,
+            item: `${BASE_URL}/${interfaceLang}/${interfaceLang}/words`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: studyLangName,
+            item: `${BASE_URL}/${interfaceLang}/${studyLang}/words`,
+          },
+          { "@type": "ListItem", position: 3, name: modeName },
+        ],
+      },
+    ],
   };
 
   return (
@@ -114,6 +177,11 @@ export default async function LearningModePage({ params }: PageProps) {
         studyLang={studyLang}
         learningMode={learningMode as ContentType}
       />
+      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        <a href="/privacy" className="hover:underline">
+          {t.privacyAndContact}
+        </a>
+      </footer>
     </>
   );
 }

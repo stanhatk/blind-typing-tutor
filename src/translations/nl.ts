@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Ondersteun dit project",
   reportIssue: "Probleem Melden",
   reportIssueTitle: "Probleem melden op GitHub",
+  privacyAndContact: "Privacy & contact",
   metaDescription:
-    "Leer blind typen met onze gratis online trainer. Oefen op meer dan 28 toetsenbordindelingen in 8 talen. Realtime woorden/minuut-tracking, nauwkeurigheidsstatistieken, visueel toetsenbord en audiofeedback.",
+    "Leer blind typen met onze gratis online trainer. Oefen op meer dan 40 toetsenbordindelingen in 45 talen. Realtime woorden/minuut-tracking, nauwkeurigheidsstatistieken, visueel toetsenbord en audiofeedback.",
   cancel: "Annuleren",
   selectKeyboardLayout: "Toetsenbordindeling selecteren",
   seoTitle: "Blind Typen Trainer | Typen Oefenen Online",
   seoDescription:
-    "Leer blind typen met onze gratis online trainer. Oefen op meer dan 28 toetsenbordindelingen in 8 talen met realtime woorden/minuut-tracking, nauwkeurigheidsstatistieken en visueel toetsenbord. Leer typen zonder naar het toetsenbord te kijken.",
+    "Leer blind typen met onze gratis online trainer. Oefen op meer dan 40 toetsenbordindelingen in 45 talen met realtime woorden/minuut-tracking, nauwkeurigheidsstatistieken en visueel toetsenbord. Leer typen zonder naar het toetsenbord te kijken.",
   seoKeywords:
     "blind typen, typen, typtrainer, toetsenbordtrainer, typeoefeningen, typesnelheid, woorden per minuut, typeprecisie, online typtrainer, blind typen leren, typen zonder te kijken, toetsenbordtraining, typlessen, typeoefeningen",
   seoTitleWords: "Blind typen oefenen met woorden in het {lang} | Typetrainer",

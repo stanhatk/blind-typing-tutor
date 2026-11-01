@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "支持这个项目",
   reportIssue: "报告问题",
   reportIssueTitle: "在 GitHub 上报告问题",
+  privacyAndContact: "隐私与联系",
   metaDescription:
-    "通过我们的免费在线盲打训练器掌握触摸打字。在 8 种语言의 28 多种键盘布局（QWERTY、QWERTZ、AZERTY）上进行练习。实时词/分钟跟踪、准确度统计和视觉键盘。",
+    "通过我们的免费在线盲打训练器掌握触摸打字。在 45 种语言的 40 多种键盘布局（QWERTY、QWERTZ、AZERTY）上进行练习。实时词/分钟跟踪、准确度统计和视觉键盘。",
   cancel: "取消",
   selectKeyboardLayout: "选择键盘布局",
   seoTitle: "盲打训练器 | 在线打字练习",
   seoDescription:
-    "通过我们的免费在线盲打训练器掌握触摸打字。在28多种键盘布局上进行练习，实时词/分钟跟踪、准确度统计和视觉键盘。学习不看键盘打字。",
+    "通过我们的免费在线盲打训练器掌握触摸打字。在40多种键盘布局上进行练习，实时词/分钟跟踪、准确度统计和视觉键盘。学习不看键盘打字。",
   seoKeywords:
     "盲打, 触摸打字, 打字训练, 键盘训练, 打字练习, 打字速度, 每分钟字数, 打字准确度, 在线打字训练, 学习盲打, 不看键盘打字, 键盘训练, 打字课程, 打字练习",
   seoTitleWords: "用单词练习打字 | {lang}打字教练",

@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Tue tätä projektia",
   reportIssue: "Ilmoita Ongelma",
   reportIssueTitle: "Ilmoita ongelma GitHubissa",
+  privacyAndContact: "Tietosuoja ja yhteystiedot",
   metaDescription:
-    "Opi sokkakirjoitus ilmaisella verkkovalmentajallamme. Harjoittele yli 28 näppäimistöasettelulla 8 kielellä. Reaaliaikainen sanaa/minuutti-seuranta, tarkkuustilastot, visuaalinen näppäimistö ja äänipalaute.",
+    "Opi sokkakirjoitus ilmaisella verkkovalmentajallamme. Harjoittele yli 40 näppäimistöasettelulla 45 kielellä. Reaaliaikainen sanaa/minuutti-seuranta, tarkkuustilastot, visuaalinen näppäimistö ja äänipalaute.",
   cancel: "Peruuta",
   selectKeyboardLayout: "Näppäimistöasettelu valitse",
   seoTitle: "Sokkakirjoitus Ohjaaja | Kirjoitusharjoitukset Online",
   seoDescription:
-    "Opi sokkakirjoitus ilmaisella verkkovalmentajallamme. Harjoittele yli 28 näppäimistöasettelulla 8 kielellä reaaliaikaisella sanaa/minuutti-seurannalla, tarkkuustilastoilla ja visuaalisella näppäimistöllä. Opi kirjoittamaan katsomatta näppäimistöä.",
+    "Opi sokkakirjoitus ilmaisella verkkovalmentajallamme. Harjoittele yli 40 näppäimistöasettelulla 45 kielellä reaaliaikaisella sanaa/minuutti-seurannalla, tarkkuustilastoilla ja visuaalisella näppäimistöllä. Opi kirjoittamaan katsomatta näppäimistöä.",
   seoKeywords:
     "sokkakirjoitus, kirjoittaminen, kirjoitustreeneri, näppäimistötreeneri, kirjoitusharjoitukset, kirjoitusnopeus, sanaa minuutissa, kirjoitustarkkuus, online kirjoitustreeneri, oppia sokkakirjoitus, kirjoittaa katsomatta, näppäimistökoulutus, kirjoitustunnit, kirjoitusharjoitukset",
   seoTitleWords: "Kymmensormijärjestelmä sanoilla — {lang} | Konekirjoitusharjoitus",

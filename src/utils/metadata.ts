@@ -245,8 +245,12 @@ export function generatePageMetadata(options: MetadataOptions): Metadata {
     t.languageNames && validatedInterfaceLang in t.languageNames
       ? t.languageNames[validatedInterfaceLang]
       : validatedInterfaceLang.toUpperCase();
-  if (titleCopied) title = withInterfaceLanguage(title, interfaceName);
-  if (descriptionCopied) description = withInterfaceLanguage(description, interfaceName);
+  // English is the source of the templates, so English pages are never copies
+  const isEnglish = validatedInterfaceLang === "en";
+  if (titleCopied && !isEnglish) title = withInterfaceLanguage(title, interfaceName);
+  if (descriptionCopied && !isEnglish) {
+    description = withInterfaceLanguage(description, interfaceName);
+  }
 
   const keywords = t.seoKeywords || t.seoDescription || "";
 

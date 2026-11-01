@@ -31,8 +31,9 @@ export const translations = {
   supportTitle: "Support this project",
   reportIssue: "Report Issue",
   reportIssueTitle: "Report an issue on GitHub",
+  privacyAndContact: "Privacy & contact",
   metaDescription:
-    "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts (QWERTY, QWERTZ, AZERTY) in 8 languages. Real-time words/minute tracking, accuracy stats, visual keyboard, and audio feedback.",
+    "Master touch typing with our free online blind typing tutor. Practice on 40+ keyboard layouts (QWERTY, QWERTZ, AZERTY) in 45 languages. Real-time words/minute tracking, accuracy stats, visual keyboard, and audio feedback.",
   cancel: "Cancel",
   selectKeyboardLayout: "Select keyboard layout",
   seoTitle: "Touch Typing Trainer | Blind Typing Practice Online",

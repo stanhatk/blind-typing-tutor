@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Stöd detta projekt",
   reportIssue: "Rapportera Problem",
   reportIssueTitle: "Rapportera ett problem på GitHub",
+  privacyAndContact: "Integritet och kontakt",
   metaDescription:
-    "Lär dig blindskrift med vår gratis onlinetränare. Öva på över 28 tangentbordslayouter på 8 språk. ord/minut-spårning i realtid, noggrannhetsstatistik, visuellt tangentbord och ljudåterkoppling.",
+    "Lär dig blindskrift med vår gratis onlinetränare. Öva på över 40 tangentbordslayouter på 45 språk. ord/minut-spårning i realtid, noggrannhetsstatistik, visuellt tangentbord och ljudåterkoppling.",
   cancel: "Avbryt",
   selectKeyboardLayout: "Tangentbordslayout välja",
   seoTitle: "Blindskrivning Tränare | Skrivövningar Online",
   seoDescription:
-    "Lär dig blindskrift med vår gratis onlinetränare. Öva på över 28 tangentbordslayouter på 8 språk med ord/minut-spårning i realtid, noggrannhetsstatistik och visuellt tangentbord. Lär dig skriva utan att titta på tangentbordet.",
+    "Lär dig blindskrift med vår gratis onlinetränare. Öva på över 40 tangentbordslayouter på 45 språk med ord/minut-spårning i realtid, noggrannhetsstatistik och visuellt tangentbord. Lär dig skriva utan att titta på tangentbordet.",
   seoKeywords:
     "blindskrivning, skrivning, skrivtränare, tangentbordstränare, skrivövningar, skrivhastighet, ord per minut, skrivnoggrannhet, online skrivtränare, lära sig blindskrivning, skriva utan att titta, tangentbordsträning, skrivlektioner, skrivövningar",
   seoTitleWords: "Öva blindskrift med ord — {lang} | Skrivträning",

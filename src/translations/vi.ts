@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Hỗ trợ dự án này",
   reportIssue: "Báo Cáo Vấn Đề",
   reportIssueTitle: "Báo cáo vấn đề trên GitHub",
+  privacyAndContact: "Quyền riêng tư và liên hệ",
   metaDescription:
-    "Làm chủ kỹ năng đánh máy bằng phương pháp cảm ứng với gia sư đánh máy mù trực tuyến miễn phí của chúng tôi. Luyện tập trên hơn 28 bố cục bàn phím ở 8 ngôn ngữ. Theo dõi từ/phút thời gian thực, độ chính xác.",
+    "Làm chủ kỹ năng đánh máy bằng phương pháp cảm ứng với gia sư đánh máy mù trực tuyến miễn phí của chúng tôi. Luyện tập trên hơn 40 bố cục bàn phím ở 45 ngôn ngữ. Theo dõi từ/phút thời gian thực, độ chính xác.",
   cancel: "Hủy",
   selectKeyboardLayout: "Chọn bố cục bàn phím",
   seoTitle: "Gia Sư Đánh Máy Mù | Luyện Tập Đánh Máy Online",
   seoDescription:
-    "Làm chủ kỹ năng đánh máy bằng phương pháp cảm ứng với gia sư đánh máy mù trực tuyến miễn phí của chúng tôi. Luyện tập trên hơn 28 bố cục bàn phím ở 8 ngôn ngữ với theo dõi từ/phút thời gian thực, độ chính xác và bàn phím trực quan. Học đánh máy mà không cần nhìn bàn phím.",
+    "Làm chủ kỹ năng đánh máy bằng phương pháp cảm ứng với gia sư đánh máy mù trực tuyến miễn phí của chúng tôi. Luyện tập trên hơn 40 bố cục bàn phím ở 45 ngôn ngữ với theo dõi từ/phút thời gian thực, độ chính xác và bàn phím trực quan. Học đánh máy mà không cần nhìn bàn phím.",
   seoKeywords:
     "đánh máy cảm ứng, đánh máy mù, gia sư đánh máy, huấn luyện viên bàn phím, luyện tập đánh máy, tốc độ đánh máy, từ mỗi phút, độ chính xác đánh máy, gia sư đánh máy trực tuyến, học đánh máy cảm ứng, đánh máy không nhìn, đào tạo bàn phím, bài học đánh máy, bài tập đánh máy",
   seoTitleWords: "Luyện Gõ 10 Ngón {lang} với Từ Vựng | Học Đánh Máy",

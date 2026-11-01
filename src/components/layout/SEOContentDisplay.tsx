@@ -2,6 +2,11 @@ import React from "react";
 import { translations } from "@/translations";
 import type { InterfaceLanguage } from "@/translations";
 import type { ContentType } from "@/utils/url";
+import { LEARNING_LANGUAGE_OPTIONS } from "@/config/constants";
+import { getAllLayouts } from "@/config/layouts";
+
+const LAYOUT_COUNT = getAllLayouts().length;
+const LANGUAGE_COUNT = LEARNING_LANGUAGE_OPTIONS.length;
 
 interface SEOContentDisplayProps {
   interfaceLang: InterfaceLanguage;
@@ -58,7 +63,12 @@ export function SEOContentDisplay({
     studyLang in t.languageNames
       ? t.languageNames[studyLang as keyof typeof t.languageNames]
       : studyLang.toUpperCase();
-  const modeName = learningMode === "words" ? t.words : t.phrases;
+  const modeName =
+    learningMode === "words"
+      ? t.words
+      : learningMode === "phrases"
+        ? t.phrases
+        : t.custom;
 
   return (
     <>
@@ -109,12 +119,12 @@ export function SEOContentDisplay({
           Visual keyboard with finger position guidance and color-coded keys
         </li>
         <li>
-          Support for 40+ keyboard layouts including QWERTY, AZERTY, QWERTZ,
-          Dvorak, and more
+          {LAYOUT_COUNT} keyboard layouts including QWERTY, AZERTY, QWERTZ,
+          Cyrillic, Arabic, Korean and Japanese
         </li>
         <li>
-          Practice in multiple languages: English, Spanish, French, German,
-          Russian, Chinese, Japanese, Korean, Arabic, and many others
+          Practice in {LANGUAGE_COUNT} languages: English, Spanish, French,
+          German, Russian, Chinese, Japanese, Korean, Arabic, and many others
         </li>
         <li>
           Three practice modes: individual words, common phrases, and custom
@@ -124,22 +134,15 @@ export function SEOContentDisplay({
         <li>
           Dark mode support for comfortable practice in low-light conditions
         </li>
-        <li>
-          Detailed statistics including mistakes heat map and finger usage
-          analysis
-        </li>
       </ul>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-gray-100">
         Track Your Progress
       </h2>
       <p className="mb-4 text-gray-700 dark:text-gray-300">
-        Monitor your improvement with detailed statistics. View your typing
-        speed (WPM), accuracy percentage, total characters typed, and mistakes
-        made. The mistakes heat map shows which keys you struggle with most,
-        allowing you to focus your practice where it's needed. Character
-        statistics reveal your typing patterns and help identify areas for
-        improvement.
+        See your typing speed (WPM), accuracy percentage, and error count
+        update live as you type. Correction mode makes you fix each mistake
+        before moving on, so errors turn into practice instead of habits.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-gray-100">
@@ -157,8 +160,8 @@ export function SEOContentDisplay({
         Multilingual Support
       </h2>
       <p className="mb-4 text-gray-700 dark:text-gray-300">
-        Our typing tutor supports practice in over 40 languages with native
-        keyboard layouts. Whether you're learning English typing on a QWERTY
+        Our typing tutor supports practice in {LANGUAGE_COUNT} languages with
+        native keyboard layouts. Whether you're learning English typing on a QWERTY
         layout, French on AZERTY, German on QWERTZ, or practicing Cyrillic,
         Arabic, Chinese, or Japanese characters, our tool provides the
         appropriate keyboard layout and practice content.

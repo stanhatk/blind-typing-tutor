@@ -4,32 +4,10 @@ import {
   LEARNING_LANGUAGE_OPTIONS,
   BASE_URL,
 } from "@/config/constants";
-import { POPULAR_CROSS_LANGUAGE, isIndexablePage } from "@/config/seo";
+import { isIndexablePage } from "@/config/seo";
 
 // Content types for practice modes
 const CONTENT_TYPES = ["words", "phrases", "custom"] as const;
-
-// Popular interface languages get higher priority
-const POPULAR_LANGS = ["en", "es", "fr", "de", "pt", "ru", "zh", "ja"];
-
-function getPriority(
-  interfaceLang: string,
-  studyLang: string,
-  mode: string
-): number {
-  if (mode === "custom") return 0.5;
-
-  if (interfaceLang === studyLang) {
-    return POPULAR_LANGS.includes(interfaceLang) ? 0.9 : 0.8;
-  }
-
-  const crossLangs = POPULAR_CROSS_LANGUAGE[interfaceLang] || [];
-  if (crossLangs.includes(studyLang)) {
-    return 0.7;
-  }
-
-  return 0.3;
-}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = [];
@@ -52,9 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         urls.push({
           url: `${BASE_URL}/${interfaceLang.code}/${studyLang.code}/${mode}`,
-          lastModified: new Date(),
-          changeFrequency: "weekly",
-          priority: getPriority(interfaceLang.code, studyLang.code, mode),
           alternates: {
             languages: languageAlternates,
           },
@@ -62,6 +37,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     });
   });
+
+  // lastmod, changefreq and priority are omitted: a build timestamp on every
+  // URL is not a real change date, and Google ignores the other two
+  urls.push({ url: `${BASE_URL}/privacy` });
 
   return urls;
 }

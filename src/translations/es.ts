@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Apoyar este proyecto",
   reportIssue: "Reportar Problema",
   reportIssueTitle: "Reportar un problema en GitHub",
+  privacyAndContact: "Privacidad y contacto",
   metaDescription:
-    "Domine la mecanografía con nuestro entrenador en línea gratuito. Practique en más de 28 diseños de teclado en 8 idiomas. Seguimiento de PPM en tiempo real, estadísticas de precisión, teclado visual y respuesta de audio.",
+    "Domine la mecanografía con nuestro entrenador en línea gratuito. Practique en más de 40 diseños de teclado en 45 idiomas. Seguimiento de PPM en tiempo real, estadísticas de precisión, teclado visual y respuesta de audio.",
   cancel: "Cancelar",
   selectKeyboardLayout: "Disposiciones de teclado",
   seoTitle: "Entrenador de Mecanografía | Práctica de Escritura a Ciegas",
   seoDescription:
-    "Domine la mecanografía con nuestro entrenador en línea gratuito. Practique en más de 28 diseños de teclado con seguimiento de PPM en tiempo real, estadísticas de precisión y teclado visual. Aprenda a escribir sin mirar el teclado.",
+    "Domine la mecanografía con nuestro entrenador en línea gratuito. Practique en más de 40 diseños de teclado con seguimiento de PPM en tiempo real, estadísticas de precisión y teclado visual. Aprenda a escribir sin mirar el teclado.",
   seoKeywords:
     "mecanografía, escritura a ciegas, tutor de mecanografía, entrenador de teclado, práctica de mecanografía, velocidad de escritura, PPM, precisión de escritura, entrenador de mecanografía en línea, aprender mecanografía, escribir sin mirar, entrenamiento de teclado, lecciones de mecanografía, ejercicios de mecanografía",
   seoTitleWords: "Practicar Mecanografía con Palabras | Tutor {lang}",

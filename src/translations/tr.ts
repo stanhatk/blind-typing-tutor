@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Bu projeyi destekle",
   reportIssue: "Sorun Bildir",
   reportIssueTitle: "GitHub'da sorun bildir",
+  privacyAndContact: "Gizlilik ve iletişim",
   metaDescription:
-    "Ücretsiz çevrimiçi kör yazma eğitmenimizle on parmak yazmayı öğrenin. 8 dilde 28'den fazla klavye düzeninde (QWERTY, QWERTZ, AZERTY) pratik yapın. Gerçek zamanlı DPD takibi, doğruluk istatistikleri ve görsel klavye.",
+    "Ücretsiz çevrimiçi kör yazma eğitmenimizle on parmak yazmayı öğrenin. 45 dilde 40'tan fazla klavye düzeninde (QWERTY, QWERTZ, AZERTY) pratik yapın. Gerçek zamanlı DPD takibi, doğruluk istatistikleri ve görsel klavye.",
   cancel: "İptal",
   selectKeyboardLayout: "Klavye düzenini seçin",
   seoTitle: "Dokunmatik Yazma Eğitmeni | Kör Yazma Pratiği Online",
   seoDescription:
-    "Ücretsiz online kör yazma eğitmenimizle dokunmatik yazmayı öğrenin. Gerçek zamanlı DPD takibi, doğruluk istatistikleri ve görsel klavye ile 28'den fazla klavye düzeninde pratik yapın. Klavyeye bakmadan yazmayı öğrenin.",
+    "Ücretsiz online kör yazma eğitmenimizle dokunmatik yazmayı öğrenin. Gerçek zamanlı DPD takibi, doğruluk istatistikleri ve görsel klavye ile 40'tan fazla klavye düzeninde pratik yapın. Klavyeye bakmadan yazmayı öğrenin.",
   seoKeywords:
     "dokunmatik yazma, kör yazma, yazma eğitmeni, klavye eğitmeni, yazma pratiği, yazma hızı, DPD, yazma doğruluğu, online yazma eğitmeni, dokunmatik yazma öğren, bakmadan yazma, klavye eğitimi, yazma dersleri, yazma egzersizleri",
   seoTitleWords: "{lang} On Parmak Klavye: Kelime Çalışması | Klavye Eğitmeni",

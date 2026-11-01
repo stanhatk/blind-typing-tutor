@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Sokong projek ini",
   reportIssue: "Laporkan Masalah",
   reportIssueTitle: "Laporkan masalah di GitHub",
+  privacyAndContact: "Privasi & hubungi",
   metaDescription:
-    "Kuasai kemahiran menaip pantas dengan tutor menaip buta dalam talian percuma kami. Berlatih pada lebih 28 reka letak papan kekunci dalam 8 bahasa. Penjejakan perkataan/minit masa nyata, statistik ketepatan dan papan kekunci visual.",
+    "Kuasai kemahiran menaip pantas dengan tutor menaip buta dalam talian percuma kami. Berlatih pada lebih 40 reka letak papan kekunci dalam 45 bahasa. Penjejakan perkataan/minit masa nyata, statistik ketepatan dan papan kekunci visual.",
   cancel: "Batal",
   selectKeyboardLayout: "Pilih tata letak keyboard",
   seoTitle: "Tutor Menaip Buta | Latihan Menaip Online",
   seoDescription:
-    "Kuasai kemahiran menaip pantas dengan tutor menaip buta dalam talian percuma kami. Berlatih pada lebih 28 reka letak papan kekunci dalam 8 bahasa dengan penjejakan perkataan/minit masa nyata, statistik ketepatan dan papan kekunci visual. Belajar menaip tanpa melihat papan kekunci.",
+    "Kuasai kemahiran menaip pantas dengan tutor menaip buta dalam talian percuma kami. Berlatih pada lebih 40 reka letak papan kekunci dalam 45 bahasa dengan penjejakan perkataan/minit masa nyata, statistik ketepatan dan papan kekunci visual. Belajar menaip tanpa melihat papan kekunci.",
   seoKeywords:
     "menaip pantas, menaip buta, tutor menaip, jurulatih papan kekunci, latihan menaip, kelajuan menaip, perkataan per minit, ketepatan menaip, tutor menaip dalam talian, belajar menaip pantas, menaip tanpa melihat, latihan papan kekunci, pelajaran menaip, latihan menaip",
   seoTitleWords: "Latihan Menaip {lang} dengan Perkataan | Menaip 10 Jari",

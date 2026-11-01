@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Sprijină acest proiect",
   reportIssue: "Raportează Problemă",
   reportIssueTitle: "Raportează o problemă pe GitHub",
+  privacyAndContact: "Confidențialitate și contact",
   metaDescription:
-    "Învață dactilografia cu ajutorul antrenorului nostru online gratuit. Exersează pe peste 28 de aspecte de tastatură în 8 limbi. Monitorizare cuvinte/minut în timp real, statistici de precizie și tastatură vizuală.",
+    "Învață dactilografia cu ajutorul antrenorului nostru online gratuit. Exersează pe peste 40 de aspecte de tastatură în 45 limbi. Monitorizare cuvinte/minut în timp real, statistici de precizie și tastatură vizuală.",
   cancel: "Anulează",
   selectKeyboardLayout: "Selectează aspectul tastaturii",
   seoTitle: "Tutor Dactilografie | Practică Scriere Online",
   seoDescription:
-    "Învață dactilografia cu ajutorul antrenorului nostru online gratuit. Exersează pe peste 28 de aspecte de tastatură în 8 limbi cu monitorizare cuvinte/minut în timp real, statistici de precizie și tastatură vizuală. Învață să scrii fără să te uiți la tastatură.",
+    "Învață dactilografia cu ajutorul antrenorului nostru online gratuit. Exersează pe peste 40 de aspecte de tastatură în 45 limbi cu monitorizare cuvinte/minut în timp real, statistici de precizie și tastatură vizuală. Învață să scrii fără să te uiți la tastatură.",
   seoKeywords:
     "dactilografie, scriere la orb, tutor dactilografie, antrenor tastatură, practică scriere, viteză scriere, cuvinte pe minut, precizie scriere, tutor dactilografie online, învăța dactilografie, scrie fără să te uiți, antrenament tastatură, lecții dactilografie, exerciții scriere",
   seoTitleWords: "Dactilografie oarbă cu cuvinte — {lang} | Curs de dactilografie",

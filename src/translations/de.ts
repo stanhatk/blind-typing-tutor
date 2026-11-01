@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Dieses Projekt unterstützen",
   reportIssue: "Problem Melden",
   reportIssueTitle: "Problem auf GitHub melden",
+  privacyAndContact: "Datenschutz & Kontakt",
   metaDescription:
-    "Meistern Sie das Blindschreiben mit unserem kostenlosen Online-Trainer. Üben Sie auf über 28 Tastaturlayouts in 8 Sprachen. Echtzeit-Wörter/Minute-Tracking, Genauigkeitsstatistiken, virtuelle Tastatur und Audio-Feedback.",
+    "Meistern Sie das Blindschreiben mit unserem kostenlosen Online-Trainer. Üben Sie auf über 40 Tastaturlayouts in 45 Sprachen. Echtzeit-Wörter/Minute-Tracking, Genauigkeitsstatistiken, virtuelle Tastatur und Audio-Feedback.",
   cancel: "Abbrechen",
   selectKeyboardLayout: "Tastaturlayout auswählen",
   seoTitle: "Blindschreiben Trainer | Tippen Üben Online",
   seoDescription:
-    "Meistern Sie das Blindschreiben mit unserem kostenlosen Online-Trainer. Üben Sie auf über 28 Tastaturlayouts mit Echtzeit-Wörter/Minute-Tracking, Genauigkeitsstatistiken und virtueller Tastatur. Lernen Sie, ohne auf die Tastatur zu schauen.",
+    "Meistern Sie das Blindschreiben mit unserem kostenlosen Online-Trainer. Üben Sie auf über 40 Tastaturlayouts mit Echtzeit-Wörter/Minute-Tracking, Genauigkeitsstatistiken und virtueller Tastatur. Lernen Sie, ohne auf die Tastatur zu schauen.",
   seoKeywords:
     "Blindschreiben, Tippen, Tipptrainer, Tastaturtrainer, Tippübungen, Tippgeschwindigkeit, Wörter pro Minute, Tippgenauigkeit, Online-Tipptrainer, Blindschreiben lernen, Tippen ohne zu schauen, Tastaturtraining, Tippkurse, Tippübungen",
   seoTitleWords: "Tippen mit Einzelwörtern üben | {lang} Tipp-Trainer",

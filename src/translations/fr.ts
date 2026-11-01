@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Soutenir ce projet",
   reportIssue: "Signaler un Problème",
   reportIssueTitle: "Signaler un problème sur GitHub",
+  privacyAndContact: "Confidentialité et contact",
   metaDescription:
-    "Maîtrisez la dactylographie avec notre entraîneur en ligne gratuit. Entraînez-vous sur plus de 28 dispositions de clavier dans 8 langues. Suivi du MPM en temps réel, statistiques de précision et clavier visuel.",
+    "Maîtrisez la dactylographie avec notre entraîneur en ligne gratuit. Entraînez-vous sur plus de 40 dispositions de clavier dans 45 langues. Suivi du MPM en temps réel, statistiques de précision et clavier visuel.",
   cancel: "Annuler",
   selectKeyboardLayout: "Dispositions de clavier",
   seoTitle: "Entraîneur de Dactylographie | Pratique de Frappe en Ligne",
   seoDescription:
-    "Maîtrisez la dactylographie avec notre entraîneur en ligne gratuit. Entraînez-vous sur plus de 28 dispositions de clavier avec suivi du MPM en temps réel, statistiques de précision et clavier visuel. Apprenez à taper sans regarder le clavier.",
+    "Maîtrisez la dactylographie avec notre entraîneur en ligne gratuit. Entraînez-vous sur plus de 40 dispositions de clavier avec suivi du MPM en temps réel, statistiques de précision et clavier visuel. Apprenez à taper sans regarder le clavier.",
   seoKeywords:
     "dactylographie, frappe à l'aveugle, tuteur de frappe, entraîneur de clavier, pratique de frappe, vitesse de frappe, MPM, précision de frappe, entraîneur de frappe en ligne, apprendre la dactylographie, taper sans regarder, formation au clavier, cours de frappe, exercices de frappe",
   seoTitleWords: "Pratiquer la Dactylographie avec des Mots | Tuteur {lang}",
@@ -47,7 +48,7 @@ export const translations = {
   seoDescriptionPhrases: "Améliorez votre vitesse de frappe avec des phrases courantes en {lang}. Pratiquez des phrases complètes pour développer le rythme et la fluidité avec notre tuteur en ligne gratuit.",
   seoDescriptionCustom: "Pratiquez la dactylographie de texte personnalisé en {lang}. Collez votre propre texte et améliorez vos compétences de frappe avec notre tuteur en ligne gratuit.",
   seoBlindTypingTitle: "Dactylographie Aveugle en {lang} | Apprendre la Dactylographie Aveugle",
-  seoBlindTypingDescription: "Pratiquez la dactylographie aveugle en {lang} avec notre tuteur en ligne gratuit. Apprenez à taper sans regarder le clavier avec 40+ dispositionset. Suivi WPM et précision en temps réel.",
+  seoBlindTypingDescription: "Pratiquez la dactylographie aveugle en {lang} avec notre tuteur en ligne gratuit. Apprenez à taper sans regarder le clavier avec 40+ dispositions. Suivi WPM et précision en temps réel.",
   mobileDesktopRequired: "Clavier de bureau requis",
   mobileDescription:
     "Cette application est conçue pour une utilisation sur bureau avec un clavier physique. Veuillez visiter ce site sur un ordinateur de bureau ou portable pour pratiquer la dactylographie.",

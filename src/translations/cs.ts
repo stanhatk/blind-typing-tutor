@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Podpořit tento projekt",
   reportIssue: "Nahlásit Problém",
   reportIssueTitle: "Nahlásit problém na GitHub",
+  privacyAndContact: "Soukromí a kontakt",
   metaDescription:
-    "Naučte se psát všemi deseti s naším bezplatným online trenérem. Cvičte na více než 28 rozloženích klávesnice v 8 jazycích. Sledování slov/minutu v reálném čase, statistiky přesnosti a vizuální klávesnice.",
+    "Naučte se psát všemi deseti s naším bezplatným online trenérem. Cvičte na více než 40 rozloženích klávesnice v 45 jazycích. Sledování slov/minutu v reálném čase, statistiky přesnosti a vizuální klávesnice.",
   cancel: "Zrušit",
   selectKeyboardLayout: "Klávesnici výběr",
   seoTitle: "Trenér Slepého Psaní | Psaní Cvičení Online",
   seoDescription:
-    "Naučte se psát všemi deseti s naším bezplatným online trenérem. Cvičte na více než 28 rozloženích klávesnice v 8 jazycích se sledováním slov/minutu v reálném čase, statistikami přesnosti a vizuální klávesnicí. Naučte se psát bez pohledu na klávesnici.",
+    "Naučte se psát všemi deseti s naším bezplatným online trenérem. Cvičte na více než 40 rozloženích klávesnice v 45 jazycích se sledováním slov/minutu v reálném čase, statistikami přesnosti a vizuální klávesnicí. Naučte se psát bez pohledu na klávesnici.",
   seoKeywords:
     "slepé psaní, psaní, trenér psaní, trenér klávesnice, cvičení psaní, rychlost psaní, slov za minutu, přesnost psaní, online trenér psaní, naučit se slepé psaní, psát bez pohledu, trénink klávesnice, lekce psaní, cvičení psaní",
   seoTitleWords: "Psaní všemi deseti se slovy — {lang} | Trenažér psaní",

@@ -62,6 +62,7 @@ export type TranslationKeys = {
   supportTitle: string;
   reportIssue: string;
   reportIssueTitle: string;
+  privacyAndContact: string;
   metaDescription: string;
   cancel: string;
   selectKeyboardLayout: string;

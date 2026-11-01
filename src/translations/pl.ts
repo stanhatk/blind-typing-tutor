@@ -31,13 +31,14 @@ export const translations = {
   supportTitle: "Wspieraj ten projekt",
   reportIssue: "Zgłoś Problem",
   reportIssueTitle: "Zgłoś problem na GitHub",
+  privacyAndContact: "Prywatność i kontakt",
   metaDescription:
-    "Opanuj pisanie bezwzrokowe z naszym darmowym trenerem online. Ćwicz na ponad 28 układach klawiatury w 8 językach. Śledzenie słów/minutę w czasie rzeczywistym, statystyki dokładności, wizualna klawiatura i dźwięki.",
+    "Opanuj pisanie bezwzrokowe z naszym darmowym trenerem online. Ćwicz na ponad 40 układach klawiatury w 45 językach. Śledzenie słów/minutę w czasie rzeczywistym, statystyki dokładności, wizualna klawiatura i dźwięki.",
   cancel: "Anuluj",
   selectKeyboardLayout: "Wybierz układ klawiatury",
   seoTitle: "Trener Pisania Bezwzrokowego | Praktyka Pisania Online",
   seoDescription:
-    "Opanuj pisanie bezwzrokowe z naszym darmowym trenerem online. Ćwicz na ponad 28 układach klawiatury ze śledzeniem słów/minutę w czasie rzeczywistym, statystykami dokładności i wizualną klawiaturą. Naucz się pisać bez patrzenia na klawiaturę.",
+    "Opanuj pisanie bezwzrokowe z naszym darmowym trenerem online. Ćwicz na ponad 40 układach klawiatury ze śledzeniem słów/minutę w czasie rzeczywistym, statystykami dokładności i wizualną klawiaturą. Naucz się pisać bez patrzenia na klawiaturę.",
   seoKeywords:
     "pisanie bezwzrokowe, pisanie na klawiaturze, trener pisania, trener klawiatury, praktyka pisania, prędkość pisania, słów na minutę, dokładność pisania, trener pisania online, nauczyć się pisania bezwzrokowego, pisać bez patrzenia, szkolenie klawiatury, lekcje pisania, ćwiczenia pisania",
   seoTitleWords: "Pisanie bezwzrokowe ze słowami — {lang} | Kurs pisania",
