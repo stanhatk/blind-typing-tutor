@@ -177,7 +177,23 @@ export default async function LearningModePage({ params }: PageProps) {
         studyLang={studyLang}
         learningMode={learningMode as ContentType}
       />
-      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      <footer className="max-w-3xl mx-auto px-4 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        {/* Every same-language page, named in its own language */}
+        <nav aria-label={t.interfaceLanguage}>
+          <ul className="flex flex-wrap justify-center gap-x-3 gap-y-1 mb-4">
+            {INTERFACE_LANGUAGE_OPTIONS.map(({ code }) => (
+              <li key={code}>
+                <a
+                  href={`/${code}/${code}/words`}
+                  lang={code}
+                  className="hover:underline"
+                >
+                  {translations[code].languageNames[code]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <a href="/privacy" className="hover:underline">
           {t.privacyAndContact}
         </a>

@@ -85,7 +85,10 @@ export default function PrivacyPage() {
         from Google Fonts, which receives your IP address when they load.
       </p>
 
-      <h2 className="text-xl font-semibold mt-8 mb-3 text-gray-900 dark:text-white">
+      <h2
+        id="credits"
+        className="text-xl font-semibold mt-8 mb-3 text-gray-900 dark:text-white"
+      >
         Practice content
       </h2>
       <p className="mb-4">

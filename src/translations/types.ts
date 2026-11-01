@@ -82,6 +82,29 @@ export type TranslationKeys = {
   articleFeatureStats: string;
   articleFeatureFree: string;
   articleRelatedHeading: string;
+  // Per-language facts; {count} is replaced at render
+  factsHeading: string;
+  factLayout: string;
+  factHomeRow: string;
+  factWords: string;
+  factWordsValue: string;
+  factPhrases: string;
+  factPhrasesValue: string;
+  factSampleWords: string;
+  factLetters: string; // Letters of the practice language beyond A–Z (or all, for other scripts)
+  factSamplePhrases: string;
+  factSourceLink: string;
+  faqHeading: string;
+  faq1Q: string;
+  faq1A: string;
+  faq2Q: string;
+  faq2A: string;
+  faq3Q: string;
+  faq3A: string;
+  faq4Q: string;
+  faq4A: string;
+  faq5Q: string;
+  faq5A: string;
   articleScreenReaderNote?: string; // English only: "blind typing" also means software for blind users
   metaDescription: string;
   cancel: string;

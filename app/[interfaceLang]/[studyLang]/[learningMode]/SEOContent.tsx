@@ -3,11 +3,20 @@ import type { InterfaceLanguage } from "@/translations";
 import type { ContentType } from "@/utils/url";
 import { isIndexablePage } from "@/config/seo";
 import { LEARNING_LANGUAGE_OPTIONS } from "@/config/constants";
-import { getAllLayouts } from "@/config/layouts";
+import {
+  getAllLayouts,
+  getLayout,
+  getLayoutIdsForLanguage,
+} from "@/config/layouts";
+import { loadContent } from "@/words";
+import type { LanguageCode } from "@/types/keyboard";
 
 const LAYOUT_COUNT = getAllLayouts().length;
 const LANGUAGE_COUNT = LEARNING_LANGUAGE_OPTIONS.length;
 const MODES: ContentType[] = ["words", "phrases", "custom"];
+// Physical keys where the fingers rest
+const HOME_ROW_KEYS = ["a", "s", "d", "f", "j", "k", "l", "cologn"];
+const FAQ = [1, 2, 3, 4, 5] as const;
 
 interface SEOContentProps {
   interfaceLang: string;
@@ -20,7 +29,7 @@ interface SEOContentProps {
  * how to practice and links to related practice pages. Server-rendered and
  * fully translated, so every interface language gets its own text.
  */
-export function SEOContent({
+export async function SEOContent({
   interfaceLang,
   studyLang,
   learningMode,
@@ -31,6 +40,43 @@ export function SEOContent({
     t.languageNames[code as keyof typeof t.languageNames] ?? code.toUpperCase();
   const modeName = (mode: ContentType) =>
     mode === "words" ? t.words : mode === "phrases" ? t.phrases : t.custom;
+
+  // Facts that differ per practice language: its layout, home row and words
+  const content = await loadContent(studyLang as LanguageCode);
+  const layoutId = getLayoutIdsForLanguage(studyLang as LanguageCode)[0];
+  const layout = layoutId ? getLayout(layoutId) : undefined;
+  const homeRow = layout
+    ? HOME_ROW_KEYS.map(
+        (id) => layout.keys.find((key) => key.id === id)?.primary ?? ""
+      )
+    : [];
+  // CJK words are short in characters, so a shorter minimum length
+  const minLength = content.readings ? 2 : 4;
+  const sampleWords = content.words
+    .filter((word) => [...word].length >= minLength)
+    .slice(0, 8)
+    .map((word) =>
+      content.readings?.[word] ? `${word} (${content.readings[word]})` : word
+    );
+  // Letters the language uses beyond A–Z; every letter for other scripts.
+  // Skipped for romanized (ja, zh) and syllable-based (ko, ...) languages.
+  const letters = [
+    ...new Set(
+      // Lm skips modifier letters such as the Arabic tatweel
+      content.words.join("").toLocaleLowerCase(studyLang).match(/(?!\p{Lm})\p{L}/gu)
+    ),
+  ]
+    .filter((letter) => !/[a-z]/.test(letter))
+    .sort((a, b) => a.localeCompare(b, studyLang));
+  const showLetters = !content.readings && letters.length > 0 && letters.length <= 60;
+  const listSeparator = ["ar", "fa", "ur"].includes(studyLang)
+    ? "، "
+    : ["ja", "zh"].includes(studyLang)
+      ? "、"
+      : ", ";
+  const samplePhrases = content.phrases?.slice(0, 3) ?? [];
+  const formatCount = (count: number) =>
+    count.toLocaleString(t === translations.en ? "en" : interfaceLang);
 
   const modeSection = {
     words: { heading: t.articleWordsHeading, text: t.articleWordsText },
@@ -88,6 +134,70 @@ export function SEOContent({
         <li>{t.articleFeatureStats}</li>
         <li>{t.articleFeatureFree}</li>
       </ul>
+
+      <h2 className={h2}>{t.factsHeading}</h2>
+      <dl className="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2 mb-2">
+        {layout && (
+          <>
+            <dt className="font-medium">{t.factLayout}</dt>
+            <dd>{layout.name}</dd>
+            <dt className="font-medium">{t.factHomeRow}</dt>
+            <dd className="font-mono" dir="ltr">
+              {homeRow.slice(0, 4).join(" ")}
+              {"   "}
+              {homeRow.slice(4).join(" ")}
+            </dd>
+          </>
+        )}
+        <dt className="font-medium">{t.factWords}</dt>
+        <dd>
+          {t.factWordsValue.replace("{count}", formatCount(content.words.length))}
+        </dd>
+        {content.phrases && (
+          <>
+            <dt className="font-medium">{t.factPhrases}</dt>
+            <dd>
+              {t.factPhrasesValue.replace(
+                "{count}",
+                formatCount(content.phrases.length)
+              )}
+            </dd>
+          </>
+        )}
+        <dt className="font-medium">{t.factSampleWords}</dt>
+        <dd lang={studyLang}>{sampleWords.join(listSeparator)}</dd>
+        {showLetters && (
+          <>
+            <dt className="font-medium">{t.factLetters}</dt>
+            <dd lang={studyLang}>{letters.join(" ")}</dd>
+          </>
+        )}
+        {samplePhrases.length > 0 && (
+          <>
+            <dt className="font-medium">{t.factSamplePhrases}</dt>
+            <dd lang={studyLang}>
+              {samplePhrases.map((phrase) => (
+                <p key={phrase}>{phrase}</p>
+              ))}
+            </dd>
+          </>
+        )}
+      </dl>
+      <p className="mb-4 text-sm">
+        <a href="/privacy#credits" className="underline hover:no-underline">
+          {t.factSourceLink}
+        </a>
+      </p>
+
+      <h2 className={h2}>{t.faqHeading}</h2>
+      {FAQ.map((n) => (
+        <div key={n} className="mb-4">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+            {t[`faq${n}Q`]}
+          </h3>
+          <p>{t[`faq${n}A`]}</p>
+        </div>
+      ))}
 
       {related.length > 0 && (
         <nav aria-labelledby="related-practice">
