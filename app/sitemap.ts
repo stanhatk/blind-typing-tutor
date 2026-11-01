@@ -17,17 +17,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // hreflang alternates only list the indexable variants of the same page.
   INTERFACE_LANGUAGE_OPTIONS.forEach((interfaceLang) => {
     LEARNING_LANGUAGE_OPTIONS.forEach((studyLang) => {
-      if (!isIndexablePage(interfaceLang.code, studyLang.code)) return;
-
       CONTENT_TYPES.forEach((mode) => {
+        if (!isIndexablePage(interfaceLang.code, studyLang.code, mode)) return;
+
         const languageAlternates: Record<string, string> = {};
         INTERFACE_LANGUAGE_OPTIONS.forEach((lang) => {
-          if (!isIndexablePage(lang.code, studyLang.code)) return;
+          if (!isIndexablePage(lang.code, studyLang.code, mode)) return;
           languageAlternates[lang.code] =
             `${BASE_URL}/${lang.code}/${studyLang.code}/${mode}`;
         });
-        languageAlternates["x-default"] =
-          `${BASE_URL}/en/${studyLang.code}/${mode}`;
+        if (isIndexablePage("en", studyLang.code, mode)) {
+          languageAlternates["x-default"] =
+            `${BASE_URL}/en/${studyLang.code}/${mode}`;
+        }
 
         urls.push({
           url: `${BASE_URL}/${interfaceLang.code}/${studyLang.code}/${mode}`,

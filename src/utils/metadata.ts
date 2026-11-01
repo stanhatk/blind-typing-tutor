@@ -72,7 +72,7 @@ function generateHreflangAlternates(
 
   INTERFACE_LANGUAGE_OPTIONS.forEach((lang) => {
     // hreflang must only point at indexable pages
-    if (studyLang && !isIndexablePage(lang.code, studyLang)) return;
+    if (studyLang && !isIndexablePage(lang.code, studyLang, learningMode)) return;
     let url = `${BASE_URL}/${lang.code}`;
     if (studyLang && learningMode) {
       // For content pages, maintain the same studyLang and learningMode
@@ -94,7 +94,10 @@ function generateHreflangAlternates(
       studyLang as LanguageCode
     )}`;
   }
-  alternates["x-default"] = defaultUrl;
+  // x-default must be indexable too (custom mode indexes same-language only)
+  if (!studyLang || isIndexablePage("en", studyLang, learningMode)) {
+    alternates["x-default"] = defaultUrl;
+  }
 
   return alternates;
 }
@@ -278,7 +281,9 @@ export function generatePageMetadata(options: MetadataOptions): Metadata {
     description,
     keywords,
     robots: robots || {
-      index: !studyLang || isIndexablePage(validatedInterfaceLang, studyLang),
+      index:
+        !studyLang ||
+        isIndexablePage(validatedInterfaceLang, studyLang, learningMode),
       follow: true,
     },
     alternates: {

@@ -37,8 +37,15 @@ export const POPULAR_CROSS_LANGUAGE: Record<string, string[]> = {
  * study language (it is the x-default of each hreflang cluster), and popular
  * cross-language pairs. All other combinations still render but are noindex,
  * so search engines do not crawl ~2,000 near-duplicate pages.
+ * Custom mode practices the visitor's own text, so its page is the same for
+ * every practice language: only the same-language one is indexed.
  */
-export function isIndexablePage(interfaceLang: string, studyLang: string): boolean {
+export function isIndexablePage(
+  interfaceLang: string,
+  studyLang: string,
+  mode?: string
+): boolean {
+  if (mode === "custom") return interfaceLang === studyLang;
   return (
     interfaceLang === studyLang ||
     interfaceLang === "en" ||

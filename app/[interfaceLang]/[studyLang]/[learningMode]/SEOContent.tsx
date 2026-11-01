@@ -99,7 +99,7 @@ export async function SEOContent({
         (l) => l.studyLang === link.studyLang && l.mode === link.mode
       ) === index &&
       !(link.studyLang === studyLang && link.mode === learningMode) &&
-      isIndexablePage(interfaceLang, link.studyLang)
+      isIndexablePage(interfaceLang, link.studyLang, link.mode)
   );
 
   const guide = getGuideForLanguage(interfaceLang);
