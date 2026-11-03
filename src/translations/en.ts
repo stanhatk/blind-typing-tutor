@@ -89,8 +89,8 @@ export const translations = {
   seoDescriptionWords: "Practice touch typing with individual words in {lang}. Build muscle memory for common letter combinations and improve finger placement accuracy with our free online typing tutor.",
   seoDescriptionPhrases: "Improve your typing speed with common phrases in {lang}. Practice complete sentences to develop rhythm, flow, and continuous typing ability with our free online typing tutor.",
   seoDescriptionCustom: "Practice custom text typing in {lang}. Paste your own text and improve your touch typing skills with our free online typing tutor.",
-  seoBlindTypingTitle: "Free Touch Typing Practice Online | {lang} Typing Tutor",
-  seoBlindTypingDescription: "Free touch typing practice online, no sign-up. Learn blind typing with real {lang} words and phrases, finger hints on 40+ keyboard layouts, live speed and accuracy.",
+  seoBlindTypingTitle: "Blind Typing Practice Online — Free {lang} Touch Typing Tutor",
+  seoBlindTypingDescription: "Free blind typing practice, no sign-up. Learn touch typing with real {lang} words and phrases, finger hints on 40+ keyboard layouts, live speed and accuracy.",
   mobileDesktopRequired: "Desktop Keyboard Required",
   mobileDescription:
     "This application is designed for desktop use with a physical keyboard. Please visit this site on a desktop or laptop computer to practice touch typing.",
